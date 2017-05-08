@@ -1,0 +1,44 @@
+.sidr{ 
+	display:block;
+	position:fixed;
+	top:0;
+	height:100%;
+	z-index:999999;
+	width:240px;
+	overflow-x:hidden;
+	overflow-y:auto;
+	background: #111;
+	padding: 20px 0;
+}
+.sidr.right{
+	left:auto;
+	right:-240px;
+}
+.sidr.left{
+	left:-240px;
+	right:auto;
+}
+.sidr ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.sidr ul li {
+	display: block;
+}
+.sidr ul a {
+	color: #fff;
+	padding: 5px 25px;
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+}
+.sidr ul ul a {
+	font-size: 12px;
+	padding: 5px 35px;
+	font-weight: normal;
+}
+.sidr ul ul a {
+	padding: 5px 40px;
+	font-weight: normal;
+}
