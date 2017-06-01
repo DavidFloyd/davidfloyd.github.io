@@ -1,0 +1,40 @@
+baseurl = "https://blog.davidmacias.com"
+languageCode = "en-us"
+title = "Igor Kulman"
+googleAnalytics = "UA-49528577-2"
+theme = "beautifulhugo"
+Paginate = 10
+disqusShortname = "coudingjournal"
+
+[params]
+  twitterName = "davidmacias"
+  githubName = "davidmacias"
+  subtitle = "Adventures in the world of C#, F# and Swift on Windows and iOS"  
+  dateFormat = "January 2, 2006"
+  commit = false
+  rss = true
+  comments = true
+  logo = "img/avatar-icon.png"
+  favicon = "img/favicon.ico"
+  blogTitle = "Coding Journal"
+
+[Author]
+  name = "davidmacias"
+  email = "igor@kulman.sk"
+  github = "davidmacias"
+  twitter = "davidmacias"  
+
+[[menu.main]]
+    name = "Blog"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 2          
+
+[[menu.main]]
+    name = "About me / contact"
+    url = "/about/"
+    weight = 3      
