@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fsharp on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/tags/fsharp/</link>
+    <description>Recent content in Fsharp on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Mon, 07 Apr 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/fsharp/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Crawling mobile app stores with F#</title>
+      <link>https://blog.davidmacias.com/crawling-mobile-app-stores-with-f/</link>
+      <pubDate>Mon, 07 Apr 2014 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/crawling-mobile-app-stores-with-f/</guid>
+      <description>&lt;p&gt;Some time ago I needed a way to programatically search the Apple AppStore and Google Play Store to get some info about apps for a project. I decided to write an F# script for that task and later added support for Windows Phone Store.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Types&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I wanted the script to be easily usable from outside of F# so first I created a type for the app.&lt;/p&gt;
+
+&lt;div data-gist=&#34;10019990&#34; data-file=&#34;types.fs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;I also needed a helper function to download data from the web. I used a classic WebClient with user agent set to Chrome, because the Windows Phone Store API requires a user agent header&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;div data-gist=&#34;10019990&#34; data-file=&#34;net.fs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Apple AppStore&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Searching in Apple AppStore is easy, because Apple provides a simple search API that returns JSON. Thanks to the JsonProvider from FSharp.Data, the code is really simple&lt;/p&gt;
+
+&lt;div data-gist=&#34;10019990&#34; data-file=&#34;AppStore.fs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Just downloading the JSON transforming the data to our type.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Google Play Store&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Searching in Google Play Store is a bit more of a challenge. There is no API I could found so I had to parse the html returned from the web version of Google Play Store. The web can change at any time so I need to be aware of this fact and fix the method if it happens.&lt;/p&gt;
+
+&lt;div data-gist=&#34;10019990&#34; data-file=&#34;PlayStore.fs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Another problem with parsing the web is that there is no way to return search result for a specific country like for Apple AppStore. The web always shows results according to your IP address.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Windows Phone Store&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;There is no official API for searching the Windows Phone Store but I was given a tip obtained after sniffing the traffic from a Windows Phone, so I did not have to parse the web. The code is as simple as for Apple AppStore thanks to XmlProvider.&lt;/p&gt;
+
+&lt;div data-gist=&#34;10019990&#34; data-file=&#34;WindowsPhoneStore.fs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Using F# is fun and processing data is really simple thanks to type provides. You can find it whole code at &lt;a href=&#34;https://github.com/igorkulman/AppStoreCrawler&#34;&gt;https://github.com/igorkulman/AppStoreCrawler&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Building Windows Phone apps with FAKE</title>
+      <link>https://blog.davidmacias.com/building-windows-phone-apps-with-fake/</link>
+      <pubDate>Mon, 31 Mar 2014 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/building-windows-phone-apps-with-fake/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://fsharp.github.io/FAKE/&#34;&gt;FAKE&lt;/a&gt; is a build automation system with capabilities which are similar to make and rake. It is using an easy domain-specific language (DSL) so that you can start using it without learning F#. If you need more than the default functionality you can either write F# or simply reference .NET assemblies.&lt;/p&gt;
+
+&lt;p&gt;I have been using FAKE for quite some time now on some fairly complex projects for not only building but also running tests and creating and pushing Nuget packages and I really like. I decided to add FAKE build scripts to my Windows Phone apps to make the process of generating a XAP file for the Windows Phone Store easier.&lt;/p&gt;
+
+&lt;p&gt;The FAKE script I use can by used with any Windows Phone app, it will build all the projects and copy the XAP file to a release directory.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;div data-gist=&#34;9842235&#34; data-file=&#34;build.fsx&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;To get the script started, you need a batch file&lt;/p&gt;
+
+&lt;div data-gist=&#34;9842235&#34; data-file=&#34;build.bat&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;and Nuget.exe in tools\NuGet directory.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>F# on Azure: using Table Storage for logging</title>
+      <link>https://blog.davidmacias.com/f-on-azure-using-table-storage-for-logging/</link>
+      <pubDate>Tue, 26 Feb 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/f-on-azure-using-table-storage-for-logging/</guid>
+      <description>&lt;p&gt;Windows Azure finally has a good F# support. Creating F# Worker Roles is supported right from the wizzard in Visual Studio and you can create a F# Web Role using the &lt;a href=&#34;http://visualstudiogallery.msdn.microsoft.com/3d2bf938-fc9e-403c-90b3-8de27dc23095&#34;&gt;F# C# MVC template&lt;/a&gt;. I decided to try it out and the first thing I needed to implement was logging. I decided for logging to Azure Table Storage.&lt;/p&gt;
+
+&lt;p&gt;I assume you have a basic idea of how Azure Table Storage works. If not, there is a &lt;a href=&#34;http://www.windowsazure.com/en-us/develop/net/how-to-guides/table-services/&#34;&gt;good guide on the Windows Azure website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The first thing you need to do is to define your log entry class. You need to create a class, Azure Table Storage does not work with F# records. In my case I want to store a timestamp, message and severity.&lt;/p&gt;
+
+&lt;div data-gist=&#34;5822037&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Alternatively you can make your class inherit from TableEntity that already contains the PartitionKey and RowKey properties. The Severity property is in my case just a simple discriminated union&lt;/p&gt;
+
+&lt;div data-gist=&#34;5822042&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;You can access the Azure API in C# way but you do not need to, there is a great library called &lt;a href=&#34;http://dmohl.github.com/Fog/&#34;&gt;Fog by Dan Mohl&lt;/a&gt; that makes using Azure API from F# more comfortable.&lt;/p&gt;
+
+&lt;p&gt;First you create a Azure Table Storage client using a connection string defined in the Windows Azure Cloud Service Configuration file for a role&lt;/p&gt;
+
+&lt;div data-gist=&#34;5822066&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Saving a log entry is then very simple thanks to Fog&lt;/p&gt;
+
+&lt;div data-gist=&#34;5822061&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Saving data to Azure Table Storage may be a slow operation if you do it a lot, so you may want to log asynchronously&lt;/p&gt;
+
+&lt;div data-gist=&#34;5822056&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;As you may have noticed, I use the date as the partiotion key. The thing with Azure Table Storage is, that you can get the data by partition key, row key, or all the data. The log date seems like a reasonable partition key that allows you to get log by days&lt;/p&gt;
+
+&lt;div data-gist=&#34;5822053&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; there is a more way to create the LogEntity using the CLIMuttableAttribte&lt;/p&gt;
+
+&lt;div data-gist=&#34;5822050&#34;&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reading Excel sheets using F# without COM</title>
+      <link>https://blog.davidmacias.com/reading-excel-sheets-using-f-without-com/</link>
+      <pubDate>Wed, 06 Feb 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/reading-excel-sheets-using-f-without-com/</guid>
+      <description>&lt;p&gt;I needed to create an utility that would read Excel 2010 files (.xlsx) and generate XML files from them according to some specific rules. The catch was that the utility needed to run on MacOS instead of Windows.&lt;/p&gt;
+
+&lt;p&gt;Reading and writing Excel files from .NET is &lt;a href=&#34;http://blogs.msdn.com/b/jackhu/archive/2011/04/19/fsharp-amp-excel-io-reading-and-writeing-to-excel.aspx&#34;&gt;very easy using the Microsoft.Office.Interop assemblies&lt;/a&gt; but they use Excel through COM and that makes them unusable outside of Windows. I found some 3rd party libraries for working with Excel and analzyed them with &lt;a href=&#34;http://www.mono-project.com/MoMA&#34;&gt;The Mono Migration Analzyer&lt;/a&gt; (MoMA). MoMA is a handy tool that analyzes .NET assemblies and tells you if they will run on Mono. Many of the Excel libraries I found were unusable for my use-case because they were using PInvoke calls. Only the &lt;a href=&#34;http://excelpackage.codeplex.com/&#34;&gt;ExcelPackage library&lt;/a&gt; runs on Mono.&lt;/p&gt;
+
+&lt;p&gt;I wanted to use the ExcelPackage from F# not C# so I wrote a &lt;a href=&#34;https://github.com/igorkulman/ExcelPackageF&#34;&gt;very simple F# wrapper&lt;/a&gt;, that you can freely use. For now it contains just a few methods&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Excel.getWorksheets&lt;/p&gt;
+
+&lt;p&gt;Excel.getWorksheetByIndex&lt;/p&gt;
+
+&lt;p&gt;Excel.getWorksheetByName&lt;/p&gt;
+
+&lt;p&gt;Excel.getMaxRowNumber&lt;/p&gt;
+
+&lt;p&gt;Excel.getMaxColNumber&lt;/p&gt;
+
+&lt;p&gt;Excel.getContent&lt;/p&gt;
+
+&lt;p&gt;Excel.getColumn&lt;/p&gt;
+
+&lt;p&gt;Excel.getRow&lt;/p&gt;
+
+&lt;p&gt;but I will be adding a few more soon. The usage is really simple. For example, if you want to read the whole sheet number 1 from a file called text.xlsx, use&lt;/p&gt;
+
+&lt;div data-gist=&#34;5822019&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT&lt;/strong&gt;: Now available as a Nuget package:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-fsharp&#34;&gt;PM&amp;gt; Install-Package ExcelPackageF
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Generating all permutations of a list … how hard can that be?</title>
+      <link>https://blog.davidmacias.com/generating-all-permutations-of-a-list-how-hard-can-that-be/</link>
+      <pubDate>Fri, 01 Feb 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/generating-all-permutations-of-a-list-how-hard-can-that-be/</guid>
+      <description>&lt;p&gt;While reading an article that had nothing in common with programming I came upon a sudden need to find a way to generate all the permutations of a list, or more exactly a string (it is just a list of characters). As lazy as I am I tried to google a few examples of C# code that does exactly that. I was horrified that programmers could come up with the complicated ways I found. Not to mention programmers writing a ton of unit test and classes before actualy writing the code that solves to problem.&lt;/p&gt;
+
+&lt;p&gt;The problem is naturally recursive. All the permutations of a list of n items consit of each of the n items combined with all the permutations of the list without the actual item. So if you have a list of let&amp;#8217;s say items (a,b,c), all the permutations are (a+permutation((b,c)) + (b+permutations((a,c))) + (c+permutations((a,b)).&lt;/p&gt;
+
+&lt;p&gt;First I came up with F# code to solve it, after some yield googling:&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;div data-gist=&#34;5849397&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;When I started to think about a C# solution I got stuck. The functional solution was still resonating in my head so I ended up basically rewriting F# to C#:&lt;/p&gt;
+
+&lt;div data-gist=&#34;5849399&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Looking for other functional solutions I found a realy neat way to generate permutations in Haskell, thanks to the generators&lt;/p&gt;
+
+&lt;div data-gist=&#34;5849402&#34;&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Using Sublime Text 2 as F# REPL</title>
+      <link>https://blog.davidmacias.com/using-sublime-text-2-as-f-repl/</link>
+      <pubDate>Tue, 15 Jan 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/using-sublime-text-2-as-f-repl/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text 2&lt;/a&gt; is a great multi-purpose text editor that you can run on Windows, MacOS and Linux. You can configure Sublime Text 2 to higlight and compile F# files and even to use F# Interactive and make it a F# REPL. Using Sublime Text 2 as F# REPL is useful when you work on MacOS and Linux (F# 3.0 works great with &lt;a href=&#34;http://www.mono-project.com/Main_Page&#34;&gt;Mono&lt;/a&gt;) and cannot use Visual Studio 2012. If you are new to Sublime Text 2, check out the &lt;a href=&#34;http://net.tutsplus.com/articles/news/perfect-workflow-in-sublime-text-free-course/&#34;&gt;Perfect Workflow in Sublime Text: Free Course&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Installing necessary packages&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In order to use F# Interactive in Sublime Text 2, you have to install a few packages first. All the packages can be installed using &lt;a href=&#34;http://wbond.net/sublime_packages/package_control&#34;&gt;Sublime Package Control&lt;/a&gt;. You need to install the following packages:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;F#&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SublimeREPL&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Configuration&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The first package add F# support to Sublime Text 2 and the second one is a multipurpose REPL that can be used with many programming languages. After installing these packages, the F# REPL should immediately work if yoz have FSI in your path. Go to &lt;em&gt;Tools | SublimeREPL | F#&lt;/em&gt; to test it out. The F# REPL always starts with its working directory set to the directory of the currently opened and selected file.&lt;/p&gt;
+
+&lt;p&gt;If you do not have FSI in your path, go to &lt;em&gt;Preferences | Browse Packages&lt;/em&gt;, find &lt;em&gt;SublimeREPL / Config / F&lt;/em&gt;, open the &lt;em&gt;Main.sublime-menu&lt;/em&gt; file and change the path to the FSI.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Keyboard shortcut&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You can configure Sublime Text 2 to run F# REPL when you invoke a shortcut like &lt;em&gt;Ctrl+Alt+F&lt;/em&gt; (Visual Studio 2012 default shortcut for FSI) instead of going to &lt;em&gt;Tools | SublimeREPL | F#&lt;/em&gt;. Go to &lt;em&gt;Preferences | Key bindings &amp;#8211; user&lt;/em&gt; and change it to&lt;/p&gt;
+
+&lt;div data-gist=&#34;5849427&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;You can also configure Sublime Text 2 to set selected code to the F# REPL (&lt;em&gt;Tools | SublimeREPL | Eval in REPL | Selection&lt;/em&gt;) when you press Ctrl+Shift+Enter just like in Visual Studio 2012 by adding&lt;/p&gt;
+
+&lt;div data-gist=&#34;5849431&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;to the &lt;em&gt;Preferences | Key bindings &amp;#8211; user&lt;/em&gt;. All the settings files in Sublime Text 2 are JSON, so you need to paste this code into the array, just after the shortcut for F# REPL, separating them by a comma&lt;/p&gt;
+
+&lt;div data-gist=&#34;5849442&#34;&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Fun with F# Type Providers: SQL</title>
+      <link>https://blog.davidmacias.com/fun-with-f-type-providers-sql/</link>
+      <pubDate>Tue, 27 Nov 2012 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/fun-with-f-type-providers-sql/</guid>
+      <description>&lt;p&gt;F# is a great language with a great potential that lets you express yourself more clearly and compactly. One of the best features that comes with F# 3.0 shipped with Visual Studio 2012 is Type Providers.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What are Type Providers?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;According to MSDN documentation, an F# type provider is a component that provides types, properties, and methods for use in your program. Type providers are a significant part of F# 3.0 support for information-rich programming. The key to information-rich programming is to eliminate barriers to working with diverse information sources found on the Internet and in modern enterprise environments. One significant barrier to including a source of information into a program is the need to represent that information as types, properties, and methods for use in a programming language environment. Writing these types manually is very time-consuming and difficult to maintain. A common alternative is to use a code generator which adds files to your project; however, the conventional types of code generation do not integrate well into exploratory modes of programming supported by F# because the generated code must be replaced each time a service reference is adjusted.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Available Type Providers&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;F# comes with Type Providers for SQL, WSDL and OData, but you can also &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/hh361034.aspx&#34;&gt;create your own&lt;/a&gt; or use one created by the community. A example may be the &lt;a href=&#34;http://techblog.bluemountaincapital.com/2012/08/01/announcing-the-f-r-type-provider/&#34;&gt;Type Provider for R&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Using Type Provider for SQL&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In this article I will show you how to use the Type Prvoder for SQL. If you want to use SQL with a language like C#, you need to create an EF or LINQ to SQL model from the database and recreate it every time the database schema changes. Type Provider for SQL makes this for you and lets you concentrace on working with the actual data.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Schema information&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;First you need to define a datasource. The only thing needed for this is a connection string. The connection string can be changed at runtime but you must provide a valid one for the compilation time so the F# compiler can &amp;#8220;detect&amp;#8221; the structure of your data. Let us create a module, that will hold our connection string and schema information.&lt;/p&gt;
+
+&lt;div data-gist=&#34;5857569&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;That is everything you need, if the schema of your database changes the F# compiler will notice.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Querying the database&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;With the schema information in place we can now start querying the database. We will create a Factory class with the connection string as a parameter&lt;/p&gt;
+
+&lt;div data-gist=&#34;5857575&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Now create a method, write db. and wait for a moment. IntelliSense will show you all the available tables in the database. If you query a table and write a dot again, you will be shown all the columns of the table. Pretty cool.&lt;/p&gt;
+
+&lt;p&gt;You can query the database using the query { expression }, where expression is a normal F# expression, for example&lt;/p&gt;
+
+&lt;div data-gist=&#34;5857577&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice how the IntelliSense offers you a complete list of the columns if you write d. in the where clause.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Inserting and updating data&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Inserting data is basically identical to the C# approach when using LINQ to SQL&lt;/p&gt;
+
+&lt;div data-gist=&#34;5857579&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;The same is true for updating the data&lt;/p&gt;
+
+&lt;div data-gist=&#34;5857580&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In my opinion, Type Providers are the best feature of F# so far. It is a real shame that Microsoft does not push this language and it cannot be used everywhere where C# can. But things are getting better and you can now create an F# Worker Role in your Azure project.&lt;/p&gt;
+
+&lt;p&gt;If you are new to F# and want to learn in, definitely check out the &lt;a href=&#34;http://www.tryfsharp.org/&#34;&gt;Try F# project&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Being a polyglot programmer</title>
+      <link>https://blog.davidmacias.com/being-a-polyglot-programmer/</link>
+      <pubDate>Tue, 06 Nov 2012 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/being-a-polyglot-programmer/</guid>
+      <description>&lt;p&gt;Many programmers learn one platform, one language and stay in their monoculture. Learning many different programming languages can definitely change your programming style and the way you think about problems. It was certainly beneficial for me, here is why.&lt;/p&gt;
+
+&lt;p&gt;After learning Pascal, C in the first semester at the University I started be commercial programming career as a PHP developer (part time in the second semester).  It was easy to start with and in demand so finding a part time job was easy. I never liked the language, it was not &amp;#8220;pure&amp;#8221;, I especially hated the function naming and parameters orders inconsistencies.&lt;/p&gt;
+
+&lt;p&gt;At the university I learned OOP principles and C++ and thought OOP was the answer to everything so I immediately changed my PHP programming style to incorporate it. My code became more readable and organized.  Later at the university I had to learn nonprocedural Prolog and functional Haskell. I found it very difficult because I had to think in another way and came out of my comfort zone. When I finished the course I really liked Haskell and functional programming because of its clarity, readability and the fact that I could write a very compact code. But I had no practical use for it. It did not change my Programming style but made me look for a more pure and &amp;#8220;nicer&amp;#8221; language to learn.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;I found .NET and C# and was amazed by the tools for ASP.NET. Comparing to PHP creating websites in ASP.NET was easier, the programming language was more comfortable. I let PHP go and found a part time job as a .NET developer. Instead of ASP.NET I was hired for I programmed a Windows Mobile app in .NET Compact Framework. It was a great experience, I discovered threads and asynchronous programming. I took a C# course at the university and then worked a few months as a part time ASP.NET developer and discovered LINQ. LINQ was great and is one of the best (if not the best) features of .NET, it makes you write compact and clear code and lets you to an extent think functional (ideal for me as a Haskell fan). I began using LINQ extensively, my code and my programming style improved a lot.&lt;/p&gt;
+
+&lt;p&gt;I quickly got fed up with web development in ASP.NET, because it was not very challenging coding. I wanted to learn something new and do something more challenging. I found a part time job at Siemens that was partly analytical and partly programming and came to contact with Java. The only experience I had with Java before that was programming J2ME apps for my Siemens phone (strange coincidence).  Java felt strange, too much object oriented, no functional elements and without LINQ I felt like I was back in the stone age. But thanks to Java I discovered NoSQL databases, especially MongoDB. NoSQL databases changed my thinking about storing data, it was a great shift. They are a great fit for many project, you just need to realize that not everything must be force into a solid structure.&lt;/p&gt;
+
+&lt;p&gt;Quite recently I discovered F# and I was really thrilled. It let me program completely functional and at the same time interoperate with all the existing .NET code and libraries. It changed my programming style once again to be more functional and expressing. I try to do as much coding as possible in F# but is a real shame that Microsoft does not push it and it is still not equal to C#.&lt;/p&gt;
+
+&lt;p&gt;At the moment I am exploring Scala and Python through online courses at &lt;a href=&#34;http://coursera.org&#34;&gt;Coursera&lt;/a&gt; and in the future I may take a look at Erlang. I strongly encourage you do the same, learn as many languages and as many programming paradigms as you can, it will widen your horizons and make you a better programmer. You do not even need to use these languages every day, your programming style will improve independently on the language you program.&lt;/p&gt;
+
+&lt;p&gt;Update: After some experiments with Scala I think it is a really ugly language, compared to say Haskell. I took a look at SML, Racker and Ruby and I quite liked all of them.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

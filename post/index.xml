@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/post/</link>
+    <description>Recent content in Posts on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Tue, 30 May 2017 09:29:12 +0100</lastBuildDate>
+    <atom:link href="/post/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Delaying Disqus comments to save (a ton of) requests</title>
+      <link>https://blog.davidmacias.com/delaying-disqus-comments-to-save-requests/</link>
+      <pubDate>Tue, 30 May 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/delaying-disqus-comments-to-save-requests/</guid>
+      <description>&lt;p&gt;My blog is a static website generated using &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; and running on &lt;a href=&#34;https://www.netlify.com/&#34;&gt;Netlify&lt;/a&gt; (you can read about my move from WordPress to Hugo in a &lt;a href=&#34;https://blog.davidmacias.com/going-static-from-wordpress-to-hugo&#34;&gt;previous article&lt;/a&gt;) but I still want to allow users to leave comments on my posts so I use &lt;a href=&#34;https://disqus.com/&#34;&gt;Disqus&lt;/a&gt; like many other blogs.&lt;/p&gt;
+
+&lt;p&gt;The advantage of Disqus is that you do not need to host the comments yourself, and I really cannot with a static website, you just embed a JavaScript file and everything is taken care of for you. There are a few alternatives to Disqus but none of them works very well so there is basically no other option if you want to have comments on a static website.&lt;/p&gt;
+
+&lt;p&gt;The problem with Disqus is that this one JavaScript file you embed to your website makes about 50 requests when a page loads. And that is a lot!&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/disqus.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Most of my blog posts do not have any comments so making about 50 unnecessary requests seems like a lot of waste. I noticed that many other websites do not load comments immediately but load them on demand. This way the wasteful requests are made only when really needed, when someone wants to read the comments or post a new one.&lt;/p&gt;
+
+&lt;p&gt;The idea is simple, add a &amp;ldquo;Show comments&amp;rdquo; button at the end of the page and embed the Disqus JavaScript file when the user clicks that button. This can be done with a simple JavaScript function&lt;/p&gt;
+
+&lt;div data-gist=&#34;47e9d4dc4bbb5279267a58d7bc794944&#34; data-file=&#34;load.js&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;The problem is that Disqus does not work that well and sometimes does not load the comments when there is an extra trailing slash in the URL so I recommend setting the post URL explicitly by adding another piece of JavaScript&lt;/p&gt;
+
+&lt;div data-gist=&#34;47e9d4dc4bbb5279267a58d7bc794944&#34; data-file=&#34;config.js&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Now you just need to add the actual &amp;ldquo;Show comments&amp;rdquo; button and you are done. To make the user experience better I decided to show the number of comments on that button. You need to embed a Disqus JavaScript file for that but it makes just one request, so it is reasonable&lt;/p&gt;
+
+&lt;div data-gist=&#34;47e9d4dc4bbb5279267a58d7bc794944&#34; data-file=&#34;count.html&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;This JavaScript will find all elements with class &lt;code&gt;disqus-comment-count&lt;/code&gt; on the website and fetch the comments count for their &lt;code&gt;data-disqus-url&lt;/code&gt; attribute. The resulting &amp;ldquo;Show comments&amp;rdquo; button may then look like this&lt;/p&gt;
+
+&lt;div data-gist=&#34;47e9d4dc4bbb5279267a58d7bc794944&#34; data-file=&#34;button.html&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;And that is it. If you want to see it in action, just click the button below near the end of this page. If you want to see it all integrated, just look at the source code of this page.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Re-signing iOS apps</title>
+      <link>https://blog.davidmacias.com/resigning-ios-apps/</link>
+      <pubDate>Tue, 23 May 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/resigning-ios-apps/</guid>
+      <description>&lt;p&gt;There are some times when you need to re-sign the IPA of your iOS app with a different certificate. For example, an external developer creates the IPA for you, but it is signed with their personal certificate and you need to re-sign it with yours to deploy it to the App Store. Or one of your clients does not want to have their employees install the iOS app from the App Store but wants to distribute it directly using their MDM tools.&lt;/p&gt;
+
+&lt;p&gt;The second case is a bit more complicated, because it involves creating a new app identity for the app. When you change the app id if your app, your push notifications will stop working and you need to also generate a new APNS certificate with the new app id and deploy it to your server. Here is everything you need to do, step by step.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;creating-a-new-app-identity&#34;&gt;Creating a new app identity&lt;/h3&gt;
+
+&lt;p&gt;If you want to change the app id when re-signing an iOS app you will first new to create a new app identity. There are a few thing you will need to do&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;create a new app id in the Apple developer portal&lt;/li&gt;
+&lt;li&gt;create a new APNS certificate for that app id in the Apple developer portal and deploy it to your server (if you use push notifications)&lt;/li&gt;
+&lt;li&gt;create a new provisioning profile for that app id in the Apple developer portal&lt;/li&gt;
+&lt;li&gt;have one of the certificates with a private key included in the newly created provisioning profile in your keychain&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you just want to re-sign the iOS app without changing the app id, you can skip all these steps and you just need the certificate in your keychain.&lt;/p&gt;
+
+&lt;h3 id=&#34;re-signing-the-ipa&#34;&gt;Re-signing the IPA&lt;/h3&gt;
+
+&lt;p&gt;You can find multiple &lt;a href=&#34;https://gist.github.com/chaitanyagupta/9a2a13f0a3e6755192f7&#34;&gt;tutorials&lt;/a&gt; and a &lt;a href=&#34;https://github.com/maciekish/iReSign&#34;&gt;few tools&lt;/a&gt; to help you with the re-signing process. After a lot of trial and error I ended up using &lt;a href=&#34;https://github.com/niyaoyao/EasyResigny&#34;&gt;EasyResigny&lt;/a&gt; because it was the only tool that generated an IPA that could be actually deployed to an iOS device. This tool makes the re-signing process really easy, you just&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;select the IPA you want to re-sign&lt;/li&gt;
+&lt;li&gt;select the certificate to re-sign the IPA with&lt;/li&gt;
+&lt;li&gt;select the provisioning profile to use&lt;/li&gt;
+&lt;li&gt;click Start EasyResigny!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And you are done!&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/easyresigny.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
+    </item>
+    
+    <item>
+      <title>Solving problem after upgrading Windows 10 to EFI</title>
+      <link>https://blog.davidmacias.com/solving-problems-after-mbr2efi/</link>
+      <pubDate>Tue, 16 May 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/solving-problems-after-mbr2efi/</guid>
+      <description>&lt;p&gt;When I upgraded my Windows 10 installation to the Creators Update I wanted to take advantage of the new &lt;code&gt;MBR2GPT.EXE&lt;/code&gt; tool. This tool allows you to upgrade your Windows 10 installation to EFI without having to reinstall or loosing any data. My motivation for moving to EFI installation was to be able to boot Windows 10 from Clover, the macOS bootloader in &lt;a href=&#34;https://blog.davidmacias.com/my-experience-running-a-hackintosh&#34;&gt;my hackintosh installation&lt;/a&gt;, making switching between Windows 10 and macOS easier without involving the BIOS boot menu.&lt;/p&gt;
+
+&lt;p&gt;The upgrade from MBR to EFI went fine on both my desktop computer and my Thinkpad but there were a few thing that needed fixing afterwards.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;fixing-broken-hyper-v&#34;&gt;Fixing broken Hyper-V&lt;/h3&gt;
+
+&lt;p&gt;On both my computer Hyper-V stopped working after the upgrade. When trying to run a Windows Phone emulator I just got an error message&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; data-lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Anyone seeing this after upgrading to Creators Update? No emulators work now.  &lt;a href=&#34;https://twitter.com/hashtag/Windows10?src=hash&#34;&gt;#Windows10&lt;/a&gt; &lt;a href=&#34;https://t.co/MTzIlCHCw1&#34;&gt;pic.twitter.com/MTzIlCHCw1&lt;/a&gt;&lt;/p&gt;&amp;mdash; Igor Kulman (@igorkulman) &lt;a href=&#34;https://twitter.com/igorkulman/status/855788447977672706&#34;&gt;April 22, 2017&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Virtualization was still enabled in BIOS. I ran the &lt;a href=&#34;http://technet.microsoft.com/en-us/sysinternals/cc835722&#34;&gt;CoreInfo&lt;/a&gt; tool and it told me virtualization is enabled but Hyper-V is disabled. So I uninstalled Hyper-V, restarted the computer and installed Hyper-V back. That fixed the problem.&lt;/p&gt;
+
+&lt;h3 id=&#34;fixing-broken-hibernation&#34;&gt;Fixing broken hibernation&lt;/h3&gt;
+
+&lt;p&gt;On my Thinkpad, where I use sleep and hibernation (after 3 hours of sleep), there was another problem. Sleep still worked but waking up form hibernation was giving me a &lt;a href=&#34;https://social.technet.microsoft.com/Forums/windows/en-US/0bfbe8a7-2eb9-4432-a477-258ae7d102f9/boot-manager-recover-from-critical-error-some-essential-variables-are-absent-or-corrupted-and-boot?forum=win10itprosetup&#34;&gt;strange error message&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I could not find any other mention of it so I tried the obvious, I tried to repair the Windows bootloader using the Startup Repair functionality. It took some time and finished with some errors. But it definitely did something to the bootloader because a new partition appeared (probably the EFI partition) in Windows Explorer.&lt;/p&gt;
+
+&lt;p&gt;I hid the partition and try hibernation again and it worked without the error message. Maybe a lucky coincidence but the Startup Repair seems to have fixed it.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Formatting Swift code in XCode</title>
+      <link>https://blog.davidmacias.com/formatting-swift-code-in-xcode/</link>
+      <pubDate>Fri, 05 May 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/formatting-swift-code-in-xcode/</guid>
+      <description>&lt;p&gt;When I started using XCode I was really surprised about the really poor implementation of its code formatting functionality. It kind of formats the alignment of the code but ignores unnecessary spaces and a lot of other things. Formatting the source code and keeping the style consistent is really important to me so I was looking for a solution. I found some linters like &lt;a href=&#34;https://github.com/realm/SwiftLint&#34;&gt;SwiftLint&lt;/a&gt; but I was interested in a tool that will actually format the source code for me on demand. I found &lt;a href=&#34;https://github.com/nicklockwood/SwiftFormat&#34;&gt;SwiftFormat&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;swiftformat&#34;&gt;SwiftFormat&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/nicklockwood/SwiftFormat&#34;&gt;SwiftFormat&lt;/a&gt; is a code library and command-line tool for reformatting swift code. It applies a set of rules to the formatting and space around the code, leaving the meaning intact.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/swiftformat.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;You can install SwiftFormat using &lt;code&gt;brew install swiftformat&lt;/code&gt; and use it from the terminal to format given directory. This means you can use it manually or add it as a build step in XCode or a git pre-commit hook. Using SwiftFormat from the terminal before from time to time or before every commit is fine, but I wanted to use  directly from XCode, preferably invoked by a keyboard shortcut.&lt;/p&gt;
+
+&lt;p&gt;To do this you can use the XCode Source Editor Extension. There is a signed binary already included in the repository you can download, put into Applications and run. It tells you how to enable it in Settings, so you do it and restart XCode. A bit of a hassle but you do it just once and it is worth it.&lt;/p&gt;
+
+&lt;p&gt;In conclusion use SwiftFormat to make formatting of your Swift code consistent, especially if you work in a team.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Generating a list of libraries your iOS app uses</title>
+      <link>https://blog.davidmacias.com/generating-a-list-of-libraries-your-ios-app-uses/</link>
+      <pubDate>Wed, 05 Apr 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/generating-a-list-of-libraries-your-ios-app-uses/</guid>
+      <description>&lt;p&gt;If you work on an iOS app that is a bit more corporate you probably need to show the list of all the libraries you use with their licenses somewhere in the app. Creating and updating this list by hand is a pain. If you use Carthage to manage all your dependencies (&lt;a href=&#34;http://drekka.ghost.io/cocoapods-vs-carthage/&#34;&gt;and you really should&lt;/a&gt;) there is a handy &lt;a href=&#34;https://github.com/pietbrauer/CarthageLicenseScript&#34;&gt;script by Piet Brauer&lt;/a&gt; I contributed to that will help you.&lt;/p&gt;
+
+&lt;p&gt;When you run the script using &lt;code&gt;$ ./PATH_TO_YOUR_SCRIPT/fetch_licenses.swift Cartfile.resolved  OUTPUT_DIR&lt;/code&gt; it reads your Carthage file, gets all the libraries you use, downloads their licenses and stores them all in a single &lt;code&gt;plist&lt;/code&gt; file. The &lt;code&gt;plist&lt;/code&gt; file contains the name, license name and full license content for every library in your Carthage file.&lt;/p&gt;
+
+&lt;p&gt;There is currently no support for using multiple Carthage files (when you have more projects in your workspace), you need to generate the &lt;code&gt;plist&lt;/code&gt; file for each of them separately and then merge them manually. But you can set up a &lt;code&gt;bash&lt;/code&gt; script to do it for you.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;You can then read the &lt;code&gt;plist&lt;/code&gt; file in your app and show it as a list of libraries like I do&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/licenses.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
+    </item>
+    
+    <item>
+      <title>My experience running a hackintosh</title>
+      <link>https://blog.davidmacias.com/my-experience-running-a-hackintosh/</link>
+      <pubDate>Wed, 29 Mar 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/my-experience-running-a-hackintosh/</guid>
+      <description>&lt;p&gt;A few months ago I decided to take part in an iOS project. The first problem I needed to solve was to be able to run macOS Sierra and XCode. I did not really want to buy an overpriced MacBook without function keys or and underpowered Mac Mini. Especially when I own a more than 3 years old desktop computer that is still usable for all my needs. A few iOS developers I know recommended I go the Hackintosh way.&lt;/p&gt;
+
+&lt;h2 id=&#34;hackintosh&#34;&gt;Hackintosh&lt;/h2&gt;
+
+&lt;p&gt;Hackintosh is PC that runs macOS. This configuration is not supported by Apple but it is possible if you have the right hardware since Apple has been using a fairly standard PC hardware for the last couple of years. &lt;s&gt;For example you cannot us any new GeForce 10X0 (Pascal) because there are no Apple computers with those new graphic cards so there are no drivers yet&lt;/s&gt; (NVIDIA has released &lt;a href=&#34;https://www.tonymacx86.com/threads/nvidia-pascal-graphics-drivers-released-buyers-guide-updated.219153/&#34;&gt;new drivers supporting all the Pascal graphic cards&lt;/a&gt;). But if you have an older GeForce like me or an integrated one, you will be fine. The &lt;a href=&#34;https://www.tonymacx86.com/&#34;&gt;tonymacx86.com&lt;/a&gt; website, basically the central hub of all the Hackintosh information, regularly publishes a buying guide that can be useful if you want to buy a new computer and install macOS on it.&lt;/p&gt;
+
+&lt;p&gt;If you do not wish to install macOS directly on your hardware you can run it in a virtual machine, but the performance will never be very good. Some people do it for Xamarin development when they just need to compile their project and run the simulator, so there are a few &lt;a href=&#34;https://aurir.wordpress.com/2016/11/20/how-to-setting-up-macos-x-sierra-on-virtualbox-for-xamarin-development-with-visual-studio/&#34;&gt;tutorial on how to do it&lt;/a&gt;. There is also an interesting blog post series about a &lt;a href=&#34;https://arktronic.com/weblog/2016-12-10/virtual-hackintosh-part-1-the-concepts/&#34;&gt;virtual hackintosh&lt;/a&gt;. I tried running macOS in WMWare on my Thinkpad T440s but the performance was not good.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;installing-macos-sierra&#34;&gt;Installing macOS Sierra&lt;/h2&gt;
+
+&lt;p&gt;I needed a bigger SSD anyway so I bought a new 500 GB SSD and cloned my Windows installation to it using CloneZilla. That way I got a spare old 128 GB SSD that I decided to use to install macOS Sierra on my desktop computer with this quite old configuration&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Gigabyte Z77 DS3H&lt;/li&gt;
+&lt;li&gt;i5 3570K (4 core)&lt;/li&gt;
+&lt;li&gt;16 GB RAM&lt;/li&gt;
+&lt;li&gt;ASUS GTX 660&lt;/li&gt;
+&lt;li&gt;128 GB SSD (macOS), 500 GB SSD (Windows), 1TB HDD (data)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I &lt;a href=&#34;https://www.tonymacx86.com/threads/unibeast-install-macos-sierra-on-any-supported-intel-based-pc.200564/&#34;&gt;created a installation disk&lt;/a&gt; on a friend&amp;rsquo;s iMac and I was surprised the installation only took about 20 minutes. I then injected the correct drivers for GPU (Nvidia), sound card and Ethernet and everything worked. You just need to know your hardware to be able to choose the correct drivers and you will be fine with the setup.&lt;/p&gt;
+
+&lt;p&gt;I installed macOS on a separate SSD, so I had no problem with the UEFI loader conflicting with Windows. The only problem is that my Windows 10 install is MBR not UEFI so Clover (the Hackintosh UEFI loader) cannot run it. I solved it by having the SSD with Windows as primary boot device so Windows boots automatically when I turn on the computer. When I want to boot macOS I just press F12 to get to the BIOS boot menu and choose the macOS drive to boot from manually.&lt;/p&gt;
+
+&lt;h2 id=&#34;performance&#34;&gt;Performance&lt;/h2&gt;
+
+&lt;p&gt;I performed some tests with the few benchmarks that have both a Windows and a macOS version and the results were quite similar. There was basically no performance degradation on the macOS. I compared my Geekbench 4 results to the Apple hardware and I was quite surprised. My more than 3 years old desktop computer had basically the same single core performance score as a i5 MacBook Pro (13-inch Late 2016) and about 20% better multicore performance as this MacBook Pro.&lt;/p&gt;
+
+&lt;p&gt;I know it is not fair to compare desktop computers to laptops (desktop i5 has 4 cores, laptop i5 only 2) but I am still amazed that the current generation overpriced i5 MacBook Pro does not have a better performance that my more than 3 years old desktop. And I still have some room for overclocking. I think &lt;a href=&#34;https://news.ycombinator.com/item?id=13797042&#34;&gt;Apple has really given up on machines for developers&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;using-macos-and-software&#34;&gt;Using macOS and software&lt;/h2&gt;
+
+&lt;p&gt;I was surprised that basically everything worked out of the box. I had some problems getting my microphone to work but I finally solved it basically by accident when reading a &lt;a href=&#34;https://www.reddit.com/r/hackintosh/comments/4gp7mj/need_help_getting_alc887_microphone_working_el/&#34;&gt;reddit thread&lt;/a&gt;. I even got iMessage working &lt;a href=&#34;https://www.tonymacx86.com/threads/an-idiots-guide-to-imessage.196827/&#34;&gt;following this quite long tutorial&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;My Windows keyboard &lt;a href=&#34;using-macos-with-a-windows-keyboard&#34;&gt;needed some setup&lt;/a&gt;. The back and forward buttons on my gaming mouse do not work, but I got around it using &lt;a href=&#34;http://sunpech.com/2015/04/map-your-mouses-back-and-forward&#34;&gt;BetterTouchTool&lt;/a&gt;. If you have a WiFi card (I do not) it will probably not work. There are some alternatives you can use, like &lt;a href=&#34;https://www.amazon.de/Bluetooth-PCI-Express-BCM94360CD-Hackintosh-Flughafen/dp/B00MBP25UK/ref=sr_1_1?ie=UTF8&amp;amp;qid=1487424169&amp;amp;sr=8-1&amp;amp;keywords=Hackintosh&#34;&gt;this WiFi card with Bluetooth that even support hand-off&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Software like XCode also runs fine, including iOS simulators. Overall macOS behaves just like it was installed on an Apple machine. The macOS updates also work without a problem, just check &lt;a href=&#34;https://www.tonymacx86.com/&#34;&gt;tonymacx86.com&lt;/a&gt; before applying them to be sure.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Using MVVM with tables and cells in iOS</title>
+      <link>https://blog.davidmacias.com/using-mvvm-with-tables-in-ios/</link>
+      <pubDate>Tue, 21 Mar 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/using-mvvm-with-tables-in-ios/</guid>
+      <description>&lt;p&gt;When I ventured into native iOS development I immediately took a look at the possibility to &lt;a href=&#34;https://blog.davidmacias.com/using-data-binding-in-ios&#34;&gt;use data binding on iOS&lt;/a&gt; which enables me to simply declare the relationships between the UI and the ViewModel. This article takes that approach further shows you how to use MVVM and data binding when using tables and cells, or in the world of iOS &lt;code&gt;UITableView&lt;/code&gt; and &lt;code&gt;UITableViewCell&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;sample-scenario&#34;&gt;Sample scenario&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start with simple example scenario. You want to show progress of some flow that contains of multiple steps, each of the steps can be either running or complete. When a step is running it can report its progress. You want to display this flow in a table that looks like this&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/iostablemvvm.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;the-classic-ios-way&#34;&gt;The classic iOS way&lt;/h2&gt;
+
+&lt;p&gt;Now imagine you want to implement this scenario in the classic iOS way. You will have a list of some model. Every time you add an item to the list you need to refresh the table. Every time you change something on a model in the list you need to refresh the table and of course you need a table delegate to manipulate the UI according to the properties of the model.&lt;/p&gt;
+
+&lt;p&gt;Of course there is a better, more declarative way.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-reactive-way&#34;&gt;The reactive way&lt;/h2&gt;
+
+&lt;h3 id=&#34;viewmodel&#34;&gt;ViewModel&lt;/h3&gt;
+
+&lt;p&gt;First you need a ViewModel for all the steps of the flow. My flow is connected to application synchronization, so my ViewModel is called &lt;code&gt;SyncStepViewModel&lt;/code&gt;&lt;/p&gt;
+
+&lt;div data-gist=&#34;a2c5b63f835e8bd01df89566a5627d6b&#34; data-file=&#34;SyncStepViewModel.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;This ViewModel has a title, contains property determining if the flow step is currently running, property for the current progress percentage and a computed property for the step title. This computer property just adds the progress percentage at the end of the title when applicable.&lt;/p&gt;
+
+&lt;p&gt;The ViewModel for the screen just needs to hold the array of the flow steps in an observable way, so let&amp;rsquo;s make it easy&lt;/p&gt;
+
+&lt;div data-gist=&#34;a2c5b63f835e8bd01df89566a5627d6b&#34; data-file=&#34;SyncViewModel.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;This ViewModel will of course contains some logic to add the flow steps to the array.&lt;/p&gt;
+
+&lt;h3 id=&#34;table-and-cells-binding&#34;&gt;Table and cells binding&lt;/h3&gt;
+
+&lt;p&gt;Binding the &lt;code&gt;SyncViewModel&lt;/code&gt; to the &lt;code&gt;UITableView&lt;/code&gt; in the &lt;code&gt;UIViewController&lt;/code&gt; is really easy&lt;/p&gt;
+
+&lt;div data-gist=&#34;a2c5b63f835e8bd01df89566a5627d6b&#34; data-file=&#34;SyncViewController.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;It is just a few lines of declarative code and no delegates!&lt;/p&gt;
+
+&lt;p&gt;The tricky part is the &lt;code&gt;UITableViewCell&lt;/code&gt; and making the UI work with the ViewModel. As you can see from the previous snippet, I do not access any of the UI elements of my &lt;code&gt;SyncStepCell&lt;/code&gt; I just assign the ViewModel. The &lt;code&gt;SyncStepCell&lt;/code&gt; takes care of the rest using data binding&lt;/p&gt;
+
+&lt;div data-gist=&#34;a2c5b63f835e8bd01df89566a5627d6b&#34; data-file=&#34;SyncStepCell.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;My &lt;code&gt;UITableViewCell&lt;/code&gt; just &amp;ldquo;waits&amp;rdquo; for the ViewModel and then sets up all the necessary bindings. Again, no direct access to the UI elements, just making everything work in a simple declarative way.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Using data binding in iOS</title>
+      <link>https://blog.davidmacias.com/using-data-binding-in-ios/</link>
+      <pubDate>Tue, 14 Mar 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/using-data-binding-in-ios/</guid>
+      <description>&lt;p&gt;When I started working on a native iOS project after a few years of Windows (Phone) development I looked into ways to write a more declarative and more elegant code than the &amp;ldquo;standard&amp;rdquo; iOS way. I wanted to transfer some of my habits over and the first thing I really missed was XAML data binding. I did some research on how to do data binding in iOS and found a few libraries that make it possible. This allowed me to write better code and I think data binding is a concept that all the iOS developer should look into. If you are interested in my experience with using binding in iOS, read on.&lt;/p&gt;
+
+&lt;h2 id=&#34;sample-scenario&#34;&gt;Sample scenario&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s use a simple example scenario. You have a screen where the users have to choose their country and then enter their mobile number. The number has to be validated with respect to the selected country and if everything is ok the Next button should become visible. So basically it should work like this&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/iosvalidation.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;There are number of things that need to happen&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Selecting the country should refresh the validation state&lt;/li&gt;
+&lt;li&gt;Changing the mobile number should refresh the validation state as the users type&lt;/li&gt;
+&lt;li&gt;Setting the validation state should also set the mobile number text field text color&lt;/li&gt;
+&lt;li&gt;Setting the validation state should also set the Next button enabled state&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That is quite a lot of things if you add the validation logic (I use the &lt;a href=&#34;https://github.com/iziz/libPhoneNumber-iOS&#34;&gt;libPhoneNumber-iOS&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h2 id=&#34;the-classic-ios-way&#34;&gt;The classic iOS way&lt;/h2&gt;
+
+&lt;p&gt;Now imagine you want to implement this scenario in the classic iOS way. You will have one Massive View Controller that would do many things.&lt;/p&gt;
+
+&lt;p&gt;You will have a method that does validation and sets the mobile number text field text color and the Next button enabled state according to the result of this validation. Then you will have a delegate for the mobile number text field and you will have to call the validation method with every change. And finally you will have to change all the code that sets the selected country and call the validation method after each set. Of course you can use &lt;code&gt;didSet&lt;/code&gt; but that will add a bad coupling between your model and your UI.&lt;/p&gt;
+
+&lt;p&gt;There must be a better, more declarative way!&lt;/p&gt;
+
+&lt;h2 id=&#34;data-binding&#34;&gt;Data binding&lt;/h2&gt;
+
+&lt;p&gt;UI data binding is a software design pattern to simplify development of GUI applications. UI data binding binds UI elements to an application domain model. Most frameworks employ the Observer pattern as the underlying binding mechanism.&lt;/p&gt;
+
+&lt;p&gt;The main idea is simple, you declare what UI elements are connected to what properties in your model. Of course you can do some transformations, like mapping the validation state to text color. There are a few frameworks that will help you do it.&lt;/p&gt;
+
+&lt;h3 id=&#34;bond&#34;&gt;Bond&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/ReactiveKit/Bond&#34;&gt;Bond&lt;/a&gt; is a Swift library based on &lt;a href=&#34;https://github.com/ReactiveKit/ReactiveKit&#34;&gt;ReactiveKit&lt;/a&gt; that allows you to do binding in a simple way. The documentation is quite sufficient and there is also a &lt;a href=&#34;https://www.raywenderlich.com/123108/bond-tutorial&#34;&gt;quite nice tutorial&lt;/a&gt;. It allows not only data binding basic UI elements like text fields but also supports data binding table views. So I tried it first.&lt;/p&gt;
+
+&lt;p&gt;I created a ViewModel with a property for the selected country, another property for the mobile number and a signal telling if the mobile number is valid. Every time the mobile number or the selected country changes, the validity signal also changes automatically. The ViewModel is quite simple, creating the validation signal in a nice declarative way&lt;/p&gt;
+
+&lt;div data-gist=&#34;2bb98d3398d1f211ba0f81c0f6ee90e7&#34; data-file=&#34;BondVM.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Binding this ViewModel to the ViewController is also quite simple&lt;/p&gt;
+
+&lt;div data-gist=&#34;2bb98d3398d1f211ba0f81c0f6ee90e7&#34; data-file=&#34;BondBinding.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;I used Bond for a while but when I wanted to do more reactive programming, Bond was not enough. It is a data binding library, it works well for data binding but if you want to do more you have to choose something more powerful. So I switched to RxSwift.&lt;/p&gt;
+
+&lt;h3 id=&#34;rxswift-vs-reactiveswift&#34;&gt;RxSwift vs ReactiveSwift&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/ReactiveX/RxSwift&#34;&gt;RxSwift&lt;/a&gt; and &lt;a href=&#34;https://github.com/ReactiveCocoa/ReactiveSwift&#34;&gt;ReactiveSwift&lt;/a&gt; are two most popular reactive programming libraries for iOS. I recommend you read an &lt;a href=&#34;https://www.raywenderlich.com/126522/reactivecocoa-vs-rxswift&#34;&gt;article comparing those two libraries&lt;/a&gt; and choose the one that you like best. I chose RxSwift because it is a Swift implementation of the .NET Reactive Extensions I am familiar with and the documentation is so much better. There is also a &lt;a href=&#34;https://github.com/RxSwiftCommunity/&#34;&gt;RxSwift community repository&lt;/a&gt; with extension that add support for table views, gestures, etc.&lt;/p&gt;
+
+&lt;p&gt;The ViewModel looks a bit different when using RxSwift than when using Bond, but the main idea is the same&lt;/p&gt;
+
+&lt;div data-gist=&#34;2bb98d3398d1f211ba0f81c0f6ee90e7&#34; data-file=&#34;RxSwift.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;The actual bindings are also quite similar. The main difference is it is more visible what is being bound to what and in what direction&lt;/p&gt;
+
+&lt;div data-gist=&#34;2bb98d3398d1f211ba0f81c0f6ee90e7&#34; data-file=&#34;RxSwiftBinding.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Compare this to the amount of code you would have to write using the &amp;ldquo;standard&amp;rdquo; iOS way.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;I think data binding is a great concept that makes your code more declarative, more elegant and much simpler. It has been widely used in the Microsoft platforms with XAML, now it is also available in Android so it is time that iOS developers make a mental switch from delegates and start programming in a more declarative and reactive way. It is definitely worth it.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Creating a TV schedule grid in UWP</title>
+      <link>https://blog.davidmacias.com/creating-a-tv-schedule-grid-in-uwp/</link>
+      <pubDate>Tue, 28 Feb 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/creating-a-tv-schedule-grid-in-uwp/</guid>
+      <description>&lt;p&gt;I am currently working on a UWP app for a cable TV company. The app allows their clients to watch the TV channels they are subscribed to with additional information like the TV schedule, information about TV shows, recording TV shows for watching later, etc. One of the main functionalities of the app is a TV schedule grid. Creating this TV schedule grid in UWP is not so easy, especially because of the poor XAML rendering performance.&lt;/p&gt;
+
+&lt;h2 id=&#34;tv-schedule-grid&#34;&gt;TV schedule grid&lt;/h2&gt;
+
+&lt;p&gt;The TV schedule grid shows a TV schedule for all the subscribed channels for a given day. The channels are being shown in rows and the columns represent TV shows. The grid is scrollable in both directions and the channel logos are sticky. The users can be subscribed up 70 channels and all of this should work reasonably well even on a Windows Phone.&lt;/p&gt;
+
+&lt;p&gt;This is how the result looks in a Windows Phone emulator. Spoiler: there is just no way to make it so smooth on a real Windows Phone device.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/tvgrid.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;xaml-controls&#34;&gt;XAML controls&lt;/h2&gt;
+
+&lt;p&gt;My first and obvious approach to implement the TV schedule grid was to use native XAML controls. The &lt;code&gt;ScrollViewer&lt;/code&gt; control got a handy &lt;code&gt;LeftHeader&lt;/code&gt; property in UWP making implementing the sticky channels logos easy. The problem with &lt;code&gt;ScrollViewer&lt;/code&gt; is it does not support virtualization. If you create something like a huge &lt;code&gt;Grid&lt;/code&gt; with all the data and put into the &lt;code&gt;ScrollViewer&lt;/code&gt; the app will crash because of memory constrains.&lt;/p&gt;
+
+&lt;p&gt;You can create a &lt;code&gt;ListView&lt;/code&gt; or &lt;code&gt;GridView&lt;/code&gt; and use it to display rows and put another one into each row to show columns. You will gain virtualization that works, your app will not crash because of memory but the scrolling performance will be abysmal. The users will notice the virtualization manifesting itself as appearing and disappearing rows and columns resulting in very poor user experience. When you have a vertical &lt;code&gt;ListView&lt;/code&gt; where each row represents a TV channel containing another horizontal &lt;code&gt;ListView&lt;/code&gt; with the TV shows, then you have to face another hard problem. When the user scrolls horizontally in a row, you need all the other rows to scroll to the same horizontal position so the TV schedule stays in sync. Try syncing horizontal &lt;code&gt;ListViews&lt;/code&gt; in a virtualized vertical &lt;code&gt;ListView&lt;/code&gt;, I dare you.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Update:&lt;/em&gt; When I was trying out this solution I tried phasing as suggested by Tim Heuer in the comments. Instead of seeing empty gaps in the TV schedule when scrolling, as the result of virtualization, I sometimes saw TV show borders instead. It was better but still not good enough, the perceived performance did not improve much. And there was still the hard problem of syncing the horizontal &lt;code&gt;ListViews&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;My last idea was to put a big &lt;code&gt;Canvas&lt;/code&gt; into the &lt;code&gt;ScrollViewer&lt;/code&gt; and render only what is currently in view. This is the way the Radaee PDF I use in another project does PDF rendering. You can add XAML controls to the &lt;code&gt;Canvas&lt;/code&gt;, remove them when they are not in view anymore. This is quite laborious and the resulting performance is still not very good.&lt;/p&gt;
+
+&lt;p&gt;You can also use the &lt;code&gt;Canvas&lt;/code&gt; as a canvas and draw primitives instead of using XAML controls. It is not very comfortable, it is quite low level stuff. Thinking about using such a low level solution made me think of Win2D.&lt;/p&gt;
+
+&lt;h2 id=&#34;win2d&#34;&gt;Win2D&lt;/h2&gt;
+
+&lt;p&gt;Win2D is an easy-to-use Windows Runtime API for immediate mode 2D graphics rendering with GPU acceleration. It is available to C# and C++ developers writing Windows apps for Windows 8.1, Windows Phone 8.1 and Windows 10. It utilizes the power of Direct2D, and integrates seamlessly with XAML and CoreWindow. I have some experience with Win2D, I &lt;a href=&#34;https://blog.davidmacias.com/creating-a-simple-windows-10-game-with-win2d&#34;&gt;used it when creating my retro Sokoban game&lt;/a&gt;. So I gave it a try.&lt;/p&gt;
+
+&lt;p&gt;Win2D is a really low level API. This means I had to do a lot of math to compute what is currently in view and where to render it. Rendering TV shows is also not easy, you have to render the cell using rectangles, lines, etc. At least Win2D makes drawing texts relatively easy.&lt;/p&gt;
+
+&lt;p&gt;The next thing to solve was scrolling the Win2D canvas. Capturing gestures and mouse movements on a XAML control is not easy, so I came up with another solution. I put a transparent &lt;code&gt;ScrollViewer&lt;/code&gt; over the Win2D grid making the Win2D canvas redraw when the &lt;code&gt;ViewChanged&lt;/code&gt; event fires. The math in the rendering logic takes the &lt;code&gt;ScrollViewer&lt;/code&gt; scroll positions into account to correctly determine what is currently in view.&lt;/p&gt;
+
+&lt;h3 id=&#34;performance-tuning&#34;&gt;Performance tuning&lt;/h3&gt;
+
+&lt;p&gt;After a lot of work this solution worked, rendered what I wanted it to. The performance seemed good in a Windows Phone emulator but when I tried it on a real phone I was disappointed. The performance was still quite bad. I found out rendering the texts is the slowest part, so the idea was to cache the texts or even better the whole cells by TV show.&lt;/p&gt;
+
+&lt;p&gt;Win2D supports &lt;a href=&#34;https://microsoft.github.io/Win2D/html/Offscreen.htm&#34;&gt;offscreen drawing&lt;/a&gt;. This means you can render something into a texture and the use the texture instead of drawing it again, making it ideal as a form of caching. When rendering the cell of a TV show for the first time, I do not render it directly to the Win2D canvas but instead into a texture. I then add the rendered texture into a in-memory dictionary and draw it to the Win2D canvas. When I need to render the TV show cell again (when the users scrolls the TV schedule grid and the TV show is in view) I just render the texture again. This means you render each show with its multiple texts just once.&lt;/p&gt;
+
+&lt;p&gt;Solving cache invalidation is quite easy in this case, the texture becomes invalid only when the TV show it represents becomes active (meaning it is currently being broadcasted on a given channel making it gray) or inactive (black). Of course you cannot cache everything, only a certain number of textures, but it is easily solved by setting a limit on the number of cached textures.&lt;/p&gt;
+
+&lt;p&gt;With this performance improvement the TV schedule grid became quite tolerable on a Lumia 950, but still slow on a Lumia 750. Sadly, there was nothing else I could do about it. I asked about it on Twitter and found another developer who implemented a TV schedule grid in his app. He also used Win2D but just omitted it from the phone version, because of performance.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Creating something like a TV schedule grid in UWP with good performance is simply impossible using XAML controls. You can use Win2D to gain some performance but the result is still not exactly great on Windows Phones.&lt;/p&gt;
+
+&lt;p&gt;Even Microsoft XAML apps suffer from poor rendering performance. Just take a look at the list in the Add or remove programs section of Windows 10 settings. This is how it behaves on ma quad-core i5, 16 GB RAM and GTX 660.&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; data-lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;When clients tell you your &lt;a href=&#34;https://twitter.com/hashtag/uwp?src=hash&#34;&gt;#uwp&lt;/a&gt; app is slow and lists lag, just show them how Microsoft does it in &lt;a href=&#34;https://twitter.com/hashtag/Windows10?src=hash&#34;&gt;#Windows10&lt;/a&gt;. Nothing better you can do. &lt;a href=&#34;https://t.co/rnDWLFEHeb&#34;&gt;pic.twitter.com/rnDWLFEHeb&lt;/a&gt;&lt;/p&gt;&amp;mdash; Igor Kulman (@igorkulman) &lt;a href=&#34;https://twitter.com/igorkulman/status/818938357275328514&#34;&gt;January 10, 2017&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;If Microsoft cannot create a well-performing lists in XAML and UWP, you as a developer cannot do much better no matter how hard you try.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Using macOS with a Windows keyboard</title>
+      <link>https://blog.davidmacias.com/using-macos-with-a-windows-keyboard/</link>
+      <pubDate>Tue, 31 Jan 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/using-macos-with-a-windows-keyboard/</guid>
+      <description>&lt;p&gt;When you start using macOS after years of using Windows there are some things you expect to work in certain ways. One of those things is the ways the OS handles keyboard input and keyboard shortcuts. This is especially important if you still also use Windows and use a Windows keyboard with macOS. Here are a few things regarding the keyboard that help me when using macOS working on a side project.&lt;/p&gt;
+
+&lt;h2 id=&#34;control-option-and-command-keys&#34;&gt;Control, Option and Command keys&lt;/h2&gt;
+
+&lt;p&gt;The fist thing you may notice when using macOS with a Windows keyboard is that the modifier keys are not in the right order. The order of the modifier keys on an Apple keyboard is Control, Option, Command but the Ctrl, Windows, Alt keys on a Windows keyboard map to Control, Command, Option by default. You can fix the order of the modifier keys in System Preferences | Keyboard | Modifier keys&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/macoskeymapping.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;correctly-working-home-and-end-keys&#34;&gt;Correctly working Home and End keys&lt;/h2&gt;
+
+&lt;p&gt;If you are a programmer you probably use Home and End keys to navigate to the beginning and end of the current line a lot. Those keys work differently on macOS, pressing them will make your cursor jump to the beginning or the end of a file and drive you nuts. Luckily, there is quite an easy way to fix it. Create a &lt;code&gt;DefaultKeyBinding.dict&lt;/code&gt; file in &lt;code&gt;~/Library/KeyBindings&lt;/code&gt; to remap them&lt;/p&gt;
+
+&lt;div data-gist=&#34;8b7ccbb32a639b7fdb2efaa5f4b02d6d&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;It is best to logout and log back in for the apps to notice this change.&lt;/p&gt;
+
+&lt;p&gt;If you use the Terminal app (you should really try &lt;a href=&#34;https://hyper.is/&#34;&gt;Hyper&lt;/a&gt; instead) this change will not work. You have to go to Preferences | Settings | Keyboard for the Terminal app and add &lt;code&gt;\033[H&lt;/code&gt; to move to the beginning of the line and &lt;code&gt;\033[F&lt;/code&gt; to move to the end of the line.&lt;/p&gt;
+
+&lt;h2 id=&#34;volume-controls&#34;&gt;Volume controls&lt;/h2&gt;
+
+&lt;p&gt;Windows keyboard do not usually have Volume up and Volume down keys but you can quite simply create custom keyboard shortcuts for this functionality using Automator. Open Automator and create two Services executing Apple script. One for Volume up&lt;/p&gt;
+
+&lt;div data-gist=&#34;871c92d9fdadf8dea25d4bbbae28ce66&#34; data-file=&#34;volumeup.applescript&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;and another one for volume down&lt;/p&gt;
+
+&lt;div data-gist=&#34;871c92d9fdadf8dea25d4bbbae28ce66&#34; data-file=&#34;volumedown.applescript&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;You can then open System preferences | Keyboard | Keyboard shortcuts | Services and assign those two services any keyboard shortcut you want. I use Control + Command + Up for Volume up and Control + Command + Down for Volume down.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/volumeshortcuts.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
+    </item>
+    
+    <item>
+      <title>My (negative) experience with the Microsoft MVP awards</title>
+      <link>https://blog.davidmacias.com/my-experience-with-the-mvp-awards/</link>
+      <pubDate>Thu, 05 Jan 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/my-experience-with-the-mvp-awards/</guid>
+      <description>&lt;p&gt;Getting a MVP is a big thing when you are a developer working with the Microsoft stack. It is supposed to be some kind of approval a sign that you are doing something well. I applied for the MVP award back in 2012 and then got nominated in 2016. I want to tell you about both cases because they really made me think that the whole MVP concept is just wrong.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; First, this post is not a hate post because I did not get an MVP award. I do not really care about it. I just want you to know how it works and what is it like. Second, I am in no way generalizing and saying the MVP awards work like this in every region. This is my experience with the Czech Microsoft branch (2012) and later with the CEE, Russia &amp;amp; CIS (2016). I suspect things may work differently in different regions and with different Microsoft branches.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;applying-in-2012&#34;&gt;Applying in 2012&lt;/h2&gt;
+
+&lt;p&gt;In 2012 I started working as a full-time Windows Phone developer in Prague, Czech Republic. I created a few good apps, wrote some programming blog posts, kicked off my StackOverflow answering, did a few user group talks and even taught the Windows Phone development part of a mobile development course on a Czech university. It seemed like I had everything needed to get an MVP award.&lt;/p&gt;
+
+&lt;p&gt;I applied and got a big Excel sheet to fill in. Everything was numbers based. They did not really care what apps you created and how good or big they were, just their count. The same with everything else. It looked like writing 2 trivial blog posts would count for more than teaching 1 university course. But I tried, I thought I did enough. I wrote every single blog post, every single app, everything to this Excel sheet and sent it.&lt;/p&gt;
+
+&lt;p&gt;I did not get the MVP award so I was curious why. A friend close to the local Microsoft branch told me I failed the &amp;ldquo;attitude test&amp;rdquo;. I am a blunt person, I often criticize stuff when it does not work. I wrote some blog posts about problems with Windows Phone and the then just emerging WinRT and how to solve them and I was vocal about it at Twitter. The local Microsoft branch did not like it. One does not get an MVP award here when being critical to Microsoft products.&lt;/p&gt;
+
+&lt;p&gt;So I let it go, turning into a fanboy was not an option for me and I was already on a blacklist because of a blunt talk about the then just starting Windows Store at a local Microsoft conference. Or maybe for acknowledging that Microsoft directly financed some Windows Phone apps, because otherwise they would never be developed. I do not remember.&lt;/p&gt;
+
+&lt;h2 id=&#34;getting-nominated-in-2016&#34;&gt;Getting nominated in 2016&lt;/h2&gt;
+
+&lt;p&gt;A few years passed and an MVP friend, when bored at his job, decided to nominate me for an MVP for fun. He wanted to know if I am still on the blacklist. The idea was that maybe the blacklist was not shared from the local Microsoft branch to CEE, Russia &amp;amp; CIS that handles the MVPs for the whole region now.&lt;/p&gt;
+
+&lt;p&gt;My nomination got accepted, telling him that my GitHub profile looked impressive. I got a form to fill. It was not an Excel sheet this time but an online form that showed in Russian, broke when using translation in Chrome and only worked when I changed the ru-RU in the url to en-US.&lt;/p&gt;
+
+&lt;p&gt;The idea of the form was the same. Numbers, numbers, just some numbers. So I filled it in, focusing on my apps, blog posts, StackOverflow answers, GitHub repos and a conference talk. A day later I got a mass email sent to all the MVP nominees telling me about a call about filling in the form the next day. Kind of a short notice and I already filled in the form.&lt;/p&gt;
+
+&lt;p&gt;I asked if the call was mandatory, the response was that it was not. By my local MVP friend told me I should attend, that they say it is not mandatory but check who is on the call and who is not.&lt;/p&gt;
+
+&lt;p&gt;I joined the call and listened in. Took me about 20 minutes to leave it. It was everything I remember hating about the program, telling the nominees to focus on numbers, fill in as much stuff as they could no matter the quality, etc. Those people from CEE, Russia &amp;amp; CIS were a bit delusional for my taste, especially with emails starting with stuff like &amp;ldquo;Thank you again for your interest to our amazing MVP Award Program!&amp;rdquo;. They did not ask for anything after the call or contact me in any way.&lt;/p&gt;
+
+&lt;p&gt;As expected, I did not get the MVP. I was curious so I checked who got the MVP for the same category and the same country. I found the name and wanted to check who he was and what he did. It was hard because he had basically no online presence (no web or blog or Github or StackOverflow) other than a Twitter with no original content just retweeting stuff praising Microsoft. I do not know who he could have put into the numbers oriented form. Then I wrote an email to the CEE, Russia &amp;amp; CIS telling them I am curious how the awarding works, what was the reason for people not getting MVP etc. I never heard back.&lt;/p&gt;
+
+&lt;p&gt;Seems to me that nothing has changed about the MVP awards in my region and probably never will. This is definitely not something I want to take part in anymore.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hacking a mobile API and how to protect yourself</title>
+      <link>https://blog.davidmacias.com/hacking-a-mobile-api-and-how-to-protect-yourself/</link>
+      <pubDate>Wed, 02 Nov 2016 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/hacking-a-mobile-api-and-how-to-protect-yourself/</guid>
+      <description>&lt;p&gt;Sometimes when I use a mobile app that provides data that I find useful my curiosity awakens and I ask myself a question: how does the communication work and how hard would it be to break their security and access the data outside of the app? Mobile apps I have encountered are generally not very well secured and stealing their data is not much of a challenge. But what can the authors of the app do about it?&lt;/p&gt;
+
+&lt;p&gt;Lets take an app and an API and walk through the process. The model app is an app I tried last week and provides TV schedules for many local stations, so data that someone might be interested in stealing.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;attack-basics-sniffing-the-traffic&#34;&gt;Attack basics: sniffing the traffic&lt;/h2&gt;
+
+&lt;p&gt;The first thing I always do is sniffing the communication between the app and the server using a proxy server installed on my computer. I use &lt;a href=&#34;http://www.telerik.com/fiddler&#34;&gt;Fiddler&lt;/a&gt; but there are many other tools you can use like &lt;a href=&#34;https://www.charlesproxy.com/&#34;&gt;Charles&lt;/a&gt; or &lt;a href=&#34;https://mitmproxy.org/&#34;&gt;mitmproxy&lt;/a&gt;. I set the proxy server on the phone to the IP address of the computer (they have to be on the same network) and all the packets from the phone now flow through the computer. A classic &lt;a href=&#34;https://en.wikipedia.org/wiki/Man-in-the-middle_attack&#34;&gt;man-in-the-middle attack&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If the app uses HTTP for communication, I can clearly see the data being exchanged. If the app does not use any other kind of security (they rarely do) this is usually it. &lt;strong&gt;Always use HTTPS instead of HTTP&lt;/strong&gt;. It is really easy in 2016.&lt;/p&gt;
+
+&lt;p&gt;The app in our example uses HTTPS so I have to try harder. Luckily Fiddler allows you to capture and decrypt HTTPS traffic. You just need open the browser on your device, go to the IP address of the proxy and install the Fiddler certificate. It does not matter that the app in our example uses HTTPS, I can now see the traffic because it does not check for the correct certificate. &lt;strong&gt;When using HTTPS always do SSL pinning&lt;/strong&gt;. &lt;a href=&#34;https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning&#34;&gt;SSL pinning&lt;/a&gt; will enable your app to detect scenarios like this and refuse the connection when the certificate is not the one you expect.&lt;/p&gt;
+
+&lt;p&gt;If the app uses HTTPS and does SSL pining there is nothing more I can do with sniffing the traffic. I usually give up because it is not worth my effort.&lt;/p&gt;
+
+&lt;p&gt;The app in our example does not do SSL pinning but I noticed it uses a security token in the header of every request. I can clearly see how to get the server secret and the refresh token, how to use the refresh token but I do not know how to create the security token for every request form the server secret. &lt;strong&gt;Do not rely only on HTTPS, always use another mechanism to authenticate the app when not doing SSL pinning&lt;/strong&gt;. But you should really do SSL pinning.&lt;/p&gt;
+
+&lt;h2 id=&#34;weak-link-android-app&#34;&gt;Weak link: Android app&lt;/h2&gt;
+
+&lt;p&gt;To proceed I need to attack the app itself to find out how the app creates the security token. There is no easy way to attack the iOS app I used with the proxy but attacking the Android app is usually much easier (if it exists). So I google the name of the app plus &amp;ldquo;APK&amp;rdquo; and find it. The APK is just a zip file with the compiled Java code that you need to decompile. You usually do not need any special tools for this, just google an &lt;a href=&#34;http://www.javadecompilers.com/apk&#34;&gt;online tool for APK decompilation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finding a method that creates the security token in decompiled Java code is easy when the app is not obfuscated. You just need to do some text search in the Java files. &lt;strong&gt;Always obfuscate your code&lt;/strong&gt; to make this harder. On Android you can also &lt;strong&gt;use NDK to protect sensitive parts of the code&lt;/strong&gt;. Also do not use something predictable like &lt;code&gt;md5(server secret + device id)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Securing your mobile app and the API it uses is not easy and there is frankly not much you can do to protect against a really good attacker, especially when you have an Android app. The attacker can always get the APK, modify it and remove SSL pinning to see the traffic. Or they can create their own VM and run your app in it to see what code it executes. But &lt;strong&gt;security is not absolute&lt;/strong&gt;, it always depends on your thread model. If you follow my advices, you can make the attackers lives hard so they would not find it feasible to try to break your app security.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>About the decline in software quality</title>
+      <link>https://blog.davidmacias.com/about-the-decline-in-software-quality/</link>
+      <pubDate>Wed, 26 Oct 2016 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/about-the-decline-in-software-quality/</guid>
+      <description>&lt;p&gt;In the last few months I have been noticing a huge decline in software quality on every device I use. It seems to me like bad quality software is a current trend, especially for big corporations like Microsoft or Apple. Even though I consider Apple more of a &amp;ldquo;fashion company&amp;rdquo; than a &amp;ldquo;technology company&amp;rdquo; I think it is unacceptable for software from such big companies to works as bad as it does.&lt;/p&gt;
+
+&lt;p&gt;I am programmer so I know that software has and always will have bugs. My points is not buggy software in general but that software contains more bugs with every release and that stay unfixed.&lt;/p&gt;
+
+&lt;h2 id=&#34;windows-10&#34;&gt;Windows 10&lt;/h2&gt;
+
+&lt;p&gt;Windows 10 updates are where I notice the software quality degradation the most. I cannot remember a bigger Windows 10 update that did not break something for me or millions of other users (like the &lt;a href=&#34;https://www.thurrott.com/windows/windows-10/76719/microsoft-broken-millions-webcams-windows-10-anniversary-update&#34;&gt;Anniversary Update breaking millions of webcams&lt;/a&gt;). I do think this is because of my hardware configuration. I experience all the problem usually on both my laptop and my desktop computer.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; data-lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Thank you &lt;a href=&#34;https://twitter.com/Windows&#34;&gt;@Windows&lt;/a&gt; 10 for promptly installing all updates without asking and deleting all my unsaved changes 💩.&lt;/p&gt;&amp;mdash; Tomas Petricek (@tomaspetricek) &lt;a href=&#34;https://twitter.com/tomaspetricek/status/789495984682364928&#34;&gt;October 21, 2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;The worst thing about Windows updates is that you cannot refuse them and not install them. They will install if you want them or not. You just need to leave your computer for a minute and Windows 10 will install updates that will break something. In an ideal scenario you may not loose your work.&lt;/p&gt;
+
+&lt;p&gt;For example the latest update from last week made Windows 10 on my laptop think that I have 4 extra displays and Windows 10 now sometimes decides to open a window on one of those non-existent displays so I cannot get to it.&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; data-lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;This is fascinating. Mostly because I only have one display connected to my PC. &lt;a href=&#34;https://t.co/dRltAVa8yz&#34;&gt;pic.twitter.com/dRltAVa8yz&lt;/a&gt;&lt;/p&gt;&amp;mdash; Paul Thurrott (@thurrott) &lt;a href=&#34;https://twitter.com/thurrott/status/788074304533594117&#34;&gt;October 17, 2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;There are also some login issues. If I turn on my laptop at work, connect it to an external display and connect a keyboard or mouse when on the login screen, Windows 10 decides I entered a password and starts a login attempt that never ends. I have to put the computer to sleep and wake it up again to be able to login.&lt;/p&gt;
+
+&lt;p&gt;Issue like reseting default app settings, Store icon being put back to taskbar or changed items in the Start menu are now common. And I am using the &amp;ldquo;stable&amp;rdquo; build, not an Insider Preview.&lt;/p&gt;
+
+&lt;p&gt;I rather not mention Windows 10 Mobile in a great detail. Microsoft took a fast, fluid and good looking mobile OS (Windows Phone 7) and turned it into an abomination where not even system apps work. Sure, it shows that Windows 10 is primarily developed for desktops and the mobile version only exist so they do not openly admit a failure in this segment. I am sure Microsoft employees must be given iPhones now.&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; data-lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Can somebody please tell the intern who programs Windows Store on &lt;a href=&#34;https://twitter.com/hashtag/Windows10Mobile?src=hash&#34;&gt;#Windows10Mobile&lt;/a&gt; to use he whole screen already? &lt;a href=&#34;https://t.co/tLfdkbefQq&#34;&gt;pic.twitter.com/tLfdkbefQq&lt;/a&gt;&lt;/p&gt;&amp;mdash; Igor Kulman (@igorkulman) &lt;a href=&#34;https://twitter.com/igorkulman/status/767635667471982592&#34;&gt;August 22, 2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;ios-10&#34;&gt;iOS 10&lt;/h2&gt;
+
+&lt;p&gt;Software quality of iOS has been declining since iOS 7 but it is most visible in iOS 10. It is another update where Apple added a bunch of new features to have something to show at the keynote, keeping all the old bugs and adding some new ones. For me iOS 10 was the first iOS update (since iOS 7) that did not succeed, my iPhone ended in a state where I had to download and install iTunes (which is another kind of software hell on Windows) and restore with a new update attempt over the wire (with my nearly broken lightning cable).&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; data-lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;&lt;a href=&#34;https://twitter.com/hashtag/ios10?src=hash&#34;&gt;#ios10&lt;/a&gt; bug: using U.S. English as phone language, a different national Regional Format (like Italy) won&amp;#39;t work (e.g. date format) &lt;a href=&#34;https://twitter.com/hashtag/fail?src=hash&#34;&gt;#fail&lt;/a&gt;&lt;/p&gt;&amp;mdash; Ale Di Cicco आत्मा (@aledicicco) &lt;a href=&#34;https://twitter.com/aledicicco/status/776369944351170560&#34;&gt;September 15, 2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Sometimes Apple just removes features you rely on for no good reason. Since iOS 7 I had my phone set to English as display language, Czech Republic as my region and using Slovak regional settings. That way my phone UI was in English, just showing Slovak dates and times and Kč as currency symbol. Apple completely removed this level of user control in iOS 10. So now when I want English as my display language I have to live with everything displaying in English. So in the morning I do not see 8:00 Pondelok on the lockscreen but 08:00 Monday (yes also with the leading zero). This is not just my problem, &lt;a href=&#34;https://discussions.apple.com/thread/7663783?start=0&amp;amp;tstart=0&#34;&gt;many people complain about this on Apple forums&lt;/a&gt;, mostly people living abroad or say Canadians wanting their phones UI in English but French dates and times.&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; data-lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Does anyone use bedtime feature of iOS 10? It works for me for 2-3 days and then stops, tried restoring device, no improvement&lt;/p&gt;&amp;mdash; James (@jamxf) &lt;a href=&#34;https://twitter.com/jamxf/status/789399680614436864&#34;&gt;October 21, 2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Talking about adding new features to iOS 10 I have to mention Bedtime. The idea of Bedtime, copied from 3rd party apps, is simple, making you go to band at the same time every day. But it does not work. You set the time to go to bed and to wake up in the app. In addition you set how many minutes before you go to bed you want to receive a notification. But this notification is not reliable at all. For me it is about 50% reliable and according to people complaining on forums I am not alone. How hard could it be for Apple to show a notification from an Apple system app on Apple iOS at the same time every day?&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; data-lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;The iOS bedtime alarm feature didn&amp;#39;t go off this morning. Woke up about a half hour later good job I did.&lt;/p&gt;&amp;mdash; Jamie Maddocks (@ChickenStudios) &lt;a href=&#34;https://twitter.com/ChickenStudios/status/789024130406514688&#34;&gt;October 20, 2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;watchos&#34;&gt;watchOS&lt;/h2&gt;
+
+&lt;p&gt;The watchOS running on Apple Watch is in a league on its own regarding bugs and unfinished features. Especially all the fitness features feel rough and unfinished. Take something as a simple as a reminder to stand up and move a bit when you have been sitting for a while. On my Microsoft Band (a product with great firmware but really bad build quality) I could set the reminder to only work between 9am and 6pm with a 1 hour interval. The Apple Watch only has one setting for this feature: on/off. So if you enable it, the reminder will also bug you in the evening when you really do not want to move anymore. Or the reminder &lt;a href=&#34;https://discussions.apple.com/thread/7538178?start=0&amp;amp;tstart=0&#34;&gt;can wake you up in the middle of the night and tell you to stand up and move&lt;/a&gt;. What about just allowing the user to set a time range?&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; data-lang=&#34;en&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;&lt;a href=&#34;https://twitter.com/hashtag/AppleWatch?src=hash&#34;&gt;#AppleWatch&lt;/a&gt; major &lt;a href=&#34;https://twitter.com/hashtag/fail?src=hash&#34;&gt;#fail&lt;/a&gt;. Wakes me up during the night to remind me to stand up?! C&amp;#39;mon Apple. I&amp;#39;d expect better than that out of the box.&lt;/p&gt;&amp;mdash; Joe Da Silva (@joemagicdevelop) &lt;a href=&#34;https://twitter.com/joemagicdevelop/status/598466624245657600&#34;&gt;May 13, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Image having you iPhone set to enable the Do Not Disturb mode automatically every day after 11pm. If someone calls you after 11pm, the iPhone will not ring. If one of your contacts marked as favorite calls you, the iPhone will ring as it should. But the Apple Watch sees the Do Not Disturb mode and just ignores everything. It does not care that your iPhone is ringing, the Apple Watch just quietly rests on your wrist. There are so many problems like this.&lt;/p&gt;
+
+&lt;p&gt;I have at least some hope that Microsoft will fix their bugs but Apple, Apple lets bugs rot for years (noticed the date of the Apple Watch tweet?). The worst thing about all this is that you do not have a choice. Sure you do not have to use Windows 10, you can use MacOS or Linux, but do you really think they are better in this regard? Or that Android works better than iOS? You are wrong.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Fixing first annoyances with Bash on Windows</title>
+      <link>https://blog.davidmacias.com/fixing-first-annoyances-with-bash-on-windows/</link>
+      <pubDate>Tue, 09 Aug 2016 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/fixing-first-annoyances-with-bash-on-windows/</guid>
+      <description>&lt;p&gt;When you enable the Linux Subsystem on Windows in the Windows 10 Anniversary Update so you can use Bash and all the GNU utilities, you may encounter a few annoyances like strange error messages, wrong language settings, etc. Here is how to fix the ones I encountered.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Adding Bash to cmder&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you use &lt;a href=&#34;http://cmder.net/&#34;&gt;cmder&lt;/a&gt;, you can add a new Bash task like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/bash-cmder.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;If you do not use cmder, you should. It is a nice terminal app, enables copy and paste and editors like &lt;code&gt;vim&lt;/code&gt; and &lt;code&gt;nano&lt;/code&gt; work with it in Bash unlike when using the bash.exe directly.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Changing language to English&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When I installed the Linux Subsystem on Windows I was quite surprised that it spoke to me in Slovak. I have my display language set to English in Windows 10, only my locale is Slovak. To fix this and make it talk English to you just run&lt;/p&gt;
+
+&lt;div data-gist=&#34;8ad13c532296b721d50a1898745e40d1&#34; data-file=&#34;english.sh&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixing unable to resolve host MACHINENAME&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When you try some command that works with the Internet you may get an &lt;code&gt;unable to resolve host MACHINENAME&lt;/code&gt; error message where &lt;code&gt;MACHINENAME&lt;/code&gt; is the name of your computer. I do not know why this happens but you can fix it by editing &lt;code&gt;/etc/hosts&lt;/code&gt; and adding your &lt;code&gt;MACHINENAME&lt;/code&gt; to 127.0.0.1&lt;/p&gt;
+
+&lt;div data-gist=&#34;8ad13c532296b721d50a1898745e40d1&#34; data-file=&#34;hosts.txt&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Using ping&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When you try &lt;code&gt;ping&lt;/code&gt; you will get and error message saying &lt;code&gt;ping: icmp open socket: Socket type not supported&lt;/code&gt;. The only way can can get ping to work is to run bash.exe as Administrator. This is strange, but seems to be &lt;a href=&#34;https://github.com/Microsoft/BashOnWindows/issues/18#issuecomment-222026969&#34;&gt;limitation of the Windows TCP/IP stack&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resetting the Linux Subsystem on Windows&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When everything fails, open the command prompt as Administrator and use&lt;/p&gt;
+
+&lt;div data-gist=&#34;8ad13c532296b721d50a1898745e40d1&#34; data-file=&#34;uninstall.cmd&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;to completely uninstall the Linux Subsystem on Windows. Just to be sure, you may also want to remove the &lt;code&gt;%localappdata%\Lxss&lt;/code&gt; directory. You can install the Linux Subsystem on Windows back using&lt;/p&gt;
+
+&lt;div data-gist=&#34;8ad13c532296b721d50a1898745e40d1&#34; data-file=&#34;install.cmd&#34;&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Application deployment with NSIS and Squirrel</title>
+      <link>https://blog.davidmacias.com/application-deployment-with-nsis-and-squirrel/</link>
+      <pubDate>Wed, 22 Jun 2016 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/application-deployment-with-nsis-and-squirrel/</guid>
+      <description>&lt;p&gt;Currently working on a WPF app as a side project for &lt;a href=&#34;http://www.netglade.cz/&#34;&gt;Netglade&lt;/a&gt; I came upon and interesting requirement regarding installation and deployment of the application. As a result I ended with some Squirrel and NSIS knowledge I would like to share.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Requirements&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The client came with a specific set of requirement for the installer&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Check for .NET 4.5.2 and offer installation if not present&lt;/li&gt;
+&lt;li&gt;Install the application for all users (Program Files)&lt;/li&gt;
+&lt;li&gt;Install a hardware driver as part of the install process&lt;/li&gt;
+&lt;li&gt;Create desktop and start menu shortcuts&lt;/li&gt;
+&lt;li&gt;Create an uninstaller&lt;/li&gt;
+&lt;li&gt;Set the application to start after boot / logon&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;and the update process&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;a Check for updates button in the app&lt;/li&gt;
+&lt;li&gt;automatically and installing a newer version if available&lt;/li&gt;
+&lt;li&gt;periodically checking for updates and installing them silently when app is minimized to tray&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Squirrel&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As you may have noticed, most .NET apps nowdays use &lt;a href=&#34;https://github.com/Squirrel/Squirrel.Windows&#34;&gt;Squirrel.Windows&lt;/a&gt;. The problem with Squirrel is that it cannot install a hardware driver as part of the installation process and it typically install applications to the users profile. But Squirrel is a good choice for the applictaion update requirements, so we decided to combine it with a classic installer.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NSIS&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We came up with an idea to combine Squirrel with &lt;a href=&#34;http://nsis.sourceforge.net/Main_Page&#34;&gt;NSIS&lt;/a&gt;. We chose NSIS because it seemed reasonable. I think it is the best of bad choices. The documentation is not very good, especially when using MUI to create a GUI with some meaningful texts and branding.&lt;/p&gt;
+
+&lt;p&gt;The idea was to create a NSIS installer that install the hardware driver and a Squirrel app packages and make the updates work after such installation.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Solution&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The final solution consisted of multiple things combined together. We added Squirrel to the build process of the app, so each build in Release created a Squirrel install package. Then we created the NSIS installer that&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Checks for .NET 4.5.2 presence (using the &lt;a href=&#34;https://github.com/ReVolly/NsisDotNetChecker&#34;&gt;NsisDotNetChecker plugin&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Copies and installs the hardware driver (using a &lt;code&gt;/s&lt;/code&gt; switch for instalaltion without a GUI)&lt;/li&gt;
+&lt;li&gt;Installs the Squirrel package by unpacking it to the install directory in Program Files (using the &lt;a href=&#34;http://nsis.sourceforge.net/NsUnzip_plugin&#34;&gt;NsUnzip plugin&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Set appropriate permission for the install directory (using the &lt;a href=&#34;http://nsis.sourceforge.net/AccessControl_plug-in&#34;&gt;AccessControl plugin&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Copies Squirrel.exe as Update.exe to the install directory&lt;/li&gt;
+&lt;li&gt;Creates shortcuts using the Update.exe instead of the app binary&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To make Squirrel work in this scenario we also had to create a &lt;code&gt;SquirrelTemp&lt;/code&gt; directory one level above the install directory and make it writeable.&lt;/p&gt;
+
+&lt;p&gt;We also had to create a &lt;a href=&#34;https://gist.github.com/igorkulman/702be46eacba7bfe3f1444815aef645a&#34;&gt;custom update logic&lt;/a&gt; to check for new releases and restart the app with full path to correct exe file, but in the ends, it all works.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

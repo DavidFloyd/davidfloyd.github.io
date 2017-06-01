@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Posts</title>
+  
+  <meta name="author" content="davidmacias"/>
+  <meta name="generator" content="Hugo 0.21" />
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel="alternate" href="https://blog.davidmacias.com/index.xml" type="application/rss+xml" title="Igor Kulman">
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://blog.davidmacias.com/css/main.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />  
+
+  
+  
+ 
+  
+    <meta property="og:title" content="Posts" />
+  
+
+  
+    <meta property="og:description" content="">
+  
+
+  <meta property="og:type" content="website" />
+
+  
+    <meta property="og:url" content="https://blog.davidmacias.com/post/" />
+    <link rel="canonical" href="https://blog.davidmacias.com/post/" />
+  
+
+  
+    <meta property="og:image" content="https://blog.davidmacias.com/img/avatar-icon.png" />
+  
+  
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@davidmacias" />
+  <meta name="twitter:creator" content="@davidmacias" />
+
+  
+    <meta name="twitter:title" content="Posts" />
+  
+
+  
+    <meta name="twitter:description" content="">
+  
+
+  
+    <meta name="twitter:image" content="https://blog.davidmacias.com/img/avatar-icon.png" />
+   
+
+</head>
+
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.davidmacias.com">Igor Kulman</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Projects" href="/projects/">Projects</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About me / contact" href="/about/">About me / contact</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Igor Kulman" href="https://blog.davidmacias.com">
+            <img class="avatar-img" src="https://blog.davidmacias.com/img/avatar-icon.png" alt="Igor Kulman" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+    <header class="header-section ">
+      <div class="intro-header no-img">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+              <div class="page-heading">
+                <h2>#Posts</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container" role="main">
+      
+      
+        <article class="post-preview">
+          <a href="https://blog.davidmacias.com/delaying-disqus-comments-to-save-requests/">
+            <h2 class="post-title">Delaying Disqus comments to save (a ton of) requests</h2>
+
+            
+          </a>
+
+          <p class="post-meta">
+            Posted on May 30, 2017
+          </p>
+          <div class="post-entry">
+            
+              <p>My blog is a static website generated using <a href="https://gohugo.io/">Hugo</a> and running on <a href="https://www.netlify.com/">Netlify</a> (you can read about my move from WordPress to Hugo in a <a href="/going-static-from-wordpress-to-hugo">previous article</a>) but I still want to allow users to leave comments on my posts so I use <a href="https://disqus.com/">Disqus</a> like many other blogs.</p>
+
+<p>The advantage of Disqus is that you do not need to host the comments yourself, and I really cannot with a static website, you just embed a JavaScript file and everything is taken care of for you. There are a few alternatives to Disqus but none of them works very well so there is basically no other option if you want to have comments on a static website.</p>
+
+<p>The problem with Disqus is that this one JavaScript file you embed to your website makes about 50 requests when a page loads. And that is a lot!</p>
+
+<img src="/images/disqus.png" alt="" class="pure-img" >
+
+<p></p>
+              <a href="https://blog.davidmacias.com/delaying-disqus-comments-to-save-requests/" class="post-read-more">[Read&nbsp;More]</a>
+            
+          </div>
+
+          
+            <span class="post-meta">
+              
+                #<a href="/tags/web">Web</a>&nbsp;
+              
+                #<a href="/tags/hugo">Hugo</a>&nbsp;
+              
+                #<a href="/tags/disqus">Disqus</a>&nbsp;
+              
+            </span>
+          
+
+        </article>
+      
+        <article class="post-preview">
+          <a href="https://blog.davidmacias.com/resigning-ios-apps/">
+            <h2 class="post-title">Re-signing iOS apps</h2>
+
+            
+          </a>
+
+          <p class="post-meta">
+            Posted on May 23, 2017
+          </p>
+          <div class="post-entry">
+            
+              <p>There are some times when you need to re-sign the IPA of your iOS app with a different certificate. For example, an external developer creates the IPA for you, but it is signed with their personal certificate and you need to re-sign it with yours to deploy it to the App Store. Or one of your clients does not want to have their employees install the iOS app from the App Store but wants to distribute it directly using their MDM tools.</p>
+
+<p>The second case is a bit more complicated, because it involves creating a new app identity for the app. When you change the app id if your app, your push notifications will stop working and you need to also generate a new APNS certificate with the new app id and deploy it to your server. Here is everything you need to do, step by step.</p>
+
+<p></p>
+              <a href="https://blog.davidmacias.com/resigning-ios-apps/" class="post-read-more">[Read&nbsp;More]</a>
+            
+          </div>
+
+          
+            <span class="post-meta">
+              
+                #<a href="/tags/ios">iOS</a>&nbsp;
+              
+                #<a href="/tags/keychain">Keychain</a>&nbsp;
+              
+                #<a href="/tags/provisioning">Provisioning</a>&nbsp;
+              
+            </span>
+          
+
+        </article>
+      
+        <article class="post-preview">
+          <a href="https://blog.davidmacias.com/solving-problems-after-mbr2efi/">
+            <h2 class="post-title">Solving problem after upgrading Windows 10 to EFI</h2>
+
+            
+          </a>
+
+          <p class="post-meta">
+            Posted on May 16, 2017
+          </p>
+          <div class="post-entry">
+            
+              <p>When I upgraded my Windows 10 installation to the Creators Update I wanted to take advantage of the new <code>MBR2GPT.EXE</code> tool. This tool allows you to upgrade your Windows 10 installation to EFI without having to reinstall or loosing any data. My motivation for moving to EFI installation was to be able to boot Windows 10 from Clover, the macOS bootloader in <a href="/my-experience-running-a-hackintosh">my hackintosh installation</a>, making switching between Windows 10 and macOS easier without involving the BIOS boot menu.</p>
+
+<p>The upgrade from MBR to EFI went fine on both my desktop computer and my Thinkpad but there were a few thing that needed fixing afterwards.</p>
+
+<p></p>
+              <a href="https://blog.davidmacias.com/solving-problems-after-mbr2efi/" class="post-read-more">[Read&nbsp;More]</a>
+            
+          </div>
+
+          
+            <span class="post-meta">
+              
+                #<a href="/tags/windows">Windows</a>&nbsp;
+              
+                #<a href="/tags/hyper-v">Hyper-V</a>&nbsp;
+              
+            </span>
+          
+
+        </article>
+      
+        <article class="post-preview">
+          <a href="https://blog.davidmacias.com/formatting-swift-code-in-xcode/">
+            <h2 class="post-title">Formatting Swift code in XCode</h2>
+
+            
+          </a>
+
+          <p class="post-meta">
+            Posted on May 5, 2017
+          </p>
+          <div class="post-entry">
+            
+              <p>When I started using XCode I was really surprised about the really poor implementation of its code formatting functionality. It kind of formats the alignment of the code but ignores unnecessary spaces and a lot of other things. Formatting the source code and keeping the style consistent is really important to me so I was looking for a solution. I found some linters like <a href="https://github.com/realm/SwiftLint">SwiftLint</a> but I was interested in a tool that will actually format the source code for me on demand. I found <a href="https://github.com/nicklockwood/SwiftFormat">SwiftFormat</a>.</p>
+
+<h3 id="swiftformat">SwiftFormat</h3>
+
+<p><a href="https://github.com/nicklockwood/SwiftFormat">SwiftFormat</a> is a code library and command-line tool for reformatting swift code. It applies a set of rules to the formatting and space around the code, leaving the meaning intact.</p>
+
+<img src="/images/swiftformat.png" alt="" class="pure-img" >
+
+<p></p>
+              <a href="https://blog.davidmacias.com/formatting-swift-code-in-xcode/" class="post-read-more">[Read&nbsp;More]</a>
+            
+          </div>
+
+          
+            <span class="post-meta">
+              
+                #<a href="/tags/ios">iOS</a>&nbsp;
+              
+                #<a href="/tags/xcode">XCode</a>&nbsp;
+              
+                #<a href="/tags/swift">Swift</a>&nbsp;
+              
+            </span>
+          
+
+        </article>
+      
+        <article class="post-preview">
+          <a href="https://blog.davidmacias.com/generating-a-list-of-libraries-your-ios-app-uses/">
+            <h2 class="post-title">Generating a list of libraries your iOS app uses</h2>
+
+            
+          </a>
+
+          <p class="post-meta">
+            Posted on April 5, 2017
+          </p>
+          <div class="post-entry">
+            
+              <p>If you work on an iOS app that is a bit more corporate you probably need to show the list of all the libraries you use with their licenses somewhere in the app. Creating and updating this list by hand is a pain. If you use Carthage to manage all your dependencies (<a href="http://drekka.ghost.io/cocoapods-vs-carthage/">and you really should</a>) there is a handy <a href="https://github.com/pietbrauer/CarthageLicenseScript">script by Piet Brauer</a> I contributed to that will help you.</p>
+
+<p>When you run the script using <code>$ ./PATH_TO_YOUR_SCRIPT/fetch_licenses.swift Cartfile.resolved  OUTPUT_DIR</code> it reads your Carthage file, gets all the libraries you use, downloads their licenses and stores them all in a single <code>plist</code> file. The <code>plist</code> file contains the name, license name and full license content for every library in your Carthage file.</p>
+
+<p>There is currently no support for using multiple Carthage files (when you have more projects in your workspace), you need to generate the <code>plist</code> file for each of them separately and then merge them manually. But you can set up a <code>bash</code> script to do it for you.</p>
+
+<p></p>
+              <a href="https://blog.davidmacias.com/generating-a-list-of-libraries-your-ios-app-uses/" class="post-read-more">[Read&nbsp;More]</a>
+            
+          </div>
+
+          
+            <span class="post-meta">
+              
+                #<a href="/tags/ios">iOS</a>&nbsp;
+              
+                #<a href="/tags/carthage">Carthage</a>&nbsp;
+              
+            </span>
+          
+
+        </article>
+      
+        <article class="post-preview">
+          <a href="https://blog.davidmacias.com/my-experience-running-a-hackintosh/">
+            <h2 class="post-title">My experience running a hackintosh</h2>
+
+            
+          </a>
+
+          <p class="post-meta">
+            Posted on March 29, 2017
+          </p>
+          <div class="post-entry">
+            
+              <p>A few months ago I decided to take part in an iOS project. The first problem I needed to solve was to be able to run macOS Sierra and XCode. I did not really want to buy an overpriced MacBook without function keys or and underpowered Mac Mini. Especially when I own a more than 3 years old desktop computer that is still usable for all my needs. A few iOS developers I know recommended I go the Hackintosh way.</p>
+
+<h2 id="hackintosh">Hackintosh</h2>
+
+<p>Hackintosh is PC that runs macOS. This configuration is not supported by Apple but it is possible if you have the right hardware since Apple has been using a fairly standard PC hardware for the last couple of years. <s>For example you cannot us any new GeForce 10X0 (Pascal) because there are no Apple computers with those new graphic cards so there are no drivers yet</s> (NVIDIA has released <a href="https://www.tonymacx86.com/threads/nvidia-pascal-graphics-drivers-released-buyers-guide-updated.219153/">new drivers supporting all the Pascal graphic cards</a>). But if you have an older GeForce like me or an integrated one, you will be fine. The <a href="https://www.tonymacx86.com/">tonymacx86.com</a> website, basically the central hub of all the Hackintosh information, regularly publishes a buying guide that can be useful if you want to buy a new computer and install macOS on it.</p>
+
+<p>If you do not wish to install macOS directly on your hardware you can run it in a virtual machine, but the performance will never be very good. Some people do it for Xamarin development when they just need to compile their project and run the simulator, so there are a few <a href="https://aurir.wordpress.com/2016/11/20/how-to-setting-up-macos-x-sierra-on-virtualbox-for-xamarin-development-with-visual-studio/">tutorial on how to do it</a>. There is also an interesting blog post series about a <a href="https://arktronic.com/weblog/2016-12-10/virtual-hackintosh-part-1-the-concepts/">virtual hackintosh</a>. I tried running macOS in WMWare on my Thinkpad T440s but the performance was not good.</p>
+
+<p></p>
+              <a href="https://blog.davidmacias.com/my-experience-running-a-hackintosh/" class="post-read-more">[Read&nbsp;More]</a>
+            
+          </div>
+
+          
+            <span class="post-meta">
+              
+                #<a href="/tags/macos">MacOS</a>&nbsp;
+              
+                #<a href="/tags/hackintosh">Hackintosh</a>&nbsp;
+              
+                #<a href="/tags/ios">iOS</a>&nbsp;
+              
+            </span>
+          
+
+        </article>
+      
+        <article class="post-preview">
+          <a href="https://blog.davidmacias.com/using-mvvm-with-tables-in-ios/">
+            <h2 class="post-title">Using MVVM with tables and cells in iOS</h2>
+
+            
+          </a>
+
+          <p class="post-meta">
+            Posted on March 21, 2017
+          </p>
+          <div class="post-entry">
+            
+              <p>When I ventured into native iOS development I immediately took a look at the possibility to <a href="/using-data-binding-in-ios">use data binding on iOS</a> which enables me to simply declare the relationships between the UI and the ViewModel. This article takes that approach further shows you how to use MVVM and data binding when using tables and cells, or in the world of iOS <code>UITableView</code> and <code>UITableViewCell</code>.</p>
+
+<h2 id="sample-scenario">Sample scenario</h2>
+
+<p>Let&rsquo;s start with simple example scenario. You want to show progress of some flow that contains of multiple steps, each of the steps can be either running or complete. When a step is running it can report its progress. You want to display this flow in a table that looks like this</p>
+
+<img src="/images/iostablemvvm.gif" alt="" class="pure-img" >
+
+<p></p>
+              <a href="https://blog.davidmacias.com/using-mvvm-with-tables-in-ios/" class="post-read-more">[Read&nbsp;More]</a>
+            
+          </div>
+
+          
+            <span class="post-meta">
+              
+                #<a href="/tags/ios">iOS</a>&nbsp;
+              
+                #<a href="/tags/swift">Swift</a>&nbsp;
+              
+                #<a href="/tags/reactive">Reactive</a>&nbsp;
+              
+                #<a href="/tags/rxswift">RxSwift</a>&nbsp;
+              
+                #<a href="/tags/mvvm">MVVM</a>&nbsp;
+              
+            </span>
+          
+
+        </article>
+      
+        <article class="post-preview">
+          <a href="https://blog.davidmacias.com/using-data-binding-in-ios/">
+            <h2 class="post-title">Using data binding in iOS</h2>
+
+            
+          </a>
+
+          <p class="post-meta">
+            Posted on March 14, 2017
+          </p>
+          <div class="post-entry">
+            
+              <p>When I started working on a native iOS project after a few years of Windows (Phone) development I looked into ways to write a more declarative and more elegant code than the &ldquo;standard&rdquo; iOS way. I wanted to transfer some of my habits over and the first thing I really missed was XAML data binding. I did some research on how to do data binding in iOS and found a few libraries that make it possible. This allowed me to write better code and I think data binding is a concept that all the iOS developer should look into. If you are interested in my experience with using binding in iOS, read on.</p>
+
+<h2 id="sample-scenario">Sample scenario</h2>
+
+<p>Let&rsquo;s use a simple example scenario. You have a screen where the users have to choose their country and then enter their mobile number. The number has to be validated with respect to the selected country and if everything is ok the Next button should become visible. So basically it should work like this</p>
+
+<img src="/images/iosvalidation.gif" alt="" class="pure-img" >
+
+<p></p>
+              <a href="https://blog.davidmacias.com/using-data-binding-in-ios/" class="post-read-more">[Read&nbsp;More]</a>
+            
+          </div>
+
+          
+            <span class="post-meta">
+              
+                #<a href="/tags/ios">iOS</a>&nbsp;
+              
+                #<a href="/tags/swift">Swift</a>&nbsp;
+              
+                #<a href="/tags/reactive">Reactive</a>&nbsp;
+              
+                #<a href="/tags/rxswift">RxSwift</a>&nbsp;
+              
+                #<a href="/tags/mvvm">MVVM</a>&nbsp;
+              
+            </span>
+          
+
+        </article>
+      
+        <article class="post-preview">
+          <a href="https://blog.davidmacias.com/creating-a-tv-schedule-grid-in-uwp/">
+            <h2 class="post-title">Creating a TV schedule grid in UWP</h2>
+
+            
+          </a>
+
+          <p class="post-meta">
+            Posted on February 28, 2017
+          </p>
+          <div class="post-entry">
+            
+              <p>I am currently working on a UWP app for a cable TV company. The app allows their clients to watch the TV channels they are subscribed to with additional information like the TV schedule, information about TV shows, recording TV shows for watching later, etc. One of the main functionalities of the app is a TV schedule grid. Creating this TV schedule grid in UWP is not so easy, especially because of the poor XAML rendering performance.</p>
+
+<h2 id="tv-schedule-grid">TV schedule grid</h2>
+
+<p>The TV schedule grid shows a TV schedule for all the subscribed channels for a given day. The channels are being shown in rows and the columns represent TV shows. The grid is scrollable in both directions and the channel logos are sticky. The users can be subscribed up 70 channels and all of this should work reasonably well even on a Windows Phone.</p>
+
+<p>This is how the result looks in a Windows Phone emulator. Spoiler: there is just no way to make it so smooth on a real Windows Phone device.</p>
+
+<img src="/images/tvgrid.gif" alt="" class="pure-img" >
+
+<p></p>
+              <a href="https://blog.davidmacias.com/creating-a-tv-schedule-grid-in-uwp/" class="post-read-more">[Read&nbsp;More]</a>
+            
+          </div>
+
+          
+            <span class="post-meta">
+              
+                #<a href="/tags/windows-phone">Windows Phone</a>&nbsp;
+              
+                #<a href="/tags/uwp">UWP</a>&nbsp;
+              
+                #<a href="/tags/xaml">XAML</a>&nbsp;
+              
+            </span>
+          
+
+        </article>
+      
+        <article class="post-preview">
+          <a href="https://blog.davidmacias.com/using-macos-with-a-windows-keyboard/">
+            <h2 class="post-title">Using macOS with a Windows keyboard</h2>
+
+            
+          </a>
+
+          <p class="post-meta">
+            Posted on January 31, 2017
+          </p>
+          <div class="post-entry">
+            
+              <p>When you start using macOS after years of using Windows there are some things you expect to work in certain ways. One of those things is the ways the OS handles keyboard input and keyboard shortcuts. This is especially important if you still also use Windows and use a Windows keyboard with macOS. Here are a few things regarding the keyboard that help me when using macOS working on a side project.</p>
+
+<h2 id="control-option-and-command-keys">Control, Option and Command keys</h2>
+
+<p>The fist thing you may notice when using macOS with a Windows keyboard is that the modifier keys are not in the right order. The order of the modifier keys on an Apple keyboard is Control, Option, Command but the Ctrl, Windows, Alt keys on a Windows keyboard map to Control, Command, Option by default. You can fix the order of the modifier keys in System Preferences | Keyboard | Modifier keys</p>
+
+<img src="/images/macoskeymapping.png" alt="" class="pure-img" >
+
+<p></p>
+              <a href="https://blog.davidmacias.com/using-macos-with-a-windows-keyboard/" class="post-read-more">[Read&nbsp;More]</a>
+            
+          </div>
+
+          
+            <span class="post-meta">
+              
+                #<a href="/tags/macos">MacOS</a>&nbsp;
+              
+                #<a href="/tags/hackintosh">Hackintosh</a>&nbsp;
+              
+            </span>
+          
+
+        </article>
+      
+    </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="mailto:igor@kulman.sk" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          <li>
+            <a href="https://github.com/davidmacias" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li>
+            <a href="https://twitter.com/davidmacias" title="Twitter">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li>
+            <a href="https://blog.davidmacias.com/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          davidmacias
+          &nbsp;&bull;&nbsp;
+          2017
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://blog.davidmacias.com">Igor Kulman</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.21</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://blog.davidmacias.com/js/main.js"></script>
+<script src="https://blog.davidmacias.com/js/gist.js"></script>
+
+<script type="text/javascript">
+$(function(){
+  $('#show-comments').on('click', function(){
+    var disqus_shortname = 'coudingjournal';
+
+    (function() {
+      var disqus = document.createElement('script'); 
+      disqus.type = 'text/javascript'; 
+      disqus.async = true;
+      disqus.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(disqus);
+    })();
+
+    $(this).hide(); 
+  });
+});
+
+</script>
+<script id="dsq-count-scr" src="//coudingjournal.disqus.com/count.js" async></script>
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-49528577-2', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+  </body>
+</html>

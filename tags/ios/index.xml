@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ios on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/tags/ios/</link>
+    <description>Recent content in Ios on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Tue, 23 May 2017 09:29:12 +0100</lastBuildDate>
+    <atom:link href="/tags/ios/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Re-signing iOS apps</title>
+      <link>https://blog.davidmacias.com/resigning-ios-apps/</link>
+      <pubDate>Tue, 23 May 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/resigning-ios-apps/</guid>
+      <description>&lt;p&gt;There are some times when you need to re-sign the IPA of your iOS app with a different certificate. For example, an external developer creates the IPA for you, but it is signed with their personal certificate and you need to re-sign it with yours to deploy it to the App Store. Or one of your clients does not want to have their employees install the iOS app from the App Store but wants to distribute it directly using their MDM tools.&lt;/p&gt;
+
+&lt;p&gt;The second case is a bit more complicated, because it involves creating a new app identity for the app. When you change the app id if your app, your push notifications will stop working and you need to also generate a new APNS certificate with the new app id and deploy it to your server. Here is everything you need to do, step by step.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;creating-a-new-app-identity&#34;&gt;Creating a new app identity&lt;/h3&gt;
+
+&lt;p&gt;If you want to change the app id when re-signing an iOS app you will first new to create a new app identity. There are a few thing you will need to do&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;create a new app id in the Apple developer portal&lt;/li&gt;
+&lt;li&gt;create a new APNS certificate for that app id in the Apple developer portal and deploy it to your server (if you use push notifications)&lt;/li&gt;
+&lt;li&gt;create a new provisioning profile for that app id in the Apple developer portal&lt;/li&gt;
+&lt;li&gt;have one of the certificates with a private key included in the newly created provisioning profile in your keychain&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you just want to re-sign the iOS app without changing the app id, you can skip all these steps and you just need the certificate in your keychain.&lt;/p&gt;
+
+&lt;h3 id=&#34;re-signing-the-ipa&#34;&gt;Re-signing the IPA&lt;/h3&gt;
+
+&lt;p&gt;You can find multiple &lt;a href=&#34;https://gist.github.com/chaitanyagupta/9a2a13f0a3e6755192f7&#34;&gt;tutorials&lt;/a&gt; and a &lt;a href=&#34;https://github.com/maciekish/iReSign&#34;&gt;few tools&lt;/a&gt; to help you with the re-signing process. After a lot of trial and error I ended up using &lt;a href=&#34;https://github.com/niyaoyao/EasyResigny&#34;&gt;EasyResigny&lt;/a&gt; because it was the only tool that generated an IPA that could be actually deployed to an iOS device. This tool makes the re-signing process really easy, you just&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;select the IPA you want to re-sign&lt;/li&gt;
+&lt;li&gt;select the certificate to re-sign the IPA with&lt;/li&gt;
+&lt;li&gt;select the provisioning profile to use&lt;/li&gt;
+&lt;li&gt;click Start EasyResigny!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And you are done!&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/easyresigny.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
+    </item>
+    
+    <item>
+      <title>Formatting Swift code in XCode</title>
+      <link>https://blog.davidmacias.com/formatting-swift-code-in-xcode/</link>
+      <pubDate>Fri, 05 May 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/formatting-swift-code-in-xcode/</guid>
+      <description>&lt;p&gt;When I started using XCode I was really surprised about the really poor implementation of its code formatting functionality. It kind of formats the alignment of the code but ignores unnecessary spaces and a lot of other things. Formatting the source code and keeping the style consistent is really important to me so I was looking for a solution. I found some linters like &lt;a href=&#34;https://github.com/realm/SwiftLint&#34;&gt;SwiftLint&lt;/a&gt; but I was interested in a tool that will actually format the source code for me on demand. I found &lt;a href=&#34;https://github.com/nicklockwood/SwiftFormat&#34;&gt;SwiftFormat&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;swiftformat&#34;&gt;SwiftFormat&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/nicklockwood/SwiftFormat&#34;&gt;SwiftFormat&lt;/a&gt; is a code library and command-line tool for reformatting swift code. It applies a set of rules to the formatting and space around the code, leaving the meaning intact.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/swiftformat.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;You can install SwiftFormat using &lt;code&gt;brew install swiftformat&lt;/code&gt; and use it from the terminal to format given directory. This means you can use it manually or add it as a build step in XCode or a git pre-commit hook. Using SwiftFormat from the terminal before from time to time or before every commit is fine, but I wanted to use  directly from XCode, preferably invoked by a keyboard shortcut.&lt;/p&gt;
+
+&lt;p&gt;To do this you can use the XCode Source Editor Extension. There is a signed binary already included in the repository you can download, put into Applications and run. It tells you how to enable it in Settings, so you do it and restart XCode. A bit of a hassle but you do it just once and it is worth it.&lt;/p&gt;
+
+&lt;p&gt;In conclusion use SwiftFormat to make formatting of your Swift code consistent, especially if you work in a team.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Generating a list of libraries your iOS app uses</title>
+      <link>https://blog.davidmacias.com/generating-a-list-of-libraries-your-ios-app-uses/</link>
+      <pubDate>Wed, 05 Apr 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/generating-a-list-of-libraries-your-ios-app-uses/</guid>
+      <description>&lt;p&gt;If you work on an iOS app that is a bit more corporate you probably need to show the list of all the libraries you use with their licenses somewhere in the app. Creating and updating this list by hand is a pain. If you use Carthage to manage all your dependencies (&lt;a href=&#34;http://drekka.ghost.io/cocoapods-vs-carthage/&#34;&gt;and you really should&lt;/a&gt;) there is a handy &lt;a href=&#34;https://github.com/pietbrauer/CarthageLicenseScript&#34;&gt;script by Piet Brauer&lt;/a&gt; I contributed to that will help you.&lt;/p&gt;
+
+&lt;p&gt;When you run the script using &lt;code&gt;$ ./PATH_TO_YOUR_SCRIPT/fetch_licenses.swift Cartfile.resolved  OUTPUT_DIR&lt;/code&gt; it reads your Carthage file, gets all the libraries you use, downloads their licenses and stores them all in a single &lt;code&gt;plist&lt;/code&gt; file. The &lt;code&gt;plist&lt;/code&gt; file contains the name, license name and full license content for every library in your Carthage file.&lt;/p&gt;
+
+&lt;p&gt;There is currently no support for using multiple Carthage files (when you have more projects in your workspace), you need to generate the &lt;code&gt;plist&lt;/code&gt; file for each of them separately and then merge them manually. But you can set up a &lt;code&gt;bash&lt;/code&gt; script to do it for you.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;You can then read the &lt;code&gt;plist&lt;/code&gt; file in your app and show it as a list of libraries like I do&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/licenses.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
+    </item>
+    
+    <item>
+      <title>My experience running a hackintosh</title>
+      <link>https://blog.davidmacias.com/my-experience-running-a-hackintosh/</link>
+      <pubDate>Wed, 29 Mar 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/my-experience-running-a-hackintosh/</guid>
+      <description>&lt;p&gt;A few months ago I decided to take part in an iOS project. The first problem I needed to solve was to be able to run macOS Sierra and XCode. I did not really want to buy an overpriced MacBook without function keys or and underpowered Mac Mini. Especially when I own a more than 3 years old desktop computer that is still usable for all my needs. A few iOS developers I know recommended I go the Hackintosh way.&lt;/p&gt;
+
+&lt;h2 id=&#34;hackintosh&#34;&gt;Hackintosh&lt;/h2&gt;
+
+&lt;p&gt;Hackintosh is PC that runs macOS. This configuration is not supported by Apple but it is possible if you have the right hardware since Apple has been using a fairly standard PC hardware for the last couple of years. &lt;s&gt;For example you cannot us any new GeForce 10X0 (Pascal) because there are no Apple computers with those new graphic cards so there are no drivers yet&lt;/s&gt; (NVIDIA has released &lt;a href=&#34;https://www.tonymacx86.com/threads/nvidia-pascal-graphics-drivers-released-buyers-guide-updated.219153/&#34;&gt;new drivers supporting all the Pascal graphic cards&lt;/a&gt;). But if you have an older GeForce like me or an integrated one, you will be fine. The &lt;a href=&#34;https://www.tonymacx86.com/&#34;&gt;tonymacx86.com&lt;/a&gt; website, basically the central hub of all the Hackintosh information, regularly publishes a buying guide that can be useful if you want to buy a new computer and install macOS on it.&lt;/p&gt;
+
+&lt;p&gt;If you do not wish to install macOS directly on your hardware you can run it in a virtual machine, but the performance will never be very good. Some people do it for Xamarin development when they just need to compile their project and run the simulator, so there are a few &lt;a href=&#34;https://aurir.wordpress.com/2016/11/20/how-to-setting-up-macos-x-sierra-on-virtualbox-for-xamarin-development-with-visual-studio/&#34;&gt;tutorial on how to do it&lt;/a&gt;. There is also an interesting blog post series about a &lt;a href=&#34;https://arktronic.com/weblog/2016-12-10/virtual-hackintosh-part-1-the-concepts/&#34;&gt;virtual hackintosh&lt;/a&gt;. I tried running macOS in WMWare on my Thinkpad T440s but the performance was not good.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;installing-macos-sierra&#34;&gt;Installing macOS Sierra&lt;/h2&gt;
+
+&lt;p&gt;I needed a bigger SSD anyway so I bought a new 500 GB SSD and cloned my Windows installation to it using CloneZilla. That way I got a spare old 128 GB SSD that I decided to use to install macOS Sierra on my desktop computer with this quite old configuration&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Gigabyte Z77 DS3H&lt;/li&gt;
+&lt;li&gt;i5 3570K (4 core)&lt;/li&gt;
+&lt;li&gt;16 GB RAM&lt;/li&gt;
+&lt;li&gt;ASUS GTX 660&lt;/li&gt;
+&lt;li&gt;128 GB SSD (macOS), 500 GB SSD (Windows), 1TB HDD (data)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I &lt;a href=&#34;https://www.tonymacx86.com/threads/unibeast-install-macos-sierra-on-any-supported-intel-based-pc.200564/&#34;&gt;created a installation disk&lt;/a&gt; on a friend&amp;rsquo;s iMac and I was surprised the installation only took about 20 minutes. I then injected the correct drivers for GPU (Nvidia), sound card and Ethernet and everything worked. You just need to know your hardware to be able to choose the correct drivers and you will be fine with the setup.&lt;/p&gt;
+
+&lt;p&gt;I installed macOS on a separate SSD, so I had no problem with the UEFI loader conflicting with Windows. The only problem is that my Windows 10 install is MBR not UEFI so Clover (the Hackintosh UEFI loader) cannot run it. I solved it by having the SSD with Windows as primary boot device so Windows boots automatically when I turn on the computer. When I want to boot macOS I just press F12 to get to the BIOS boot menu and choose the macOS drive to boot from manually.&lt;/p&gt;
+
+&lt;h2 id=&#34;performance&#34;&gt;Performance&lt;/h2&gt;
+
+&lt;p&gt;I performed some tests with the few benchmarks that have both a Windows and a macOS version and the results were quite similar. There was basically no performance degradation on the macOS. I compared my Geekbench 4 results to the Apple hardware and I was quite surprised. My more than 3 years old desktop computer had basically the same single core performance score as a i5 MacBook Pro (13-inch Late 2016) and about 20% better multicore performance as this MacBook Pro.&lt;/p&gt;
+
+&lt;p&gt;I know it is not fair to compare desktop computers to laptops (desktop i5 has 4 cores, laptop i5 only 2) but I am still amazed that the current generation overpriced i5 MacBook Pro does not have a better performance that my more than 3 years old desktop. And I still have some room for overclocking. I think &lt;a href=&#34;https://news.ycombinator.com/item?id=13797042&#34;&gt;Apple has really given up on machines for developers&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;using-macos-and-software&#34;&gt;Using macOS and software&lt;/h2&gt;
+
+&lt;p&gt;I was surprised that basically everything worked out of the box. I had some problems getting my microphone to work but I finally solved it basically by accident when reading a &lt;a href=&#34;https://www.reddit.com/r/hackintosh/comments/4gp7mj/need_help_getting_alc887_microphone_working_el/&#34;&gt;reddit thread&lt;/a&gt;. I even got iMessage working &lt;a href=&#34;https://www.tonymacx86.com/threads/an-idiots-guide-to-imessage.196827/&#34;&gt;following this quite long tutorial&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;My Windows keyboard &lt;a href=&#34;using-macos-with-a-windows-keyboard&#34;&gt;needed some setup&lt;/a&gt;. The back and forward buttons on my gaming mouse do not work, but I got around it using &lt;a href=&#34;http://sunpech.com/2015/04/map-your-mouses-back-and-forward&#34;&gt;BetterTouchTool&lt;/a&gt;. If you have a WiFi card (I do not) it will probably not work. There are some alternatives you can use, like &lt;a href=&#34;https://www.amazon.de/Bluetooth-PCI-Express-BCM94360CD-Hackintosh-Flughafen/dp/B00MBP25UK/ref=sr_1_1?ie=UTF8&amp;amp;qid=1487424169&amp;amp;sr=8-1&amp;amp;keywords=Hackintosh&#34;&gt;this WiFi card with Bluetooth that even support hand-off&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Software like XCode also runs fine, including iOS simulators. Overall macOS behaves just like it was installed on an Apple machine. The macOS updates also work without a problem, just check &lt;a href=&#34;https://www.tonymacx86.com/&#34;&gt;tonymacx86.com&lt;/a&gt; before applying them to be sure.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Using MVVM with tables and cells in iOS</title>
+      <link>https://blog.davidmacias.com/using-mvvm-with-tables-in-ios/</link>
+      <pubDate>Tue, 21 Mar 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/using-mvvm-with-tables-in-ios/</guid>
+      <description>&lt;p&gt;When I ventured into native iOS development I immediately took a look at the possibility to &lt;a href=&#34;https://blog.davidmacias.com/using-data-binding-in-ios&#34;&gt;use data binding on iOS&lt;/a&gt; which enables me to simply declare the relationships between the UI and the ViewModel. This article takes that approach further shows you how to use MVVM and data binding when using tables and cells, or in the world of iOS &lt;code&gt;UITableView&lt;/code&gt; and &lt;code&gt;UITableViewCell&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;sample-scenario&#34;&gt;Sample scenario&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start with simple example scenario. You want to show progress of some flow that contains of multiple steps, each of the steps can be either running or complete. When a step is running it can report its progress. You want to display this flow in a table that looks like this&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/iostablemvvm.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;the-classic-ios-way&#34;&gt;The classic iOS way&lt;/h2&gt;
+
+&lt;p&gt;Now imagine you want to implement this scenario in the classic iOS way. You will have a list of some model. Every time you add an item to the list you need to refresh the table. Every time you change something on a model in the list you need to refresh the table and of course you need a table delegate to manipulate the UI according to the properties of the model.&lt;/p&gt;
+
+&lt;p&gt;Of course there is a better, more declarative way.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-reactive-way&#34;&gt;The reactive way&lt;/h2&gt;
+
+&lt;h3 id=&#34;viewmodel&#34;&gt;ViewModel&lt;/h3&gt;
+
+&lt;p&gt;First you need a ViewModel for all the steps of the flow. My flow is connected to application synchronization, so my ViewModel is called &lt;code&gt;SyncStepViewModel&lt;/code&gt;&lt;/p&gt;
+
+&lt;div data-gist=&#34;a2c5b63f835e8bd01df89566a5627d6b&#34; data-file=&#34;SyncStepViewModel.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;This ViewModel has a title, contains property determining if the flow step is currently running, property for the current progress percentage and a computed property for the step title. This computer property just adds the progress percentage at the end of the title when applicable.&lt;/p&gt;
+
+&lt;p&gt;The ViewModel for the screen just needs to hold the array of the flow steps in an observable way, so let&amp;rsquo;s make it easy&lt;/p&gt;
+
+&lt;div data-gist=&#34;a2c5b63f835e8bd01df89566a5627d6b&#34; data-file=&#34;SyncViewModel.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;This ViewModel will of course contains some logic to add the flow steps to the array.&lt;/p&gt;
+
+&lt;h3 id=&#34;table-and-cells-binding&#34;&gt;Table and cells binding&lt;/h3&gt;
+
+&lt;p&gt;Binding the &lt;code&gt;SyncViewModel&lt;/code&gt; to the &lt;code&gt;UITableView&lt;/code&gt; in the &lt;code&gt;UIViewController&lt;/code&gt; is really easy&lt;/p&gt;
+
+&lt;div data-gist=&#34;a2c5b63f835e8bd01df89566a5627d6b&#34; data-file=&#34;SyncViewController.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;It is just a few lines of declarative code and no delegates!&lt;/p&gt;
+
+&lt;p&gt;The tricky part is the &lt;code&gt;UITableViewCell&lt;/code&gt; and making the UI work with the ViewModel. As you can see from the previous snippet, I do not access any of the UI elements of my &lt;code&gt;SyncStepCell&lt;/code&gt; I just assign the ViewModel. The &lt;code&gt;SyncStepCell&lt;/code&gt; takes care of the rest using data binding&lt;/p&gt;
+
+&lt;div data-gist=&#34;a2c5b63f835e8bd01df89566a5627d6b&#34; data-file=&#34;SyncStepCell.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;My &lt;code&gt;UITableViewCell&lt;/code&gt; just &amp;ldquo;waits&amp;rdquo; for the ViewModel and then sets up all the necessary bindings. Again, no direct access to the UI elements, just making everything work in a simple declarative way.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Using data binding in iOS</title>
+      <link>https://blog.davidmacias.com/using-data-binding-in-ios/</link>
+      <pubDate>Tue, 14 Mar 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/using-data-binding-in-ios/</guid>
+      <description>&lt;p&gt;When I started working on a native iOS project after a few years of Windows (Phone) development I looked into ways to write a more declarative and more elegant code than the &amp;ldquo;standard&amp;rdquo; iOS way. I wanted to transfer some of my habits over and the first thing I really missed was XAML data binding. I did some research on how to do data binding in iOS and found a few libraries that make it possible. This allowed me to write better code and I think data binding is a concept that all the iOS developer should look into. If you are interested in my experience with using binding in iOS, read on.&lt;/p&gt;
+
+&lt;h2 id=&#34;sample-scenario&#34;&gt;Sample scenario&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s use a simple example scenario. You have a screen where the users have to choose their country and then enter their mobile number. The number has to be validated with respect to the selected country and if everything is ok the Next button should become visible. So basically it should work like this&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/iosvalidation.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;There are number of things that need to happen&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Selecting the country should refresh the validation state&lt;/li&gt;
+&lt;li&gt;Changing the mobile number should refresh the validation state as the users type&lt;/li&gt;
+&lt;li&gt;Setting the validation state should also set the mobile number text field text color&lt;/li&gt;
+&lt;li&gt;Setting the validation state should also set the Next button enabled state&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That is quite a lot of things if you add the validation logic (I use the &lt;a href=&#34;https://github.com/iziz/libPhoneNumber-iOS&#34;&gt;libPhoneNumber-iOS&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h2 id=&#34;the-classic-ios-way&#34;&gt;The classic iOS way&lt;/h2&gt;
+
+&lt;p&gt;Now imagine you want to implement this scenario in the classic iOS way. You will have one Massive View Controller that would do many things.&lt;/p&gt;
+
+&lt;p&gt;You will have a method that does validation and sets the mobile number text field text color and the Next button enabled state according to the result of this validation. Then you will have a delegate for the mobile number text field and you will have to call the validation method with every change. And finally you will have to change all the code that sets the selected country and call the validation method after each set. Of course you can use &lt;code&gt;didSet&lt;/code&gt; but that will add a bad coupling between your model and your UI.&lt;/p&gt;
+
+&lt;p&gt;There must be a better, more declarative way!&lt;/p&gt;
+
+&lt;h2 id=&#34;data-binding&#34;&gt;Data binding&lt;/h2&gt;
+
+&lt;p&gt;UI data binding is a software design pattern to simplify development of GUI applications. UI data binding binds UI elements to an application domain model. Most frameworks employ the Observer pattern as the underlying binding mechanism.&lt;/p&gt;
+
+&lt;p&gt;The main idea is simple, you declare what UI elements are connected to what properties in your model. Of course you can do some transformations, like mapping the validation state to text color. There are a few frameworks that will help you do it.&lt;/p&gt;
+
+&lt;h3 id=&#34;bond&#34;&gt;Bond&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/ReactiveKit/Bond&#34;&gt;Bond&lt;/a&gt; is a Swift library based on &lt;a href=&#34;https://github.com/ReactiveKit/ReactiveKit&#34;&gt;ReactiveKit&lt;/a&gt; that allows you to do binding in a simple way. The documentation is quite sufficient and there is also a &lt;a href=&#34;https://www.raywenderlich.com/123108/bond-tutorial&#34;&gt;quite nice tutorial&lt;/a&gt;. It allows not only data binding basic UI elements like text fields but also supports data binding table views. So I tried it first.&lt;/p&gt;
+
+&lt;p&gt;I created a ViewModel with a property for the selected country, another property for the mobile number and a signal telling if the mobile number is valid. Every time the mobile number or the selected country changes, the validity signal also changes automatically. The ViewModel is quite simple, creating the validation signal in a nice declarative way&lt;/p&gt;
+
+&lt;div data-gist=&#34;2bb98d3398d1f211ba0f81c0f6ee90e7&#34; data-file=&#34;BondVM.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Binding this ViewModel to the ViewController is also quite simple&lt;/p&gt;
+
+&lt;div data-gist=&#34;2bb98d3398d1f211ba0f81c0f6ee90e7&#34; data-file=&#34;BondBinding.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;I used Bond for a while but when I wanted to do more reactive programming, Bond was not enough. It is a data binding library, it works well for data binding but if you want to do more you have to choose something more powerful. So I switched to RxSwift.&lt;/p&gt;
+
+&lt;h3 id=&#34;rxswift-vs-reactiveswift&#34;&gt;RxSwift vs ReactiveSwift&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/ReactiveX/RxSwift&#34;&gt;RxSwift&lt;/a&gt; and &lt;a href=&#34;https://github.com/ReactiveCocoa/ReactiveSwift&#34;&gt;ReactiveSwift&lt;/a&gt; are two most popular reactive programming libraries for iOS. I recommend you read an &lt;a href=&#34;https://www.raywenderlich.com/126522/reactivecocoa-vs-rxswift&#34;&gt;article comparing those two libraries&lt;/a&gt; and choose the one that you like best. I chose RxSwift because it is a Swift implementation of the .NET Reactive Extensions I am familiar with and the documentation is so much better. There is also a &lt;a href=&#34;https://github.com/RxSwiftCommunity/&#34;&gt;RxSwift community repository&lt;/a&gt; with extension that add support for table views, gestures, etc.&lt;/p&gt;
+
+&lt;p&gt;The ViewModel looks a bit different when using RxSwift than when using Bond, but the main idea is the same&lt;/p&gt;
+
+&lt;div data-gist=&#34;2bb98d3398d1f211ba0f81c0f6ee90e7&#34; data-file=&#34;RxSwift.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;The actual bindings are also quite similar. The main difference is it is more visible what is being bound to what and in what direction&lt;/p&gt;
+
+&lt;div data-gist=&#34;2bb98d3398d1f211ba0f81c0f6ee90e7&#34; data-file=&#34;RxSwiftBinding.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Compare this to the amount of code you would have to write using the &amp;ldquo;standard&amp;rdquo; iOS way.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;I think data binding is a great concept that makes your code more declarative, more elegant and much simpler. It has been widely used in the Microsoft platforms with XAML, now it is also available in Android so it is time that iOS developers make a mental switch from delegates and start programming in a more declarative and reactive way. It is definitely worth it.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A week with Microsoft Band 2</title>
+      <link>https://blog.davidmacias.com/a-week-with-microsoft-band-2/</link>
+      <pubDate>Mon, 21 Dec 2015 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/a-week-with-microsoft-band-2/</guid>
+      <description>&lt;p&gt;About a week ago I got a Microsoft Band 2. I really wanted to try out the device, because this second generation does not look as bad as the first one, there are new sensors added and generally it should be a visible improvement over the original Band. I have been an iPhone users for about two years now (approximately the time since last good Windows Phone device was released), currently using iPhone 6s so I was also curious to know how well the Band 2 works with iOS. This blog post sums up my impressions after a week of using the Microsoft Band 2 with my iPhone.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Expectations and habits&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;First I have to state that I am not a notifications junkie. I do not like being interrupted all the time. On my phone, only phone calls and SMS ale allowed to notify me with a sound and stay in the notifications center. Other few selected apps like Outlook, Twitter, Messenger, Sunrise are allowed to use iOS badges on my phone, just to let me know that there is a Twitter message or something I may be interested in. Other than that, no notifications for me. I guess I am not a typical user when it comes to notifications.&lt;/p&gt;
+
+&lt;p&gt;As you may have already guessed, I was interested in the Microsoft Band 2 primarily as a health device, not as a smartwatch or distractions device. My expectation and goal is to move and exercise more and sleep better, not to immediately know about every new Facebook post (I do not even have the Facebook app installed).&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Look and feel&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I always thought the first Microsoft Band was big, bulky and did not look very good. The Band 2 is nicer, the area around the display is not as bulky, the main mass of the device was moved to the other side. This makes you wear the device with the display inside your wrist, &amp;ldquo;military style&amp;rdquo;, the opposite of how you usually wear a watch. Event the guy in a video ad I saw wore it this way.&lt;/p&gt;
+
+&lt;p&gt;Wearing the band on the inside allows a nice feature, turning the watch face on when you flip your wrist. This can save you precious battery compared to having the watch faces always visible, until you realize you turn your wrist a lot during the day, for example while eating. The band is made of rubber and it scratches quite easily. The scratches are visible when you look at the band from up close.&lt;/p&gt;
+
+&lt;p&gt;The device feels solid, I did not feel uncomfortable wearing. I though using the keyboard while wearing it maybe be a problem and it partially was. I could use the keyboard while using my desktop computer, but I had to be careful not to scratch the display on the edge when using my Thinkpad notebook. Using the Thinkpad while wearing the Band was not really comfortable, I had to position my hands differently that I am used to.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Initial setup&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;After I installed the Microsoft Health app for iOS on my phone, the pairing was quick without any problems. The app installed a firmware updated to the Band 2 while pairing. The next day the Microsoft Health app was updated and it updated the firmware in the Band 2 again. This time  the firmware update brought two new functions: controlling the music playback and inactivity reminder. I do not much care about the music controls, I can pause my podcasts using the button on my headphones. Inactivity reminder is a great feature, reminding you to wake up and take a few steps when sitting idle for a long time. I really do not know why this function was not in the Band from the beginning.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.davidmacias.com/images/BandSetup.png&#34; class=&#34;pure-img-width&#34;&gt;
+&lt;img src=&#34;https://blog.davidmacias.com/images/BandUI2.png&#34; class=&#34;pure-img-width&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Microsoft Health and Health Dashboard&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Microsoft Health is the app you use to configure and manage your Band. It has a &amp;ldquo;windowsy&amp;rdquo; look and feel event on iOS (including messed up margins on some screens). It can import data from the iOS Health app, so it can show you number of steps that the iPhone records. But it cannot export the data back to iOS Health. This means that data like the data about your sleep can be accessed only from the Microsoft Health app and are not propagated to other iOS app that can import data from iOS Health.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.davidmacias.com/images/BandDashboard1.png&#34; class=&#34;pure-img&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;You can connect the Microsoft Health app to the Microsoft Health Vault, which has a nice web dashboard. This dashboard is more detailed and more simple to use that the app in the phone. But you have to be ok with your data being exported to some Microsoft data center. If you choose to use the Health Vault you can compare your data to groups of other people. I do not know about any other platforms that allows you to do this. And it is always nice to compare your data to people of similar age, height and weight and see that you condition is not as bad as you may have thought.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.davidmacias.com/images/BandDashboard2.png&#34; class=&#34;pure-img&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Apps and Web Tiles&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;There are not many 3rd party iOS apps, except big fitness apps like Strava, that can use the Band, but this is not a surprise. Band apps are maybe the only platform where Windows Phone has an advantage. Also there are not so many Web Tiles available, except for a couple of sports tiles made by the Bing team.&lt;/p&gt;
+
+&lt;p&gt;So I decided to write &lt;a href=&#34;mshealth-webtile://?action=download-manifest&amp;amp;url=https://dl.dropboxusercontent.com/u/73642/kinoklub.webtile&#34;&gt;my own tile, showing the schedule of three Czech cinemas&lt;/a&gt;. The documentation for the Web Tiles is short and concise, the samples are ok, but there is no way to test your tiles other than deploying them to the real device. No data validity checker, no emulator and no good error messages. If you make a mistake, any mistake, be it an icon with wrong dimensions or invalid JSON manifest, the Microsoft Health app just gives you a generic error when trying to deploy the app to the Band.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Steps and Sleep tracking&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The Band counts your steps, distance traveled, floors climbed and checks your heart rate while at it. If you go for a run you can enable GPS and track your route.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.davidmacias.com/images/BandSteps.png&#34; class=&#34;pure-img-width&#34;&gt;
+&lt;img src=&#34;https://blog.davidmacias.com/images/BandGPS.png&#34; class=&#34;pure-img-width&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;I could not have the Band on me while going to my Wing Chun practice. It would get destroyed. No similar devices are meant to be used when doing martial arts. It is a shame, I would be really interested to see my heart rate history doing the practice.&lt;/p&gt;
+
+&lt;p&gt;The best feature for me was the already mentioned inactivity timer. I left it on the default setting, reminding me to wake up and take some steps after an hour of sitting at the computer.&lt;/p&gt;
+
+&lt;p&gt;Sleep tracking is the feature I was looking forward to the most. The Band track the time it takes you to fall asleep, the length and quality of your sleep (deep and light sleep cycles), the number of times you wake up and your heart rate. It can function as an alarm, waking you up in the morning by vibrating on your wrist. The alarm can be set to a specific time or you can use the smart alarm feature. The smart alarm monitors your sleep cycle and always wakes you up in a light sleep phase, up to 30 minutes before the time you set. For me it basically meant getting up 30 minutes earlier every day.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.davidmacias.com/images/BandSleep1.png&#34; class=&#34;pure-img-width&#34;&gt;
+&lt;img src=&#34;https://blog.davidmacias.com/images/BandSleep2.png&#34; class=&#34;pure-img-width&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Notifications&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I set the Band to show me notifications for incoming calls and SMS, nothing more. When a notification is invoked, the Band vibrates. The default medium intensity is not very intense, so I had to set it to high to be aware of it. When you receive a SMS, the band can &amp;ldquo;read&amp;rdquo; it to you by showing it on the screen quickly, so you do not have to scroll.&lt;/p&gt;
+
+&lt;p&gt;I did not bother to set up notifications for other apps. But the Microsoft Health app also offered me notifications for Calendar, Facebook, Facebook Messenger, Twitter and a generic one called Notifications Center.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.davidmacias.com/images/BandUI1.png&#34; class=&#34;pure-img-width&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Battery usage&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The Microsoft Band 2 will stay charged for 2 days when not using the GPS. It is long as typical smartwatches, but if you are used to classical watches like I am, it is a very short time. It means another device to check status and charge. The Band will tell you to charge it long in advance. One day, I got a message to charge it at about 1 PM. By the time I got home after 6 PM the band battery indicator was red, but the Band was still working.&lt;/p&gt;
+
+&lt;p&gt;The Band charges really slow, compared to a phone or basically any other device. It wants you to think the process is faster, adding a percentage points every minute but then it gets stuck at 99% for about 40 minutes. You will always need at least two hours to charge it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Annoyances&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;All the notifications and all the data are take from the phone and not really configurable. There is one thing that got me really annoyed when I discovered it. The iOS calendar app creates a calendar of peoples&amp;rsquo; birthdays. I have this calendar turned of in the iOS Calendar app and also in Sunrise, my calendar app of choice. But the Band does not respect this settings and also there is not configuration possible. So your calendar gets littered with birthdays and possible birthday notifications and there is nothing that you can do about it. Except disabling the calendar functionality on the Band. I know, I contacted Microsoft support (half an hour with probably an Indian guy, no solution, just my heart rate rising - Band told me).&lt;/p&gt;
+
+&lt;p&gt;Another annoyance is also related to notifications. If you turn on the Band, open a tile or go to some menu, turn off the Band, go on with your day and a notification approves, guess what happens? The Band vibrates, you turn it on and you are still in the last menu or tile and have no idea, what the notification was about.&lt;/p&gt;
+
+&lt;p&gt;If you switch your phone to a do not disturb mode, the Band completely ignores it and still notifies you about event, although your phone does not. You have to Switch the Band to a do not disturb mode separately every time.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Problems&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The one problem with the Band I had was the broken UV sensor. I could not immediately exchange the Band for a new one because I live in a country where the Bands is not sold and supported. It looks like &lt;a href=&#34;https://answers.microsoft.com/en-us/band/forum/msband-band_hardware/microsoft-band-uv-sensor-does-not-seem-to-work/97a7c92c-f135-48cd-8945-3781434d309c&#34;&gt;broken UV sensor is a common problem on both Band and Band 2&lt;/a&gt;. If you can buy it in a Microsoft Store (I was not), try if the UV sensor works, it may not.&lt;/p&gt;
+
+&lt;p&gt;I called my local Microsoft technical support and the operator did not even know what Microsoft Band 2 was! After a while, maybe binging the name, she told me to get lost because they do not support it. Nice customer service as always, Microsoft Czech Republic. So I tried the UK support web page. I tried for three days and I always got the same response, telling me that they are busy chatting with someone else and that I can give them a UK phone number and they will call me back. Of course I do nod have a UK phone number. My next step will be contacting the US support after  see how that goes &amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The Microsoft Band 2 is a great health device. If you expectation are similar than mine than by all means get one. If you live in the US, go buy it to a Microsoft Store and test if everything works as supposed to. It may not. If you live outside the US, be aware that you may be on your own when something goes wrong. If you want a smartwatch or a device to keep track of notification, the Band is not for you.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: I finally manage to chat with the UK support. I got a UPS label and sent the Band to Germany for repairs. After 6 work days I got a new Band.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Using .NET libraries with MonoTouch</title>
+      <link>https://blog.davidmacias.com/using-net-libraries-with-monotouch/</link>
+      <pubDate>Fri, 28 Dec 2012 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/using-net-libraries-with-monotouch/</guid>
+      <description>&lt;p&gt;I have been &lt;a href=&#34;http://blog.kulman.sk/monotouch-ios-development-for-net-programmers/&#34;&gt;playing with MonoTouch&lt;/a&gt; only for a few days when I already started to miss all the .NET libraries I commonly use. The first one I needed to get working with MonoTouch was &lt;a href=&#34;http://james.newtonking.com/projects/json-net.aspx&#34;&gt;JSON.NET&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;MonoDevelop does not support Nuget so you have to get your libaries the old way. I downloaded JSON.NET package from &lt;a href=&#34;http://nuget.org/&#34;&gt;Nuget.org&lt;/a&gt;, but it does not contain a DLL built for Mono. Harldy any Nuget package does. You can reference a DLL built for .NET, MonoDevelop will recognize it and even offer you IntelliSense but your project will not get built.&lt;/p&gt;
+
+&lt;p&gt;The right way to get a .NET library working with MonoTouch is downloading its source code and building it yourself. You can use MonoDevelop to build the source codes. The only think you have to do (at least for JSON.NET) is to change the .NET profile to an equivalent Mono profile in the project settings.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MonoTouch: iOS development for .NET programmers</title>
+      <link>https://blog.davidmacias.com/monotouch-ios-development-for-net-programmers/</link>
+      <pubDate>Wed, 19 Dec 2012 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/monotouch-ios-development-for-net-programmers/</guid>
+      <description>&lt;p&gt;Beeing &lt;a href=&#34;http://blog.kulman.sk/why-i-do-not-like-windows-phone-programming-anymore/&#34;&gt;quite disappointed with the Windows Phone platform recently&lt;/a&gt; I started to look for other ways to use my .NET skills and to develop for a mobile platform at the same time. I found &lt;a href=&#34;http://xamarin.com/monotouch&#34;&gt;MonoTouch&lt;/a&gt;, a product from Xamarin that allows you to build iOS apps using C# with Mono.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What is MonoTouch?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;MonoTouch is a product or a framework do develop iOS apps using &lt;a href=&#34;http://www.mono-project.com/Main_Page&#34;&gt;Mono&lt;/a&gt; (an open-source .NET implementation). It allows you to use C# (hopefuly also F# although I have not been able to get it to work yet) and all the .NET features libraries you use and like and of course your existing codebase. No Objective-C knowledge is required, but you will have to learn about the iOS ecosystem an iOS SDK. The iOS SDK is also needed, so you cannot do the development in Windows, you have to use a Mac. There are ways to get MacOS X working on a PC as a native install or in VMWare / VirtualBox, if you just want to try it out, but it may not be legal.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How does the development work?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When using MonoTouch you create a new project in MonoDevelop that comes with MonoTouch. The UI files (*.xib) cannot be modified using MonoDevelop so you have to use XCode. You define your UI in XCode like you would as a native developer, creating outlets and actions. MonoTouch watches the project files you make in XCode and generates matching C# files, that allow you to use all the UI elements created in XCode from your C# code. This method is prefered, but you can create the whole UI in code and never use XCode.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/monotocuh.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;The iOS development uses MVC pattern, but it does not look like the MVC pattern I am used to. It looks to me more like WinForms development than WPF or other XAML-based technology using MVVM. Just to be clear, MonoTouch would not shield you from the iOS specific stuff, it just porjects the iOS SDK methods and properties to Mono. But it still C# (check out the Write beautiful code section on the &lt;a href=&#34;http://xamarin.com/monotouch&#34;&gt;MonoTouch website&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;The MonoTouch project compiles to native ARM code.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Should you use it?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;That depends. If you are a .NET developer, MonoTouch is definitely the way to do your iOS development. If you will be in a position to decide between native iOS development and MonoTouch, definetely &lt;a href=&#34;http://stackoverflow.com/questions/1583856/how-to-decide-between-monotouch-and-objective-c&#34;&gt;check out this StackOverflow question&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The prices start at $399 for indie developers and companies with less then 10 employees. The evaluation version allows you to develop a full application and test it in the simulator, but you have to have a commercial license to deploy to a real device and to the AppStore.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Using macOS with a Windows keyboard</title>
+  <meta name="description" content="When you start using macOS after years of using Windows there are some things you expect to work in certain ways. One of those things is the ways the OS handles keyboard input and keyboard shortcuts. This is especially important if you still also use Windows and use a Windows keyboard with macOS. Here are a few things regarding the keyboard that help me when using macOS working on a side project.">
+  <meta name="author" content="davidmacias"/>
+  <meta name="generator" content="Hugo 0.21" />
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel="alternate" href="https://blog.davidmacias.com/index.xml" type="application/rss+xml" title="Igor Kulman">
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://blog.davidmacias.com/css/main.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />  
+
+  
+  
+ 
+  
+    <meta property="og:title" content="Using macOS with a Windows keyboard" />
+  
+
+  
+    <meta property="og:description" content="When you start using macOS after years of using Windows there are some things you expect to work in certain ways. One of those things is the ways the OS handles keyboard input and keyboard shortcuts. This is especially important if you still also use Windows and use a Windows keyboard with macOS. Here are a few things regarding the keyboard that help me when using macOS working on a side project.
+Control, Option and Command keys The fist thing you may notice when using macOS with a Windows keyboard is that the modifier keys are not in the right order. The order of the modifier keys on an Apple keyboard is Control, Option, Command but the Ctrl, Windows, Alt keys on a Windows keyboard map to Control, Command, Option by default. You can fix the order of the modifier keys in System Preferences | Keyboard | Modifier keys
+
+Correctly working Home and End keys If you are a programmer you probably use Home and End keys to navigate to the beginning and end of the current line a lot. Those keys work differently on macOS, pressing them will make your cursor jump to the beginning or the end of a file and drive you nuts. Luckily, there is quite an easy way to fix it. Create a DefaultKeyBinding.dict file in ~/Library/KeyBindings to remap them
+ It is best to logout and log back in for the apps to notice this change.
+If you use the Terminal app (you should really try Hyper instead) this change will not work. You have to go to Preferences | Settings | Keyboard for the Terminal app and add \033[H to move to the beginning of the line and \033[F to move to the end of the line.
+Volume controls Windows keyboard do not usually have Volume up and Volume down keys but you can quite simply create custom keyboard shortcuts for this functionality using Automator. Open Automator and create two Services executing Apple script. One for Volume up
+ and another one for volume down
+ You can then open System preferences | Keyboard | Keyboard shortcuts | Services and assign those two services any keyboard shortcut you want. I use Control &#43; Command &#43; Up for Volume up and Control &#43; Command &#43; Down for Volume down.
+">
+  
+
+  <meta property="og:type" content="website" />
+
+  
+    <meta property="og:url" content="https://blog.davidmacias.com/using-macos-with-a-windows-keyboard" />
+    <link rel="canonical" href="https://blog.davidmacias.com/using-macos-with-a-windows-keyboard" />
+  
+
+  
+    <meta property="og:image" content="https://blog.davidmacias.com/images/macoskeymapping.png" />
+  
+  
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@davidmacias" />
+  <meta name="twitter:creator" content="@davidmacias" />
+
+  
+    <meta name="twitter:title" content="Using macOS with a Windows keyboard" />
+  
+
+  
+    <meta name="twitter:description" content="When you start using macOS after years of using Windows there are some things you expect to work in certain ways. One of those things is the ways the OS handles keyboard input and keyboard shortcuts. This is especially important if you still also use Windows and use a Windows keyboard with macOS. Here are a few things regarding the keyboard that help me when using macOS working on a side project.
+Control, Option and Command keys The fist thing you may notice when using macOS with a Windows keyboard is that the modifier keys are not in the right order. The order of the modifier keys on an Apple keyboard is Control, Option, Command but the Ctrl, Windows, Alt keys on a Windows keyboard map to Control, Command, Option by default. You can fix the order of the modifier keys in System Preferences | Keyboard | Modifier keys
+
+Correctly working Home and End keys If you are a programmer you probably use Home and End keys to navigate to the beginning and end of the current line a lot. Those keys work differently on macOS, pressing them will make your cursor jump to the beginning or the end of a file and drive you nuts. Luckily, there is quite an easy way to fix it. Create a DefaultKeyBinding.dict file in ~/Library/KeyBindings to remap them
+ It is best to logout and log back in for the apps to notice this change.
+If you use the Terminal app (you should really try Hyper instead) this change will not work. You have to go to Preferences | Settings | Keyboard for the Terminal app and add \033[H to move to the beginning of the line and \033[F to move to the end of the line.
+Volume controls Windows keyboard do not usually have Volume up and Volume down keys but you can quite simply create custom keyboard shortcuts for this functionality using Automator. Open Automator and create two Services executing Apple script. One for Volume up
+ and another one for volume down
+ You can then open System preferences | Keyboard | Keyboard shortcuts | Services and assign those two services any keyboard shortcut you want. I use Control &#43; Command &#43; Up for Volume up and Control &#43; Command &#43; Down for Volume down.
+">
+  
+
+  
+    <meta name="twitter:image" content="https://blog.davidmacias.com/images/macoskeymapping.png" />
+   
+
+</head>
+
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.davidmacias.com">Igor Kulman</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Projects" href="/projects/">Projects</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About me / contact" href="/about/">About me / contact</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Igor Kulman" href="https://blog.davidmacias.com">
+            <img class="avatar-img" src="https://blog.davidmacias.com/img/avatar-icon.png" alt="Igor Kulman" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+        <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Using macOS with a Windows keyboard</h1>
+            
+
+            
+              <span class="post-meta">Posted on January 31, 2017</span>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </header>
+
+
+    <div class="container" role="main">
+      
+        <div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>When you start using macOS after years of using Windows there are some things you expect to work in certain ways. One of those things is the ways the OS handles keyboard input and keyboard shortcuts. This is especially important if you still also use Windows and use a Windows keyboard with macOS. Here are a few things regarding the keyboard that help me when using macOS working on a side project.</p>
+
+<h2 id="control-option-and-command-keys">Control, Option and Command keys</h2>
+
+<p>The fist thing you may notice when using macOS with a Windows keyboard is that the modifier keys are not in the right order. The order of the modifier keys on an Apple keyboard is Control, Option, Command but the Ctrl, Windows, Alt keys on a Windows keyboard map to Control, Command, Option by default. You can fix the order of the modifier keys in System Preferences | Keyboard | Modifier keys</p>
+
+<img src="/images/macoskeymapping.png" alt="" class="pure-img" >
+
+<p></p>
+
+<h2 id="correctly-working-home-and-end-keys">Correctly working Home and End keys</h2>
+
+<p>If you are a programmer you probably use Home and End keys to navigate to the beginning and end of the current line a lot. Those keys work differently on macOS, pressing them will make your cursor jump to the beginning or the end of a file and drive you nuts. Luckily, there is quite an easy way to fix it. Create a <code>DefaultKeyBinding.dict</code> file in <code>~/Library/KeyBindings</code> to remap them</p>
+
+<div data-gist="8b7ccbb32a639b7fdb2efaa5f4b02d6d"></div>
+
+<p>It is best to logout and log back in for the apps to notice this change.</p>
+
+<p>If you use the Terminal app (you should really try <a href="https://hyper.is/">Hyper</a> instead) this change will not work. You have to go to Preferences | Settings | Keyboard for the Terminal app and add <code>\033[H</code> to move to the beginning of the line and <code>\033[F</code> to move to the end of the line.</p>
+
+<h2 id="volume-controls">Volume controls</h2>
+
+<p>Windows keyboard do not usually have Volume up and Volume down keys but you can quite simply create custom keyboard shortcuts for this functionality using Automator. Open Automator and create two Services executing Apple script. One for Volume up</p>
+
+<div data-gist="871c92d9fdadf8dea25d4bbbae28ce66" data-file="volumeup.applescript"></div>
+
+<p>and another one for volume down</p>
+
+<div data-gist="871c92d9fdadf8dea25d4bbbae28ce66" data-file="volumedown.applescript"></div>
+
+<p>You can then open System preferences | Keyboard | Keyboard shortcuts | Services and assign those two services any keyboard shortcut you want. I use Control + Command + Up for Volume up and Control + Command + Down for Volume down.</p>
+
+<img src="/images/volumeshortcuts.png" alt="" class="pure-img" >
+      </article>
+
+      <ul class="pager blog-pager">
+        
+          <li class="previous">
+            <a href="https://blog.davidmacias.com/my-experience-with-the-mvp-awards/" data-toggle="tooltip" data-placement="top" title="My (negative) experience with the Microsoft MVP awards">&larr; Previous Post</a>
+          </li>
+        
+        
+          <li class="next">
+            <a href="https://blog.davidmacias.com/creating-a-tv-schedule-grid-in-uwp/" data-toggle="tooltip" data-placement="top" title="Creating a TV schedule grid in UWP">Next Post &rarr;</a>
+          </li>
+        
+      </ul>
+
+       <div class="pure-g" style="margin-bottom:1em">
+
+   <div class="pure-u-1-2">
+   <p style="text-align:right">This content is open source. 
+   Please <a href="https://github.com/igorkulman/coding-journal/edit/master/content/post/post%5c2017-01-31-using-macos-with-a-windows-keyboard.md" title="Help improve article post\2017-01-31-using-macos-with-a-windows-keyboard.md">help improve it</a>.</p>
+  </div>
+</div>
+
+      
+        
+          <div class="disqus-comments">                  
+            <button id="show-comments" class="btn btn-default" type="button">Show <span class="disqus-comment-count" data-disqus-url="https://blog.davidmacias.com/using-macos-with-a-windows-keyboard">comments</span></button>
+            <div id="disqus_thread"></div>
+
+            <script type="text/javascript">
+              var disqus_config = function () {
+              this.page.url = 'https:\/\/blog.davidmacias.com\/using-macos-with-a-windows-keyboard';
+            };
+
+          </script>
+          </div>
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="mailto:igor@kulman.sk" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          <li>
+            <a href="https://github.com/davidmacias" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li>
+            <a href="https://twitter.com/davidmacias" title="Twitter">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li>
+            <a href="https://blog.davidmacias.com/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          davidmacias
+          &nbsp;&bull;&nbsp;
+          2017
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://blog.davidmacias.com">Igor Kulman</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.21</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://blog.davidmacias.com/js/main.js"></script>
+<script src="https://blog.davidmacias.com/js/gist.js"></script>
+
+<script type="text/javascript">
+$(function(){
+  $('#show-comments').on('click', function(){
+    var disqus_shortname = 'coudingjournal';
+
+    (function() {
+      var disqus = document.createElement('script'); 
+      disqus.type = 'text/javascript'; 
+      disqus.async = true;
+      disqus.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(disqus);
+    })();
+
+    $(this).hide(); 
+  });
+});
+
+</script>
+<script id="dsq-count-scr" src="//coudingjournal.disqus.com/count.js" async></script>
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-49528577-2', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+  </body>
+</html>

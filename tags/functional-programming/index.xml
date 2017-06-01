@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Functional Programming on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/tags/functional-programming/</link>
+    <description>Recent content in Functional Programming on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Tue, 27 Nov 2012 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/functional-programming/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Fun with F# Type Providers: SQL</title>
+      <link>https://blog.davidmacias.com/fun-with-f-type-providers-sql/</link>
+      <pubDate>Tue, 27 Nov 2012 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/fun-with-f-type-providers-sql/</guid>
+      <description>&lt;p&gt;F# is a great language with a great potential that lets you express yourself more clearly and compactly. One of the best features that comes with F# 3.0 shipped with Visual Studio 2012 is Type Providers.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What are Type Providers?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;According to MSDN documentation, an F# type provider is a component that provides types, properties, and methods for use in your program. Type providers are a significant part of F# 3.0 support for information-rich programming. The key to information-rich programming is to eliminate barriers to working with diverse information sources found on the Internet and in modern enterprise environments. One significant barrier to including a source of information into a program is the need to represent that information as types, properties, and methods for use in a programming language environment. Writing these types manually is very time-consuming and difficult to maintain. A common alternative is to use a code generator which adds files to your project; however, the conventional types of code generation do not integrate well into exploratory modes of programming supported by F# because the generated code must be replaced each time a service reference is adjusted.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Available Type Providers&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;F# comes with Type Providers for SQL, WSDL and OData, but you can also &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/hh361034.aspx&#34;&gt;create your own&lt;/a&gt; or use one created by the community. A example may be the &lt;a href=&#34;http://techblog.bluemountaincapital.com/2012/08/01/announcing-the-f-r-type-provider/&#34;&gt;Type Provider for R&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Using Type Provider for SQL&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In this article I will show you how to use the Type Prvoder for SQL. If you want to use SQL with a language like C#, you need to create an EF or LINQ to SQL model from the database and recreate it every time the database schema changes. Type Provider for SQL makes this for you and lets you concentrace on working with the actual data.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Schema information&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;First you need to define a datasource. The only thing needed for this is a connection string. The connection string can be changed at runtime but you must provide a valid one for the compilation time so the F# compiler can &amp;#8220;detect&amp;#8221; the structure of your data. Let us create a module, that will hold our connection string and schema information.&lt;/p&gt;
+
+&lt;div data-gist=&#34;5857569&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;That is everything you need, if the schema of your database changes the F# compiler will notice.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Querying the database&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;With the schema information in place we can now start querying the database. We will create a Factory class with the connection string as a parameter&lt;/p&gt;
+
+&lt;div data-gist=&#34;5857575&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Now create a method, write db. and wait for a moment. IntelliSense will show you all the available tables in the database. If you query a table and write a dot again, you will be shown all the columns of the table. Pretty cool.&lt;/p&gt;
+
+&lt;p&gt;You can query the database using the query { expression }, where expression is a normal F# expression, for example&lt;/p&gt;
+
+&lt;div data-gist=&#34;5857577&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice how the IntelliSense offers you a complete list of the columns if you write d. in the where clause.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Inserting and updating data&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Inserting data is basically identical to the C# approach when using LINQ to SQL&lt;/p&gt;
+
+&lt;div data-gist=&#34;5857579&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;The same is true for updating the data&lt;/p&gt;
+
+&lt;div data-gist=&#34;5857580&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In my opinion, Type Providers are the best feature of F# so far. It is a real shame that Microsoft does not push this language and it cannot be used everywhere where C# can. But things are getting better and you can now create an F# Worker Role in your Azure project.&lt;/p&gt;
+
+&lt;p&gt;If you are new to F# and want to learn in, definitely check out the &lt;a href=&#34;http://www.tryfsharp.org/&#34;&gt;Try F# project&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

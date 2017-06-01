@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ninject on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/tags/ninject/</link>
+    <description>Recent content in Ninject on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Wed, 24 Jul 2013 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/ninject/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Intercepting methods with Ninject for error logging</title>
+      <link>https://blog.davidmacias.com/intercepting-methods-with-ninject-for-error-logging/</link>
+      <pubDate>Wed, 24 Jul 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/intercepting-methods-with-ninject-for-error-logging/</guid>
+      <description>&lt;p&gt;I am currently working on a fairly large Windows Azure projects that among other things conatins a Web Role where I use &lt;a href=&#34;http://www.ninject.org/&#34;&gt;Ninject&lt;/a&gt; as a dependency container. As the business logic library grew larger I found myself writing a lot of repeating boiler plate code to log exceptions in many important methods. I wantet to remove all the boiler plate code and create a custom attribute, say LogErrorAttribute with one simple goal: each method decorated woth this attribute should log info about any occuring exception.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;IL weaving?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I have been using &lt;a href=&#34;https://github.com/Fody/Fody&#34;&gt;Fody&lt;/a&gt; for some time to &lt;a href=&#34;http://blog.kulman.sk/inotifypropertychanged-the-easy-way-in-windows-phone-and-windows-8/&#34; title=&#34;INotifyPropertyChanged the easy way in Windows Phone and Windows 8&#34;&gt;implement the INotifyPropertyChanged calls for me in Windows Phone and Windows 8 projects&lt;/a&gt; so it was my first choice.&lt;/p&gt;
+
+&lt;p&gt;There is a &lt;a href=&#34;https://github.com/Fody/MethodDecorator&#34;&gt;Fody.MethodDecorator&lt;/a&gt; extensions that allows you to execute your code on a methods start, exit and exception. Writing the exception to Console is trivial, but I wanted to use a implementation of my custom ILogFactory.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;There was no way to inject a ILogFactory implementation into the InterceptorAttribute. The only way that could work would be to use a ServiceLocator and I did not want to do it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Dynamic proxy!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I came across &lt;a href=&#34;http://www.castleproject.org/projects/dynamicproxy/&#34;&gt;Castle Dynamic Proxy&lt;/a&gt; and realized that there are Ninject extensions that allow you to easily use it.&lt;/p&gt;
+
+&lt;p&gt;First you need to install &lt;a href=&#34;http://www.nuget.org/packages/Ninject.Extensions.Interception/3.0.0.8&#34;&gt;Ninject.Extensions.Interception&lt;/a&gt;. It has no depedencies other that Ninject, but you also have to install &lt;a href=&#34;http://www.nuget.org/packages/Ninject.Extensions.Interception.DynamicProxy/3.0.0.8&#34;&gt;Ninject.Extensions.Interception.DynamicProxy&lt;/a&gt; (and &lt;a href=&#34;http://www.nuget.org/packages/Castle.Core/&#34;&gt;Castle.Core&lt;/a&gt; as a dependency) otherwise it will not work.&lt;/p&gt;
+
+&lt;p&gt;First, create a class implementing the IInterceptor interface&lt;/p&gt;
+
+&lt;div data-gist=&#34;6045777&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;This class wraps the intercepted method invocation into a try..catch block and logs any occuring exception using my custom ILogFactory, including parameter values.&lt;/p&gt;
+
+&lt;p&gt;Next, create a class implementing the InterceptAttribute&lt;/p&gt;
+
+&lt;div data-gist=&#34;6045812&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;This attribute uses the Ninject kernel to get an instance of the ErrorLoggingInterceptor so you do not have to concern yourself explictily with providing an ILogFactory implementation, Ninject will do all the work.&lt;/p&gt;
+
+&lt;p&gt;Now you can use the LogErrorAttribute to mark any method, but keep in mind that all the marked methods must be virtual&lt;/p&gt;
+
+&lt;div data-gist=&#34;6045825&#34;&gt;&lt;/div&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

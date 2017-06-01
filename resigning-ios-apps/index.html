@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Re-signing iOS apps</title>
+  <meta name="description" content="There are some times when you need to re-sign the IPA of your iOS app with a different certificate. For example, an external developer creates the IPA for you, but it is signed with their personal certificate and you need to re-sign it with yours to deploy it to the App Store. Or one of your clients does not want to have their employees install the iOS app from the App Store but wants to distribute it directly using their MDM tools. ">
+  <meta name="author" content="davidmacias"/>
+  <meta name="generator" content="Hugo 0.21" />
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel="alternate" href="https://blog.davidmacias.com/index.xml" type="application/rss+xml" title="Igor Kulman">
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://blog.davidmacias.com/css/main.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />  
+
+  
+  
+ 
+  
+    <meta property="og:title" content="Re-signing iOS apps" />
+  
+
+  
+    <meta property="og:description" content="There are some times when you need to re-sign the IPA of your iOS app with a different certificate. For example, an external developer creates the IPA for you, but it is signed with their personal certificate and you need to re-sign it with yours to deploy it to the App Store. Or one of your clients does not want to have their employees install the iOS app from the App Store but wants to distribute it directly using their MDM tools.
+The second case is a bit more complicated, because it involves creating a new app identity for the app. When you change the app id if your app, your push notifications will stop working and you need to also generate a new APNS certificate with the new app id and deploy it to your server. Here is everything you need to do, step by step.
+
+Creating a new app identity If you want to change the app id when re-signing an iOS app you will first new to create a new app identity. There are a few thing you will need to do
+ create a new app id in the Apple developer portal create a new APNS certificate for that app id in the Apple developer portal and deploy it to your server (if you use push notifications) create a new provisioning profile for that app id in the Apple developer portal have one of the certificates with a private key included in the newly created provisioning profile in your keychain  If you just want to re-sign the iOS app without changing the app id, you can skip all these steps and you just need the certificate in your keychain.
+Re-signing the IPA You can find multiple tutorials and a few tools to help you with the re-signing process. After a lot of trial and error I ended up using EasyResigny because it was the only tool that generated an IPA that could be actually deployed to an iOS device. This tool makes the re-signing process really easy, you just
+ select the IPA you want to re-sign select the certificate to re-sign the IPA with select the provisioning profile to use click Start EasyResigny!  And you are done!
+">
+  
+
+  <meta property="og:type" content="website" />
+
+  
+    <meta property="og:url" content="https://blog.davidmacias.com/resigning-ios-apps" />
+    <link rel="canonical" href="https://blog.davidmacias.com/resigning-ios-apps" />
+  
+
+  
+    <meta property="og:image" content="https://blog.davidmacias.com/images/easyresigny.png" />
+  
+  
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@davidmacias" />
+  <meta name="twitter:creator" content="@davidmacias" />
+
+  
+    <meta name="twitter:title" content="Re-signing iOS apps" />
+  
+
+  
+    <meta name="twitter:description" content="There are some times when you need to re-sign the IPA of your iOS app with a different certificate. For example, an external developer creates the IPA for you, but it is signed with their personal certificate and you need to re-sign it with yours to deploy it to the App Store. Or one of your clients does not want to have their employees install the iOS app from the App Store but wants to distribute it directly using their MDM tools.
+The second case is a bit more complicated, because it involves creating a new app identity for the app. When you change the app id if your app, your push notifications will stop working and you need to also generate a new APNS certificate with the new app id and deploy it to your server. Here is everything you need to do, step by step.
+
+Creating a new app identity If you want to change the app id when re-signing an iOS app you will first new to create a new app identity. There are a few thing you will need to do
+ create a new app id in the Apple developer portal create a new APNS certificate for that app id in the Apple developer portal and deploy it to your server (if you use push notifications) create a new provisioning profile for that app id in the Apple developer portal have one of the certificates with a private key included in the newly created provisioning profile in your keychain  If you just want to re-sign the iOS app without changing the app id, you can skip all these steps and you just need the certificate in your keychain.
+Re-signing the IPA You can find multiple tutorials and a few tools to help you with the re-signing process. After a lot of trial and error I ended up using EasyResigny because it was the only tool that generated an IPA that could be actually deployed to an iOS device. This tool makes the re-signing process really easy, you just
+ select the IPA you want to re-sign select the certificate to re-sign the IPA with select the provisioning profile to use click Start EasyResigny!  And you are done!
+">
+  
+
+  
+    <meta name="twitter:image" content="https://blog.davidmacias.com/images/easyresigny.png" />
+   
+
+</head>
+
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.davidmacias.com">Igor Kulman</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Projects" href="/projects/">Projects</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About me / contact" href="/about/">About me / contact</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Igor Kulman" href="https://blog.davidmacias.com">
+            <img class="avatar-img" src="https://blog.davidmacias.com/img/avatar-icon.png" alt="Igor Kulman" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+        <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Re-signing iOS apps</h1>
+            
+
+            
+              <span class="post-meta">Posted on May 23, 2017</span>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </header>
+
+
+    <div class="container" role="main">
+      
+        <div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>There are some times when you need to re-sign the IPA of your iOS app with a different certificate. For example, an external developer creates the IPA for you, but it is signed with their personal certificate and you need to re-sign it with yours to deploy it to the App Store. Or one of your clients does not want to have their employees install the iOS app from the App Store but wants to distribute it directly using their MDM tools.</p>
+
+<p>The second case is a bit more complicated, because it involves creating a new app identity for the app. When you change the app id if your app, your push notifications will stop working and you need to also generate a new APNS certificate with the new app id and deploy it to your server. Here is everything you need to do, step by step.</p>
+
+<p></p>
+
+<h3 id="creating-a-new-app-identity">Creating a new app identity</h3>
+
+<p>If you want to change the app id when re-signing an iOS app you will first new to create a new app identity. There are a few thing you will need to do</p>
+
+<ul>
+<li>create a new app id in the Apple developer portal</li>
+<li>create a new APNS certificate for that app id in the Apple developer portal and deploy it to your server (if you use push notifications)</li>
+<li>create a new provisioning profile for that app id in the Apple developer portal</li>
+<li>have one of the certificates with a private key included in the newly created provisioning profile in your keychain</li>
+</ul>
+
+<p>If you just want to re-sign the iOS app without changing the app id, you can skip all these steps and you just need the certificate in your keychain.</p>
+
+<h3 id="re-signing-the-ipa">Re-signing the IPA</h3>
+
+<p>You can find multiple <a href="https://gist.github.com/chaitanyagupta/9a2a13f0a3e6755192f7">tutorials</a> and a <a href="https://github.com/maciekish/iReSign">few tools</a> to help you with the re-signing process. After a lot of trial and error I ended up using <a href="https://github.com/niyaoyao/EasyResigny">EasyResigny</a> because it was the only tool that generated an IPA that could be actually deployed to an iOS device. This tool makes the re-signing process really easy, you just</p>
+
+<ul>
+<li>select the IPA you want to re-sign</li>
+<li>select the certificate to re-sign the IPA with</li>
+<li>select the provisioning profile to use</li>
+<li>click Start EasyResigny!</li>
+</ul>
+
+<p>And you are done!</p>
+
+<img src="/images/easyresigny.png" alt="" class="pure-img" >
+      </article>
+
+      <ul class="pager blog-pager">
+        
+          <li class="previous">
+            <a href="https://blog.davidmacias.com/solving-problems-after-mbr2efi/" data-toggle="tooltip" data-placement="top" title="Solving problem after upgrading Windows 10 to EFI">&larr; Previous Post</a>
+          </li>
+        
+        
+          <li class="next">
+            <a href="https://blog.davidmacias.com/delaying-disqus-comments-to-save-requests/" data-toggle="tooltip" data-placement="top" title="Delaying Disqus comments to save (a ton of) requests">Next Post &rarr;</a>
+          </li>
+        
+      </ul>
+
+       <div class="pure-g" style="margin-bottom:1em">
+
+   <div class="pure-u-1-2">
+   <p style="text-align:right">This content is open source. 
+   Please <a href="https://github.com/igorkulman/coding-journal/edit/master/content/post/post%5c2017-05-23-resigning-ios-apps.md" title="Help improve article post\2017-05-23-resigning-ios-apps.md">help improve it</a>.</p>
+  </div>
+</div>
+
+      
+        
+          <div class="disqus-comments">                  
+            <button id="show-comments" class="btn btn-default" type="button">Show <span class="disqus-comment-count" data-disqus-url="https://blog.davidmacias.com/resigning-ios-apps">comments</span></button>
+            <div id="disqus_thread"></div>
+
+            <script type="text/javascript">
+              var disqus_config = function () {
+              this.page.url = 'https:\/\/blog.davidmacias.com\/resigning-ios-apps';
+            };
+
+          </script>
+          </div>
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="mailto:igor@kulman.sk" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          <li>
+            <a href="https://github.com/davidmacias" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li>
+            <a href="https://twitter.com/davidmacias" title="Twitter">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li>
+            <a href="https://blog.davidmacias.com/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          davidmacias
+          &nbsp;&bull;&nbsp;
+          2017
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://blog.davidmacias.com">Igor Kulman</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.21</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://blog.davidmacias.com/js/main.js"></script>
+<script src="https://blog.davidmacias.com/js/gist.js"></script>
+
+<script type="text/javascript">
+$(function(){
+  $('#show-comments').on('click', function(){
+    var disqus_shortname = 'coudingjournal';
+
+    (function() {
+      var disqus = document.createElement('script'); 
+      disqus.type = 'text/javascript'; 
+      disqus.async = true;
+      disqus.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(disqus);
+    })();
+
+    $(this).hide(); 
+  });
+});
+
+</script>
+<script id="dsq-count-scr" src="//coudingjournal.disqus.com/count.js" async></script>
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-49528577-2', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+  </body>
+</html>

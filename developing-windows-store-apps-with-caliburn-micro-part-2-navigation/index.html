@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Developing Windows Store apps with Caliburn Micro Part 2: navigation</title>
+  
+  <meta name="author" content="davidmacias"/>
+  <meta name="generator" content="Hugo 0.21" />
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel="alternate" href="https://blog.davidmacias.com/index.xml" type="application/rss+xml" title="Igor Kulman">
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://blog.davidmacias.com/css/main.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />  
+
+  
+  
+ 
+  
+    <meta property="og:title" content="Developing Windows Store apps with Caliburn Micro Part 2: navigation" />
+  
+
+  
+    <meta property="og:description" content="In this second part you will add another ViewModel and View and implement navigation between two ViewModels, including saving the navigation state between starts. The code is as always available at Github.
+Invoking ViewModel methods
+If you want to test out navigation between ViewModels, you first need something that will trigger the navigation. The easiest way to do this is to use a standard Button. If you do MVVM &amp;amp;#8220;by hand&amp;amp;#8221;, you are probably used to creating ICommand properties and binding them to the Button&amp;amp;#8217;s Command dependency property.
+Caliburn Micro offers an easier way. If you want a Button to invoke a method on your ViewModel, just the give the button the same name as the name of the button. The method should be public void.
+
+On the MainViewModel, create a public void GoToSecondPage method:
+ In the MainView create a Button with x:Name=&amp;amp;#8221;GoToSecondPage&amp;amp;#8221;. When you start the application and click the button, a message dialog is shown, so you know the autobinding beetween your Button and your GoToSecondPage method works.
+Navigation
+As you may have noticed, a INavigationService is injected into the MainViewModel&amp;amp;#8217;s constructor. You can use this INavigationService to navigate between ViewModels.
+In the ViewModels folder create a new ViewModel called SecondPageViewModel with one string property Title (exactly the same as the MainViewModel):
+ In the Views folder, create a new View called SecondPageView as a Blank Page. Give it some colorful background so it is clearly distinguishable from the MainView:
+ Now you can finally make the GoToSecondPage method navigate the user to the SecondPageViewModel. To do this, first get the Uri from the INavigationService using the strongly typed UriFor&amp;amp;lt;.&amp;amp;gt; method and then call the Navigate method:
+ Navigation with parameters
+In many cases you need to navigate to a ViewModel passing the ViewModel some parameters. This is as easy as adding a call to WithParam to your navigation code:
+ You can use the WithParam method to give the ViewModel as many parameters as you want.
+Saving and loading navigation state
+A well-behaved Windows Store application should remember the last ViewModel active when the user exited the app and load this ViewModel when the user starts the application again. In our demo, this is not the case. You can test it by navigating to the SecondPageViewModel, switching to Visual Studio, using the Suspend and Shutdown option and starting the application again.
+You need to fix this so when the suspended application starts again, it will show the SecondPageViewModel (unless the MainViewModel was active when the application was suspended). The Caliburn.Micro.Unity.WinRT package already contains the support for saving and restoring state.
+First you need to make the Views inherit from the Caliburn.Micro.Unity.WinRT.Code.AppPage insted of Page and delete theirs OnNavigateTo methods. Then you need to explicitly save the state when the application starts. Open the App.xaml.cs and add the following method:
+ If you now navigate to second page, suspend and shutdown the application and start it again, you will see the second page.
+There is currently no way to navigate back from the SecondPageViewModel to the MianViewModel. I am fairly confident you can implement it by yourself using the INavigationService&amp;amp;#8217;s GoBack method.
+">
+  
+
+  <meta property="og:type" content="website" />
+
+  
+    <meta property="og:url" content="https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-2-navigation/" />
+    <link rel="canonical" href="https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-2-navigation/" />
+  
+
+  
+    <meta property="og:image" content="https://blog.davidmacias.com/img/avatar-icon.png" />
+  
+  
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@davidmacias" />
+  <meta name="twitter:creator" content="@davidmacias" />
+
+  
+    <meta name="twitter:title" content="Developing Windows Store apps with Caliburn Micro Part 2: navigation" />
+  
+
+  
+    <meta name="twitter:description" content="In this second part you will add another ViewModel and View and implement navigation between two ViewModels, including saving the navigation state between starts. The code is as always available at Github.
+Invoking ViewModel methods
+If you want to test out navigation between ViewModels, you first need something that will trigger the navigation. The easiest way to do this is to use a standard Button. If you do MVVM &amp;amp;#8220;by hand&amp;amp;#8221;, you are probably used to creating ICommand properties and binding them to the Button&amp;amp;#8217;s Command dependency property.
+Caliburn Micro offers an easier way. If you want a Button to invoke a method on your ViewModel, just the give the button the same name as the name of the button. The method should be public void.
+
+On the MainViewModel, create a public void GoToSecondPage method:
+ In the MainView create a Button with x:Name=&amp;amp;#8221;GoToSecondPage&amp;amp;#8221;. When you start the application and click the button, a message dialog is shown, so you know the autobinding beetween your Button and your GoToSecondPage method works.
+Navigation
+As you may have noticed, a INavigationService is injected into the MainViewModel&amp;amp;#8217;s constructor. You can use this INavigationService to navigate between ViewModels.
+In the ViewModels folder create a new ViewModel called SecondPageViewModel with one string property Title (exactly the same as the MainViewModel):
+ In the Views folder, create a new View called SecondPageView as a Blank Page. Give it some colorful background so it is clearly distinguishable from the MainView:
+ Now you can finally make the GoToSecondPage method navigate the user to the SecondPageViewModel. To do this, first get the Uri from the INavigationService using the strongly typed UriFor&amp;amp;lt;.&amp;amp;gt; method and then call the Navigate method:
+ Navigation with parameters
+In many cases you need to navigate to a ViewModel passing the ViewModel some parameters. This is as easy as adding a call to WithParam to your navigation code:
+ You can use the WithParam method to give the ViewModel as many parameters as you want.
+Saving and loading navigation state
+A well-behaved Windows Store application should remember the last ViewModel active when the user exited the app and load this ViewModel when the user starts the application again. In our demo, this is not the case. You can test it by navigating to the SecondPageViewModel, switching to Visual Studio, using the Suspend and Shutdown option and starting the application again.
+You need to fix this so when the suspended application starts again, it will show the SecondPageViewModel (unless the MainViewModel was active when the application was suspended). The Caliburn.Micro.Unity.WinRT package already contains the support for saving and restoring state.
+First you need to make the Views inherit from the Caliburn.Micro.Unity.WinRT.Code.AppPage insted of Page and delete theirs OnNavigateTo methods. Then you need to explicitly save the state when the application starts. Open the App.xaml.cs and add the following method:
+ If you now navigate to second page, suspend and shutdown the application and start it again, you will see the second page.
+There is currently no way to navigate back from the SecondPageViewModel to the MianViewModel. I am fairly confident you can implement it by yourself using the INavigationService&amp;amp;#8217;s GoBack method.
+">
+  
+
+  
+    <meta name="twitter:image" content="https://blog.davidmacias.com/img/avatar-icon.png" />
+   
+
+</head>
+
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.davidmacias.com">Igor Kulman</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Projects" href="/projects/">Projects</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About me / contact" href="/about/">About me / contact</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Igor Kulman" href="https://blog.davidmacias.com">
+            <img class="avatar-img" src="https://blog.davidmacias.com/img/avatar-icon.png" alt="Igor Kulman" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+        <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Developing Windows Store apps with Caliburn Micro Part 2: navigation</h1>
+            
+
+            
+              <span class="post-meta">Posted on August 6, 2013</span>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </header>
+
+
+    <div class="container" role="main">
+      
+        <div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>In this second part you will add another ViewModel and View and implement navigation between two ViewModels, including saving the navigation state between starts. The code is as always <a href="https://github.com/igorkulman/CaliburnDemoWinRT">available at Github</a>.</p>
+
+<p><strong>Invoking ViewModel methods</strong></p>
+
+<p>If you want to test out navigation between ViewModels, you first need something that will trigger the navigation. The easiest way to do this is to use a standard Button. If you do MVVM &#8220;by hand&#8221;, you are probably used to creating ICommand properties and binding them to the Button&#8217;s Command dependency property.</p>
+
+<p>Caliburn Micro offers an easier way. If you want a Button to invoke a method on your ViewModel, just the give the button the same name as the name of the button. The method should be public void.</p>
+
+<p></p>
+
+<p>On the MainViewModel, create a public void GoToSecondPage method:</p>
+
+<div data-gist="6103983"></div>
+
+<p>In the MainView create a Button with x:Name=&#8221;GoToSecondPage&#8221;. When you start the application and click the button, a message dialog is shown, so you know the autobinding beetween your Button and your GoToSecondPage method works.</p>
+
+<p><strong>Navigation</strong></p>
+
+<p>As you may have noticed, a INavigationService is injected into the MainViewModel&#8217;s constructor. You can use this INavigationService to navigate between ViewModels.</p>
+
+<p>In the ViewModels folder create a new ViewModel called SecondPageViewModel with one string property Title (exactly the same as the MainViewModel):</p>
+
+<div data-gist="6103938"></div>
+
+<p>In the Views folder, create a new View called SecondPageView as a Blank Page. Give it some colorful background so it is clearly distinguishable from the MainView:</p>
+
+<div data-gist="6104005"></div>
+
+<p>Now you can finally make the GoToSecondPage method navigate the user to the SecondPageViewModel. To do this, first get the Uri from the INavigationService using the strongly typed UriFor&lt;.&gt; method and then call the Navigate method:</p>
+
+<div data-gist="6104023"></div>
+
+<p><strong>Navigation with parameters</strong></p>
+
+<p>In many cases you need to navigate to a ViewModel passing the ViewModel some parameters. This is as easy as adding a call to WithParam to your navigation code:</p>
+
+<div data-gist="6104042"></div>
+
+<p>You can use the WithParam method to give the ViewModel as many parameters as you want.</p>
+
+<p><strong>Saving and loading navigation state</strong></p>
+
+<p>A well-behaved Windows Store application should remember the last ViewModel active when the user exited the app and load this ViewModel when the user starts the application again. In our demo, this is not the case. You can test it by navigating to the SecondPageViewModel, switching to Visual Studio, using the Suspend and Shutdown option and starting the application again.</p>
+
+<p>You need to fix this so when the suspended application starts again, it will show the SecondPageViewModel (unless the MainViewModel was active when the application was suspended). The Caliburn.Micro.Unity.WinRT package already contains the support for saving and restoring state.</p>
+
+<p>First you need to make the Views inherit from the Caliburn.Micro.Unity.WinRT.Code.AppPage insted of Page and delete theirs OnNavigateTo methods. Then you need to explicitly save the state when the application starts. Open the App.xaml.cs and add the following method:</p>
+
+<div data-gist="6104122"></div>
+
+<p>If you now navigate to second page, suspend and shutdown the application and start it again, you will see the second page.</p>
+
+<p>There is currently no way to navigate back from the SecondPageViewModel to the MianViewModel. I am fairly confident you can implement it by yourself using the INavigationService&#8217;s GoBack method.</p>
+      </article>
+
+      <ul class="pager blog-pager">
+        
+          <li class="previous">
+            <a href="https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-1-setup-and-first-view/" data-toggle="tooltip" data-placement="top" title="Developing Windows Store apps with Caliburn Micro Part 1: setup and first view">&larr; Previous Post</a>
+          </li>
+        
+        
+          <li class="next">
+            <a href="https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-3-saving-and-restoring-state/" data-toggle="tooltip" data-placement="top" title="Developing Windows Store apps with Caliburn Micro Part 3: saving and restoring state">Next Post &rarr;</a>
+          </li>
+        
+      </ul>
+
+       <div class="pure-g" style="margin-bottom:1em">
+
+   <div class="pure-u-1-2">
+   <p style="text-align:right">This content is open source. 
+   Please <a href="https://github.com/igorkulman/coding-journal/edit/master/content/post/post%5c2013-08-06-developing-windows-store-apps-with-caliburn-micro-part-2-navigation.md" title="Help improve article post\2013-08-06-developing-windows-store-apps-with-caliburn-micro-part-2-navigation.md">help improve it</a>.</p>
+  </div>
+</div>
+
+      
+        
+          <div class="disqus-comments">                  
+            <button id="show-comments" class="btn btn-default" type="button">Show <span class="disqus-comment-count" data-disqus-url="https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-2-navigation">comments</span></button>
+            <div id="disqus_thread"></div>
+
+            <script type="text/javascript">
+              var disqus_config = function () {
+              this.page.url = 'https:\/\/blog.davidmacias.com\/developing-windows-store-apps-with-caliburn-micro-part-2-navigation';
+            };
+
+          </script>
+          </div>
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="mailto:igor@kulman.sk" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          <li>
+            <a href="https://github.com/davidmacias" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li>
+            <a href="https://twitter.com/davidmacias" title="Twitter">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li>
+            <a href="https://blog.davidmacias.com/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          davidmacias
+          &nbsp;&bull;&nbsp;
+          2017
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://blog.davidmacias.com">Igor Kulman</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.21</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://blog.davidmacias.com/js/main.js"></script>
+<script src="https://blog.davidmacias.com/js/gist.js"></script>
+
+<script type="text/javascript">
+$(function(){
+  $('#show-comments').on('click', function(){
+    var disqus_shortname = 'coudingjournal';
+
+    (function() {
+      var disqus = document.createElement('script'); 
+      disqus.type = 'text/javascript'; 
+      disqus.async = true;
+      disqus.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(disqus);
+    })();
+
+    $(this).hide(); 
+  });
+});
+
+</script>
+<script id="dsq-count-scr" src="//coudingjournal.disqus.com/count.js" async></script>
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-49528577-2', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+  </body>
+</html>

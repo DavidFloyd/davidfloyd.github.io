@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Keychain on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/categories/keychain/</link>
+    <description>Recent content in Keychain on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Tue, 23 May 2017 09:29:12 +0100</lastBuildDate>
+    <atom:link href="/categories/keychain/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Re-signing iOS apps</title>
+      <link>https://blog.davidmacias.com/resigning-ios-apps/</link>
+      <pubDate>Tue, 23 May 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/resigning-ios-apps/</guid>
+      <description>&lt;p&gt;There are some times when you need to re-sign the IPA of your iOS app with a different certificate. For example, an external developer creates the IPA for you, but it is signed with their personal certificate and you need to re-sign it with yours to deploy it to the App Store. Or one of your clients does not want to have their employees install the iOS app from the App Store but wants to distribute it directly using their MDM tools.&lt;/p&gt;
+
+&lt;p&gt;The second case is a bit more complicated, because it involves creating a new app identity for the app. When you change the app id if your app, your push notifications will stop working and you need to also generate a new APNS certificate with the new app id and deploy it to your server. Here is everything you need to do, step by step.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;creating-a-new-app-identity&#34;&gt;Creating a new app identity&lt;/h3&gt;
+
+&lt;p&gt;If you want to change the app id when re-signing an iOS app you will first new to create a new app identity. There are a few thing you will need to do&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;create a new app id in the Apple developer portal&lt;/li&gt;
+&lt;li&gt;create a new APNS certificate for that app id in the Apple developer portal and deploy it to your server (if you use push notifications)&lt;/li&gt;
+&lt;li&gt;create a new provisioning profile for that app id in the Apple developer portal&lt;/li&gt;
+&lt;li&gt;have one of the certificates with a private key included in the newly created provisioning profile in your keychain&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you just want to re-sign the iOS app without changing the app id, you can skip all these steps and you just need the certificate in your keychain.&lt;/p&gt;
+
+&lt;h3 id=&#34;re-signing-the-ipa&#34;&gt;Re-signing the IPA&lt;/h3&gt;
+
+&lt;p&gt;You can find multiple &lt;a href=&#34;https://gist.github.com/chaitanyagupta/9a2a13f0a3e6755192f7&#34;&gt;tutorials&lt;/a&gt; and a &lt;a href=&#34;https://github.com/maciekish/iReSign&#34;&gt;few tools&lt;/a&gt; to help you with the re-signing process. After a lot of trial and error I ended up using &lt;a href=&#34;https://github.com/niyaoyao/EasyResigny&#34;&gt;EasyResigny&lt;/a&gt; because it was the only tool that generated an IPA that could be actually deployed to an iOS device. This tool makes the re-signing process really easy, you just&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;select the IPA you want to re-sign&lt;/li&gt;
+&lt;li&gt;select the certificate to re-sign the IPA with&lt;/li&gt;
+&lt;li&gt;select the provisioning profile to use&lt;/li&gt;
+&lt;li&gt;click Start EasyResigny!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And you are done!&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/easyresigny.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
+    </item>
+    
+  </channel>
+</rss>

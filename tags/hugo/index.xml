@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/tags/hugo/</link>
+    <description>Recent content in Hugo on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Tue, 30 May 2017 09:29:12 +0100</lastBuildDate>
+    <atom:link href="/tags/hugo/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Delaying Disqus comments to save (a ton of) requests</title>
+      <link>https://blog.davidmacias.com/delaying-disqus-comments-to-save-requests/</link>
+      <pubDate>Tue, 30 May 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/delaying-disqus-comments-to-save-requests/</guid>
+      <description>&lt;p&gt;My blog is a static website generated using &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; and running on &lt;a href=&#34;https://www.netlify.com/&#34;&gt;Netlify&lt;/a&gt; (you can read about my move from WordPress to Hugo in a &lt;a href=&#34;https://blog.davidmacias.com/going-static-from-wordpress-to-hugo&#34;&gt;previous article&lt;/a&gt;) but I still want to allow users to leave comments on my posts so I use &lt;a href=&#34;https://disqus.com/&#34;&gt;Disqus&lt;/a&gt; like many other blogs.&lt;/p&gt;
+
+&lt;p&gt;The advantage of Disqus is that you do not need to host the comments yourself, and I really cannot with a static website, you just embed a JavaScript file and everything is taken care of for you. There are a few alternatives to Disqus but none of them works very well so there is basically no other option if you want to have comments on a static website.&lt;/p&gt;
+
+&lt;p&gt;The problem with Disqus is that this one JavaScript file you embed to your website makes about 50 requests when a page loads. And that is a lot!&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/disqus.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Most of my blog posts do not have any comments so making about 50 unnecessary requests seems like a lot of waste. I noticed that many other websites do not load comments immediately but load them on demand. This way the wasteful requests are made only when really needed, when someone wants to read the comments or post a new one.&lt;/p&gt;
+
+&lt;p&gt;The idea is simple, add a &amp;ldquo;Show comments&amp;rdquo; button at the end of the page and embed the Disqus JavaScript file when the user clicks that button. This can be done with a simple JavaScript function&lt;/p&gt;
+
+&lt;div data-gist=&#34;47e9d4dc4bbb5279267a58d7bc794944&#34; data-file=&#34;load.js&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;The problem is that Disqus does not work that well and sometimes does not load the comments when there is an extra trailing slash in the URL so I recommend setting the post URL explicitly by adding another piece of JavaScript&lt;/p&gt;
+
+&lt;div data-gist=&#34;47e9d4dc4bbb5279267a58d7bc794944&#34; data-file=&#34;config.js&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Now you just need to add the actual &amp;ldquo;Show comments&amp;rdquo; button and you are done. To make the user experience better I decided to show the number of comments on that button. You need to embed a Disqus JavaScript file for that but it makes just one request, so it is reasonable&lt;/p&gt;
+
+&lt;div data-gist=&#34;47e9d4dc4bbb5279267a58d7bc794944&#34; data-file=&#34;count.html&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;This JavaScript will find all elements with class &lt;code&gt;disqus-comment-count&lt;/code&gt; on the website and fetch the comments count for their &lt;code&gt;data-disqus-url&lt;/code&gt; attribute. The resulting &amp;ldquo;Show comments&amp;rdquo; button may then look like this&lt;/p&gt;
+
+&lt;div data-gist=&#34;47e9d4dc4bbb5279267a58d7bc794944&#34; data-file=&#34;button.html&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;And that is it. If you want to see it in action, just click the button below near the end of this page. If you want to see it all integrated, just look at the source code of this page.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Going static: From Wordpress to Hugo</title>
+      <link>https://blog.davidmacias.com/going-static-from-wordpress-to-hugo/</link>
+      <pubDate>Mon, 23 Nov 2015 13:13:55 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/going-static-from-wordpress-to-hugo/</guid>
+      <description>&lt;p&gt;As you may have noticed, &lt;a href=&#34;http://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/?utm_content=buffer882bd&amp;amp;utm_medium=social&amp;amp;utm_source=twitter.com&amp;amp;utm_campaign=buffer&#34;&gt;static site generation is the next big think&lt;/a&gt;. When I created this blog a few years ago I choose Wordpress, because it seemed like a good choice. Now I have grown tired with updating plugins, exchanging broken plugins for alternative ones and so one. So I decided to try to go the static site generation route to make the blog easier to maintain.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Jekyll? Octopress? FsBlog? Hugo!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;There are &lt;a href=&#34;https://www.staticgen.com/&#34;&gt;quite a few static site generators&lt;/a&gt; out there, so choosing the right one is quite a challenge. &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;Jekyll&lt;/a&gt; or &lt;a href=&#34;http://octopress.org/&#34;&gt;Octopress&lt;/a&gt; seemed like the obvious choice. Jekyll requires Ruby, which is ok even on Windows, but Octopress had a few dependencies that I did not manage to get working on Windows. &lt;a href=&#34;https://github.com/fsprojects/FsBlog&#34;&gt;FsBlog&lt;/a&gt; seemed interesting, especially for me being a F# enthusiast, but frankly it is not yet very usable. So I choose Hugo.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; is a static site generator written in Go. That means no dependencies, just one binary you download and use. On Windows, you can even &lt;a href=&#34;https://chocolatey.org/packages/hugo&#34;&gt;get it using Chocolatey&lt;/a&gt;. It has a &lt;a href=&#34;https://gohugo.io/overview/quickstart/&#34;&gt;nice tutorial&lt;/a&gt;, a lively community and a few ready made themes.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Getting the content from Wordpress&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you are coming to Hugo from Wordpress, there is a &lt;a href=&#34;https://github.com/SchumacherFM/wordpress-to-hugo-exporter&#34;&gt;plugin to export all the content for you&lt;/a&gt;. The only problem with the plugin is that it completely ignores Gists you reference in your posts. So after you export your posts, you have to manually edit one by one and add the Gists. Some Hugo themes offer you ready made shortcodes for embedding Gists.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Hosting on Github Pages&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;One of the things I wanted to try after switching to a static website was hosting it on &lt;a href=&#34;https://pages.github.com/&#34;&gt;Github Pages&lt;/a&gt;, because the Git deployment story is more comfortable than copying or syncing the generated content over FTP to my hosting provider. Github Pages also offer kind of a CDN for your content. Setting it all up is not very complicated, there is a &lt;a href=&#34;https://gohugo.io/tutorials/github-pages-blog/&#34;&gt;tutorial in Hugo documentation that will walk you through the process&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;However, there are a few limitations when using with Github Pages. There are no redirects, so I could not redirect my RRS feed to the new one. A much bigger problem is that there is no way to set caching time for static resources like CSS and JS files.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

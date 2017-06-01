@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Creating a simple Windows 10 game with Win2D</title>
+  <meta name="description" content="Some time ago while looking at some pixel art work I got an idea to create a retro pixel art game for Windows 10. The choice was obvious, Sokoban. I have a very special relationship with the Sokoban game. The Delpi version of Sokoban was the first game I ever created. I later ported it to all the platforms I played with, namely J2ME (for my Siemens S60 phone), Linux (using Kylix which was basically a Delphi for Linux), Windows Phone 7 and now Sokoban Pixel for the Universal Windows Platform.">
+  <meta name="author" content="davidmacias"/>
+  <meta name="generator" content="Hugo 0.21" />
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel="alternate" href="https://blog.davidmacias.com/index.xml" type="application/rss+xml" title="Igor Kulman">
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://blog.davidmacias.com/css/main.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />  
+
+  
+  
+ 
+  
+    <meta property="og:title" content="Creating a simple Windows 10 game with Win2D" />
+  
+
+  
+    <meta property="og:description" content="Some time ago while looking at some pixel art work I got an idea to create a retro pixel art game for Windows 10. The choice was obvious, Sokoban. I have a very special relationship with the Sokoban game. The Delpi version of Sokoban was the first game I ever created. I later ported it to all the platforms I played with, namely J2ME (for my Siemens S60 phone), Linux (using Kylix which was basically a Delphi for Linux), Windows Phone 7 and now Sokoban Pixel for the Universal Windows Platform.
+
+Win2D
+I did not want to learn Unity and I considered it quite a overkill for such a simple game. Monogame seemed like an obvious choice, because my Sokoban for Windows Phone 7 was written in XNA. But Monogame requires too much ceremony to install and set up so I was not very eager to use it. I found Win2D. Win2D is an easy-to-use Windows Runtime API for immediate mode 2D graphics rendering with GPU acceleration. It is available to C# and C&#43;&#43; developers writing Windows apps for Windows 8.1, Windows Phone 8.1 and Windows 10. It utilizes the power of Direct2D, and integrates seamlessly with XAML and CoreWindow. This means you can create a normal XAML application, create all your non-gameplay screens in XAML and use Win2D just for the actual gameplay.
+Initial setup and loading resources
+To get started with Win2D just install the Win2D.uwp Nuget package and add a CanvasControl to your app. That&amp;amp;rsquo;s it, no more setup required.
+Before drawing any resources you need to first load them. This should be done in the CreateResources event of the CanvasControl. This method should not be async so if you need to load your resources asynchronously (as you always do) you need to use a trick with a separate method
+ The code snippet also shows how to load a simple image as a resources. You probably will not need to load anything other that images in a simple game.
+Drawing the game
+To make the CanvasControl draw your game you need to hook up the Draw event and put all you rendering logic there. There are basically just two things you will want to render, text and images
+ Both methods have many overloads so it is up to you to choose the one that suits you best. There are also other methods for drawing primitives like likes or circles, take a look at the documentation. When creating a pixel art game, make use you use the CanvasImageInterpolation.NearestNeighbor otherwise your images will look blurred if not on sufficient resolution.
+Depending on the type of your game, you may need to refresh the game canvas periodically or just as a reaction to the user input. In both cases, just call Invalidate() on your CanvasControl.
+Handling user input
+If you want to make you game great on Windows 10, you need to handle a few different input methods because Windows 10 runs on a variety of different devices.
+Keyboard and controller
+First you should handle input from the keyboard, so the game is comfortably playable on a notebook or desktop PC. To do this, you can just subscribe to the KeyUp method of the current page or to the global Window.Current.CoreWindow.KeyUp event. Both events give you a VirtualKey that the user pressed and you just decide what to do.
+If you want to make your game playable on the XBox One or on the PC with a XBox One controller, you should handle the controller input. Handling the controller input is the same as handling the keyboard, you just check for different keys. The resulting code may look like this.
+ If you want to make your game run on XBox One and do not have an XBox One to test it, just get the XBox One controller, connect it to your PC with an USB cable and make sure the whole game is controllable and playable just with it, without the keyboard or mouse.
+Touch devices
+Making your game playable on a phone or on a tablet is a bit tricky. There are no input devices usually attached, so you have to come up with your own. There are many ways to handle this. You can recognizes swipes on the device, or make the user tilt the device. But the solution I like the best is to render a simple d-pad in the right corner of the screen. This way the user can hold the device in both hands and use the right thumb to play the game.
+Conclusion
+When building a simple 2D game for Windows 10, making it a UWP app and use Win2D. The Win2D framework is easy to work with and embed into UWP apps.
+">
+  
+
+  <meta property="og:type" content="website" />
+
+  
+    <meta property="og:url" content="https://blog.davidmacias.com/creating-a-simple-windows-10-game-with-win2d" />
+    <link rel="canonical" href="https://blog.davidmacias.com/creating-a-simple-windows-10-game-with-win2d" />
+  
+
+  
+    <meta property="og:image" content="https://blog.davidmacias.com/images/sokoban-gameplay.gif" />
+  
+  
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@davidmacias" />
+  <meta name="twitter:creator" content="@davidmacias" />
+
+  
+    <meta name="twitter:title" content="Creating a simple Windows 10 game with Win2D" />
+  
+
+  
+    <meta name="twitter:description" content="Some time ago while looking at some pixel art work I got an idea to create a retro pixel art game for Windows 10. The choice was obvious, Sokoban. I have a very special relationship with the Sokoban game. The Delpi version of Sokoban was the first game I ever created. I later ported it to all the platforms I played with, namely J2ME (for my Siemens S60 phone), Linux (using Kylix which was basically a Delphi for Linux), Windows Phone 7 and now Sokoban Pixel for the Universal Windows Platform.
+
+Win2D
+I did not want to learn Unity and I considered it quite a overkill for such a simple game. Monogame seemed like an obvious choice, because my Sokoban for Windows Phone 7 was written in XNA. But Monogame requires too much ceremony to install and set up so I was not very eager to use it. I found Win2D. Win2D is an easy-to-use Windows Runtime API for immediate mode 2D graphics rendering with GPU acceleration. It is available to C# and C&#43;&#43; developers writing Windows apps for Windows 8.1, Windows Phone 8.1 and Windows 10. It utilizes the power of Direct2D, and integrates seamlessly with XAML and CoreWindow. This means you can create a normal XAML application, create all your non-gameplay screens in XAML and use Win2D just for the actual gameplay.
+Initial setup and loading resources
+To get started with Win2D just install the Win2D.uwp Nuget package and add a CanvasControl to your app. That&amp;amp;rsquo;s it, no more setup required.
+Before drawing any resources you need to first load them. This should be done in the CreateResources event of the CanvasControl. This method should not be async so if you need to load your resources asynchronously (as you always do) you need to use a trick with a separate method
+ The code snippet also shows how to load a simple image as a resources. You probably will not need to load anything other that images in a simple game.
+Drawing the game
+To make the CanvasControl draw your game you need to hook up the Draw event and put all you rendering logic there. There are basically just two things you will want to render, text and images
+ Both methods have many overloads so it is up to you to choose the one that suits you best. There are also other methods for drawing primitives like likes or circles, take a look at the documentation. When creating a pixel art game, make use you use the CanvasImageInterpolation.NearestNeighbor otherwise your images will look blurred if not on sufficient resolution.
+Depending on the type of your game, you may need to refresh the game canvas periodically or just as a reaction to the user input. In both cases, just call Invalidate() on your CanvasControl.
+Handling user input
+If you want to make you game great on Windows 10, you need to handle a few different input methods because Windows 10 runs on a variety of different devices.
+Keyboard and controller
+First you should handle input from the keyboard, so the game is comfortably playable on a notebook or desktop PC. To do this, you can just subscribe to the KeyUp method of the current page or to the global Window.Current.CoreWindow.KeyUp event. Both events give you a VirtualKey that the user pressed and you just decide what to do.
+If you want to make your game playable on the XBox One or on the PC with a XBox One controller, you should handle the controller input. Handling the controller input is the same as handling the keyboard, you just check for different keys. The resulting code may look like this.
+ If you want to make your game run on XBox One and do not have an XBox One to test it, just get the XBox One controller, connect it to your PC with an USB cable and make sure the whole game is controllable and playable just with it, without the keyboard or mouse.
+Touch devices
+Making your game playable on a phone or on a tablet is a bit tricky. There are no input devices usually attached, so you have to come up with your own. There are many ways to handle this. You can recognizes swipes on the device, or make the user tilt the device. But the solution I like the best is to render a simple d-pad in the right corner of the screen. This way the user can hold the device in both hands and use the right thumb to play the game.
+Conclusion
+When building a simple 2D game for Windows 10, making it a UWP app and use Win2D. The Win2D framework is easy to work with and embed into UWP apps.
+">
+  
+
+  
+    <meta name="twitter:image" content="https://blog.davidmacias.com/images/sokoban-gameplay.gif" />
+   
+
+</head>
+
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.davidmacias.com">Igor Kulman</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Projects" href="/projects/">Projects</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About me / contact" href="/about/">About me / contact</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Igor Kulman" href="https://blog.davidmacias.com">
+            <img class="avatar-img" src="https://blog.davidmacias.com/img/avatar-icon.png" alt="Igor Kulman" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+        <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Creating a simple Windows 10 game with Win2D</h1>
+            
+
+            
+              <span class="post-meta">Posted on June 15, 2016</span>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </header>
+
+
+    <div class="container" role="main">
+      
+        <div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>Some time ago while looking at some pixel art work I got an idea to create a retro pixel art game for Windows 10. The choice was obvious, <a href="https://www.microsoft.com/store/apps/9nblggh4xdln">Sokoban</a>. I have a very special relationship with the Sokoban game. The Delpi version of Sokoban was the first game I ever created. I later ported it to all the platforms I played with, namely J2ME (for my Siemens S60 phone), Linux (using Kylix which was basically a Delphi for Linux), Windows Phone 7 and now <a href="https://www.microsoft.com/store/apps/9nblggh4xdln">Sokoban Pixel</a> for the Universal Windows Platform.</p>
+
+<img src="/images/sokoban-gameplay.gif" alt="" class="pure-img" >
+
+<p></p>
+
+<p><strong>Win2D</strong></p>
+
+<p>I did not want to learn <a href="https://unity3d.com/">Unity</a> and I considered it quite a overkill for such a simple game. <a href="http://www.monogame.net/">Monogame</a> seemed like an obvious choice, because my Sokoban for Windows Phone 7 was written in XNA. But Monogame requires too much ceremony to install and set up so I was not very eager to use it. I found <a href="https://github.com/Microsoft/Win2D">Win2D</a>. Win2D is an easy-to-use Windows Runtime API for immediate mode 2D graphics rendering with GPU acceleration. It is available to C# and C++ developers writing Windows apps for Windows 8.1, Windows Phone 8.1 and Windows 10. It utilizes the power of Direct2D, and integrates seamlessly with XAML and CoreWindow. This means you can create a normal XAML application, create all your non-gameplay screens in XAML and use Win2D just for the actual gameplay.</p>
+
+<p><strong>Initial setup and loading resources</strong></p>
+
+<p>To get started with Win2D just install the <code>Win2D.uwp</code> Nuget package and add a <code>CanvasControl</code> to your app. That&rsquo;s it, no more setup required.</p>
+
+<p>Before drawing any resources you need to first load them. This should be done in the <code>CreateResources</code> event of the <code>CanvasControl</code>. This method should not be async so if you need to load your resources asynchronously (as you always do) you need to use a trick with a separate method</p>
+
+<div data-gist="39f73f5117a02c94fbe3b85ec57bb8a8" data-file="load.cs"></div>
+
+<p>The code snippet also shows how to load a simple image as a resources. You probably will not need to load anything other that images in a simple game.</p>
+
+<p><strong>Drawing the game</strong></p>
+
+<p>To make the <code>CanvasControl</code> draw your game you need to hook up the <code>Draw</code> event and put all you rendering logic there. There are basically just two things you will want to render, text and images</p>
+
+<div data-gist="39f73f5117a02c94fbe3b85ec57bb8a8" data-file="draw.cs"></div>
+
+<p>Both methods have many overloads so it is up to you to choose the one that suits you best. There are also other methods for drawing primitives like likes or circles, take a look at the <a href="http://microsoft.github.io/Win2D/html/Introduction.htm">documentation</a>. When creating a pixel art game, make use you use the <code>CanvasImageInterpolation.NearestNeighbor</code> otherwise your images will look blurred if not on sufficient resolution.</p>
+
+<p>Depending on the type of your game, you may need to refresh the game canvas periodically or just as a reaction to the user input. In both cases, just call <code>Invalidate()</code> on your <code>CanvasControl</code>.</p>
+
+<p><strong>Handling user input</strong></p>
+
+<p>If you want to make you game great on Windows 10, you need to handle a few different input methods because Windows 10 runs on a variety of different devices.</p>
+
+<p><strong><em>Keyboard and controller</em></strong></p>
+
+<p>First you should handle input from the keyboard, so the game is comfortably playable on a notebook or desktop PC. To do this, you can just subscribe to the <code>KeyUp</code> method of the current page or to the global <code>Window.Current.CoreWindow.KeyUp</code> event. Both events give you a <code>VirtualKey</code> that the user pressed and you just decide what to do.</p>
+
+<p>If you want to make your game playable on the XBox One or on the PC with a XBox One controller, you should handle the controller input. Handling the controller input is the same as handling the keyboard, you just check for different keys. The resulting code may look like this.</p>
+
+<div data-gist="39f73f5117a02c94fbe3b85ec57bb8a8" data-file="input.cs"></div>
+
+<p>If you want to make your game run on XBox One and do not have an XBox One to test it, just get the XBox One controller, connect it to your PC with an USB cable and make sure the whole game is controllable and playable just with it, without the keyboard or mouse.</p>
+
+<p><strong><em>Touch devices</em></strong></p>
+
+<p>Making your game playable on a phone or on a tablet is a bit tricky. There are no input devices usually attached, so you have to come up with your own. There are many ways to handle this. You can recognizes swipes on the device, or make the user tilt the device. But the solution I like the best is to render a simple d-pad in the right corner of the screen. This way the user can hold the device in both hands and use the right thumb to play the game.</p>
+
+<img src="/images/sokoban-dpad.png" alt="" class="pure-img" >
+
+<p><strong>Conclusion</strong></p>
+
+<p>When building a simple 2D game for Windows 10, making it a UWP app and use Win2D. The Win2D framework is easy to work with and embed into UWP apps.</p>
+      </article>
+
+      <ul class="pager blog-pager">
+        
+          <li class="previous">
+            <a href="https://blog.davidmacias.com/creating-better-forms-in-windows-phone-apps/" data-toggle="tooltip" data-placement="top" title="Creating better forms in Windows Phone apps">&larr; Previous Post</a>
+          </li>
+        
+        
+          <li class="next">
+            <a href="https://blog.davidmacias.com/application-deployment-with-nsis-and-squirrel/" data-toggle="tooltip" data-placement="top" title="Application deployment with NSIS and Squirrel">Next Post &rarr;</a>
+          </li>
+        
+      </ul>
+
+       <div class="pure-g" style="margin-bottom:1em">
+
+   <div class="pure-u-1-2">
+   <p style="text-align:right">This content is open source. 
+   Please <a href="https://github.com/igorkulman/coding-journal/edit/master/content/post/post%5c2016-06-15-creating-a-simple-windows-10-game-with-win2d.md" title="Help improve article post\2016-06-15-creating-a-simple-windows-10-game-with-win2d.md">help improve it</a>.</p>
+  </div>
+</div>
+
+      
+        
+          <div class="disqus-comments">                  
+            <button id="show-comments" class="btn btn-default" type="button">Show <span class="disqus-comment-count" data-disqus-url="https://blog.davidmacias.com/creating-a-simple-windows-10-game-with-win2d">comments</span></button>
+            <div id="disqus_thread"></div>
+
+            <script type="text/javascript">
+              var disqus_config = function () {
+              this.page.url = 'https:\/\/blog.davidmacias.com\/creating-a-simple-windows-10-game-with-win2d';
+            };
+
+          </script>
+          </div>
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="mailto:igor@kulman.sk" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          <li>
+            <a href="https://github.com/davidmacias" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li>
+            <a href="https://twitter.com/davidmacias" title="Twitter">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li>
+            <a href="https://blog.davidmacias.com/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          davidmacias
+          &nbsp;&bull;&nbsp;
+          2017
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://blog.davidmacias.com">Igor Kulman</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.21</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://blog.davidmacias.com/js/main.js"></script>
+<script src="https://blog.davidmacias.com/js/gist.js"></script>
+
+<script type="text/javascript">
+$(function(){
+  $('#show-comments').on('click', function(){
+    var disqus_shortname = 'coudingjournal';
+
+    (function() {
+      var disqus = document.createElement('script'); 
+      disqus.type = 'text/javascript'; 
+      disqus.async = true;
+      disqus.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(disqus);
+    })();
+
+    $(this).hide(); 
+  });
+});
+
+</script>
+<script id="dsq-count-scr" src="//coudingjournal.disqus.com/count.js" async></script>
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-49528577-2', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+  </body>
+</html>

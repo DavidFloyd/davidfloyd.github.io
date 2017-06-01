@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Using data binding in iOS</title>
+  <meta name="description" content="When I started working on a native iOS project after a few years of Windows (Phone) development I looked into ways to write a more declarative and more elegant code than the standard iOS way. I wanted to transfer some of my habits over and the first thing I really missed was XAML binding. I did some research on how to do binding in iOS and found a few libraries that make it possible. This allowed me to write better code and I think binding is a concept that all the iOS developer should look into.">
+  <meta name="author" content="davidmacias"/>
+  <meta name="generator" content="Hugo 0.21" />
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel="alternate" href="https://blog.davidmacias.com/index.xml" type="application/rss+xml" title="Igor Kulman">
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://blog.davidmacias.com/css/main.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />  
+
+  
+  
+ 
+  
+    <meta property="og:title" content="Using data binding in iOS" />
+  
+
+  
+    <meta property="og:description" content="When I started working on a native iOS project after a few years of Windows (Phone) development I looked into ways to write a more declarative and more elegant code than the &amp;amp;ldquo;standard&amp;amp;rdquo; iOS way. I wanted to transfer some of my habits over and the first thing I really missed was XAML data binding. I did some research on how to do data binding in iOS and found a few libraries that make it possible. This allowed me to write better code and I think data binding is a concept that all the iOS developer should look into. If you are interested in my experience with using binding in iOS, read on.
+Sample scenario Let&amp;amp;rsquo;s use a simple example scenario. You have a screen where the users have to choose their country and then enter their mobile number. The number has to be validated with respect to the selected country and if everything is ok the Next button should become visible. So basically it should work like this
+
+There are number of things that need to happen
+ Selecting the country should refresh the validation state Changing the mobile number should refresh the validation state as the users type Setting the validation state should also set the mobile number text field text color Setting the validation state should also set the Next button enabled state  That is quite a lot of things if you add the validation logic (I use the libPhoneNumber-iOS).
+The classic iOS way Now imagine you want to implement this scenario in the classic iOS way. You will have one Massive View Controller that would do many things.
+You will have a method that does validation and sets the mobile number text field text color and the Next button enabled state according to the result of this validation. Then you will have a delegate for the mobile number text field and you will have to call the validation method with every change. And finally you will have to change all the code that sets the selected country and call the validation method after each set. Of course you can use didSet but that will add a bad coupling between your model and your UI.
+There must be a better, more declarative way!
+Data binding UI data binding is a software design pattern to simplify development of GUI applications. UI data binding binds UI elements to an application domain model. Most frameworks employ the Observer pattern as the underlying binding mechanism.
+The main idea is simple, you declare what UI elements are connected to what properties in your model. Of course you can do some transformations, like mapping the validation state to text color. There are a few frameworks that will help you do it.
+Bond Bond is a Swift library based on ReactiveKit that allows you to do binding in a simple way. The documentation is quite sufficient and there is also a quite nice tutorial. It allows not only data binding basic UI elements like text fields but also supports data binding table views. So I tried it first.
+I created a ViewModel with a property for the selected country, another property for the mobile number and a signal telling if the mobile number is valid. Every time the mobile number or the selected country changes, the validity signal also changes automatically. The ViewModel is quite simple, creating the validation signal in a nice declarative way
+ Binding this ViewModel to the ViewController is also quite simple
+ I used Bond for a while but when I wanted to do more reactive programming, Bond was not enough. It is a data binding library, it works well for data binding but if you want to do more you have to choose something more powerful. So I switched to RxSwift.
+RxSwift vs ReactiveSwift RxSwift and ReactiveSwift are two most popular reactive programming libraries for iOS. I recommend you read an article comparing those two libraries and choose the one that you like best. I chose RxSwift because it is a Swift implementation of the .NET Reactive Extensions I am familiar with and the documentation is so much better. There is also a RxSwift community repository with extension that add support for table views, gestures, etc.
+The ViewModel looks a bit different when using RxSwift than when using Bond, but the main idea is the same
+ The actual bindings are also quite similar. The main difference is it is more visible what is being bound to what and in what direction
+ Compare this to the amount of code you would have to write using the &amp;amp;ldquo;standard&amp;amp;rdquo; iOS way.
+Conclusion I think data binding is a great concept that makes your code more declarative, more elegant and much simpler. It has been widely used in the Microsoft platforms with XAML, now it is also available in Android so it is time that iOS developers make a mental switch from delegates and start programming in a more declarative and reactive way. It is definitely worth it.
+">
+  
+
+  <meta property="og:type" content="website" />
+
+  
+    <meta property="og:url" content="https://blog.davidmacias.com/using-data-binding-in-ios" />
+    <link rel="canonical" href="https://blog.davidmacias.com/using-data-binding-in-ios" />
+  
+
+  
+    <meta property="og:image" content="https://blog.davidmacias.com/images/iosvalidation.gif" />
+  
+  
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@davidmacias" />
+  <meta name="twitter:creator" content="@davidmacias" />
+
+  
+    <meta name="twitter:title" content="Using data binding in iOS" />
+  
+
+  
+    <meta name="twitter:description" content="When I started working on a native iOS project after a few years of Windows (Phone) development I looked into ways to write a more declarative and more elegant code than the &amp;amp;ldquo;standard&amp;amp;rdquo; iOS way. I wanted to transfer some of my habits over and the first thing I really missed was XAML data binding. I did some research on how to do data binding in iOS and found a few libraries that make it possible. This allowed me to write better code and I think data binding is a concept that all the iOS developer should look into. If you are interested in my experience with using binding in iOS, read on.
+Sample scenario Let&amp;amp;rsquo;s use a simple example scenario. You have a screen where the users have to choose their country and then enter their mobile number. The number has to be validated with respect to the selected country and if everything is ok the Next button should become visible. So basically it should work like this
+
+There are number of things that need to happen
+ Selecting the country should refresh the validation state Changing the mobile number should refresh the validation state as the users type Setting the validation state should also set the mobile number text field text color Setting the validation state should also set the Next button enabled state  That is quite a lot of things if you add the validation logic (I use the libPhoneNumber-iOS).
+The classic iOS way Now imagine you want to implement this scenario in the classic iOS way. You will have one Massive View Controller that would do many things.
+You will have a method that does validation and sets the mobile number text field text color and the Next button enabled state according to the result of this validation. Then you will have a delegate for the mobile number text field and you will have to call the validation method with every change. And finally you will have to change all the code that sets the selected country and call the validation method after each set. Of course you can use didSet but that will add a bad coupling between your model and your UI.
+There must be a better, more declarative way!
+Data binding UI data binding is a software design pattern to simplify development of GUI applications. UI data binding binds UI elements to an application domain model. Most frameworks employ the Observer pattern as the underlying binding mechanism.
+The main idea is simple, you declare what UI elements are connected to what properties in your model. Of course you can do some transformations, like mapping the validation state to text color. There are a few frameworks that will help you do it.
+Bond Bond is a Swift library based on ReactiveKit that allows you to do binding in a simple way. The documentation is quite sufficient and there is also a quite nice tutorial. It allows not only data binding basic UI elements like text fields but also supports data binding table views. So I tried it first.
+I created a ViewModel with a property for the selected country, another property for the mobile number and a signal telling if the mobile number is valid. Every time the mobile number or the selected country changes, the validity signal also changes automatically. The ViewModel is quite simple, creating the validation signal in a nice declarative way
+ Binding this ViewModel to the ViewController is also quite simple
+ I used Bond for a while but when I wanted to do more reactive programming, Bond was not enough. It is a data binding library, it works well for data binding but if you want to do more you have to choose something more powerful. So I switched to RxSwift.
+RxSwift vs ReactiveSwift RxSwift and ReactiveSwift are two most popular reactive programming libraries for iOS. I recommend you read an article comparing those two libraries and choose the one that you like best. I chose RxSwift because it is a Swift implementation of the .NET Reactive Extensions I am familiar with and the documentation is so much better. There is also a RxSwift community repository with extension that add support for table views, gestures, etc.
+The ViewModel looks a bit different when using RxSwift than when using Bond, but the main idea is the same
+ The actual bindings are also quite similar. The main difference is it is more visible what is being bound to what and in what direction
+ Compare this to the amount of code you would have to write using the &amp;amp;ldquo;standard&amp;amp;rdquo; iOS way.
+Conclusion I think data binding is a great concept that makes your code more declarative, more elegant and much simpler. It has been widely used in the Microsoft platforms with XAML, now it is also available in Android so it is time that iOS developers make a mental switch from delegates and start programming in a more declarative and reactive way. It is definitely worth it.
+">
+  
+
+  
+    <meta name="twitter:image" content="https://blog.davidmacias.com/images/iosvalidation.gif" />
+   
+
+</head>
+
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.davidmacias.com">Igor Kulman</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Projects" href="/projects/">Projects</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About me / contact" href="/about/">About me / contact</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Igor Kulman" href="https://blog.davidmacias.com">
+            <img class="avatar-img" src="https://blog.davidmacias.com/img/avatar-icon.png" alt="Igor Kulman" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+        <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Using data binding in iOS</h1>
+            
+
+            
+              <span class="post-meta">Posted on March 14, 2017</span>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </header>
+
+
+    <div class="container" role="main">
+      
+        <div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>When I started working on a native iOS project after a few years of Windows (Phone) development I looked into ways to write a more declarative and more elegant code than the &ldquo;standard&rdquo; iOS way. I wanted to transfer some of my habits over and the first thing I really missed was XAML data binding. I did some research on how to do data binding in iOS and found a few libraries that make it possible. This allowed me to write better code and I think data binding is a concept that all the iOS developer should look into. If you are interested in my experience with using binding in iOS, read on.</p>
+
+<h2 id="sample-scenario">Sample scenario</h2>
+
+<p>Let&rsquo;s use a simple example scenario. You have a screen where the users have to choose their country and then enter their mobile number. The number has to be validated with respect to the selected country and if everything is ok the Next button should become visible. So basically it should work like this</p>
+
+<img src="/images/iosvalidation.gif" alt="" class="pure-img" >
+
+<p></p>
+
+<p>There are number of things that need to happen</p>
+
+<ul>
+<li>Selecting the country should refresh the validation state</li>
+<li>Changing the mobile number should refresh the validation state as the users type</li>
+<li>Setting the validation state should also set the mobile number text field text color</li>
+<li>Setting the validation state should also set the Next button enabled state</li>
+</ul>
+
+<p>That is quite a lot of things if you add the validation logic (I use the <a href="https://github.com/iziz/libPhoneNumber-iOS">libPhoneNumber-iOS</a>).</p>
+
+<h2 id="the-classic-ios-way">The classic iOS way</h2>
+
+<p>Now imagine you want to implement this scenario in the classic iOS way. You will have one Massive View Controller that would do many things.</p>
+
+<p>You will have a method that does validation and sets the mobile number text field text color and the Next button enabled state according to the result of this validation. Then you will have a delegate for the mobile number text field and you will have to call the validation method with every change. And finally you will have to change all the code that sets the selected country and call the validation method after each set. Of course you can use <code>didSet</code> but that will add a bad coupling between your model and your UI.</p>
+
+<p>There must be a better, more declarative way!</p>
+
+<h2 id="data-binding">Data binding</h2>
+
+<p>UI data binding is a software design pattern to simplify development of GUI applications. UI data binding binds UI elements to an application domain model. Most frameworks employ the Observer pattern as the underlying binding mechanism.</p>
+
+<p>The main idea is simple, you declare what UI elements are connected to what properties in your model. Of course you can do some transformations, like mapping the validation state to text color. There are a few frameworks that will help you do it.</p>
+
+<h3 id="bond">Bond</h3>
+
+<p><a href="https://github.com/ReactiveKit/Bond">Bond</a> is a Swift library based on <a href="https://github.com/ReactiveKit/ReactiveKit">ReactiveKit</a> that allows you to do binding in a simple way. The documentation is quite sufficient and there is also a <a href="https://www.raywenderlich.com/123108/bond-tutorial">quite nice tutorial</a>. It allows not only data binding basic UI elements like text fields but also supports data binding table views. So I tried it first.</p>
+
+<p>I created a ViewModel with a property for the selected country, another property for the mobile number and a signal telling if the mobile number is valid. Every time the mobile number or the selected country changes, the validity signal also changes automatically. The ViewModel is quite simple, creating the validation signal in a nice declarative way</p>
+
+<div data-gist="2bb98d3398d1f211ba0f81c0f6ee90e7" data-file="BondVM.swift"></div>
+
+<p>Binding this ViewModel to the ViewController is also quite simple</p>
+
+<div data-gist="2bb98d3398d1f211ba0f81c0f6ee90e7" data-file="BondBinding.swift"></div>
+
+<p>I used Bond for a while but when I wanted to do more reactive programming, Bond was not enough. It is a data binding library, it works well for data binding but if you want to do more you have to choose something more powerful. So I switched to RxSwift.</p>
+
+<h3 id="rxswift-vs-reactiveswift">RxSwift vs ReactiveSwift</h3>
+
+<p><a href="https://github.com/ReactiveX/RxSwift">RxSwift</a> and <a href="https://github.com/ReactiveCocoa/ReactiveSwift">ReactiveSwift</a> are two most popular reactive programming libraries for iOS. I recommend you read an <a href="https://www.raywenderlich.com/126522/reactivecocoa-vs-rxswift">article comparing those two libraries</a> and choose the one that you like best. I chose RxSwift because it is a Swift implementation of the .NET Reactive Extensions I am familiar with and the documentation is so much better. There is also a <a href="https://github.com/RxSwiftCommunity/">RxSwift community repository</a> with extension that add support for table views, gestures, etc.</p>
+
+<p>The ViewModel looks a bit different when using RxSwift than when using Bond, but the main idea is the same</p>
+
+<div data-gist="2bb98d3398d1f211ba0f81c0f6ee90e7" data-file="RxSwift.swift"></div>
+
+<p>The actual bindings are also quite similar. The main difference is it is more visible what is being bound to what and in what direction</p>
+
+<div data-gist="2bb98d3398d1f211ba0f81c0f6ee90e7" data-file="RxSwiftBinding.swift"></div>
+
+<p>Compare this to the amount of code you would have to write using the &ldquo;standard&rdquo; iOS way.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>I think data binding is a great concept that makes your code more declarative, more elegant and much simpler. It has been widely used in the Microsoft platforms with XAML, now it is also available in Android so it is time that iOS developers make a mental switch from delegates and start programming in a more declarative and reactive way. It is definitely worth it.</p>
+      </article>
+
+      <ul class="pager blog-pager">
+        
+          <li class="previous">
+            <a href="https://blog.davidmacias.com/creating-a-tv-schedule-grid-in-uwp/" data-toggle="tooltip" data-placement="top" title="Creating a TV schedule grid in UWP">&larr; Previous Post</a>
+          </li>
+        
+        
+          <li class="next">
+            <a href="https://blog.davidmacias.com/using-mvvm-with-tables-in-ios/" data-toggle="tooltip" data-placement="top" title="Using MVVM with tables and cells in iOS">Next Post &rarr;</a>
+          </li>
+        
+      </ul>
+
+       <div class="pure-g" style="margin-bottom:1em">
+
+   <div class="pure-u-1-2">
+   <p style="text-align:right">This content is open source. 
+   Please <a href="https://github.com/igorkulman/coding-journal/edit/master/content/post/post%5c2017-03-14-using-data-binding-in-ios.md" title="Help improve article post\2017-03-14-using-data-binding-in-ios.md">help improve it</a>.</p>
+  </div>
+</div>
+
+      
+        
+          <div class="disqus-comments">                  
+            <button id="show-comments" class="btn btn-default" type="button">Show <span class="disqus-comment-count" data-disqus-url="https://blog.davidmacias.com/using-data-binding-in-ios">comments</span></button>
+            <div id="disqus_thread"></div>
+
+            <script type="text/javascript">
+              var disqus_config = function () {
+              this.page.url = 'https:\/\/blog.davidmacias.com\/using-data-binding-in-ios';
+            };
+
+          </script>
+          </div>
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="mailto:igor@kulman.sk" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          <li>
+            <a href="https://github.com/davidmacias" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li>
+            <a href="https://twitter.com/davidmacias" title="Twitter">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li>
+            <a href="https://blog.davidmacias.com/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          davidmacias
+          &nbsp;&bull;&nbsp;
+          2017
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://blog.davidmacias.com">Igor Kulman</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.21</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://blog.davidmacias.com/js/main.js"></script>
+<script src="https://blog.davidmacias.com/js/gist.js"></script>
+
+<script type="text/javascript">
+$(function(){
+  $('#show-comments').on('click', function(){
+    var disqus_shortname = 'coudingjournal';
+
+    (function() {
+      var disqus = document.createElement('script'); 
+      disqus.type = 'text/javascript'; 
+      disqus.async = true;
+      disqus.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(disqus);
+    })();
+
+    $(this).hide(); 
+  });
+});
+
+</script>
+<script id="dsq-count-scr" src="//coudingjournal.disqus.com/count.js" async></script>
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-49528577-2', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+  </body>
+</html>

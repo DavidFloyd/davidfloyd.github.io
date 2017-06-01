@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Json on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/tags/json/</link>
+    <description>Recent content in Json on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Thu, 01 Nov 2012 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/json/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Processing JSON in .NET</title>
+      <link>https://blog.davidmacias.com/processing-json-in-net/</link>
+      <pubDate>Thu, 01 Nov 2012 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/processing-json-in-net/</guid>
+      <description>&lt;p&gt;JSON is a very popular format for exchanging data, especially in the world of web technologies and JavaScript. The .NET platform contains a native support for this format but a better alternative is to use the JSON.NET library.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;JSON.NET&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://james.newtonking.com/projects/json-net.aspx&#34;&gt;JSON.NET&lt;/a&gt; is a flexible JSON serializer for .NET with LIQN support. The biggest reason for using this library is its performance in comparison to the standard DataContractJsonSerializer. The easiest way to use the library is to use the &lt;a href=&#34;https://nuget.org/packages/Newtonsoft.Json&#34;&gt;Nuget package&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;JSON.NET is very easy to use; first you create a JObject instance&lt;/p&gt;
+
+&lt;div data-gist=&#34;5857544&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;from which you can get a collection (in our example of type TicketViewModel)&lt;/p&gt;
+
+&lt;div data-gist=&#34;5857549&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;filling the TicketViewModel instance from the JObject&lt;/p&gt;
+
+&lt;div data-gist=&#34;5857554&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;DataContractJsonSerializer&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you do not want or cannot use JSON.NET you can use the already mentioned DataContractJsonSerializer. Before you use it, you have to create a class with the same structure as the JSON. You do not have to create it by hand; you can use the &lt;a href=&#34;http://json2csharp.com/&#34;&gt;json2csharp&lt;/a&gt; utility.&lt;/p&gt;
+
+&lt;p&gt;Using the DataContractJsonSerializer is a less readable than using JSON.NET&lt;/p&gt;
+
+&lt;div data-gist=&#34;5857558&#34;&gt;&lt;/div&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

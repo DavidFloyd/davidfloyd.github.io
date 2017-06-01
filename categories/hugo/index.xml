@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/categories/hugo/</link>
+    <description>Recent content in Hugo on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Tue, 30 May 2017 09:29:12 +0100</lastBuildDate>
+    <atom:link href="/categories/hugo/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Delaying Disqus comments to save (a ton of) requests</title>
+      <link>https://blog.davidmacias.com/delaying-disqus-comments-to-save-requests/</link>
+      <pubDate>Tue, 30 May 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/delaying-disqus-comments-to-save-requests/</guid>
+      <description>&lt;p&gt;My blog is a static website generated using &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; and running on &lt;a href=&#34;https://www.netlify.com/&#34;&gt;Netlify&lt;/a&gt; (you can read about my move from WordPress to Hugo in a &lt;a href=&#34;https://blog.davidmacias.com/going-static-from-wordpress-to-hugo&#34;&gt;previous article&lt;/a&gt;) but I still want to allow users to leave comments on my posts so I use &lt;a href=&#34;https://disqus.com/&#34;&gt;Disqus&lt;/a&gt; like many other blogs.&lt;/p&gt;
+
+&lt;p&gt;The advantage of Disqus is that you do not need to host the comments yourself, and I really cannot with a static website, you just embed a JavaScript file and everything is taken care of for you. There are a few alternatives to Disqus but none of them works very well so there is basically no other option if you want to have comments on a static website.&lt;/p&gt;
+
+&lt;p&gt;The problem with Disqus is that this one JavaScript file you embed to your website makes about 50 requests when a page loads. And that is a lot!&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/disqus.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Most of my blog posts do not have any comments so making about 50 unnecessary requests seems like a lot of waste. I noticed that many other websites do not load comments immediately but load them on demand. This way the wasteful requests are made only when really needed, when someone wants to read the comments or post a new one.&lt;/p&gt;
+
+&lt;p&gt;The idea is simple, add a &amp;ldquo;Show comments&amp;rdquo; button at the end of the page and embed the Disqus JavaScript file when the user clicks that button. This can be done with a simple JavaScript function&lt;/p&gt;
+
+&lt;div data-gist=&#34;47e9d4dc4bbb5279267a58d7bc794944&#34; data-file=&#34;load.js&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;The problem is that Disqus does not work that well and sometimes does not load the comments when there is an extra trailing slash in the URL so I recommend setting the post URL explicitly by adding another piece of JavaScript&lt;/p&gt;
+
+&lt;div data-gist=&#34;47e9d4dc4bbb5279267a58d7bc794944&#34; data-file=&#34;config.js&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Now you just need to add the actual &amp;ldquo;Show comments&amp;rdquo; button and you are done. To make the user experience better I decided to show the number of comments on that button. You need to embed a Disqus JavaScript file for that but it makes just one request, so it is reasonable&lt;/p&gt;
+
+&lt;div data-gist=&#34;47e9d4dc4bbb5279267a58d7bc794944&#34; data-file=&#34;count.html&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;This JavaScript will find all elements with class &lt;code&gt;disqus-comment-count&lt;/code&gt; on the website and fetch the comments count for their &lt;code&gt;data-disqus-url&lt;/code&gt; attribute. The resulting &amp;ldquo;Show comments&amp;rdquo; button may then look like this&lt;/p&gt;
+
+&lt;div data-gist=&#34;47e9d4dc4bbb5279267a58d7bc794944&#34; data-file=&#34;button.html&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;And that is it. If you want to see it in action, just click the button below near the end of this page. If you want to see it all integrated, just look at the source code of this page.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pdf on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/tags/pdf/</link>
+    <description>Recent content in Pdf on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Wed, 27 Mar 2013 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/pdf/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Displaying PDF files in Windows Store apps</title>
+      <link>https://blog.davidmacias.com/displaying-pdf-files-in-windows-store-apps/</link>
+      <pubDate>Wed, 27 Mar 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/displaying-pdf-files-in-windows-store-apps/</guid>
+      <description>&lt;p&gt;Displaying PDF files in a mobile apps is a valid use case and there are many iOS and Android app that do it. WinRT has no APIs for displaying PDF files. The only thing you can do with a PDF in WinRT is to display it in the default PDF viewer app using the Windows.System.Launcher.LaunchFileAsync method. This is typicaly not what you want to do. This method takes the user out of your app and more importantly the PDF can be copied, shared, etc.&lt;/p&gt;
+
+&lt;p&gt;There are a few 3rd party components for displaying PDF files in Windows Store apps, each has some problems and restrictions.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ComponentOne PDFViewer&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.componentone.com&#34;&gt;ComponentOne&lt;/a&gt; has a &lt;a href=&#34;http://www.componentone.com/SuperProducts/PdfViewerWinRT/&#34;&gt;PDFViewer component&lt;/a&gt; as part of their &lt;a href=&#34;http://www.componentone.com/SuperProducts/StudioWinRTXAML/&#34;&gt;Studio for WinRT XAML&lt;/a&gt; package. This package costs $895. There are &lt;a href=&#34;http://helpcentral.componentone.com/nethelp/PdfViewerWinRT/#!Documents/pdfviewerlimitations1.htm&#34;&gt;many limitations&lt;/a&gt; when using this component that you need to be aware of. If you want to have more control over the rendered PDF files, you can get all the pages as FrameworkElements and do not need to use the PDFViewer as one monolitic component. It does not support all the fonts and complex documents are rendered really messed up, it was not usable for me at all.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Foxit Embedded PDF SDK&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Foxit has a &lt;a href=&#34;http://www.foxitsoftware.com/products/sdk/embedded/winrt/&#34;&gt;Embedded PDF SDK for Windows RT&lt;/a&gt; and &lt;a href=&#34;http://www.foxitsoftware.com/products/sdk/embedded/win8/&#34;&gt;Embedded PDF SDK for Windows Store Apps&lt;/a&gt; (what is the difference?). If you want to try it, you have to fill in a registration form. There is no information about pricing and you need to fill in another form to ask for a quotation. You can get the pages of the PDF files as images if you want more control, but the component only works with StorageFiles. It cannot open a custom stream (e.g: file in isolated storage with custom encryption).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;TallComponents PDFRasterizer&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;TallComponents has a PDFRasterizer component that is currently in beta. You need to &lt;a href=&#34;https://www.tallcomponents.com/betaprogram.aspx&#34;&gt;join the beta program&lt;/a&gt; to get access. The final version should be out in 6-8 weeks. PDFRasterizer costs 1490€ for a single app. It is just a rasterizer, you can get the pages of the PDF files as images and that is all. It works well with differents fonts and complex documents.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;PDFTron Mobile PDF SDK&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.pdftron.com/index.html&#34;&gt;PDFTron&lt;/a&gt; has a &lt;a href=&#34;http://www.pdftron.com/pdfnet/mobile/windows8_winrt_pdf_library.html&#34;&gt;Mobile PDF SDK&lt;/a&gt; that works with Windows Store apps. To get a trial version you have to fill in a form where you have to describe your app. The pricing is not clear, it dependes on many factors and you need to write them an email to get a price. You can get pages from the PDF file but not in a usable format like an image.&lt;/p&gt;
+
+&lt;p&gt;So which PDF solution should you use? That dependes on your needs. I am afraid you will have to check each of them out by yourself and assess it according to your needs.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

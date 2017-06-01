@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Hacking a mobile API and how to protect yourself</title>
+  <meta name="description" content="Sometimes when I use a mobile app that provides data that I find useful my curiosity awakens and I ask myself a question: how does the communication work and how hard would it be to break their security and access the data outside of the app? Mobile apps I have encountered are generally not very well secured and stealing their data is not much of a challenge. But what can the authors of the app do about it? ">
+  <meta name="author" content="davidmacias"/>
+  <meta name="generator" content="Hugo 0.21" />
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel="alternate" href="https://blog.davidmacias.com/index.xml" type="application/rss+xml" title="Igor Kulman">
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://blog.davidmacias.com/css/main.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />  
+
+  
+  
+ 
+  
+    <meta property="og:title" content="Hacking a mobile API and how to protect yourself" />
+  
+
+  
+    <meta property="og:description" content="Sometimes when I use a mobile app that provides data that I find useful my curiosity awakens and I ask myself a question: how does the communication work and how hard would it be to break their security and access the data outside of the app? Mobile apps I have encountered are generally not very well secured and stealing their data is not much of a challenge. But what can the authors of the app do about it?
+Lets take an app and an API and walk through the process. The model app is an app I tried last week and provides TV schedules for many local stations, so data that someone might be interested in stealing.
+
+Attack basics: sniffing the traffic The first thing I always do is sniffing the communication between the app and the server using a proxy server installed on my computer. I use Fiddler but there are many other tools you can use like Charles or mitmproxy. I set the proxy server on the phone to the IP address of the computer (they have to be on the same network) and all the packets from the phone now flow through the computer. A classic man-in-the-middle attack.
+If the app uses HTTP for communication, I can clearly see the data being exchanged. If the app does not use any other kind of security (they rarely do) this is usually it. Always use HTTPS instead of HTTP. It is really easy in 2016.
+The app in our example uses HTTPS so I have to try harder. Luckily Fiddler allows you to capture and decrypt HTTPS traffic. You just need open the browser on your device, go to the IP address of the proxy and install the Fiddler certificate. It does not matter that the app in our example uses HTTPS, I can now see the traffic because it does not check for the correct certificate. When using HTTPS always do SSL pinning. SSL pinning will enable your app to detect scenarios like this and refuse the connection when the certificate is not the one you expect.
+If the app uses HTTPS and does SSL pining there is nothing more I can do with sniffing the traffic. I usually give up because it is not worth my effort.
+The app in our example does not do SSL pinning but I noticed it uses a security token in the header of every request. I can clearly see how to get the server secret and the refresh token, how to use the refresh token but I do not know how to create the security token for every request form the server secret. Do not rely only on HTTPS, always use another mechanism to authenticate the app when not doing SSL pinning. But you should really do SSL pinning.
+Weak link: Android app To proceed I need to attack the app itself to find out how the app creates the security token. There is no easy way to attack the iOS app I used with the proxy but attacking the Android app is usually much easier (if it exists). So I google the name of the app plus &amp;amp;ldquo;APK&amp;amp;rdquo; and find it. The APK is just a zip file with the compiled Java code that you need to decompile. You usually do not need any special tools for this, just google an online tool for APK decompilation.
+Finding a method that creates the security token in decompiled Java code is easy when the app is not obfuscated. You just need to do some text search in the Java files. Always obfuscate your code to make this harder. On Android you can also use NDK to protect sensitive parts of the code. Also do not use something predictable like md5(server secret &#43; device id).
+Conclusion Securing your mobile app and the API it uses is not easy and there is frankly not much you can do to protect against a really good attacker, especially when you have an Android app. The attacker can always get the APK, modify it and remove SSL pinning to see the traffic. Or they can create their own VM and run your app in it to see what code it executes. But security is not absolute, it always depends on your thread model. If you follow my advices, you can make the attackers lives hard so they would not find it feasible to try to break your app security.
+">
+  
+
+  <meta property="og:type" content="website" />
+
+  
+    <meta property="og:url" content="https://blog.davidmacias.com/hacking-a-mobile-api-and-how-to-protect-yourself" />
+    <link rel="canonical" href="https://blog.davidmacias.com/hacking-a-mobile-api-and-how-to-protect-yourself" />
+  
+
+  
+    <meta property="og:image" content="https://blog.davidmacias.com/img/avatar-icon.png" />
+  
+  
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@davidmacias" />
+  <meta name="twitter:creator" content="@davidmacias" />
+
+  
+    <meta name="twitter:title" content="Hacking a mobile API and how to protect yourself" />
+  
+
+  
+    <meta name="twitter:description" content="Sometimes when I use a mobile app that provides data that I find useful my curiosity awakens and I ask myself a question: how does the communication work and how hard would it be to break their security and access the data outside of the app? Mobile apps I have encountered are generally not very well secured and stealing their data is not much of a challenge. But what can the authors of the app do about it?
+Lets take an app and an API and walk through the process. The model app is an app I tried last week and provides TV schedules for many local stations, so data that someone might be interested in stealing.
+
+Attack basics: sniffing the traffic The first thing I always do is sniffing the communication between the app and the server using a proxy server installed on my computer. I use Fiddler but there are many other tools you can use like Charles or mitmproxy. I set the proxy server on the phone to the IP address of the computer (they have to be on the same network) and all the packets from the phone now flow through the computer. A classic man-in-the-middle attack.
+If the app uses HTTP for communication, I can clearly see the data being exchanged. If the app does not use any other kind of security (they rarely do) this is usually it. Always use HTTPS instead of HTTP. It is really easy in 2016.
+The app in our example uses HTTPS so I have to try harder. Luckily Fiddler allows you to capture and decrypt HTTPS traffic. You just need open the browser on your device, go to the IP address of the proxy and install the Fiddler certificate. It does not matter that the app in our example uses HTTPS, I can now see the traffic because it does not check for the correct certificate. When using HTTPS always do SSL pinning. SSL pinning will enable your app to detect scenarios like this and refuse the connection when the certificate is not the one you expect.
+If the app uses HTTPS and does SSL pining there is nothing more I can do with sniffing the traffic. I usually give up because it is not worth my effort.
+The app in our example does not do SSL pinning but I noticed it uses a security token in the header of every request. I can clearly see how to get the server secret and the refresh token, how to use the refresh token but I do not know how to create the security token for every request form the server secret. Do not rely only on HTTPS, always use another mechanism to authenticate the app when not doing SSL pinning. But you should really do SSL pinning.
+Weak link: Android app To proceed I need to attack the app itself to find out how the app creates the security token. There is no easy way to attack the iOS app I used with the proxy but attacking the Android app is usually much easier (if it exists). So I google the name of the app plus &amp;amp;ldquo;APK&amp;amp;rdquo; and find it. The APK is just a zip file with the compiled Java code that you need to decompile. You usually do not need any special tools for this, just google an online tool for APK decompilation.
+Finding a method that creates the security token in decompiled Java code is easy when the app is not obfuscated. You just need to do some text search in the Java files. Always obfuscate your code to make this harder. On Android you can also use NDK to protect sensitive parts of the code. Also do not use something predictable like md5(server secret &#43; device id).
+Conclusion Securing your mobile app and the API it uses is not easy and there is frankly not much you can do to protect against a really good attacker, especially when you have an Android app. The attacker can always get the APK, modify it and remove SSL pinning to see the traffic. Or they can create their own VM and run your app in it to see what code it executes. But security is not absolute, it always depends on your thread model. If you follow my advices, you can make the attackers lives hard so they would not find it feasible to try to break your app security.
+">
+  
+
+  
+    <meta name="twitter:image" content="https://blog.davidmacias.com/img/avatar-icon.png" />
+   
+
+</head>
+
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.davidmacias.com">Igor Kulman</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Projects" href="/projects/">Projects</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About me / contact" href="/about/">About me / contact</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Igor Kulman" href="https://blog.davidmacias.com">
+            <img class="avatar-img" src="https://blog.davidmacias.com/img/avatar-icon.png" alt="Igor Kulman" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+        <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Hacking a mobile API and how to protect yourself</h1>
+            
+
+            
+              <span class="post-meta">Posted on November 2, 2016</span>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </header>
+
+
+    <div class="container" role="main">
+      
+        <div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>Sometimes when I use a mobile app that provides data that I find useful my curiosity awakens and I ask myself a question: how does the communication work and how hard would it be to break their security and access the data outside of the app? Mobile apps I have encountered are generally not very well secured and stealing their data is not much of a challenge. But what can the authors of the app do about it?</p>
+
+<p>Lets take an app and an API and walk through the process. The model app is an app I tried last week and provides TV schedules for many local stations, so data that someone might be interested in stealing.</p>
+
+<p></p>
+
+<h2 id="attack-basics-sniffing-the-traffic">Attack basics: sniffing the traffic</h2>
+
+<p>The first thing I always do is sniffing the communication between the app and the server using a proxy server installed on my computer. I use <a href="http://www.telerik.com/fiddler">Fiddler</a> but there are many other tools you can use like <a href="https://www.charlesproxy.com/">Charles</a> or <a href="https://mitmproxy.org/">mitmproxy</a>. I set the proxy server on the phone to the IP address of the computer (they have to be on the same network) and all the packets from the phone now flow through the computer. A classic <a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">man-in-the-middle attack</a>.</p>
+
+<p>If the app uses HTTP for communication, I can clearly see the data being exchanged. If the app does not use any other kind of security (they rarely do) this is usually it. <strong>Always use HTTPS instead of HTTP</strong>. It is really easy in 2016.</p>
+
+<p>The app in our example uses HTTPS so I have to try harder. Luckily Fiddler allows you to capture and decrypt HTTPS traffic. You just need open the browser on your device, go to the IP address of the proxy and install the Fiddler certificate. It does not matter that the app in our example uses HTTPS, I can now see the traffic because it does not check for the correct certificate. <strong>When using HTTPS always do SSL pinning</strong>. <a href="https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning">SSL pinning</a> will enable your app to detect scenarios like this and refuse the connection when the certificate is not the one you expect.</p>
+
+<p>If the app uses HTTPS and does SSL pining there is nothing more I can do with sniffing the traffic. I usually give up because it is not worth my effort.</p>
+
+<p>The app in our example does not do SSL pinning but I noticed it uses a security token in the header of every request. I can clearly see how to get the server secret and the refresh token, how to use the refresh token but I do not know how to create the security token for every request form the server secret. <strong>Do not rely only on HTTPS, always use another mechanism to authenticate the app when not doing SSL pinning</strong>. But you should really do SSL pinning.</p>
+
+<h2 id="weak-link-android-app">Weak link: Android app</h2>
+
+<p>To proceed I need to attack the app itself to find out how the app creates the security token. There is no easy way to attack the iOS app I used with the proxy but attacking the Android app is usually much easier (if it exists). So I google the name of the app plus &ldquo;APK&rdquo; and find it. The APK is just a zip file with the compiled Java code that you need to decompile. You usually do not need any special tools for this, just google an <a href="http://www.javadecompilers.com/apk">online tool for APK decompilation</a>.</p>
+
+<p>Finding a method that creates the security token in decompiled Java code is easy when the app is not obfuscated. You just need to do some text search in the Java files. <strong>Always obfuscate your code</strong> to make this harder. On Android you can also <strong>use NDK to protect sensitive parts of the code</strong>. Also do not use something predictable like <code>md5(server secret + device id)</code>.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Securing your mobile app and the API it uses is not easy and there is frankly not much you can do to protect against a really good attacker, especially when you have an Android app. The attacker can always get the APK, modify it and remove SSL pinning to see the traffic. Or they can create their own VM and run your app in it to see what code it executes. But <strong>security is not absolute</strong>, it always depends on your thread model. If you follow my advices, you can make the attackers lives hard so they would not find it feasible to try to break your app security.</p>
+      </article>
+
+      <ul class="pager blog-pager">
+        
+          <li class="previous">
+            <a href="https://blog.davidmacias.com/about-the-decline-in-software-quality/" data-toggle="tooltip" data-placement="top" title="About the decline in software quality">&larr; Previous Post</a>
+          </li>
+        
+        
+          <li class="next">
+            <a href="https://blog.davidmacias.com/my-experience-with-the-mvp-awards/" data-toggle="tooltip" data-placement="top" title="My (negative) experience with the Microsoft MVP awards">Next Post &rarr;</a>
+          </li>
+        
+      </ul>
+
+       <div class="pure-g" style="margin-bottom:1em">
+
+   <div class="pure-u-1-2">
+   <p style="text-align:right">This content is open source. 
+   Please <a href="https://github.com/igorkulman/coding-journal/edit/master/content/post/post%5c2016-11-02-hacking-a-mobile-api-and-how-to-protect-yourself.md" title="Help improve article post\2016-11-02-hacking-a-mobile-api-and-how-to-protect-yourself.md">help improve it</a>.</p>
+  </div>
+</div>
+
+      
+        
+          <div class="disqus-comments">                  
+            <button id="show-comments" class="btn btn-default" type="button">Show <span class="disqus-comment-count" data-disqus-url="https://blog.davidmacias.com/hacking-a-mobile-api-and-how-to-protect-yourself">comments</span></button>
+            <div id="disqus_thread"></div>
+
+            <script type="text/javascript">
+              var disqus_config = function () {
+              this.page.url = 'https:\/\/blog.davidmacias.com\/hacking-a-mobile-api-and-how-to-protect-yourself';
+            };
+
+          </script>
+          </div>
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="mailto:igor@kulman.sk" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          <li>
+            <a href="https://github.com/davidmacias" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li>
+            <a href="https://twitter.com/davidmacias" title="Twitter">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li>
+            <a href="https://blog.davidmacias.com/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          davidmacias
+          &nbsp;&bull;&nbsp;
+          2017
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://blog.davidmacias.com">Igor Kulman</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.21</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://blog.davidmacias.com/js/main.js"></script>
+<script src="https://blog.davidmacias.com/js/gist.js"></script>
+
+<script type="text/javascript">
+$(function(){
+  $('#show-comments').on('click', function(){
+    var disqus_shortname = 'coudingjournal';
+
+    (function() {
+      var disqus = document.createElement('script'); 
+      disqus.type = 'text/javascript'; 
+      disqus.async = true;
+      disqus.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(disqus);
+    })();
+
+    $(this).hide(); 
+  });
+});
+
+</script>
+<script id="dsq-count-scr" src="//coudingjournal.disqus.com/count.js" async></script>
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-49528577-2', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+  </body>
+</html>

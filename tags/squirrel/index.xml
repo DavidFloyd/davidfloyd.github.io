@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Squirrel on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/tags/squirrel/</link>
+    <description>Recent content in Squirrel on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Wed, 22 Jun 2016 09:29:12 +0100</lastBuildDate>
+    <atom:link href="/tags/squirrel/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Application deployment with NSIS and Squirrel</title>
+      <link>https://blog.davidmacias.com/application-deployment-with-nsis-and-squirrel/</link>
+      <pubDate>Wed, 22 Jun 2016 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/application-deployment-with-nsis-and-squirrel/</guid>
+      <description>&lt;p&gt;Currently working on a WPF app as a side project for &lt;a href=&#34;http://www.netglade.cz/&#34;&gt;Netglade&lt;/a&gt; I came upon and interesting requirement regarding installation and deployment of the application. As a result I ended with some Squirrel and NSIS knowledge I would like to share.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Requirements&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The client came with a specific set of requirement for the installer&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Check for .NET 4.5.2 and offer installation if not present&lt;/li&gt;
+&lt;li&gt;Install the application for all users (Program Files)&lt;/li&gt;
+&lt;li&gt;Install a hardware driver as part of the install process&lt;/li&gt;
+&lt;li&gt;Create desktop and start menu shortcuts&lt;/li&gt;
+&lt;li&gt;Create an uninstaller&lt;/li&gt;
+&lt;li&gt;Set the application to start after boot / logon&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;and the update process&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;a Check for updates button in the app&lt;/li&gt;
+&lt;li&gt;automatically and installing a newer version if available&lt;/li&gt;
+&lt;li&gt;periodically checking for updates and installing them silently when app is minimized to tray&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Squirrel&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As you may have noticed, most .NET apps nowdays use &lt;a href=&#34;https://github.com/Squirrel/Squirrel.Windows&#34;&gt;Squirrel.Windows&lt;/a&gt;. The problem with Squirrel is that it cannot install a hardware driver as part of the installation process and it typically install applications to the users profile. But Squirrel is a good choice for the applictaion update requirements, so we decided to combine it with a classic installer.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NSIS&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We came up with an idea to combine Squirrel with &lt;a href=&#34;http://nsis.sourceforge.net/Main_Page&#34;&gt;NSIS&lt;/a&gt;. We chose NSIS because it seemed reasonable. I think it is the best of bad choices. The documentation is not very good, especially when using MUI to create a GUI with some meaningful texts and branding.&lt;/p&gt;
+
+&lt;p&gt;The idea was to create a NSIS installer that install the hardware driver and a Squirrel app packages and make the updates work after such installation.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Solution&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The final solution consisted of multiple things combined together. We added Squirrel to the build process of the app, so each build in Release created a Squirrel install package. Then we created the NSIS installer that&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Checks for .NET 4.5.2 presence (using the &lt;a href=&#34;https://github.com/ReVolly/NsisDotNetChecker&#34;&gt;NsisDotNetChecker plugin&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Copies and installs the hardware driver (using a &lt;code&gt;/s&lt;/code&gt; switch for instalaltion without a GUI)&lt;/li&gt;
+&lt;li&gt;Installs the Squirrel package by unpacking it to the install directory in Program Files (using the &lt;a href=&#34;http://nsis.sourceforge.net/NsUnzip_plugin&#34;&gt;NsUnzip plugin&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Set appropriate permission for the install directory (using the &lt;a href=&#34;http://nsis.sourceforge.net/AccessControl_plug-in&#34;&gt;AccessControl plugin&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Copies Squirrel.exe as Update.exe to the install directory&lt;/li&gt;
+&lt;li&gt;Creates shortcuts using the Update.exe instead of the app binary&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To make Squirrel work in this scenario we also had to create a &lt;code&gt;SquirrelTemp&lt;/code&gt; directory one level above the install directory and make it writeable.&lt;/p&gt;
+
+&lt;p&gt;We also had to create a &lt;a href=&#34;https://gist.github.com/igorkulman/702be46eacba7bfe3f1444815aef645a&#34;&gt;custom update logic&lt;/a&gt; to check for new releases and restart the app with full path to correct exe file, but in the ends, it all works.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

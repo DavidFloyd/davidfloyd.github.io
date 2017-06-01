@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Roslyn on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/tags/roslyn/</link>
+    <description>Recent content in Roslyn on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Thu, 09 Jan 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/roslyn/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>C# scripting console for ASP.NET MVC application</title>
+      <link>https://blog.davidmacias.com/c-scripting-console-for-asp-net-mvc-application/</link>
+      <pubDate>Thu, 09 Jan 2014 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/c-scripting-console-for-asp-net-mvc-application/</guid>
+      <description>&lt;p&gt;In a recent larger ASP.NET MVC project running in Windows Azure I needed to provide the advanced users a way to execute custom scripts directly through the webbrowser. A kind of a scripting console where users can create and execute their own scripts, that interact with the project and automate some tasks (that would otherwise require too many clicks).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Choosing the language&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I thought about using Lua but I needed an easy way to integrate with some classes (repositories) used in the project. I decided to use C# as the scripting language and implement the scripting console using &lt;a href=&#34;http://msdn.microsoft.com/en-us/vstudio/roslyn.aspx&#34;&gt;Roslyn&lt;/a&gt;. Roslyn is a really neat project and I recommend taking a look at it, if you do not already know it.&lt;/p&gt;
+
+&lt;p&gt;I extracted the main idea of my implementation of the scripting console and &lt;a href=&#34;http://igorkulman.github.io/WebConsole/&#34;&gt;posted it on GitHub&lt;/a&gt;. I will walk you through it in this blog post.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Basic implementation&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;My basic solution consists of a Textarea the user writes the script to, the script then gets executed by Roslyn and the final result is shown. I also included a basic Repository class to show, that the scripts can use classes from the project. In the real implementation I have a logger class showing the ongoing logs and results but as I said, the Github repo is just an extracted basic idea of the scripting console.&lt;/p&gt;
+
+&lt;p&gt;To execute a C# script in your ASP.NET MVC (or any other) application, you first need to install the Roslyn package and its dependencies&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/igorkulman/8159321.js?file=roslyn-nuget.ps&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Let&amp;#8217;s suppose you have the C# script you want to execute in a string variable called command obtained from the mentioned Textarea. First, you need to create the scripting engine and a session&lt;/p&gt;
+
+&lt;p&gt;There are ScriptEngine classes, one for C# and one for VB.NET so choose the one for C#. You can use any class as the context for the scripts. In the sample, I have a ScriptingContext class containing one public property of a type DataRepository. If you use a class as the context for the scripts, you can access all its properties (Repository of type DataRepository in my case) in the scripts.&lt;/p&gt;
+
+&lt;p&gt;To use a class as the context for the scripts, just pass it to the Roslyn session&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/igorkulman/8159321.js?file=roslyn-session.cs&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;If you want to use more than the core C# libraries, you need to do some referencing and importing. If you are using a class as the context for the scripts, you need to reference its assembly. Suppose you want to use classes and methods from System.Xml and System.Xml.Linq in your scripts. First, you need to add references to the session&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/igorkulman/8159321.js?file=roslyn-context.cs&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;and then import them to the session&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/igorkulman/8159321.js?file=roslyn-import.cs&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Everything is set up now, so just execute the script and get the result&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/igorkulman/8159321.js?file=roslyn-exec.cs&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;The result of the script is the result of the last expression of the script so I recommend using a logger class in the context if you want to get more information about the execution of your script.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Thanks to Roslyn, I was able to create a really usable scripting console for the project and allow users to automate many tasks using C# scripts. This article and the demo project describe just the basics, there are many ways to make the experience better. I for example use the &lt;a href=&#34;http://codemirror.net/&#34;&gt;CodeMirror&lt;/a&gt; editor to provide C# syntax highlighting, to allow users to upload ZIP files they can process in their scripts, etc.&lt;/p&gt;
+
+&lt;p&gt;Source code: &lt;a href=&#34;https://github.com/igorkulman/WebConsole&#34;&gt;WebConsole&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

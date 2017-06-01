@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming In General on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/categories/programming-in-general/</link>
+    <description>Recent content in Programming In General on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Mon, 02 Nov 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/categories/programming-in-general/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Visual Studio extensions to make your life easier</title>
+      <link>https://blog.davidmacias.com/visual-studio-extensions-to-make-your-life-easier/</link>
+      <pubDate>Mon, 02 Nov 2015 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/visual-studio-extensions-to-make-your-life-easier/</guid>
+      <description>&lt;p&gt;This blog post is inspired by the &lt;a href=&#34;http://hmemcpy.com/2015/10/7-open-source-visual-studio-extensions-to-make-your-life-easier/&#34;&gt;7 open-source Visual Studio Extensions to make your life easier&lt;/a&gt; article. In the article Igal Tabachnik showed his favorite Visual Studio extensions, that were quite interesting. I also use a few Visual Studio extensions that make my life easier, so I decided to share.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://visualstudiogallery.msdn.microsoft.com/e792686d-542b-474a-8c55-630980e72c30&#34;&gt;Indent Guides&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Small and simple extension with just one task, displaying indent and page width guides in Visual Studio text editor windows. There are three styles of guides: solid, dotted and dashed, available in thin and thick varieties and customizable color.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/guides.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://www.visualstudiogallery.msdn.microsoft.com/f4d9c2b5-d6d7-4543-a7a5-2d7ebabc2496&#34;&gt;VSColorOutput&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;VSColorOutput can change the color of a line emitted to the output window based on specified rules. The rules consist of regular expressions. Rules map to classifications which in turn map to colors. The default patterns will color build errors in red, warnings in yellow/gold and successful build messages in green. It also colors the output of debug messages when running an app, so you can easily sort exceptions and your custom debug messages containing certain words.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/vscoloroutput.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://visualstudiogallery.msdn.microsoft.com/f3f23845-5b1e-4811-882f-60b7181fa6d6&#34;&gt;Rename Visual Studio Windows Title&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;By default, Visual Studio shows the name of the opened solution name in the title. This makes it easier to navigate among multiple instances of Visual Studio. You see the solution name next to the Visual Studio icon in the taskbar and also in the task manager, when you have to (and we all sometimes have to) kill the right Visual Studio because it stopped responding. You can use it with Git and show the branch or any other info. For more information about this extension, see a &lt;a href=&#34;http://blog.kulman.sk/quick-tip-showing-solution-branch-name-in-visual-studio-title/&#34;&gt;separate blog post I wrote&lt;/a&gt;.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/trayalya.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://visualstudiogallery.msdn.microsoft.com/03448836-db42-46b3-a5c7-5fc5d36a8308&#34;&gt;AsyncFixer&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;AsyncFixer helps developers in finding and correcting 3 common async/await misuses. AsyncFixer was tested with hundreds of C# apps and successfully handles many corner cases. AsyncFixer will work just in the IDE and work as an analyzer on every project you open in Visual Studio. It can also operate in batch mode to correct all misuses in the document, project, or solution.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/asyncfixer-1.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
+    </item>
+    
+    <item>
+      <title>Quick Tip: Showing solution branch name in Visual Studio title</title>
+      <link>https://blog.davidmacias.com/quick-tip-showing-solution-branch-name-in-visual-studio-title/</link>
+      <pubDate>Tue, 21 Jul 2015 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/quick-tip-showing-solution-branch-name-in-visual-studio-title/</guid>
+      <description>&lt;p&gt;By default, Visual Studio shows the name of the opened solution name in the title. This makes it easier to navigate among multiple instances of Visual Studio. You see the solution name next to the Visual Studio icon in the taskbar and also in the task manager, when you have to (and we all sometimes have to) kill the right Visual Studio because it stopped responding.&lt;/p&gt;
+
+&lt;p&gt;I work with Git, switching branches frequently, especially working on features and bug fixes. In this situation, it would be nice if Visual Studio showed not only the solution name but also the current branch in its title. No problem, there is an extension for that.&lt;/p&gt;
+
+&lt;p&gt;The extension is called &lt;a href=&#34;https://visualstudiogallery.msdn.microsoft.com/f3f23845-5b1e-4811-882f-60b7181fa6d6&#34;&gt;Rename Visual Studio Window&lt;/a&gt; and it works with Visual Studio 2015, 2013, 2012, 2010. This extension supports Git, so you can easily add the branch name to the title with a config like mine using [gitBranchName].&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/rename.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Your taskbar will then look like this&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/trayalya.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
+    </item>
+    
+    <item>
+      <title>Custom DateTime deserialization with JSON.NET</title>
+      <link>https://blog.davidmacias.com/custom-datetime-deserialization-with-json-net/</link>
+      <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/custom-datetime-deserialization-with-json-net/</guid>
+      <description>&lt;p&gt;Sometimes you cannot influence the design of the API you have to use and wonder, why the API uses so strangely serialized DateTime and how to handle it using JSON.NET.&lt;/p&gt;
+
+&lt;p&gt;Luckily, JSON.NET makes plugging in custom serializers / deserializes quite easy. There are a few base classes to help you write your own converter, when dealing with DateTime you want to inherit the DateTimeConverterBase class.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;There are two methods in this class to override, WriteJson and ReadJson. All you custom serialization and deserialization logic should be placed there.&lt;/p&gt;
+
+&lt;p&gt;Here is a sample implementation:&lt;/p&gt;
+
+&lt;div data-gist=&#34;31c91704fa93870de4ee&#34; data-file=&#34;CustomDateTimeConverter.cs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;If you want to use your custom converter to serialize or deserialize a property you just need to decorate it with the right attribute.&lt;/p&gt;
+
+&lt;div data-gist=&#34;31c91704fa93870de4ee&#34; data-file=&#34;usage.cs&#34;&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>My year with the Raspberry Pi and what I used it for</title>
+      <link>https://blog.davidmacias.com/my-year-with-the-raspberry-pi-and-what-i-used-it-for/</link>
+      <pubDate>Fri, 13 Feb 2015 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/my-year-with-the-raspberry-pi-and-what-i-used-it-for/</guid>
+      <description>&lt;p&gt;I have been owning and using a Raspberry Pi for over a year now. I started with Raspberry Pi model B and now I added Raspberry Pi 2 immediately after it was announced. Thanks to the fact that an IoT version of Windows 10 will run on the Pi, there is quite a hype about the Pi 2. Many people who did not care about the Pi before are now buying it because of that hype. And mostly they do not know what to do with it. So here is a list of things I used the Pi for, maybe you can get inspired.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Media center&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I always wanted a small cheap low power media center to watch downloaded TV shows on the TV. The Pi was an ideal machine to built. I connected the Pi to a power source, ethernet, external hard drive the TV using HDMI. My distro of choice was &lt;a href=&#34;http://www.raspbmc.com/&#34;&gt;RaspBMC&lt;/a&gt; at first but then I switched to &lt;a href=&#34;http://www.xbian.org/&#34;&gt;XBIAN&lt;/a&gt;. Using this setup, the PI run XBMC (a media center software), that scanned the connected hard drive, found all the downloaded TV shows, and downloaded their metadata to make the experience better. Thanks to HDMI throughput I was able to control XBMC on the PI using the TV remote, not keyboard or mouse needed.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;I use torrents to get the TV shows I watch, because there is no other option in my country (no Netflix, no Amazon Prime ..). I installed a torrent client on the PI (transmission), so the PI could download the TV shows on its own. The torrent client came with a web UI, I opened a port my my router and I was able to add torrents from the office, from the phone, etc.&lt;/p&gt;
+
+&lt;p&gt;So typically, on Monday, I came to the office in the morning. I realized, there was a new episode of say Top Gear last night. I opened the browser, found the right torrent and send it to the PI using the torrent clients web UI. When I came home in the afternoon, the TV shows was there, downloaded, waiting to be played on the TV.&lt;/p&gt;
+
+&lt;p&gt;There is one more great thing that XMC provides and that is streaming your content to mobile devices. You just enabled uPnP in the settings and you can stream your TV shows to your phone or tablet.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Thermometer&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I am not a hardware guy but I wanted to do some hardware experimenters to use the PIs GPIO ports. I found a simple thermometer scheme, bought the components (a thermometer sensor and a resistor) a made a colleague solder it for me. I connected the thermometer the PI and I was able to read the temperature in the room.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/pitherm.jpg&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;Reading the temperature using the command line is not really comfortable, so I created a web UI for the thermometer. I wrote it in Node.js, because it seemed like an interesting platform to try. I made the whole project open source, and you can find it at &lt;a href=&#34;https://github.com/igorkulman/rpi-thermometer&#34;&gt;https://github.com/igorkulman/rpi-thermometer&lt;/a&gt;.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/pi-ui.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;Later I added a WiFi module and tried powering the PI from a battery bank. I basically created a WiFi enabled thermometer, that looked a bit strange. I think I need to get a small LCD display, so there is no need to open a browser when you just want to know the temperature.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NAS and backups&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I had an external disk connected to the PI so I also ran Samba. I used it to offload some of my data to the PI. I am quite a paranoid person, so I also cloned all my personal and work Git repos to the PI and wrote a script that ran &amp;#8220;git pull&amp;#8221; on all of them every night.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Audio streaming in the office&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Last week when I bought PI 2, I migrated my media center setup to it, leaving the old PI model B for experiments. I took the old PI to the office and finally solved a real world issue. There are speakers at the office that we use to play music. The problem is, whoever want to play the musics, needs to connect the speakers to their computer, so the speakers become exclusive and not shared.&lt;/p&gt;
+
+&lt;p&gt;So I connected the PI to the speakers and found and installed &lt;a href=&#34;http://www.woutervanwijk.nl/pimusicbox/&#34;&gt;Music Box&lt;/a&gt; on the PI. It is a media streaming distro that allows you to play online music from sources like Youtube, Spotify or Google Music. Music Box had a web UI, so everybody on the office network could add their favorite songs to the queue easily using a browser.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Windows 10?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Running a version of Windows 10 on the Pi is really interesting when you think about it, but everything I did with the Pi I was able to do without Windows. I could do it because there was a ton of open source ready made tools to help me. At least in the beginning, this will be a problem with Windows 10. I am sure it will take some time for people to create things like thermometer drivers, GPIO control libraries, etc.&lt;/p&gt;
+
+&lt;p&gt;But there is one area I can see Windows 10 to excel on the Pi, and that is building GUI apps, especially touch enabled ones. Imagine you want to build something like a kiosk with a touchscreen and you need an app for that. Using Windows 10 instead of Linux will be much easier because building GUI app on Linux using QT or GTK is quite a pain, creating a Metro (universal) app is much easier.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Using the DebuggerDisplay attribute for better debugging experience</title>
+      <link>https://blog.davidmacias.com/using-the-debuggerdisplay-attribute-for-better-debugging-experience/</link>
+      <pubDate>Mon, 25 Nov 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/using-the-debuggerdisplay-attribute-for-better-debugging-experience/</guid>
+      <description>&lt;p&gt;When debugging a C# program in Visual Studio, I tend to always hover over the variables to glance at their values and structure instead of explicitly writing their names into the watch window. If I want to explore say a collection, I need to unfold each of the items using the + button to get an idea about the data:&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/debug1.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;This is not very comfortable, so thankfully, there is a way to make this experience better, using the &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/system.diagnostics.debuggerdisplayattribute(v=vs.110).aspx&#34;&gt;DebuggerDisplay&lt;/a&gt; attribute. This attribute can be applied to any class (and struct, enum, property, field, delegate, assembly) and allows you to define the information about the class you wanto to see in the debugger.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Give the attribute a string to be displayed and in this string you can reference any data from the class:&lt;/p&gt;
+
+&lt;div data-gist=&#34;7640468&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;When you hover over the data now, you will see a nice readable &amp;#8220;labels&amp;#8221;:&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/debug2.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;If you do not want to add the DebuggerDisplay attribute to all your classes manually, you can use the &lt;a href=&#34;https://github.com/Fody/Visualize&#34;&gt;Visualize&lt;/a&gt; addin for &lt;a href=&#34;https://github.com/Fody/Fody&#34;&gt;Fody&lt;/a&gt;. Visualize will add the DebuggerDisplay atribute to all your classes, using all the classe&amp;#8217;s properties in the &amp;#8220;label&amp;#8221;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Warning&lt;/strong&gt;: showing this &amp;#8220;labels&amp;#8221; takes some time, so do not reference to many data fields.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Succinctly series of free books for programmers</title>
+      <link>https://blog.davidmacias.com/succinctly-series-of-free-books-for-programmers/</link>
+      <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/succinctly-series-of-free-books-for-programmers/</guid>
+      <description>&lt;p&gt;I have recently come across an intreresting project by &lt;a href=&#34;http://www.syncfusion.com?UTM_medium=kulmanblogreview&#34;&gt;Syncfusion&lt;/a&gt;, a company providing software components for the Microsoft platform.&lt;/p&gt;
+
+&lt;table style=&#34;margin-bottom:20px;&#34;&gt;
+  &lt;tr&gt;
+    &lt;td width=&#34;200&#34;&gt;
+      &lt;img src=&#34;//www.syncfusion.com/Content/en-US/Downloads/Images/Ebooks/git_img.PNG&#34; width=&#34;120&#34; height=&#34;160&#34; /&gt;
+    &lt;/td&gt;
+    
+    &lt;td width=&#34;200&#34;&gt;
+      &lt;img src=&#34;//www.syncfusion.com/Content/en-US/Downloads/Images/Ebooks/fsharp-succinctly.PNG&#34; width=&#34;120&#34; height=&#34;160&#34; /&gt;
+    &lt;/td&gt;
+    
+    &lt;td&gt;
+      &lt;img src=&#34;//www.syncfusion.com/Content/en-US/Downloads/Images/Ebooks/iOS_succinctly.PNG&#34; width=&#34;120&#34; height=&#34;160&#34; class=&#34;alignnone&#34; /&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The have created a series of books for programmes called the &lt;a href=&#34;http://www.syncfusion.com/resources/techportal/ebooks?UTM_medium=kulmanblogreview&#34;&gt;Succinctly series&lt;/a&gt;. The goal of the series is to create 50-100 pages ebooks covering various topics. Each book should give you an introduction to the topic inc a succint way, so you do not have to read thick books or spend time finding relevant blog post covering the selected topic.&lt;/p&gt;
+
+&lt;p&gt;All the 20 books covering topics like Data Structures, iOS, Windows Store apps, F#, Git, Gis, HTTP, JQuery, Knockout.js ann many more ale completely free and promise to stay free forever, including all the updates. They are all available in PDF and Kindle format.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;I have read two books so far; Git Succinctly and F# Succinctly. They were both well written and I would recommend them to programmers wanting to learn about those technologies.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The Syncfusion Raffle!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Syncfusion offers for all the readers of this blog to get one of three free licenses for their products. The winners can choose between &lt;a href=&#34;http://www.syncfusion.com/products/windows-phone?UTM_medium=kulmanblogreview&#34;&gt;Essentials Studio for Windows Phone&lt;/a&gt; and &lt;a href=&#34;http://www.syncfusion.com/products/winrt?UTM_medium=kulmanblogreview&#34;&gt;Essentials Studio for WinRT&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To enter the raffle:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Before October 1st 2013: send out a tweet containing the #ebooks and #Syncfusion hashtag, and a link to this blog post. For example: Free #books for programmers by #Syncfusion &lt;a href=&#34;http://bit.ly/151KgQ0&#34;&gt;http://bit.ly/151KgQ0&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://support.twitter.com/entries/80586-how-to-link-directly-to-an-individual-tweet&#34;&gt;Grab the permalink&lt;/a&gt;, and post the link to your tweet as a comment to this blog post, including info if you would like to win Windows Phone or WinRT components (make sure you use a valid email address to comment, I need to be able to contact you if you win!)&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;One entry per person, normal contest rules apply. If you don’t have twitter, just post the message on your blog, Facebook, G+ …&lt;/p&gt;
+
+&lt;p&gt;The winners will be announced on October 1st 2013.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Detecting encoding of uploaded file in ASP.NET MVC</title>
+      <link>https://blog.davidmacias.com/detecting-encoding-of-uploaded-file-in-asp-net-mvc/</link>
+      <pubDate>Tue, 05 Feb 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/detecting-encoding-of-uploaded-file-in-asp-net-mvc/</guid>
+      <description>&lt;p&gt;Uploading a file in ASP.NET MVC is very easy, but there is no easy way to detect the encoding of a uploaded text file. However you can use the fact if you try to read the file with a wrong encoding, you get an DecoderFallbackException. So how do you put everything together?&lt;/p&gt;
+
+&lt;p&gt;First, get a stream of the uploaded file.&lt;/p&gt;
+
+&lt;div data-gist=&#34;5849381&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, read the whole file to a byte array&lt;/p&gt;
+
+&lt;div data-gist=&#34;5849384&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally the trick is to try all the encodings you think the file may be in and chech if if fails or not&lt;/p&gt;
+
+&lt;div data-gist=&#34;5849390&#34;&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Generating all permutations of a list … how hard can that be?</title>
+      <link>https://blog.davidmacias.com/generating-all-permutations-of-a-list-how-hard-can-that-be/</link>
+      <pubDate>Fri, 01 Feb 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/generating-all-permutations-of-a-list-how-hard-can-that-be/</guid>
+      <description>&lt;p&gt;While reading an article that had nothing in common with programming I came upon a sudden need to find a way to generate all the permutations of a list, or more exactly a string (it is just a list of characters). As lazy as I am I tried to google a few examples of C# code that does exactly that. I was horrified that programmers could come up with the complicated ways I found. Not to mention programmers writing a ton of unit test and classes before actualy writing the code that solves to problem.&lt;/p&gt;
+
+&lt;p&gt;The problem is naturally recursive. All the permutations of a list of n items consit of each of the n items combined with all the permutations of the list without the actual item. So if you have a list of let&amp;#8217;s say items (a,b,c), all the permutations are (a+permutation((b,c)) + (b+permutations((a,c))) + (c+permutations((a,b)).&lt;/p&gt;
+
+&lt;p&gt;First I came up with F# code to solve it, after some yield googling:&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;div data-gist=&#34;5849397&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;When I started to think about a C# solution I got stuck. The functional solution was still resonating in my head so I ended up basically rewriting F# to C#:&lt;/p&gt;
+
+&lt;div data-gist=&#34;5849399&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Looking for other functional solutions I found a realy neat way to generate permutations in Haskell, thanks to the generators&lt;/p&gt;
+
+&lt;div data-gist=&#34;5849402&#34;&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>AppHarbor: great place to start your .NET project</title>
+      <link>https://blog.davidmacias.com/appharbor-great-place-to-start-your-net-project/</link>
+      <pubDate>Tue, 08 Jan 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/appharbor-great-place-to-start-your-net-project/</guid>
+      <description>&lt;p&gt;If you want to host your .NET project on the Internet, there are classic ASP.NET webhosting on one side of the spectrum and Microsoft Azure on the other. If you are looking for something in the middle, take a look at &lt;a href=&#34;https://appharbor.com/&#34;&gt;AppHarbor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;AppHarbor&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;AppHarbor is a flexible and scalable .NET Platform-as-a-Service, that you can even &lt;a href=&#34;https://appharbor.com/pricing&#34;&gt;use for free&lt;/a&gt;, limited to one web or worker role. It runs in AWS and is quite similiar to Heroku.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Variety of Add-ons&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;There are &lt;a href=&#34;https://appharbor.com/addons&#34;&gt;many add-on supported by AppHarbor&lt;/a&gt;, including SQL Server, MongoDB, RavenDB, MySQL, Memcacher &amp;#8230; Many of these ad-ons offer free versions so you can test them for free. If you run into some problems, you can use &lt;a href=&#34;http://support.appharbor.com/&#34;&gt;the support forums&lt;/a&gt; or &lt;a href=&#34;http://stackoverflow.com/questions/tagged/appharbor&#34;&gt;StackOverflow&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Flexible deployment&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The thing I like best about AppHarbor are the deployment options. You can push your .NET code to AppHarbor using Git, Mercurial, Subversion or Team Foundation Server with the complimentary Git service or through integrations offered in collaboration with &lt;a href=&#34;http://support.appharbor.com/kb/api/integrating-with-bitbucket&#34;&gt;Bitbucket&lt;/a&gt;, &lt;a href=&#34;http://support.appharbor.com/kb/api/integrating-with-codeplex&#34;&gt;CodePlex&lt;/a&gt; and &lt;a href=&#34;http://blog.appharbor.com/2011/10/13/announcing-github-support&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;When AppHarbor receives your code it will be built by a platform build server. If the code compiles, any unit tests contained in the compiled assemblies will be run. If the code builds and all tests execute successfully, the application is deployed to the AppHarbor application servers.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Compatibility&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The majority of .NET code runs just fine in AppHarbor without any changes. If you use Nuget, you need to enabled Nuget Package Restore for your solution.&lt;/p&gt;
+
+&lt;p&gt;Let the continous deployment begin &amp;#8230; my first AppHarbor project is hosted at &lt;a href=&#34;http://myexpenses.apphb.com/&#34;&gt;http://myexpenses.apphb.com&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Visual Studio Achievements: a bit of gamification to your programming</title>
+      <link>https://blog.davidmacias.com/visual-studio-achievements-a-bit-of-gamification-to-your-programming/</link>
+      <pubDate>Thu, 03 Jan 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/visual-studio-achievements-a-bit-of-gamification-to-your-programming/</guid>
+      <description>&lt;p&gt;Gamification is a great concept that works really well for some people, including me. Gamification may very well be the reason for success of projects like &lt;a href=&#34;http://stackoverflow.com/&#34;&gt;StackOveflow&lt;/a&gt; or &lt;a href=&#34;http://duolingo.com/&#34;&gt;Duolingo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Visual Studio Achievements&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://visualstudiogallery.msdn.microsoft.com/bc7a433b-b594-48d4-bba2-a2f24774d02f&#34;&gt;Visual Studio Achievements&lt;/a&gt; is Visual Studio plugin that rewards you for good practices like having 1000 localized values (&lt;a href=&#34;https://channel9.msdn.com/achievements/visualstudio/MoreThan1000LOC&#34;&gt;Localization Master&lt;/a&gt;) and even for bad practices like writin a single line of 300 characters long (&lt;a href=&#34;https://channel9.msdn.com/achievements/visualstudio/LongerThan300LocAchievement&#34;&gt;Scroll Bar Wizard&lt;/a&gt;). For some of the achievements you need to have FxCop installed, but the majority get awareded without the need for it.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/VisualStudio_badges_2.jpg&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;You can find out interesting information about your programming, check out &lt;a href=&#34;https://channel9.msdn.com/niners/igorkulman/achievements/visualstudio&#34;&gt;my profile&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Using .NET libraries with MonoTouch</title>
+      <link>https://blog.davidmacias.com/using-net-libraries-with-monotouch/</link>
+      <pubDate>Fri, 28 Dec 2012 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/using-net-libraries-with-monotouch/</guid>
+      <description>&lt;p&gt;I have been &lt;a href=&#34;http://blog.kulman.sk/monotouch-ios-development-for-net-programmers/&#34;&gt;playing with MonoTouch&lt;/a&gt; only for a few days when I already started to miss all the .NET libraries I commonly use. The first one I needed to get working with MonoTouch was &lt;a href=&#34;http://james.newtonking.com/projects/json-net.aspx&#34;&gt;JSON.NET&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;MonoDevelop does not support Nuget so you have to get your libaries the old way. I downloaded JSON.NET package from &lt;a href=&#34;http://nuget.org/&#34;&gt;Nuget.org&lt;/a&gt;, but it does not contain a DLL built for Mono. Harldy any Nuget package does. You can reference a DLL built for .NET, MonoDevelop will recognize it and even offer you IntelliSense but your project will not get built.&lt;/p&gt;
+
+&lt;p&gt;The right way to get a .NET library working with MonoTouch is downloading its source code and building it yourself. You can use MonoDevelop to build the source codes. The only think you have to do (at least for JSON.NET) is to change the .NET profile to an equivalent Mono profile in the project settings.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MonoTouch: iOS development for .NET programmers</title>
+      <link>https://blog.davidmacias.com/monotouch-ios-development-for-net-programmers/</link>
+      <pubDate>Wed, 19 Dec 2012 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/monotouch-ios-development-for-net-programmers/</guid>
+      <description>&lt;p&gt;Beeing &lt;a href=&#34;http://blog.kulman.sk/why-i-do-not-like-windows-phone-programming-anymore/&#34;&gt;quite disappointed with the Windows Phone platform recently&lt;/a&gt; I started to look for other ways to use my .NET skills and to develop for a mobile platform at the same time. I found &lt;a href=&#34;http://xamarin.com/monotouch&#34;&gt;MonoTouch&lt;/a&gt;, a product from Xamarin that allows you to build iOS apps using C# with Mono.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What is MonoTouch?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;MonoTouch is a product or a framework do develop iOS apps using &lt;a href=&#34;http://www.mono-project.com/Main_Page&#34;&gt;Mono&lt;/a&gt; (an open-source .NET implementation). It allows you to use C# (hopefuly also F# although I have not been able to get it to work yet) and all the .NET features libraries you use and like and of course your existing codebase. No Objective-C knowledge is required, but you will have to learn about the iOS ecosystem an iOS SDK. The iOS SDK is also needed, so you cannot do the development in Windows, you have to use a Mac. There are ways to get MacOS X working on a PC as a native install or in VMWare / VirtualBox, if you just want to try it out, but it may not be legal.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How does the development work?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When using MonoTouch you create a new project in MonoDevelop that comes with MonoTouch. The UI files (*.xib) cannot be modified using MonoDevelop so you have to use XCode. You define your UI in XCode like you would as a native developer, creating outlets and actions. MonoTouch watches the project files you make in XCode and generates matching C# files, that allow you to use all the UI elements created in XCode from your C# code. This method is prefered, but you can create the whole UI in code and never use XCode.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/monotocuh.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;The iOS development uses MVC pattern, but it does not look like the MVC pattern I am used to. It looks to me more like WinForms development than WPF or other XAML-based technology using MVVM. Just to be clear, MonoTouch would not shield you from the iOS specific stuff, it just porjects the iOS SDK methods and properties to Mono. But it still C# (check out the Write beautiful code section on the &lt;a href=&#34;http://xamarin.com/monotouch&#34;&gt;MonoTouch website&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;The MonoTouch project compiles to native ARM code.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Should you use it?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;That depends. If you are a .NET developer, MonoTouch is definitely the way to do your iOS development. If you will be in a position to decide between native iOS development and MonoTouch, definetely &lt;a href=&#34;http://stackoverflow.com/questions/1583856/how-to-decide-between-monotouch-and-objective-c&#34;&gt;check out this StackOverflow question&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The prices start at $399 for indie developers and companies with less then 10 employees. The evaluation version allows you to develop a full application and test it in the simulator, but you have to have a commercial license to deploy to a real device and to the AppStore.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Being a polyglot programmer</title>
+      <link>https://blog.davidmacias.com/being-a-polyglot-programmer/</link>
+      <pubDate>Tue, 06 Nov 2012 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/being-a-polyglot-programmer/</guid>
+      <description>&lt;p&gt;Many programmers learn one platform, one language and stay in their monoculture. Learning many different programming languages can definitely change your programming style and the way you think about problems. It was certainly beneficial for me, here is why.&lt;/p&gt;
+
+&lt;p&gt;After learning Pascal, C in the first semester at the University I started be commercial programming career as a PHP developer (part time in the second semester).  It was easy to start with and in demand so finding a part time job was easy. I never liked the language, it was not &amp;#8220;pure&amp;#8221;, I especially hated the function naming and parameters orders inconsistencies.&lt;/p&gt;
+
+&lt;p&gt;At the university I learned OOP principles and C++ and thought OOP was the answer to everything so I immediately changed my PHP programming style to incorporate it. My code became more readable and organized.  Later at the university I had to learn nonprocedural Prolog and functional Haskell. I found it very difficult because I had to think in another way and came out of my comfort zone. When I finished the course I really liked Haskell and functional programming because of its clarity, readability and the fact that I could write a very compact code. But I had no practical use for it. It did not change my Programming style but made me look for a more pure and &amp;#8220;nicer&amp;#8221; language to learn.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;I found .NET and C# and was amazed by the tools for ASP.NET. Comparing to PHP creating websites in ASP.NET was easier, the programming language was more comfortable. I let PHP go and found a part time job as a .NET developer. Instead of ASP.NET I was hired for I programmed a Windows Mobile app in .NET Compact Framework. It was a great experience, I discovered threads and asynchronous programming. I took a C# course at the university and then worked a few months as a part time ASP.NET developer and discovered LINQ. LINQ was great and is one of the best (if not the best) features of .NET, it makes you write compact and clear code and lets you to an extent think functional (ideal for me as a Haskell fan). I began using LINQ extensively, my code and my programming style improved a lot.&lt;/p&gt;
+
+&lt;p&gt;I quickly got fed up with web development in ASP.NET, because it was not very challenging coding. I wanted to learn something new and do something more challenging. I found a part time job at Siemens that was partly analytical and partly programming and came to contact with Java. The only experience I had with Java before that was programming J2ME apps for my Siemens phone (strange coincidence).  Java felt strange, too much object oriented, no functional elements and without LINQ I felt like I was back in the stone age. But thanks to Java I discovered NoSQL databases, especially MongoDB. NoSQL databases changed my thinking about storing data, it was a great shift. They are a great fit for many project, you just need to realize that not everything must be force into a solid structure.&lt;/p&gt;
+
+&lt;p&gt;Quite recently I discovered F# and I was really thrilled. It let me program completely functional and at the same time interoperate with all the existing .NET code and libraries. It changed my programming style once again to be more functional and expressing. I try to do as much coding as possible in F# but is a real shame that Microsoft does not push it and it is still not equal to C#.&lt;/p&gt;
+
+&lt;p&gt;At the moment I am exploring Scala and Python through online courses at &lt;a href=&#34;http://coursera.org&#34;&gt;Coursera&lt;/a&gt; and in the future I may take a look at Erlang. I strongly encourage you do the same, learn as many languages and as many programming paradigms as you can, it will widen your horizons and make you a better programmer. You do not even need to use these languages every day, your programming style will improve independently on the language you program.&lt;/p&gt;
+
+&lt;p&gt;Update: After some experiments with Scala I think it is a really ugly language, compared to say Haskell. I took a look at SML, Racker and Ruby and I quite liked all of them.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

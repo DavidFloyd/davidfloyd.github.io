@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Google on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/tags/google/</link>
+    <description>Recent content in Google on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Wed, 01 Jul 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/google/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Implementing Google login in Universal Apps</title>
+      <link>https://blog.davidmacias.com/implementing-google-login-in-universal-apps/</link>
+      <pubDate>Wed, 01 Jul 2015 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/implementing-google-login-in-universal-apps/</guid>
+      <description>&lt;p&gt;In a recent project I had to implement Google login to an Universal App. I decided to use the native &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/windows.security.authentication.web.webauthenticationbroker.aspx&#34;&gt;WebAuthenticationBroker&lt;/a&gt; control and the implementation was not as straightforward as I hoped. By implementing Google login I mean getting the authentication token that you can then use with your server API.&lt;/p&gt;
+
+&lt;p&gt;WebAuthenticationBroker is a good idea but it is implemented rather poorly. It works differently on Windows 8.1 and Windows Phone 8.1 due to the &amp;#8220;AndContinue&amp;#8221; pattern that Windows Phone 8.1 forces on you. You can solve this with &lt;a href=&#34;http://blog.kulman.sk/why-universal-apps-as-not-as-universal-as-you-may-think/&#34;&gt;some ifdefs and platform specific code, as always&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The real problem s that the &lt;a href=&#34;https://code.msdn.microsoft.com/windowsapps/Web-Authentication-d0485122&#34;&gt;MSDN sample&lt;/a&gt; states it works with Google login but it does not. The sample thinks it gets the authentication token but it does not, it just gets the success code that you have to exchange for the authentication token yourself.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Lets start with a basic config&lt;/p&gt;
+
+&lt;div data-gist=&#34;65a406f7f3cff48be3c5&#34; data-file=&#34;config.cs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;The important things here are your Google app id and Google app secret. The GoogleStartUri also contains permissions that you want to get (profile, &lt;a href=&#34;https://www.googleapis.com/auth/plus.login&#34;&gt;https://www.googleapis.com/auth/plus.login&lt;/a&gt; and &lt;a href=&#34;https://www.googleapis.com/auth/plus.me&#34;&gt;https://www.googleapis.com/auth/plus.me&lt;/a&gt; email in my case).&lt;/p&gt;
+
+&lt;p&gt;You use this config with a WebAuthenticationBroker call&lt;/p&gt;
+
+&lt;div data-gist=&#34;65a406f7f3cff48be3c5&#34; data-file=&#34;login.cs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;on Windows 8.1 you get the response data immediately. On Windows Phone 8.1, you have to implement the &amp;#8220;AndContinue&amp;#8221; pattern.&lt;/p&gt;
+
+&lt;p&gt;You use the response data to parse out the success code&lt;/p&gt;
+
+&lt;div data-gist=&#34;65a406f7f3cff48be3c5&#34; data-file=&#34;GetGoogleSuccessCode.cs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Now that you have the success code, you can exchange it for the authentication token&lt;/p&gt;
+
+&lt;p&gt;And now you finally have a way to get the authentication token and implement Google login.&lt;/p&gt;
+
+&lt;div data-gist=&#34;65a406f7f3cff48be3c5&#34; data-file=&#34;GetToken.cs&#34;&gt;&lt;/div&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

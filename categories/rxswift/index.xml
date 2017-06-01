@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rxswift on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/categories/rxswift/</link>
+    <description>Recent content in Rxswift on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Tue, 21 Mar 2017 09:29:12 +0100</lastBuildDate>
+    <atom:link href="/categories/rxswift/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Using MVVM with tables and cells in iOS</title>
+      <link>https://blog.davidmacias.com/using-mvvm-with-tables-in-ios/</link>
+      <pubDate>Tue, 21 Mar 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/using-mvvm-with-tables-in-ios/</guid>
+      <description>&lt;p&gt;When I ventured into native iOS development I immediately took a look at the possibility to &lt;a href=&#34;https://blog.davidmacias.com/using-data-binding-in-ios&#34;&gt;use data binding on iOS&lt;/a&gt; which enables me to simply declare the relationships between the UI and the ViewModel. This article takes that approach further shows you how to use MVVM and data binding when using tables and cells, or in the world of iOS &lt;code&gt;UITableView&lt;/code&gt; and &lt;code&gt;UITableViewCell&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;sample-scenario&#34;&gt;Sample scenario&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start with simple example scenario. You want to show progress of some flow that contains of multiple steps, each of the steps can be either running or complete. When a step is running it can report its progress. You want to display this flow in a table that looks like this&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/iostablemvvm.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;the-classic-ios-way&#34;&gt;The classic iOS way&lt;/h2&gt;
+
+&lt;p&gt;Now imagine you want to implement this scenario in the classic iOS way. You will have a list of some model. Every time you add an item to the list you need to refresh the table. Every time you change something on a model in the list you need to refresh the table and of course you need a table delegate to manipulate the UI according to the properties of the model.&lt;/p&gt;
+
+&lt;p&gt;Of course there is a better, more declarative way.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-reactive-way&#34;&gt;The reactive way&lt;/h2&gt;
+
+&lt;h3 id=&#34;viewmodel&#34;&gt;ViewModel&lt;/h3&gt;
+
+&lt;p&gt;First you need a ViewModel for all the steps of the flow. My flow is connected to application synchronization, so my ViewModel is called &lt;code&gt;SyncStepViewModel&lt;/code&gt;&lt;/p&gt;
+
+&lt;div data-gist=&#34;a2c5b63f835e8bd01df89566a5627d6b&#34; data-file=&#34;SyncStepViewModel.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;This ViewModel has a title, contains property determining if the flow step is currently running, property for the current progress percentage and a computed property for the step title. This computer property just adds the progress percentage at the end of the title when applicable.&lt;/p&gt;
+
+&lt;p&gt;The ViewModel for the screen just needs to hold the array of the flow steps in an observable way, so let&amp;rsquo;s make it easy&lt;/p&gt;
+
+&lt;div data-gist=&#34;a2c5b63f835e8bd01df89566a5627d6b&#34; data-file=&#34;SyncViewModel.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;This ViewModel will of course contains some logic to add the flow steps to the array.&lt;/p&gt;
+
+&lt;h3 id=&#34;table-and-cells-binding&#34;&gt;Table and cells binding&lt;/h3&gt;
+
+&lt;p&gt;Binding the &lt;code&gt;SyncViewModel&lt;/code&gt; to the &lt;code&gt;UITableView&lt;/code&gt; in the &lt;code&gt;UIViewController&lt;/code&gt; is really easy&lt;/p&gt;
+
+&lt;div data-gist=&#34;a2c5b63f835e8bd01df89566a5627d6b&#34; data-file=&#34;SyncViewController.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;It is just a few lines of declarative code and no delegates!&lt;/p&gt;
+
+&lt;p&gt;The tricky part is the &lt;code&gt;UITableViewCell&lt;/code&gt; and making the UI work with the ViewModel. As you can see from the previous snippet, I do not access any of the UI elements of my &lt;code&gt;SyncStepCell&lt;/code&gt; I just assign the ViewModel. The &lt;code&gt;SyncStepCell&lt;/code&gt; takes care of the rest using data binding&lt;/p&gt;
+
+&lt;div data-gist=&#34;a2c5b63f835e8bd01df89566a5627d6b&#34; data-file=&#34;SyncStepCell.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;My &lt;code&gt;UITableViewCell&lt;/code&gt; just &amp;ldquo;waits&amp;rdquo; for the ViewModel and then sets up all the necessary bindings. Again, no direct access to the UI elements, just making everything work in a simple declarative way.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Using data binding in iOS</title>
+      <link>https://blog.davidmacias.com/using-data-binding-in-ios/</link>
+      <pubDate>Tue, 14 Mar 2017 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/using-data-binding-in-ios/</guid>
+      <description>&lt;p&gt;When I started working on a native iOS project after a few years of Windows (Phone) development I looked into ways to write a more declarative and more elegant code than the &amp;ldquo;standard&amp;rdquo; iOS way. I wanted to transfer some of my habits over and the first thing I really missed was XAML data binding. I did some research on how to do data binding in iOS and found a few libraries that make it possible. This allowed me to write better code and I think data binding is a concept that all the iOS developer should look into. If you are interested in my experience with using binding in iOS, read on.&lt;/p&gt;
+
+&lt;h2 id=&#34;sample-scenario&#34;&gt;Sample scenario&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s use a simple example scenario. You have a screen where the users have to choose their country and then enter their mobile number. The number has to be validated with respect to the selected country and if everything is ok the Next button should become visible. So basically it should work like this&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/iosvalidation.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;There are number of things that need to happen&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Selecting the country should refresh the validation state&lt;/li&gt;
+&lt;li&gt;Changing the mobile number should refresh the validation state as the users type&lt;/li&gt;
+&lt;li&gt;Setting the validation state should also set the mobile number text field text color&lt;/li&gt;
+&lt;li&gt;Setting the validation state should also set the Next button enabled state&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That is quite a lot of things if you add the validation logic (I use the &lt;a href=&#34;https://github.com/iziz/libPhoneNumber-iOS&#34;&gt;libPhoneNumber-iOS&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h2 id=&#34;the-classic-ios-way&#34;&gt;The classic iOS way&lt;/h2&gt;
+
+&lt;p&gt;Now imagine you want to implement this scenario in the classic iOS way. You will have one Massive View Controller that would do many things.&lt;/p&gt;
+
+&lt;p&gt;You will have a method that does validation and sets the mobile number text field text color and the Next button enabled state according to the result of this validation. Then you will have a delegate for the mobile number text field and you will have to call the validation method with every change. And finally you will have to change all the code that sets the selected country and call the validation method after each set. Of course you can use &lt;code&gt;didSet&lt;/code&gt; but that will add a bad coupling between your model and your UI.&lt;/p&gt;
+
+&lt;p&gt;There must be a better, more declarative way!&lt;/p&gt;
+
+&lt;h2 id=&#34;data-binding&#34;&gt;Data binding&lt;/h2&gt;
+
+&lt;p&gt;UI data binding is a software design pattern to simplify development of GUI applications. UI data binding binds UI elements to an application domain model. Most frameworks employ the Observer pattern as the underlying binding mechanism.&lt;/p&gt;
+
+&lt;p&gt;The main idea is simple, you declare what UI elements are connected to what properties in your model. Of course you can do some transformations, like mapping the validation state to text color. There are a few frameworks that will help you do it.&lt;/p&gt;
+
+&lt;h3 id=&#34;bond&#34;&gt;Bond&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/ReactiveKit/Bond&#34;&gt;Bond&lt;/a&gt; is a Swift library based on &lt;a href=&#34;https://github.com/ReactiveKit/ReactiveKit&#34;&gt;ReactiveKit&lt;/a&gt; that allows you to do binding in a simple way. The documentation is quite sufficient and there is also a &lt;a href=&#34;https://www.raywenderlich.com/123108/bond-tutorial&#34;&gt;quite nice tutorial&lt;/a&gt;. It allows not only data binding basic UI elements like text fields but also supports data binding table views. So I tried it first.&lt;/p&gt;
+
+&lt;p&gt;I created a ViewModel with a property for the selected country, another property for the mobile number and a signal telling if the mobile number is valid. Every time the mobile number or the selected country changes, the validity signal also changes automatically. The ViewModel is quite simple, creating the validation signal in a nice declarative way&lt;/p&gt;
+
+&lt;div data-gist=&#34;2bb98d3398d1f211ba0f81c0f6ee90e7&#34; data-file=&#34;BondVM.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Binding this ViewModel to the ViewController is also quite simple&lt;/p&gt;
+
+&lt;div data-gist=&#34;2bb98d3398d1f211ba0f81c0f6ee90e7&#34; data-file=&#34;BondBinding.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;I used Bond for a while but when I wanted to do more reactive programming, Bond was not enough. It is a data binding library, it works well for data binding but if you want to do more you have to choose something more powerful. So I switched to RxSwift.&lt;/p&gt;
+
+&lt;h3 id=&#34;rxswift-vs-reactiveswift&#34;&gt;RxSwift vs ReactiveSwift&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/ReactiveX/RxSwift&#34;&gt;RxSwift&lt;/a&gt; and &lt;a href=&#34;https://github.com/ReactiveCocoa/ReactiveSwift&#34;&gt;ReactiveSwift&lt;/a&gt; are two most popular reactive programming libraries for iOS. I recommend you read an &lt;a href=&#34;https://www.raywenderlich.com/126522/reactivecocoa-vs-rxswift&#34;&gt;article comparing those two libraries&lt;/a&gt; and choose the one that you like best. I chose RxSwift because it is a Swift implementation of the .NET Reactive Extensions I am familiar with and the documentation is so much better. There is also a &lt;a href=&#34;https://github.com/RxSwiftCommunity/&#34;&gt;RxSwift community repository&lt;/a&gt; with extension that add support for table views, gestures, etc.&lt;/p&gt;
+
+&lt;p&gt;The ViewModel looks a bit different when using RxSwift than when using Bond, but the main idea is the same&lt;/p&gt;
+
+&lt;div data-gist=&#34;2bb98d3398d1f211ba0f81c0f6ee90e7&#34; data-file=&#34;RxSwift.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;The actual bindings are also quite similar. The main difference is it is more visible what is being bound to what and in what direction&lt;/p&gt;
+
+&lt;div data-gist=&#34;2bb98d3398d1f211ba0f81c0f6ee90e7&#34; data-file=&#34;RxSwiftBinding.swift&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Compare this to the amount of code you would have to write using the &amp;ldquo;standard&amp;rdquo; iOS way.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;I think data binding is a great concept that makes your code more declarative, more elegant and much simpler. It has been widely used in the Microsoft platforms with XAML, now it is also available in Android so it is time that iOS developers make a mental switch from delegates and start programming in a more declarative and reactive way. It is definitely worth it.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

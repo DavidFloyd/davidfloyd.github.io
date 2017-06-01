@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Why you should not use Windows Store for in-app purchases</title>
+  
+  <meta name="author" content="davidmacias"/>
+  <meta name="generator" content="Hugo 0.21" />
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel="alternate" href="https://blog.davidmacias.com/index.xml" type="application/rss+xml" title="Igor Kulman">
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://blog.davidmacias.com/css/main.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />  
+
+  
+  
+ 
+  
+    <meta property="og:title" content="Why you should not use Windows Store for in-app purchases" />
+  
+
+  
+    <meta property="og:description" content="I often wonder how can something as crucial as in-app purchases be so badly implemented in Windows Store. I really do not recommend anyone to use Windows Store&amp;amp;#8217;s built in in-app purchases. Use a third party provider or implement your own purchase mechanism, Microsoft is ok with that. You will be better of than using the built-in one. Here is why.
+Limited number of in-app purchases per app
+I previously wrote about the fact that Windows Store limits the number of in-app purchases you can define for an app. The current limit is 200. If you need more, say you sell a daily newspaper, you are out of luck and Windows Store&amp;amp;#8217;s in app-purchases are not for you.
+
+Complicated receipt validation outside of .NET
+If you use in-app purchases you surely want to validate them on your server, especially considering the very weak security that Windows 8 offers to Windows Store apps. If you are not using .NET on your server, there is no guide on how to do it. Microsoft only offers a code sample in C#, nothing else. Good luck finding a solution for say PHP, I could not find any.
+Half-baked purchases restoration
+If a user uninstalls your app and installs it again you typically do not want him to need to buy everything again. You need a way to restore the purchases. If you do not use server-side receipt validation, it is trivial, even more trivial than cracking your application and getting everything for free. If you use server-side receipt validation, things get complicated.
+Restoring purchases is typically done in a very simple way. You request all the receipts from the app store and send them to your server for validation. The server then enables the bought items for the user. I would not be Windows Store if there were no catch.
+The problem is that you can get the receipt just once, when the users makes the in-app purchase. There is no way to get the receipt at any later time. There is a method called GetProductReceiptAsync but it throws an NotImplementedException. Looks like Microsoft did not really think that anyone would want to restore purchases in combination with server-side validation (Typical use-case in say AppStore).
+The only way to implement this is storing all the receipts on the server and sending the server receipt ids when restoring purchases. You can get the receipt ids from GetAppReceiptAsync after some XML parsing. Just make sure the receipt gets to the server after the purchase, because there is no way to get it again.
+No sandbox for testing
+You cannot do any &amp;amp;#8220;real&amp;amp;#8221; testing with Windows Store. It does not provide any sanbox. The only way to test the in-app purchases is to use the primitive CurrentAppSimulator that can basically just simulate if the users cliked ok or cancel in the buy dialog or if there was an error. You cannot use it to test you server-side receipt validation.
+There is no way to &amp;amp;#8220;pair&amp;amp;#8221; your app running form Visual Studio to you app defined in Windows Store for testing purposes. You really need to trust your implementation and you can test it only after the app is published and live in Windows Store.
+">
+  
+
+  <meta property="og:type" content="website" />
+
+  
+    <meta property="og:url" content="https://blog.davidmacias.com/why-you-should-not-use-windows-store-for-in-app-purchases/" />
+    <link rel="canonical" href="https://blog.davidmacias.com/why-you-should-not-use-windows-store-for-in-app-purchases/" />
+  
+
+  
+    <meta property="og:image" content="https://blog.davidmacias.com/img/avatar-icon.png" />
+  
+  
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@davidmacias" />
+  <meta name="twitter:creator" content="@davidmacias" />
+
+  
+    <meta name="twitter:title" content="Why you should not use Windows Store for in-app purchases" />
+  
+
+  
+    <meta name="twitter:description" content="I often wonder how can something as crucial as in-app purchases be so badly implemented in Windows Store. I really do not recommend anyone to use Windows Store&amp;amp;#8217;s built in in-app purchases. Use a third party provider or implement your own purchase mechanism, Microsoft is ok with that. You will be better of than using the built-in one. Here is why.
+Limited number of in-app purchases per app
+I previously wrote about the fact that Windows Store limits the number of in-app purchases you can define for an app. The current limit is 200. If you need more, say you sell a daily newspaper, you are out of luck and Windows Store&amp;amp;#8217;s in app-purchases are not for you.
+
+Complicated receipt validation outside of .NET
+If you use in-app purchases you surely want to validate them on your server, especially considering the very weak security that Windows 8 offers to Windows Store apps. If you are not using .NET on your server, there is no guide on how to do it. Microsoft only offers a code sample in C#, nothing else. Good luck finding a solution for say PHP, I could not find any.
+Half-baked purchases restoration
+If a user uninstalls your app and installs it again you typically do not want him to need to buy everything again. You need a way to restore the purchases. If you do not use server-side receipt validation, it is trivial, even more trivial than cracking your application and getting everything for free. If you use server-side receipt validation, things get complicated.
+Restoring purchases is typically done in a very simple way. You request all the receipts from the app store and send them to your server for validation. The server then enables the bought items for the user. I would not be Windows Store if there were no catch.
+The problem is that you can get the receipt just once, when the users makes the in-app purchase. There is no way to get the receipt at any later time. There is a method called GetProductReceiptAsync but it throws an NotImplementedException. Looks like Microsoft did not really think that anyone would want to restore purchases in combination with server-side validation (Typical use-case in say AppStore).
+The only way to implement this is storing all the receipts on the server and sending the server receipt ids when restoring purchases. You can get the receipt ids from GetAppReceiptAsync after some XML parsing. Just make sure the receipt gets to the server after the purchase, because there is no way to get it again.
+No sandbox for testing
+You cannot do any &amp;amp;#8220;real&amp;amp;#8221; testing with Windows Store. It does not provide any sanbox. The only way to test the in-app purchases is to use the primitive CurrentAppSimulator that can basically just simulate if the users cliked ok or cancel in the buy dialog or if there was an error. You cannot use it to test you server-side receipt validation.
+There is no way to &amp;amp;#8220;pair&amp;amp;#8221; your app running form Visual Studio to you app defined in Windows Store for testing purposes. You really need to trust your implementation and you can test it only after the app is published and live in Windows Store.
+">
+  
+
+  
+    <meta name="twitter:image" content="https://blog.davidmacias.com/img/avatar-icon.png" />
+   
+
+</head>
+
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.davidmacias.com">Igor Kulman</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Projects" href="/projects/">Projects</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About me / contact" href="/about/">About me / contact</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Igor Kulman" href="https://blog.davidmacias.com">
+            <img class="avatar-img" src="https://blog.davidmacias.com/img/avatar-icon.png" alt="Igor Kulman" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+        <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Why you should not use Windows Store for in-app purchases</h1>
+            
+
+            
+              <span class="post-meta">Posted on July 16, 2013</span>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </header>
+
+
+    <div class="container" role="main">
+      
+        <div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>I often wonder how can something as crucial as in-app purchases be so badly implemented in Windows Store. I really do not recommend anyone to use Windows Store&#8217;s built in in-app purchases. Use a third party provider or implement your own purchase mechanism, Microsoft is ok with that. You will be better of than using the built-in one. Here is why.</p>
+
+<p><strong>Limited number of in-app purchases per app</strong></p>
+
+<p>I previously wrote about the fact that <a href="http://blog.kulman.sk/windows-store-limits-the-number-of-in-app-purchases-for-an-app/">Windows Store limits the number of in-app purchases you can define for an app</a>. The current limit is 200. If you need more, say you sell a daily newspaper, you are out of luck and Windows Store&#8217;s in app-purchases are not for you.</p>
+
+<p></p>
+
+<p><strong>Complicated receipt validation outside of .NET</strong></p>
+
+<p>If you use in-app purchases you surely want to validate them on your server, especially considering the very weak security that Windows 8 offers to Windows Store apps. If you are not using .NET on your server, there is no guide on how to do it. Microsoft only offers a code sample in C#, nothing else. Good luck finding a solution for say PHP, I could not find any.</p>
+
+<p><strong>Half-baked purchases restoration</strong></p>
+
+<p>If a user uninstalls your app and installs it again you typically do not want him to need to buy everything again. You need a way to restore the purchases. If you do not use server-side receipt validation, it is trivial, even more trivial than cracking your application and getting everything for free. If you use server-side receipt validation, things get complicated.</p>
+
+<p>Restoring purchases is typically done in a very simple way. You request all the receipts from the app store and send them to your server for validation. The server then enables the bought items for the user. I would not be Windows Store if there were no catch.</p>
+
+<p>The problem is that you can get the receipt just once, when the users makes the in-app purchase. There is no way to get the receipt at any later time. There is a method called <a href="http://msdn.microsoft.com/en-us/library/windows/apps/windows.applicationmodel.store.currentapp.getproductreceiptasync.aspx">GetProductReceiptAsync</a> but it throws an NotImplementedException. Looks like Microsoft did not really think that anyone would want to restore purchases in combination with server-side validation (Typical use-case in say AppStore).</p>
+
+<p>The only way to implement this is storing all the receipts on the server and sending the server receipt ids when restoring purchases. You can get the receipt ids from <a href="http://msdn.microsoft.com/en-us/library/windows/apps/windows.applicationmodel.store.currentapp.getappreceiptasync.aspx">GetAppReceiptAsync</a> after some XML parsing. Just make sure the receipt gets to the server after the purchase, because there is no way to get it again.</p>
+
+<p><strong>No sandbox for testing</strong></p>
+
+<p>You cannot do any &#8220;real&#8221; testing with Windows Store. It does not provide any sanbox. The only way to test the in-app purchases is to use the primitive <a href="http://msdn.microsoft.com/en-us/library/windows/apps/windows.applicationmodel.store.currentappsimulator">CurrentAppSimulator</a> that can basically just simulate if the users cliked ok or cancel in the buy dialog or if there was an error. You cannot use it to test you server-side receipt validation.</p>
+
+<p>There is no way to &#8220;pair&#8221; your app running form Visual Studio to you app defined in Windows Store for testing purposes. You really need to trust your implementation and you can test it only after the app is published and live in Windows Store.</p>
+      </article>
+
+      <ul class="pager blog-pager">
+        
+          <li class="previous">
+            <a href="https://blog.davidmacias.com/windows-phone-run-background-agent-every-minute/" data-toggle="tooltip" data-placement="top" title="Windows Phone: run background agent every minute">&larr; Previous Post</a>
+          </li>
+        
+        
+          <li class="next">
+            <a href="https://blog.davidmacias.com/intercepting-methods-with-ninject-for-error-logging/" data-toggle="tooltip" data-placement="top" title="Intercepting methods with Ninject for error logging">Next Post &rarr;</a>
+          </li>
+        
+      </ul>
+
+       <div class="pure-g" style="margin-bottom:1em">
+
+   <div class="pure-u-1-2">
+   <p style="text-align:right">This content is open source. 
+   Please <a href="https://github.com/igorkulman/coding-journal/edit/master/content/post/post%5c2013-07-16-why-you-should-not-use-windows-store-for-in-app-purchases.md" title="Help improve article post\2013-07-16-why-you-should-not-use-windows-store-for-in-app-purchases.md">help improve it</a>.</p>
+  </div>
+</div>
+
+      
+        
+          <div class="disqus-comments">                  
+            <button id="show-comments" class="btn btn-default" type="button">Show <span class="disqus-comment-count" data-disqus-url="https://blog.davidmacias.com/why-you-should-not-use-windows-store-for-in-app-purchases">comments</span></button>
+            <div id="disqus_thread"></div>
+
+            <script type="text/javascript">
+              var disqus_config = function () {
+              this.page.url = 'https:\/\/blog.davidmacias.com\/why-you-should-not-use-windows-store-for-in-app-purchases';
+            };
+
+          </script>
+          </div>
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          <li>
+            <a href="mailto:igor@kulman.sk" title="Email me">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          <li>
+            <a href="https://github.com/davidmacias" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li>
+            <a href="https://twitter.com/davidmacias" title="Twitter">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li>
+            <a href="https://blog.davidmacias.com/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          davidmacias
+          &nbsp;&bull;&nbsp;
+          2017
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://blog.davidmacias.com">Igor Kulman</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.21</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://blog.davidmacias.com/js/main.js"></script>
+<script src="https://blog.davidmacias.com/js/gist.js"></script>
+
+<script type="text/javascript">
+$(function(){
+  $('#show-comments').on('click', function(){
+    var disqus_shortname = 'coudingjournal';
+
+    (function() {
+      var disqus = document.createElement('script'); 
+      disqus.type = 'text/javascript'; 
+      disqus.async = true;
+      disqus.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(disqus);
+    })();
+
+    $(this).hide(); 
+  });
+});
+
+</script>
+<script id="dsq-count-scr" src="//coudingjournal.disqus.com/count.js" async></script>
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-49528577-2', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/tags/security/</link>
+    <description>Recent content in Security on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Wed, 02 Nov 2016 09:29:12 +0100</lastBuildDate>
+    <atom:link href="/tags/security/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hacking a mobile API and how to protect yourself</title>
+      <link>https://blog.davidmacias.com/hacking-a-mobile-api-and-how-to-protect-yourself/</link>
+      <pubDate>Wed, 02 Nov 2016 09:29:12 +0100</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/hacking-a-mobile-api-and-how-to-protect-yourself/</guid>
+      <description>&lt;p&gt;Sometimes when I use a mobile app that provides data that I find useful my curiosity awakens and I ask myself a question: how does the communication work and how hard would it be to break their security and access the data outside of the app? Mobile apps I have encountered are generally not very well secured and stealing their data is not much of a challenge. But what can the authors of the app do about it?&lt;/p&gt;
+
+&lt;p&gt;Lets take an app and an API and walk through the process. The model app is an app I tried last week and provides TV schedules for many local stations, so data that someone might be interested in stealing.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;attack-basics-sniffing-the-traffic&#34;&gt;Attack basics: sniffing the traffic&lt;/h2&gt;
+
+&lt;p&gt;The first thing I always do is sniffing the communication between the app and the server using a proxy server installed on my computer. I use &lt;a href=&#34;http://www.telerik.com/fiddler&#34;&gt;Fiddler&lt;/a&gt; but there are many other tools you can use like &lt;a href=&#34;https://www.charlesproxy.com/&#34;&gt;Charles&lt;/a&gt; or &lt;a href=&#34;https://mitmproxy.org/&#34;&gt;mitmproxy&lt;/a&gt;. I set the proxy server on the phone to the IP address of the computer (they have to be on the same network) and all the packets from the phone now flow through the computer. A classic &lt;a href=&#34;https://en.wikipedia.org/wiki/Man-in-the-middle_attack&#34;&gt;man-in-the-middle attack&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If the app uses HTTP for communication, I can clearly see the data being exchanged. If the app does not use any other kind of security (they rarely do) this is usually it. &lt;strong&gt;Always use HTTPS instead of HTTP&lt;/strong&gt;. It is really easy in 2016.&lt;/p&gt;
+
+&lt;p&gt;The app in our example uses HTTPS so I have to try harder. Luckily Fiddler allows you to capture and decrypt HTTPS traffic. You just need open the browser on your device, go to the IP address of the proxy and install the Fiddler certificate. It does not matter that the app in our example uses HTTPS, I can now see the traffic because it does not check for the correct certificate. &lt;strong&gt;When using HTTPS always do SSL pinning&lt;/strong&gt;. &lt;a href=&#34;https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning&#34;&gt;SSL pinning&lt;/a&gt; will enable your app to detect scenarios like this and refuse the connection when the certificate is not the one you expect.&lt;/p&gt;
+
+&lt;p&gt;If the app uses HTTPS and does SSL pining there is nothing more I can do with sniffing the traffic. I usually give up because it is not worth my effort.&lt;/p&gt;
+
+&lt;p&gt;The app in our example does not do SSL pinning but I noticed it uses a security token in the header of every request. I can clearly see how to get the server secret and the refresh token, how to use the refresh token but I do not know how to create the security token for every request form the server secret. &lt;strong&gt;Do not rely only on HTTPS, always use another mechanism to authenticate the app when not doing SSL pinning&lt;/strong&gt;. But you should really do SSL pinning.&lt;/p&gt;
+
+&lt;h2 id=&#34;weak-link-android-app&#34;&gt;Weak link: Android app&lt;/h2&gt;
+
+&lt;p&gt;To proceed I need to attack the app itself to find out how the app creates the security token. There is no easy way to attack the iOS app I used with the proxy but attacking the Android app is usually much easier (if it exists). So I google the name of the app plus &amp;ldquo;APK&amp;rdquo; and find it. The APK is just a zip file with the compiled Java code that you need to decompile. You usually do not need any special tools for this, just google an &lt;a href=&#34;http://www.javadecompilers.com/apk&#34;&gt;online tool for APK decompilation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finding a method that creates the security token in decompiled Java code is easy when the app is not obfuscated. You just need to do some text search in the Java files. &lt;strong&gt;Always obfuscate your code&lt;/strong&gt; to make this harder. On Android you can also &lt;strong&gt;use NDK to protect sensitive parts of the code&lt;/strong&gt;. Also do not use something predictable like &lt;code&gt;md5(server secret + device id)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Securing your mobile app and the API it uses is not easy and there is frankly not much you can do to protect against a really good attacker, especially when you have an Android app. The attacker can always get the APK, modify it and remove SSL pinning to see the traffic. Or they can create their own VM and run your app in it to see what code it executes. But &lt;strong&gt;security is not absolute&lt;/strong&gt;, it always depends on your thread model. If you follow my advices, you can make the attackers lives hard so they would not find it feasible to try to break your app security.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>NancyFX authentication for REST API</title>
+      <link>https://blog.davidmacias.com/nancyfx-authentication-for-rest-api/</link>
+      <pubDate>Mon, 12 Jan 2015 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/nancyfx-authentication-for-rest-api/</guid>
+      <description>&lt;p&gt;NancyFX is a great .NET framework well suited for creating REST APIs. There are many ways how to approach authentication, the simplest one is the good old Forms Authentication. The idea of Forms Authentication is that the user logs in with a username and password and gets a cookie, the protected endpoints then check the cookie. NancyFX supports Forms Authentication with the &lt;a href=&#34;https://www.nuget.org/packages/Nancy.Authentication.Forms/&#34;&gt;Nancy.Authentication.Forms&lt;/a&gt; package. The &lt;a href=&#34;https://github.com/NancyFx/Nancy/wiki/Forms-Authentication&#34;&gt;documentation describes how to use it on a web page&lt;/a&gt;, but to use it with a REST API a few changes are needed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Forms Authentication differences for REST API&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;There are things you want to do differently in a REST API than on a web page. If a user tries to access a protected endpoint, the Forms Authentication on a normal web page redirects him to the login page. In REST API, you typically want the endpoint just to return HTTP 401, no redirects. Also, when a user successfully logs in, you just typically want to return HTTP 200, no redirects.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Disabling redirects&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Suppose you have Forms Authentication set up according to the documentation, with a IUserMapper and IUserIdentity implementation. Disabling the redirects is easy, just set a flag on the FormsAuthenticationConfiguration in your Bootstrapper:&lt;/p&gt;
+
+&lt;div data-gist=&#34;2430a948fe6c426cdd01&#34; data-file=&#34;Bootstrapper.cs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Changing Login and Logout methods&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The login implementation from the documentation uses the LoginAndRedirect method. There is also LoginWithoutRedirect method you want to use, but I found out it does not set the authentication cookie (when it does not think the request is an AJAX request), so the login basically does not work. A workaround I found is to call the LoginAndRedirect method, but only get the authentication cookie from the response ad return it manually:&lt;/p&gt;
+
+&lt;div data-gist=&#34;2430a948fe6c426cdd01&#34; data-file=&#34;login.cs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;The logout implementation just needs to call LogoutWithoutRedirect and return HTTP 200:&lt;/p&gt;
+
+&lt;div data-gist=&#34;2430a948fe6c426cdd01&#34; data-file=&#34;logout.cs&#34;&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ignoring certificate errors in Windows Phone 8.1</title>
+      <link>https://blog.davidmacias.com/ignoring-certificate-errors-in-windows-phone-8-1/</link>
+      <pubDate>Wed, 11 Jun 2014 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/ignoring-certificate-errors-in-windows-phone-8-1/</guid>
+      <description>&lt;p&gt;Connecting to servers with self-signed, expired or otherwise problematic certificates has always been a problem in Windows Phone. There is no way to ignore certificate errors in Windows Phone 7 and Windows Phone 8, not even using the new Portable HTTP Client Libraries. If you are dealing with a self-signed certificate on the server, you have to somehow get it (may not always be possible) and install it on the device or in the emulator (for emulator every time you close and start it again). Ignoring certificate errors would be a much more comfortable approach. Of course, only do it in development with dev servers, not in production.&lt;/p&gt;
+
+&lt;p&gt;In Windows Phone 8.1 there are strangely two HttpClient classes, one in System.Net.Http and another in Windows.Web.Http. Normally you would go with the one in System.Net.Http because you are probably using it thanks to the mentioned Portable HTTP Client Libraries on every other platform. You are out of luck in Windows Phone 8.1 XAML, if you want to ignore certificate errors, you have to use the one from Windows.Web.Http, because only this one accepts an IHttpFilter as an argument.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Using the IHttpFilter, you can easily ignore certificate errors&lt;/p&gt;
+
+&lt;div data-gist=&#34;76c9d8f1e79b6fd41c33&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;but you have to get used to doing all the request in a different way, the Windows.Web.Http.HttpClient way that differs from the System.Net.Http.HttpClient way.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Tampering with Windows Store apps data</title>
+      <link>https://blog.davidmacias.com/tampering-with-windows-store-apps-data/</link>
+      <pubDate>Tue, 13 Nov 2012 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/tampering-with-windows-store-apps-data/</guid>
+      <description>&lt;p&gt;Windows Store apps run in a sandbox with their data isolated from each other. So how secure is this storage from tampering by the user? It turns out not much.&lt;/p&gt;
+
+&lt;p&gt;The only Windows Store app I use on my work notebook is WeatherFlow because of the live tile. The app allows you to add your city and view weather forecast for it. But there is now way to get rid of the default cities like New York, Tokyo, etc. that are in the app when you first run it. This realy annoyed me so I started to poke around.&lt;/p&gt;
+
+&lt;p&gt;Using the debugger and checking the value of ApplicationData.Current.LocalFolder I found out that all the data of Windows Store apps are stored in AppData\Local\Packages in your profile (for me it is C:\Users\Igor\AppData\Local\Packages). The name of the directory for the app you are lookin for usualy contain its name, it is 08C8076A.WeatherFlow_gyyqpbm0tqk6g for WeatherFlow. The directory for each app contains a few subdirectories&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;AC&lt;/p&gt;
+
+&lt;p&gt;LocalState&lt;/p&gt;
+
+&lt;p&gt;RoamingState&lt;/p&gt;
+
+&lt;p&gt;Settings&lt;/p&gt;
+
+&lt;p&gt;SystemAppData&lt;/p&gt;
+
+&lt;p&gt;TempState&lt;/p&gt;
+
+&lt;p&gt;The important directories are LocalState and RoamingState representing the local and roaming folder, where each application can store its files. WeatherFlow uses only LocalState where it stores one data.json file with its configuration. You can edit the file and remove the unwanted city, then run the application again and it still works, with the changes you made.&lt;/p&gt;
+
+&lt;p&gt;Now imaging editing files of a game, giving yourself gold coins or armor, or copying files somewhere else, sharing &amp;#8230; If you want the data of your Windows Store app to be secured, you have to do it by yourself.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

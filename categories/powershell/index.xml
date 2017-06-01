@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Powershell on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/categories/powershell/</link>
+    <description>Recent content in Powershell on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Fri, 06 Nov 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/categories/powershell/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Enabling and disabling hardware devices with PowerShell</title>
+      <link>https://blog.davidmacias.com/enabling-and-disabling-hardware-devices-with-powershell/</link>
+      <pubDate>Fri, 06 Nov 2015 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/enabling-and-disabling-hardware-devices-with-powershell/</guid>
+      <description>&lt;p&gt;I have a built-in fingerprint reader on my Thinkpad notebook that I use for loging in almost exclusively. I say almost because since I upgraded to Windows 10 it sometimes just stops working when the computer wakes up from sleep. I found out that to make it work again I have to go to the Device Manager, find it, disable it and enabled it back again.&lt;/p&gt;
+
+&lt;p&gt;Of course, I was looking for a way to automate this, because I do not think that this issue will be fixed any time soon by Microsoft or Lenovo. I found out there is a &lt;a href=&#34;https://gallery.technet.microsoft.com/Device-Management-7fad2388&#34;&gt;PowerShell cmdlet that expose device enumeration and management APIs&lt;/a&gt;. Using this cmdlet I wrote a simple PowerShell script to the the work.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;It has to be run with administrator privileges to work. Maybe I will go one step further and make this script run each time the notebook wakes up, just to be sure.&lt;/p&gt;
+
+&lt;div data-gist=&#34;3bea04333c0b47156c68&#34;&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Automatically push your Git repos before computer shutdown</title>
+      <link>https://blog.davidmacias.com/automatically-push-your-git-repos-before-computer-shutdown/</link>
+      <pubDate>Mon, 02 Feb 2015 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/automatically-push-your-git-repos-before-computer-shutdown/</guid>
+      <description>&lt;p&gt;I use two computers, my desktop computer located at home and set up for work and play and a work notebook (company provided) that I usually leave at the office. I use both computers for work and sometimes I forget to do &amp;#8216;git push&amp;#8217; when working at my home desktop computer. The next day, when using the work notebook, I wonder where the code from the previous day has disappeared.&lt;/p&gt;
+
+&lt;p&gt;Of course, I can solve it by connecting to my home Raspberry Pi through SSH, waking the desktop computer over LAN from it, connecting to it using Remote Desktop to do the &amp;#8216;git push&amp;#8217; .. not really a simple solution, there must be a better way.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;So I came up with a really simple PowerShell script to iterate to a directory with git projects and execute &amp;#8216;git push&amp;#8217; on all of them&lt;/p&gt;
+
+&lt;div data-gist=&#34;275a76230757dcd48576&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;To make the script execute on each computer shutdown, run &lt;strong&gt;gpedit.msc&lt;/strong&gt; and go to &lt;strong&gt;Computer Configuration&lt;/strong&gt; | &lt;strong&gt;Windows Settings&lt;/strong&gt; | &lt;strong&gt;Scripts (Startup/Shutdown)&lt;/strong&gt; | &lt;strong&gt;Shutdown&lt;/strong&gt; and add the script. Adding the script just by referencing the .ps1 file did not work for me, I had to add the path to PowerShell (%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe) with the script as a parameter.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

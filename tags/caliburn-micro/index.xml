@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Caliburn Micro on Igor Kulman</title>
+    <link>https://blog.davidmacias.com/tags/caliburn-micro/</link>
+    <description>Recent content in Caliburn Micro on Igor Kulman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>igor@kulman.sk (davidmacias)</managingEditor>
+    <webMaster>igor@kulman.sk (davidmacias)</webMaster>
+    <lastBuildDate>Mon, 03 Nov 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/caliburn-micro/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Visual Studio template for Caliburn.Micro Windows Phone apps</title>
+      <link>https://blog.davidmacias.com/visual-studio-template-for-caliburn-micro-windows-phone-apps/</link>
+      <pubDate>Mon, 03 Nov 2014 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/visual-studio-template-for-caliburn-micro-windows-phone-apps/</guid>
+      <description>&lt;p&gt;I have been building Windows Phone apps using the &lt;a href=&#34;https://github.com/Caliburn-Micro/Caliburn.Micro&#34;&gt;Caliburn.Micro&lt;/a&gt; framework for some time now. Setting up a new project takes some time and can be easily automated, so I decided to create a Visual Studio template for Windows Phone apps build with Caliburn.Micro.&lt;/p&gt;
+
+&lt;p&gt;The templates can be downloaded from &lt;a href=&#34;https://visualstudiogallery.msdn.microsoft.com/21b4568e-1fb9-4881-9d51-8e1ea0160a9f&#34;&gt;the Visual Studio Extensions gallery&lt;/a&gt; and used to build Windows Phone 8 and Windows Phone 8.1 Silverlight apps. It contains the basic setup with Caliburn Micro and &lt;a href=&#34;http://blog.kulman.sk/inotifypropertychanged-the-easy-way-in-windows-phone-and-windows-8/&#34; title=&#34;INotifyPropertyChanged the easy way in Windows Phone and Windows 8&#34;&gt;Fody&lt;/a&gt;, with a sample view and viewmodel.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/igorkulman/CaliburnWP8AppVSIX&#34;&gt;source code is available on GitHub&lt;/a&gt;, so if you want to modify it to best suit your needs, feel free to do it.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Automatic ViewModels and Services registration for (not only) Caliburn.Micro</title>
+      <link>https://blog.davidmacias.com/automatic-viewmodels-and-services-registration-for-not-only-caliburn-micro/</link>
+      <pubDate>Wed, 23 Jul 2014 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/automatic-viewmodels-and-services-registration-for-not-only-caliburn-micro/</guid>
+      <description>&lt;p&gt;My MVVM framework of choice, Caliburn.Micro, provides a simple Dependency Injection container, where you have to register all your ViewModels and Services. This is done in the Bootstraper&amp;#8217;s Configure method and may look like this:&lt;/p&gt;
+
+&lt;div data-gist=&#34;0353b26073fc11d3635f&#34; data-file=&#34;reg1.cs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;where you typically register your ViewModels as per request and services as singletons.&lt;/p&gt;
+
+&lt;p&gt;Of course this is done just once, but having to register a ViewModel each time you create a new one can be a nuisance, especially in a large project.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;There is a better way that uses reflection. First, you need to create attributes that will represent registration as per request and a s singleton:&lt;/p&gt;
+
+&lt;div data-gist=&#34;0353b26073fc11d3635f&#34; data-file=&#34;PerRequest.cs&#34;&gt;&lt;/div&gt;
+
+&lt;div data-gist=&#34;0353b26073fc11d3635f&#34; data-file=&#34;Singleton.cs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Iterating over all the non-abstract classes in your assemblies using reflection is quite easy, the tricky part is deciding when to register a class as &amp;#8220;itself&amp;#8221; and when to register it for an interface it implements. My rule of thumbs is that if the class implements exactly one interface, it is one of my services and I register it for that interface, otherwise I register it as itself (ViewModels descendant from Screen implement circa 5 interfaces).&lt;/p&gt;
+
+&lt;p&gt;The final registration code looks different for WinRT (Windows 8, Windows 8.1, Windows Phone 8.1 XAML)&lt;/p&gt;
+
+&lt;div data-gist=&#34;0353b26073fc11d3635f&#34; data-file=&#34;reg2.cs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;and for &amp;#8220;classic&amp;#8221; .NET (Windows Phone 8)&lt;/p&gt;
+
+&lt;div data-gist=&#34;0353b26073fc11d3635f&#34; data-file=&#34;reg3.cs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;because of reflection differences in WinRT. Do not forget to add the PerRequest or Singleton attribute to your classes to make it work.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Making your Windows Phone Silverlight 8.1 app a Share Contract target</title>
+      <link>https://blog.davidmacias.com/making-your-windows-phone-silverlight-8-1-app-a-share-contract-target/</link>
+      <pubDate>Wed, 23 Apr 2014 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/making-your-windows-phone-silverlight-8-1-app-a-share-contract-target/</guid>
+      <description>&lt;p&gt;Windows Phone 8.1 introduced many interesting new thing, the one I personally like the best as a developer is the Share Contract. The Share Contract allows your apps to share data using an unified and easy way and also to receive data from other apps. This functionality is important for my &lt;a href=&#34;http://t.co/YMtrM84rwI&#34;&gt;Pock8&lt;/a&gt; app, which is a Pocket client. By making Pock8 app a Share Contract target, the app can receive links from other apps, more importantly from the built-in webrowser (IE). This makes the app even more easy to use and valuable.&lt;/p&gt;
+
+&lt;img src=&#34;https://blog.davidmacias.com/images/wp81.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+
+&lt;p&gt;The problem is that &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh871367.aspx&#34;&gt;all the documentation I found&lt;/a&gt; and also &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh871363.aspx&#34;&gt;the sample app&lt;/a&gt; are for Windows Runtime. Pock8 is a Silverligt app and I have no intentions to rewrite it to Windows Runtime.&lt;/p&gt;
+
+&lt;p&gt;I had to make some digging and I finally found the solution in a build video called &lt;a href=&#34;http://channel9.msdn.com/Events/Build/2014/2-520&#34;&gt;Contracts and Pickers: Building Apps that Work Together on Windows&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;First you have to add the &lt;strong&gt;Share Contract&lt;/strong&gt; ability to the new manifest file (Package.appxmanifest, the Declarations tab). If you want to receive links, Choose &lt;strong&gt;weblink&lt;/strong&gt; as data format. This step is the same for Windows Runtime and for Silverlight apps, but all the other steps differ.&lt;/p&gt;
+
+&lt;p&gt;You can determine if your application was launched normally or as a Share Contract target in the application Launching event. If you cast the &lt;strong&gt;LaunchingEventArgs&lt;/strong&gt; to &lt;strong&gt;ShareLaunchingEventArgs&lt;/strong&gt; and the result is not null, your application was launched as a Share Contract target. The video recommend creating an internal property of type &lt;strong&gt;ShareOperation&lt;/strong&gt; in App.xaml.cs and saving the data from &lt;strong&gt;ShareLaunchingEventArgs&lt;/strong&gt; there:&lt;/p&gt;
+
+&lt;div data-gist=&#34;11111043&#34; data-file=&#34;AssociationUriMapper.cs&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;(I use Caliburn.Micro so I do it in the OnLaunch method of the Bootstrapper)&lt;/p&gt;
+
+&lt;p&gt;The next thing to do is to show a separate sharing page instead of the page you would normally show when your app starts. Create a &lt;strong&gt;AssociationUriMapper&lt;/strong&gt; like you &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/windowsphone/develop/jj206987(v=vs.105).aspx&#34;&gt;would do when registering for a protocol&lt;/a&gt; and simply check the &lt;strong&gt;ShareOperation&lt;/strong&gt; property in App.xaml.cs:&lt;/p&gt;
+
+&lt;p&gt;If you use Caliburn.Micro as I do, do not forget to register the AssociationUriMapper in the Boostrappers CreatePhoneApplicationFrame method:&lt;/p&gt;
+
+&lt;div data-gist=&#34;11111043&#34; data-file=&#34;CreatePhoneApplicationFrame.cs&#34;&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Creating a Search box with Reactive Extensions and MVVM</title>
+      <link>https://blog.davidmacias.com/creating-a-search-box-with-reactive-extensions-and-mvvm/</link>
+      <pubDate>Mon, 02 Dec 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/creating-a-search-box-with-reactive-extensions-and-mvvm/</guid>
+      <description>&lt;p&gt;Having a Search box in a Windows Phone app is a common use-case but it is only rarely done right. A good Search box does not have a Search button associated with it that the users have to click when they are finished typing and want to start the search. A good Search box starts the search immediately when the user stops typing (for a certain period of time).&lt;/p&gt;
+
+&lt;p&gt;You can implement this functionality with some nasty code using a DispatcherTimer, or you can use &lt;a href=&#34;http://msdn.microsoft.com/en-us/data/gg577609.aspx&#34;&gt;Reactive Extensions&lt;/a&gt;. You can use Reactive Extensions directly on a TextBox representing the Search box, but if you use MVVM (and you should) you need to attach to the property associated with the Search box instead.&lt;/p&gt;
+
+&lt;p&gt;Suppose the ViewModel contains a string property called SearchTerm (with two-way binding to the Search box) and an event called PropertyChanged (used for the INotifyPropertyChanged implementation). We need to observe the changes of the SearchTerm property. There is no way to do it directly, we need to observe the PropertyChanged event instead.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;We need to create an observable from the PropertyChanged event, subscribe to it filtering only the PropertyChanged calls regarding the SearchTerm property, throttling for 0.5 seconds&lt;/p&gt;
+
+&lt;p&gt;Using the throttle operator we will get exactly the desired behaviour of executing the Search method 0.5 seconds after the user stopped typing.&lt;/p&gt;
+
+&lt;div data-gist=&#34;7657908&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;However, there is a small problem. The SearchTerm property changes (and fires the PropertyChanged event) only when the Search box loses focus. We need to make the SearchTerm property change after each letter typed instead. In WPF that would be trivial using UpdateTrigger, but Windows Phone does not support UpdateTrigger.&lt;/p&gt;
+
+&lt;p&gt;We need to create a custom binding utility&lt;/p&gt;
+
+&lt;div data-gist=&#34;7657969&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;and apply it to the Search box&lt;/p&gt;
+
+&lt;div data-gist=&#34;7658031&#34;&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Developing Windows Store apps with Caliburn Micro Part 4: services and dependency injection</title>
+      <link>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-4-services-and-dependency-injection/</link>
+      <pubDate>Wed, 18 Sep 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-4-services-and-dependency-injection/</guid>
+      <description>&lt;p&gt;In this installment of the series I will show you how user data services. We will finally use the Unity DI container that is part of the project setup.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Data and Services&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In next installment we will be showing a list of products, so let&amp;#8217;s create a simple Product class first in the Data directory:&lt;/p&gt;
+
+&lt;div data-gist=&#34;6606102&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;PropertyChangedBase is a base class implementing the INotifyPropertyChanged interface and the ImplementPropertyChanged attribute makes sure it&amp;#8217;s method is called for all the property changes. (More about Fody &lt;a href=&#34;http://blog.kulman.sk/inotifypropertychanged-the-easy-way-in-windows-phone-and-windows-8/&#34; title=&#34;INotifyPropertyChanged the easy way in Windows Phone and Windows 8&#34;&gt;here&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;All the operations will be handled by a service implementing the IProductService interface:&lt;/p&gt;
+
+&lt;div data-gist=&#34;6606127&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;You can implement this interface any way you want. To keep things simple I chose an implementation with two hardcoded products:&lt;/p&gt;
+
+&lt;div data-gist=&#34;6606170&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Registering services&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;All our services need to be registered with the Unity DI container before being used. The place to do it is the App class (App.xaml.cs file). You can override the Configure method to do it:&lt;/p&gt;
+
+&lt;div data-gist=&#34;6607482&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;This registers the ProductService class to the IProductService interface. The new ContainerControlledLifetimeManager() parameter is Unity&amp;#8217;s way of setting the registration to be a singleton.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Injecting services into ViewModel&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Injecting the ProductService into our MainViewModel is very simple. Just declare a IProductService variable and initialize it from constructor. Unity will take care of the rest:&lt;/p&gt;
+
+&lt;div data-gist=&#34;6607538&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Next time we will implement a typical master-detail scenario showing products usign the ProductService whe have created. All the code is again &lt;a href=&#34;https://github.com/igorkulman/CaliburnDemoWinRT&#34;&gt;available at GitHub&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Developing Windows Store apps with Caliburn Micro Part 3: saving and restoring state</title>
+      <link>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-3-saving-and-restoring-state/</link>
+      <pubDate>Tue, 13 Aug 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-3-saving-and-restoring-state/</guid>
+      <description>&lt;p&gt;In the &lt;a href=&#34;http://blog.kulman.sk/developing-windows-store-apps-with-caliburn-micro-part-2-navigation/&#34; title=&#34;Developing Windows Store apps with Caliburn Micro Part 2: navigation&#34;&gt;previous post&lt;/a&gt; I stated that a well-behaved Windows Store app should remeber the View the user navigated to before suspension and navigate to this View upon next run. The View can contain some input that the user can fill in. A well-behaved Windows Store app should remember the user&amp;#8217;s input and restore it after suspension.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Saving and restoring state&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Implementation of the above-mentioned scenario is not very complicated, thanks to the project setup. If you want your ViewModel to be able to save and restore state, implement the IHaveState interface. It contains two method that you can override; SaveState and LoadState. In bith method you have access to a page state dictionary that you can use to save and load the state.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Let us reuse the SecondPageViewModel from the last post. Implement IHaveState, add two string properties and use the SaveState and LoadState method to save and load them using the page state dictionary&lt;/p&gt;
+
+&lt;div data-gist=&#34;6173564&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;To test it, first add two TextBoxes to the SecondPageView with two-way binding&lt;/p&gt;
+
+&lt;div data-gist=&#34;6173636&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Now run the application, navigate to the SecondPageViewModel and fill in the TextBoxes. Switch to Visual Studio and invoke the Suspend and Shutdown command. When you run the application again, you will see the SecondPageViewModel with TextBoxes with the same values as before the suspension.&lt;/p&gt;
+
+&lt;p&gt;The code is again &lt;a href=&#34;https://github.com/igorkulman/CaliburnDemoWinRT&#34;&gt;available at Github&lt;/a&gt;. If you are interested in the implementation of saving and loading state, read &lt;a href=&#34;http://nybbles.blogspot.cz/2013/02/winrt-caliburnmicro-and-ioc-part-3.html&#34;&gt;this article&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Developing Windows Store apps with Caliburn Micro Part 2: navigation</title>
+      <link>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-2-navigation/</link>
+      <pubDate>Tue, 06 Aug 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-2-navigation/</guid>
+      <description>&lt;p&gt;In this second part you will add another ViewModel and View and implement navigation between two ViewModels, including saving the navigation state between starts. The code is as always &lt;a href=&#34;https://github.com/igorkulman/CaliburnDemoWinRT&#34;&gt;available at Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Invoking ViewModel methods&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you want to test out navigation between ViewModels, you first need something that will trigger the navigation. The easiest way to do this is to use a standard Button. If you do MVVM &amp;#8220;by hand&amp;#8221;, you are probably used to creating ICommand properties and binding them to the Button&amp;#8217;s Command dependency property.&lt;/p&gt;
+
+&lt;p&gt;Caliburn Micro offers an easier way. If you want a Button to invoke a method on your ViewModel, just the give the button the same name as the name of the button. The method should be public void.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;On the MainViewModel, create a public void GoToSecondPage method:&lt;/p&gt;
+
+&lt;div data-gist=&#34;6103983&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;In the MainView create a Button with x:Name=&amp;#8221;GoToSecondPage&amp;#8221;. When you start the application and click the button, a message dialog is shown, so you know the autobinding beetween your Button and your GoToSecondPage method works.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Navigation&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As you may have noticed, a INavigationService is injected into the MainViewModel&amp;#8217;s constructor. You can use this INavigationService to navigate between ViewModels.&lt;/p&gt;
+
+&lt;p&gt;In the ViewModels folder create a new ViewModel called SecondPageViewModel with one string property Title (exactly the same as the MainViewModel):&lt;/p&gt;
+
+&lt;div data-gist=&#34;6103938&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;In the Views folder, create a new View called SecondPageView as a Blank Page. Give it some colorful background so it is clearly distinguishable from the MainView:&lt;/p&gt;
+
+&lt;div data-gist=&#34;6104005&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;Now you can finally make the GoToSecondPage method navigate the user to the SecondPageViewModel. To do this, first get the Uri from the INavigationService using the strongly typed UriFor&amp;lt;.&amp;gt; method and then call the Navigate method:&lt;/p&gt;
+
+&lt;div data-gist=&#34;6104023&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Navigation with parameters&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In many cases you need to navigate to a ViewModel passing the ViewModel some parameters. This is as easy as adding a call to WithParam to your navigation code:&lt;/p&gt;
+
+&lt;div data-gist=&#34;6104042&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;You can use the WithParam method to give the ViewModel as many parameters as you want.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Saving and loading navigation state&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A well-behaved Windows Store application should remember the last ViewModel active when the user exited the app and load this ViewModel when the user starts the application again. In our demo, this is not the case. You can test it by navigating to the SecondPageViewModel, switching to Visual Studio, using the Suspend and Shutdown option and starting the application again.&lt;/p&gt;
+
+&lt;p&gt;You need to fix this so when the suspended application starts again, it will show the SecondPageViewModel (unless the MainViewModel was active when the application was suspended). The Caliburn.Micro.Unity.WinRT package already contains the support for saving and restoring state.&lt;/p&gt;
+
+&lt;p&gt;First you need to make the Views inherit from the Caliburn.Micro.Unity.WinRT.Code.AppPage insted of Page and delete theirs OnNavigateTo methods. Then you need to explicitly save the state when the application starts. Open the App.xaml.cs and add the following method:&lt;/p&gt;
+
+&lt;div data-gist=&#34;6104122&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;If you now navigate to second page, suspend and shutdown the application and start it again, you will see the second page.&lt;/p&gt;
+
+&lt;p&gt;There is currently no way to navigate back from the SecondPageViewModel to the MianViewModel. I am fairly confident you can implement it by yourself using the INavigationService&amp;#8217;s GoBack method.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Developing Windows Store apps with Caliburn Micro Part 1: setup and first view</title>
+      <link>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-1-setup-and-first-view/</link>
+      <pubDate>Tue, 30 Jul 2013 00:00:00 +0000</pubDate>
+      <author>igor@kulman.sk (davidmacias)</author>
+      <guid>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-1-setup-and-first-view/</guid>
+      <description>&lt;p&gt;I have been developing Windows Store apps for some time. I have always used MVVM, but mostly &amp;#8220;my own&amp;#8221; MVVM. I have finally decided to use a &amp;#8220;real&amp;#8221; MVVM framework and I have chosen Caliburn Micro, because I did not like MVVM very much. In this article I am going to show you how to use Caliburn Micro, Unity and Fody to develop Windows Store apps.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Caliburn Micro&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://caliburnmicro.codeplex.com/&#34;&gt;Caliburn Micro&lt;/a&gt; is a small, yet powerful framework, designed for building applications across all Xaml Platforms. With strong support for MVVM and other proven UI patterns, Caliburn.Micro will enable you to build your solution quickly, without the need to sacrifice code quality or testability.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Unity&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When I started with Calibun Micro I discovered an &lt;a href=&#34;http://nybbles.blogspot.cz/2013/02/winrt-caliburnmicro-and-ioc-part-3.html&#34;&gt;article by Thomas Baker about using Unity as DI container with Caliburn Micro&lt;/a&gt;. His article also contains code that makes it easy for you to save and load state when the app gets suspended. With his permission, I have &lt;a href=&#34;https://nuget.org/packages/Caliburn.Micro.Unity.WinRT/&#34;&gt;created a Nuget package&lt;/a&gt; from his code, this article is going to use this package.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Fody&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I have been using &lt;a href=&#34;https://github.com/Fody/Fody&#34;&gt;Fody&lt;/a&gt; with Windows Phone and Windows Store apps for some time now. I especially use the &lt;a href=&#34;https://github.com/Fody/PropertyChanged&#34;&gt;INotifyPropertyChanged weaver&lt;/a&gt; I &lt;a href=&#34;http://blog.kulman.sk/inotifypropertychanged-the-easy-way-in-windows-phone-and-windows-8/&#34; title=&#34;INotifyPropertyChanged the easy way in Windows Phone and Windows 8&#34;&gt;wrote about earlier&lt;/a&gt;. Check the article for more information if you are not already familliar with Fody.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Application setup&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s start buidling a simple demo application. This demo application will show you how little code you need to write to get something done when using the mentioned libraries.&lt;/p&gt;
+
+&lt;p&gt;Create a Blank App. Add the &lt;a href=&#34;http://www.nuget.org/packages/Caliburn.Micro.Unity.WinRT/&#34;&gt;Caliburn.Micro.Unity.WinRT&lt;/a&gt; package from Nuget. It will install all the dependencies you need. Install &lt;a href=&#34;http://www.nuget.org/packages/PropertyChanged.Fody/&#34;&gt;PropertyChanged.Fody&lt;/a&gt; from Nuget. Next you need to hook up PropertyChanged.Fody with Fody. Open FodyWeavers.xml and change it to&lt;/p&gt;
+
+&lt;div data-gist=&#34;6088620&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;PropertyChanged.Fody now knows that it should call the NotifyOfPropertyChange method from Caliburn Micro when a property gets changed. Let&amp;#8217;s do some cleanup next. Delete MainPage.xaml, rename the Common folder to Resources and create a few additional folders:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Views&lt;/li&gt;
+&lt;li&gt;ViewModels&lt;/li&gt;
+&lt;li&gt;Data&lt;/li&gt;
+&lt;li&gt;Converters&lt;/li&gt;
+&lt;li&gt;Services&lt;/li&gt;
+&lt;li&gt;Code&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Next make you app inherit from CaliburnUnityApplication by changing App.xaml to&lt;/p&gt;
+
+&lt;div data-gist=&#34;6088861&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;and cleaning up and changing App.xaml.cs to&lt;/p&gt;
+
+&lt;div data-gist=&#34;6088871&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;First ViewModel&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you can create your first ViewModel and your first View. Caliburn Micro uses a naming convention to pair a ViewModel and a View. Create a new class called MainViewModel in the ViewModels folder. Make the class inherit from ViewModelBase and implement the default constructor:&lt;/p&gt;
+
+&lt;p&gt;create a new string property called Title. Add the ImplementPropertyChanged attribute to the class. This makes NotifyPropertyChanged.Fody call the NotifyOfPropertyChange whenever any of the properties (just Title for now) changes. Assing some text to the Title property in the constructor:&lt;/p&gt;
+
+&lt;div data-gist=&#34;6088988&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;First View&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now create a view for the MainViewModel as a Blank Page. According to the naming conventions, it needs to be called MainView and created in the Views folder. Add a TextBlock to the View. To bind the text of this TextBlock to the Title property, you could use Text=&amp;#8221;{Binding Title}&amp;#8221;. This works just fine but you do not have to do it. Just name the TextBlock the same as the property you want it to bind to (in our case Title):&lt;/p&gt;
+
+&lt;div data-gist=&#34;6089012&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Navigating to the view&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;There is only one more thing left to do. You need to tell the framework to navigate to the MainView when the app starts. This is done in the OnLaunched method in App.xaml.cs&lt;/p&gt;
+
+&lt;div data-gist=&#34;6089032&#34;&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Run you app&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Hit F5 and you will see your app start, navigate to MainView and show the text from the Title property in this view.&lt;/p&gt;
+
+&lt;p&gt;You can find the &lt;a href=&#34;https://github.com/igorkulman/CaliburnDemoWinRT&#34;&gt;code on Github&lt;/a&gt; and stay tuned for Part 2!&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
