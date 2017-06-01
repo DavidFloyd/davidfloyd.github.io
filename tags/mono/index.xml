@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mono on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/mono/</link>
+    <link>/tags/mono/</link>
     <description>Recent content in Mono on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Reading Excel sheets using F# without COM</title>
-      <link>https://blog.davidmacias.com/reading-excel-sheets-using-f-without-com/</link>
+      <link>/reading-excel-sheets-using-f-without-com/</link>
       <pubDate>Wed, 06 Feb 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/reading-excel-sheets-using-f-without-com/</guid>
+      <guid>/reading-excel-sheets-using-f-without-com/</guid>
       <description>&lt;p&gt;I needed to create an utility that would read Excel 2010 files (.xlsx) and generate XML files from them according to some specific rules. The catch was that the utility needed to run on MacOS instead of Windows.&lt;/p&gt;
 
 &lt;p&gt;Reading and writing Excel files from .NET is &lt;a href=&#34;http://blogs.msdn.com/b/jackhu/archive/2011/04/19/fsharp-amp-excel-io-reading-and-writeing-to-excel.aspx&#34;&gt;very easy using the Microsoft.Office.Interop assemblies&lt;/a&gt; but they use Excel through COM and that makes them unusable outside of Windows. I found some 3rd party libraries for working with Excel and analzyed them with &lt;a href=&#34;http://www.mono-project.com/MoMA&#34;&gt;The Mono Migration Analzyer&lt;/a&gt; (MoMA). MoMA is a handy tool that analyzes .NET assemblies and tells you if they will run on Mono. Many of the Excel libraries I found were unusable for my use-case because they were using PInvoke calls. Only the &lt;a href=&#34;http://excelpackage.codeplex.com/&#34;&gt;ExcelPackage library&lt;/a&gt; runs on Mono.&lt;/p&gt;
@@ -53,10 +53,10 @@
     
     <item>
       <title>Using .NET libraries with MonoTouch</title>
-      <link>https://blog.davidmacias.com/using-net-libraries-with-monotouch/</link>
+      <link>/using-net-libraries-with-monotouch/</link>
       <pubDate>Fri, 28 Dec 2012 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/using-net-libraries-with-monotouch/</guid>
+      <guid>/using-net-libraries-with-monotouch/</guid>
       <description>&lt;p&gt;I have been &lt;a href=&#34;http://blog.kulman.sk/monotouch-ios-development-for-net-programmers/&#34;&gt;playing with MonoTouch&lt;/a&gt; only for a few days when I already started to miss all the .NET libraries I commonly use. The first one I needed to get working with MonoTouch was &lt;a href=&#34;http://james.newtonking.com/projects/json-net.aspx&#34;&gt;JSON.NET&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;MonoDevelop does not support Nuget so you have to get your libaries the old way. I downloaded JSON.NET package from &lt;a href=&#34;http://nuget.org/&#34;&gt;Nuget.org&lt;/a&gt;, but it does not contain a DLL built for Mono. Harldy any Nuget package does. You can reference a DLL built for .NET, MonoDevelop will recognize it and even offer you IntelliSense but your project will not get built.&lt;/p&gt;
@@ -68,10 +68,10 @@
     
     <item>
       <title>MonoTouch: iOS development for .NET programmers</title>
-      <link>https://blog.davidmacias.com/monotouch-ios-development-for-net-programmers/</link>
+      <link>/monotouch-ios-development-for-net-programmers/</link>
       <pubDate>Wed, 19 Dec 2012 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/monotouch-ios-development-for-net-programmers/</guid>
+      <guid>/monotouch-ios-development-for-net-programmers/</guid>
       <description>&lt;p&gt;Beeing &lt;a href=&#34;http://blog.kulman.sk/why-i-do-not-like-windows-phone-programming-anymore/&#34;&gt;quite disappointed with the Windows Phone platform recently&lt;/a&gt; I started to look for other ways to use my .NET skills and to develop for a mobile platform at the same time. I found &lt;a href=&#34;http://xamarin.com/monotouch&#34;&gt;MonoTouch&lt;/a&gt;, a product from Xamarin that allows you to build iOS apps using C# with Mono.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;What is MonoTouch?&lt;/strong&gt;&lt;/p&gt;
@@ -84,7 +84,7 @@
 
 &lt;p&gt;When using MonoTouch you create a new project in MonoDevelop that comes with MonoTouch. The UI files (*.xib) cannot be modified using MonoDevelop so you have to use XCode. You define your UI in XCode like you would as a native developer, creating outlets and actions. MonoTouch watches the project files you make in XCode and generates matching C# files, that allow you to use all the UI elements created in XCode from your C# code. This method is prefered, but you can create the whole UI in code and never use XCode.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/monotocuh.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/monotocuh.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;The iOS development uses MVC pattern, but it does not look like the MVC pattern I am used to. It looks to me more like WinForms development than WPF or other XAML-based technology using MVVM. Just to be clear, MonoTouch would not shield you from the iOS specific stuff, it just porjects the iOS SDK methods and properties to Mono. But it still C# (check out the Write beautiful code section on the &lt;a href=&#34;http://xamarin.com/monotouch&#34;&gt;MonoTouch website&lt;/a&gt;).&lt;/p&gt;
 

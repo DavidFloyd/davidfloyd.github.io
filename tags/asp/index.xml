@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Asp on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/asp/</link>
+    <link>/tags/asp/</link>
     <description>Recent content in Asp on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Using ETag to cache responses in NancyFX</title>
-      <link>https://blog.davidmacias.com/using-etag-to-cache-responses-in-nancyfx/</link>
+      <link>/using-etag-to-cache-responses-in-nancyfx/</link>
       <pubDate>Wed, 15 Apr 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/using-etag-to-cache-responses-in-nancyfx/</guid>
+      <guid>/using-etag-to-cache-responses-in-nancyfx/</guid>
       <description>&lt;p&gt;Caching data is usually a good idea, especially when creating APIs for mobile clients and the user may pay for each transferred byte. There are many approaches to caching data (I recommend reading &lt;a href=&#34;http://frontendplay.com/2013/05/22/http-caching-demystified/&#34;&gt;this article&lt;/a&gt;), in my last NancyFX project I used ETag.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;ETag&lt;/strong&gt;&lt;/p&gt;
@@ -40,10 +40,10 @@
     
     <item>
       <title>Detecting tablets and smartphones in ASP.NET</title>
-      <link>https://blog.davidmacias.com/detecting-tablets-and-smartphones-in-asp-net/</link>
+      <link>/detecting-tablets-and-smartphones-in-asp-net/</link>
       <pubDate>Mon, 22 Sep 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/detecting-tablets-and-smartphones-in-asp-net/</guid>
+      <guid>/detecting-tablets-and-smartphones-in-asp-net/</guid>
       <description>&lt;p&gt;I recently worked on an ASP.NET application that needed to detect if users were coming from tablets or smartphones. The project used data from &lt;a href=&#34;http://user-agent-string.info/&#34;&gt;http://user-agent-string.info/&lt;/a&gt; to do this detection, but the result were not really good. We needed a better solution, so I came up with using &lt;a href=&#34;http://wurfl.sourceforge.net/&#34;&gt;WURFL&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;WURFL, the Wireless Universal Resource FiLe, is a Device Description Repository (DDR), i.e. a software component that maps HTTP Request headers to the profile of the HTTP client (Desktop, Mobile Device, Tablet, etc.) that issued the request. Adding WURFL to your ASP.NET application is easy thanks to the &lt;a href=&#34;https://www.nuget.org/packages/WURFL_Official_API/&#34;&gt;WURFL_Official_API Nuget package&lt;/a&gt;. The Nuget package also contains definition file, so you just need to update the Nuget package once in a while to get your definition file up to date.&lt;/p&gt;
@@ -61,10 +61,10 @@
     
     <item>
       <title>C# scripting console for ASP.NET MVC application</title>
-      <link>https://blog.davidmacias.com/c-scripting-console-for-asp-net-mvc-application/</link>
+      <link>/c-scripting-console-for-asp-net-mvc-application/</link>
       <pubDate>Thu, 09 Jan 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/c-scripting-console-for-asp-net-mvc-application/</guid>
+      <guid>/c-scripting-console-for-asp-net-mvc-application/</guid>
       <description>&lt;p&gt;In a recent larger ASP.NET MVC project running in Windows Azure I needed to provide the advanced users a way to execute custom scripts directly through the webbrowser. A kind of a scripting console where users can create and execute their own scripts, that interact with the project and automate some tasks (that would otherwise require too many clicks).&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Choosing the language&lt;/strong&gt;&lt;/p&gt;
@@ -114,10 +114,10 @@
     
     <item>
       <title>Detecting encoding of uploaded file in ASP.NET MVC</title>
-      <link>https://blog.davidmacias.com/detecting-encoding-of-uploaded-file-in-asp-net-mvc/</link>
+      <link>/detecting-encoding-of-uploaded-file-in-asp-net-mvc/</link>
       <pubDate>Tue, 05 Feb 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/detecting-encoding-of-uploaded-file-in-asp-net-mvc/</guid>
+      <guid>/detecting-encoding-of-uploaded-file-in-asp-net-mvc/</guid>
       <description>&lt;p&gt;Uploading a file in ASP.NET MVC is very easy, but there is no easy way to detect the encoding of a uploaded text file. However you can use the fact if you try to read the file with a wrong encoding, you get an DecoderFallbackException. So how do you put everything together?&lt;/p&gt;
 
 &lt;p&gt;First, get a stream of the uploaded file.&lt;/p&gt;

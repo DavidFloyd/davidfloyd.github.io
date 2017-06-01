@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Google on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/google/</link>
+    <link>/tags/google/</link>
     <description>Recent content in Google on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Implementing Google login in Universal Apps</title>
-      <link>https://blog.davidmacias.com/implementing-google-login-in-universal-apps/</link>
+      <link>/implementing-google-login-in-universal-apps/</link>
       <pubDate>Wed, 01 Jul 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/implementing-google-login-in-universal-apps/</guid>
+      <guid>/implementing-google-login-in-universal-apps/</guid>
       <description>&lt;p&gt;In a recent project I had to implement Google login to an Universal App. I decided to use the native &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/windows.security.authentication.web.webauthenticationbroker.aspx&#34;&gt;WebAuthenticationBroker&lt;/a&gt; control and the implementation was not as straightforward as I hoped. By implementing Google login I mean getting the authentication token that you can then use with your server API.&lt;/p&gt;
 
 &lt;p&gt;WebAuthenticationBroker is a good idea but it is implemented rather poorly. It works differently on Windows 8.1 and Windows Phone 8.1 due to the &amp;#8220;AndContinue&amp;#8221; pattern that Windows Phone 8.1 forces on you. You can solve this with &lt;a href=&#34;http://blog.kulman.sk/why-universal-apps-as-not-as-universal-as-you-may-think/&#34;&gt;some ifdefs and platform specific code, as always&lt;/a&gt;.&lt;/p&gt;

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rants on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/rants/</link>
+    <link>/tags/rants/</link>
     <description>Recent content in Rants on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>About the decline in software quality</title>
-      <link>https://blog.davidmacias.com/about-the-decline-in-software-quality/</link>
+      <link>/about-the-decline-in-software-quality/</link>
       <pubDate>Wed, 26 Oct 2016 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/about-the-decline-in-software-quality/</guid>
+      <guid>/about-the-decline-in-software-quality/</guid>
       <description>&lt;p&gt;In the last few months I have been noticing a huge decline in software quality on every device I use. It seems to me like bad quality software is a current trend, especially for big corporations like Microsoft or Apple. Even though I consider Apple more of a &amp;ldquo;fashion company&amp;rdquo; than a &amp;ldquo;technology company&amp;rdquo; I think it is unacceptable for software from such big companies to works as bad as it does.&lt;/p&gt;
 
 &lt;p&gt;I am programmer so I know that software has and always will have bugs. My points is not buggy software in general but that software contains more bugs with every release and that stay unfixed.&lt;/p&gt;
@@ -77,10 +77,10 @@
     
     <item>
       <title>The sad state of DVLUP (MS Tech Rewards)</title>
-      <link>https://blog.davidmacias.com/the-sad-state-of-dvlup-ms-tech-rewards/</link>
+      <link>/the-sad-state-of-dvlup-ms-tech-rewards/</link>
       <pubDate>Wed, 25 Nov 2015 12:41:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/the-sad-state-of-dvlup-ms-tech-rewards/</guid>
+      <guid>/the-sad-state-of-dvlup-ms-tech-rewards/</guid>
       <description>&lt;p&gt;If you are a Windows Phone developer you must know DVLUP. It was a program for developers developed by Nokia. The idea was simple. Do Windows Phone development related challenges, make your apps better thanks to them, get points, exchange points for rewards. Sounds good, does it not?&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Interesting, but location dependent&lt;/strong&gt;&lt;/p&gt;

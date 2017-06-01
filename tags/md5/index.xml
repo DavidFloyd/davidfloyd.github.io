@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Md5 on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/md5/</link>
+    <link>/tags/md5/</link>
     <description>Recent content in Md5 on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Computing hashes in WinRT</title>
-      <link>https://blog.davidmacias.com/computing-hashes-in-winrt/</link>
+      <link>/computing-hashes-in-winrt/</link>
       <pubDate>Thu, 15 Nov 2012 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/computing-hashes-in-winrt/</guid>
+      <guid>/computing-hashes-in-winrt/</guid>
       <description>&lt;p&gt;If you ever generated a MD5 or SHA hash in C# you problaby uset the classes from the System.Security.Cryptography namespace. This namespace is not available in WinRT, you have to use the Windows.Security.Cryptography.Core instead. This namespace contians a class called HashAlgorithmProvider that can be used to generate hashes using MD5 and SHA (SHA1, SHA256, SHA384, SHA512). A simple method to generate a hash for a string using a given algorithm may look like this&lt;/p&gt;
 
 &lt;div data-gist=&#34;5849454&#34;&gt;&lt;/div&gt;

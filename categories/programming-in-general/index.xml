@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Programming In General on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/categories/programming-in-general/</link>
+    <link>/categories/programming-in-general/</link>
     <description>Recent content in Programming In General on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Visual Studio extensions to make your life easier</title>
-      <link>https://blog.davidmacias.com/visual-studio-extensions-to-make-your-life-easier/</link>
+      <link>/visual-studio-extensions-to-make-your-life-easier/</link>
       <pubDate>Mon, 02 Nov 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/visual-studio-extensions-to-make-your-life-easier/</guid>
+      <guid>/visual-studio-extensions-to-make-your-life-easier/</guid>
       <description>&lt;p&gt;This blog post is inspired by the &lt;a href=&#34;http://hmemcpy.com/2015/10/7-open-source-visual-studio-extensions-to-make-your-life-easier/&#34;&gt;7 open-source Visual Studio Extensions to make your life easier&lt;/a&gt; article. In the article Igal Tabachnik showed his favorite Visual Studio extensions, that were quite interesting. I also use a few Visual Studio extensions that make my life easier, so I decided to share.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
@@ -25,54 +25,54 @@
 
 &lt;p&gt;Small and simple extension with just one task, displaying indent and page width guides in Visual Studio text editor windows. There are three styles of guides: solid, dotted and dashed, available in thin and thick varieties and customizable color.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/guides.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/guides.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://www.visualstudiogallery.msdn.microsoft.com/f4d9c2b5-d6d7-4543-a7a5-2d7ebabc2496&#34;&gt;VSColorOutput&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;VSColorOutput can change the color of a line emitted to the output window based on specified rules. The rules consist of regular expressions. Rules map to classifications which in turn map to colors. The default patterns will color build errors in red, warnings in yellow/gold and successful build messages in green. It also colors the output of debug messages when running an app, so you can easily sort exceptions and your custom debug messages containing certain words.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/vscoloroutput.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/vscoloroutput.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://visualstudiogallery.msdn.microsoft.com/f3f23845-5b1e-4811-882f-60b7181fa6d6&#34;&gt;Rename Visual Studio Windows Title&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;By default, Visual Studio shows the name of the opened solution name in the title. This makes it easier to navigate among multiple instances of Visual Studio. You see the solution name next to the Visual Studio icon in the taskbar and also in the task manager, when you have to (and we all sometimes have to) kill the right Visual Studio because it stopped responding. You can use it with Git and show the branch or any other info. For more information about this extension, see a &lt;a href=&#34;http://blog.kulman.sk/quick-tip-showing-solution-branch-name-in-visual-studio-title/&#34;&gt;separate blog post I wrote&lt;/a&gt;.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/trayalya.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/trayalya.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://visualstudiogallery.msdn.microsoft.com/03448836-db42-46b3-a5c7-5fc5d36a8308&#34;&gt;AsyncFixer&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;AsyncFixer helps developers in finding and correcting 3 common async/await misuses. AsyncFixer was tested with hundreds of C# apps and successfully handles many corner cases. AsyncFixer will work just in the IDE and work as an analyzer on every project you open in Visual Studio. It can also operate in batch mode to correct all misuses in the document, project, or solution.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/asyncfixer-1.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
+&lt;img src=&#34;../../images/asyncfixer-1.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
     </item>
     
     <item>
       <title>Quick Tip: Showing solution branch name in Visual Studio title</title>
-      <link>https://blog.davidmacias.com/quick-tip-showing-solution-branch-name-in-visual-studio-title/</link>
+      <link>/quick-tip-showing-solution-branch-name-in-visual-studio-title/</link>
       <pubDate>Tue, 21 Jul 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/quick-tip-showing-solution-branch-name-in-visual-studio-title/</guid>
+      <guid>/quick-tip-showing-solution-branch-name-in-visual-studio-title/</guid>
       <description>&lt;p&gt;By default, Visual Studio shows the name of the opened solution name in the title. This makes it easier to navigate among multiple instances of Visual Studio. You see the solution name next to the Visual Studio icon in the taskbar and also in the task manager, when you have to (and we all sometimes have to) kill the right Visual Studio because it stopped responding.&lt;/p&gt;
 
 &lt;p&gt;I work with Git, switching branches frequently, especially working on features and bug fixes. In this situation, it would be nice if Visual Studio showed not only the solution name but also the current branch in its title. No problem, there is an extension for that.&lt;/p&gt;
 
 &lt;p&gt;The extension is called &lt;a href=&#34;https://visualstudiogallery.msdn.microsoft.com/f3f23845-5b1e-4811-882f-60b7181fa6d6&#34;&gt;Rename Visual Studio Window&lt;/a&gt; and it works with Visual Studio 2015, 2013, 2012, 2010. This extension supports Git, so you can easily add the branch name to the title with a config like mine using [gitBranchName].&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/rename.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/rename.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;&lt;/p&gt;
 
 &lt;p&gt;Your taskbar will then look like this&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/trayalya.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
+&lt;img src=&#34;../../images/trayalya.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
     </item>
     
     <item>
       <title>Custom DateTime deserialization with JSON.NET</title>
-      <link>https://blog.davidmacias.com/custom-datetime-deserialization-with-json-net/</link>
+      <link>/custom-datetime-deserialization-with-json-net/</link>
       <pubDate>Wed, 06 May 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/custom-datetime-deserialization-with-json-net/</guid>
+      <guid>/custom-datetime-deserialization-with-json-net/</guid>
       <description>&lt;p&gt;Sometimes you cannot influence the design of the API you have to use and wonder, why the API uses so strangely serialized DateTime and how to handle it using JSON.NET.&lt;/p&gt;
 
 &lt;p&gt;Luckily, JSON.NET makes plugging in custom serializers / deserializes quite easy. There are a few base classes to help you write your own converter, when dealing with DateTime you want to inherit the DateTimeConverterBase class.&lt;/p&gt;
@@ -92,10 +92,10 @@
     
     <item>
       <title>My year with the Raspberry Pi and what I used it for</title>
-      <link>https://blog.davidmacias.com/my-year-with-the-raspberry-pi-and-what-i-used-it-for/</link>
+      <link>/my-year-with-the-raspberry-pi-and-what-i-used-it-for/</link>
       <pubDate>Fri, 13 Feb 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/my-year-with-the-raspberry-pi-and-what-i-used-it-for/</guid>
+      <guid>/my-year-with-the-raspberry-pi-and-what-i-used-it-for/</guid>
       <description>&lt;p&gt;I have been owning and using a Raspberry Pi for over a year now. I started with Raspberry Pi model B and now I added Raspberry Pi 2 immediately after it was announced. Thanks to the fact that an IoT version of Windows 10 will run on the Pi, there is quite a hype about the Pi 2. Many people who did not care about the Pi before are now buying it because of that hype. And mostly they do not know what to do with it. So here is a list of things I used the Pi for, maybe you can get inspired.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Media center&lt;/strong&gt;&lt;/p&gt;
@@ -114,11 +114,11 @@
 
 &lt;p&gt;I am not a hardware guy but I wanted to do some hardware experimenters to use the PIs GPIO ports. I found a simple thermometer scheme, bought the components (a thermometer sensor and a resistor) a made a colleague solder it for me. I connected the thermometer the PI and I was able to read the temperature in the room.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/pitherm.jpg&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/pitherm.jpg&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;Reading the temperature using the command line is not really comfortable, so I created a web UI for the thermometer. I wrote it in Node.js, because it seemed like an interesting platform to try. I made the whole project open source, and you can find it at &lt;a href=&#34;https://github.com/igorkulman/rpi-thermometer&#34;&gt;https://github.com/igorkulman/rpi-thermometer&lt;/a&gt;.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/pi-ui.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/pi-ui.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;Later I added a WiFi module and tried powering the PI from a battery bank. I basically created a WiFi enabled thermometer, that looked a bit strange. I think I need to get a small LCD display, so there is no need to open a browser when you just want to know the temperature.&lt;/p&gt;
 
@@ -141,13 +141,13 @@
     
     <item>
       <title>Using the DebuggerDisplay attribute for better debugging experience</title>
-      <link>https://blog.davidmacias.com/using-the-debuggerdisplay-attribute-for-better-debugging-experience/</link>
+      <link>/using-the-debuggerdisplay-attribute-for-better-debugging-experience/</link>
       <pubDate>Mon, 25 Nov 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/using-the-debuggerdisplay-attribute-for-better-debugging-experience/</guid>
+      <guid>/using-the-debuggerdisplay-attribute-for-better-debugging-experience/</guid>
       <description>&lt;p&gt;When debugging a C# program in Visual Studio, I tend to always hover over the variables to glance at their values and structure instead of explicitly writing their names into the watch window. If I want to explore say a collection, I need to unfold each of the items using the + button to get an idea about the data:&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/debug1.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/debug1.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;This is not very comfortable, so thankfully, there is a way to make this experience better, using the &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/system.diagnostics.debuggerdisplayattribute(v=vs.110).aspx&#34;&gt;DebuggerDisplay&lt;/a&gt; attribute. This attribute can be applied to any class (and struct, enum, property, field, delegate, assembly) and allows you to define the information about the class you wanto to see in the debugger.&lt;/p&gt;
 
@@ -159,7 +159,7 @@
 
 &lt;p&gt;When you hover over the data now, you will see a nice readable &amp;#8220;labels&amp;#8221;:&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/debug2.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/debug2.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;If you do not want to add the DebuggerDisplay attribute to all your classes manually, you can use the &lt;a href=&#34;https://github.com/Fody/Visualize&#34;&gt;Visualize&lt;/a&gt; addin for &lt;a href=&#34;https://github.com/Fody/Fody&#34;&gt;Fody&lt;/a&gt;. Visualize will add the DebuggerDisplay atribute to all your classes, using all the classe&amp;#8217;s properties in the &amp;#8220;label&amp;#8221;.&lt;/p&gt;
 
@@ -168,10 +168,10 @@
     
     <item>
       <title>Succinctly series of free books for programmers</title>
-      <link>https://blog.davidmacias.com/succinctly-series-of-free-books-for-programmers/</link>
+      <link>/succinctly-series-of-free-books-for-programmers/</link>
       <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/succinctly-series-of-free-books-for-programmers/</guid>
+      <guid>/succinctly-series-of-free-books-for-programmers/</guid>
       <description>&lt;p&gt;I have recently come across an intreresting project by &lt;a href=&#34;http://www.syncfusion.com?UTM_medium=kulmanblogreview&#34;&gt;Syncfusion&lt;/a&gt;, a company providing software components for the Microsoft platform.&lt;/p&gt;
 
 &lt;table style=&#34;margin-bottom:20px;&#34;&gt;
@@ -217,10 +217,10 @@
     
     <item>
       <title>Detecting encoding of uploaded file in ASP.NET MVC</title>
-      <link>https://blog.davidmacias.com/detecting-encoding-of-uploaded-file-in-asp-net-mvc/</link>
+      <link>/detecting-encoding-of-uploaded-file-in-asp-net-mvc/</link>
       <pubDate>Tue, 05 Feb 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/detecting-encoding-of-uploaded-file-in-asp-net-mvc/</guid>
+      <guid>/detecting-encoding-of-uploaded-file-in-asp-net-mvc/</guid>
       <description>&lt;p&gt;Uploading a file in ASP.NET MVC is very easy, but there is no easy way to detect the encoding of a uploaded text file. However you can use the fact if you try to read the file with a wrong encoding, you get an DecoderFallbackException. So how do you put everything together?&lt;/p&gt;
 
 &lt;p&gt;First, get a stream of the uploaded file.&lt;/p&gt;
@@ -240,10 +240,10 @@
     
     <item>
       <title>Generating all permutations of a list … how hard can that be?</title>
-      <link>https://blog.davidmacias.com/generating-all-permutations-of-a-list-how-hard-can-that-be/</link>
+      <link>/generating-all-permutations-of-a-list-how-hard-can-that-be/</link>
       <pubDate>Fri, 01 Feb 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/generating-all-permutations-of-a-list-how-hard-can-that-be/</guid>
+      <guid>/generating-all-permutations-of-a-list-how-hard-can-that-be/</guid>
       <description>&lt;p&gt;While reading an article that had nothing in common with programming I came upon a sudden need to find a way to generate all the permutations of a list, or more exactly a string (it is just a list of characters). As lazy as I am I tried to google a few examples of C# code that does exactly that. I was horrified that programmers could come up with the complicated ways I found. Not to mention programmers writing a ton of unit test and classes before actualy writing the code that solves to problem.&lt;/p&gt;
 
 &lt;p&gt;The problem is naturally recursive. All the permutations of a list of n items consit of each of the n items combined with all the permutations of the list without the actual item. So if you have a list of let&amp;#8217;s say items (a,b,c), all the permutations are (a+permutation((b,c)) + (b+permutations((a,c))) + (c+permutations((a,b)).&lt;/p&gt;
@@ -265,10 +265,10 @@
     
     <item>
       <title>AppHarbor: great place to start your .NET project</title>
-      <link>https://blog.davidmacias.com/appharbor-great-place-to-start-your-net-project/</link>
+      <link>/appharbor-great-place-to-start-your-net-project/</link>
       <pubDate>Tue, 08 Jan 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/appharbor-great-place-to-start-your-net-project/</guid>
+      <guid>/appharbor-great-place-to-start-your-net-project/</guid>
       <description>&lt;p&gt;If you want to host your .NET project on the Internet, there are classic ASP.NET webhosting on one side of the spectrum and Microsoft Azure on the other. If you are looking for something in the middle, take a look at &lt;a href=&#34;https://appharbor.com/&#34;&gt;AppHarbor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;AppHarbor&lt;/strong&gt;&lt;/p&gt;
@@ -296,17 +296,17 @@
     
     <item>
       <title>Visual Studio Achievements: a bit of gamification to your programming</title>
-      <link>https://blog.davidmacias.com/visual-studio-achievements-a-bit-of-gamification-to-your-programming/</link>
+      <link>/visual-studio-achievements-a-bit-of-gamification-to-your-programming/</link>
       <pubDate>Thu, 03 Jan 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/visual-studio-achievements-a-bit-of-gamification-to-your-programming/</guid>
+      <guid>/visual-studio-achievements-a-bit-of-gamification-to-your-programming/</guid>
       <description>&lt;p&gt;Gamification is a great concept that works really well for some people, including me. Gamification may very well be the reason for success of projects like &lt;a href=&#34;http://stackoverflow.com/&#34;&gt;StackOveflow&lt;/a&gt; or &lt;a href=&#34;http://duolingo.com/&#34;&gt;Duolingo&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Visual Studio Achievements&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://visualstudiogallery.msdn.microsoft.com/bc7a433b-b594-48d4-bba2-a2f24774d02f&#34;&gt;Visual Studio Achievements&lt;/a&gt; is Visual Studio plugin that rewards you for good practices like having 1000 localized values (&lt;a href=&#34;https://channel9.msdn.com/achievements/visualstudio/MoreThan1000LOC&#34;&gt;Localization Master&lt;/a&gt;) and even for bad practices like writin a single line of 300 characters long (&lt;a href=&#34;https://channel9.msdn.com/achievements/visualstudio/LongerThan300LocAchievement&#34;&gt;Scroll Bar Wizard&lt;/a&gt;). For some of the achievements you need to have FxCop installed, but the majority get awareded without the need for it.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/VisualStudio_badges_2.jpg&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/VisualStudio_badges_2.jpg&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;You can find out interesting information about your programming, check out &lt;a href=&#34;https://channel9.msdn.com/niners/igorkulman/achievements/visualstudio&#34;&gt;my profile&lt;/a&gt;.&lt;/p&gt;
 
@@ -315,10 +315,10 @@
     
     <item>
       <title>Using .NET libraries with MonoTouch</title>
-      <link>https://blog.davidmacias.com/using-net-libraries-with-monotouch/</link>
+      <link>/using-net-libraries-with-monotouch/</link>
       <pubDate>Fri, 28 Dec 2012 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/using-net-libraries-with-monotouch/</guid>
+      <guid>/using-net-libraries-with-monotouch/</guid>
       <description>&lt;p&gt;I have been &lt;a href=&#34;http://blog.kulman.sk/monotouch-ios-development-for-net-programmers/&#34;&gt;playing with MonoTouch&lt;/a&gt; only for a few days when I already started to miss all the .NET libraries I commonly use. The first one I needed to get working with MonoTouch was &lt;a href=&#34;http://james.newtonking.com/projects/json-net.aspx&#34;&gt;JSON.NET&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;MonoDevelop does not support Nuget so you have to get your libaries the old way. I downloaded JSON.NET package from &lt;a href=&#34;http://nuget.org/&#34;&gt;Nuget.org&lt;/a&gt;, but it does not contain a DLL built for Mono. Harldy any Nuget package does. You can reference a DLL built for .NET, MonoDevelop will recognize it and even offer you IntelliSense but your project will not get built.&lt;/p&gt;
@@ -330,10 +330,10 @@
     
     <item>
       <title>MonoTouch: iOS development for .NET programmers</title>
-      <link>https://blog.davidmacias.com/monotouch-ios-development-for-net-programmers/</link>
+      <link>/monotouch-ios-development-for-net-programmers/</link>
       <pubDate>Wed, 19 Dec 2012 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/monotouch-ios-development-for-net-programmers/</guid>
+      <guid>/monotouch-ios-development-for-net-programmers/</guid>
       <description>&lt;p&gt;Beeing &lt;a href=&#34;http://blog.kulman.sk/why-i-do-not-like-windows-phone-programming-anymore/&#34;&gt;quite disappointed with the Windows Phone platform recently&lt;/a&gt; I started to look for other ways to use my .NET skills and to develop for a mobile platform at the same time. I found &lt;a href=&#34;http://xamarin.com/monotouch&#34;&gt;MonoTouch&lt;/a&gt;, a product from Xamarin that allows you to build iOS apps using C# with Mono.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;What is MonoTouch?&lt;/strong&gt;&lt;/p&gt;
@@ -346,7 +346,7 @@
 
 &lt;p&gt;When using MonoTouch you create a new project in MonoDevelop that comes with MonoTouch. The UI files (*.xib) cannot be modified using MonoDevelop so you have to use XCode. You define your UI in XCode like you would as a native developer, creating outlets and actions. MonoTouch watches the project files you make in XCode and generates matching C# files, that allow you to use all the UI elements created in XCode from your C# code. This method is prefered, but you can create the whole UI in code and never use XCode.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/monotocuh.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/monotocuh.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;The iOS development uses MVC pattern, but it does not look like the MVC pattern I am used to. It looks to me more like WinForms development than WPF or other XAML-based technology using MVVM. Just to be clear, MonoTouch would not shield you from the iOS specific stuff, it just porjects the iOS SDK methods and properties to Mono. But it still C# (check out the Write beautiful code section on the &lt;a href=&#34;http://xamarin.com/monotouch&#34;&gt;MonoTouch website&lt;/a&gt;).&lt;/p&gt;
 
@@ -361,10 +361,10 @@
     
     <item>
       <title>Being a polyglot programmer</title>
-      <link>https://blog.davidmacias.com/being-a-polyglot-programmer/</link>
+      <link>/being-a-polyglot-programmer/</link>
       <pubDate>Tue, 06 Nov 2012 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/being-a-polyglot-programmer/</guid>
+      <guid>/being-a-polyglot-programmer/</guid>
       <description>&lt;p&gt;Many programmers learn one platform, one language and stay in their monoculture. Learning many different programming languages can definitely change your programming style and the way you think about problems. It was certainly beneficial for me, here is why.&lt;/p&gt;
 
 &lt;p&gt;After learning Pascal, C in the first semester at the University I started be commercial programming career as a PHP developer (part time in the second semester).  It was easy to start with and in demand so finding a part time job was easy. I never liked the language, it was not &amp;#8220;pure&amp;#8221;, I especially hated the function naming and parameters orders inconsistencies.&lt;/p&gt;

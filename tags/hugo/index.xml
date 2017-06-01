@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hugo on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/hugo/</link>
+    <link>/tags/hugo/</link>
     <description>Recent content in Hugo on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,17 +13,17 @@
     
     <item>
       <title>Delaying Disqus comments to save (a ton of) requests</title>
-      <link>https://blog.davidmacias.com/delaying-disqus-comments-to-save-requests/</link>
+      <link>/delaying-disqus-comments-to-save-requests/</link>
       <pubDate>Tue, 30 May 2017 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/delaying-disqus-comments-to-save-requests/</guid>
-      <description>&lt;p&gt;My blog is a static website generated using &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; and running on &lt;a href=&#34;https://www.netlify.com/&#34;&gt;Netlify&lt;/a&gt; (you can read about my move from WordPress to Hugo in a &lt;a href=&#34;https://blog.davidmacias.com/going-static-from-wordpress-to-hugo&#34;&gt;previous article&lt;/a&gt;) but I still want to allow users to leave comments on my posts so I use &lt;a href=&#34;https://disqus.com/&#34;&gt;Disqus&lt;/a&gt; like many other blogs.&lt;/p&gt;
+      <guid>/delaying-disqus-comments-to-save-requests/</guid>
+      <description>&lt;p&gt;My blog is a static website generated using &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; and running on &lt;a href=&#34;https://www.netlify.com/&#34;&gt;Netlify&lt;/a&gt; (you can read about my move from WordPress to Hugo in a &lt;a href=&#34;../../going-static-from-wordpress-to-hugo&#34;&gt;previous article&lt;/a&gt;) but I still want to allow users to leave comments on my posts so I use &lt;a href=&#34;https://disqus.com/&#34;&gt;Disqus&lt;/a&gt; like many other blogs.&lt;/p&gt;
 
 &lt;p&gt;The advantage of Disqus is that you do not need to host the comments yourself, and I really cannot with a static website, you just embed a JavaScript file and everything is taken care of for you. There are a few alternatives to Disqus but none of them works very well so there is basically no other option if you want to have comments on a static website.&lt;/p&gt;
 
 &lt;p&gt;The problem with Disqus is that this one JavaScript file you embed to your website makes about 50 requests when a page loads. And that is a lot!&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/disqus.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/disqus.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -50,10 +50,10 @@
     
     <item>
       <title>Going static: From Wordpress to Hugo</title>
-      <link>https://blog.davidmacias.com/going-static-from-wordpress-to-hugo/</link>
+      <link>/going-static-from-wordpress-to-hugo/</link>
       <pubDate>Mon, 23 Nov 2015 13:13:55 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/going-static-from-wordpress-to-hugo/</guid>
+      <guid>/going-static-from-wordpress-to-hugo/</guid>
       <description>&lt;p&gt;As you may have noticed, &lt;a href=&#34;http://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/?utm_content=buffer882bd&amp;amp;utm_medium=social&amp;amp;utm_source=twitter.com&amp;amp;utm_campaign=buffer&#34;&gt;static site generation is the next big think&lt;/a&gt;. When I created this blog a few years ago I choose Wordpress, because it seemed like a good choice. Now I have grown tired with updating plugins, exchanging broken plugins for alternative ones and so one. So I decided to try to go the static site generation route to make the blog easier to maintain.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Jekyll? Octopress? FsBlog? Hugo!&lt;/strong&gt;&lt;/p&gt;

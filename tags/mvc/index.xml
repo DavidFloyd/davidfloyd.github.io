@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mvc on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/mvc/</link>
+    <link>/tags/mvc/</link>
     <description>Recent content in Mvc on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>C# scripting console for ASP.NET MVC application</title>
-      <link>https://blog.davidmacias.com/c-scripting-console-for-asp-net-mvc-application/</link>
+      <link>/c-scripting-console-for-asp-net-mvc-application/</link>
       <pubDate>Thu, 09 Jan 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/c-scripting-console-for-asp-net-mvc-application/</guid>
+      <guid>/c-scripting-console-for-asp-net-mvc-application/</guid>
       <description>&lt;p&gt;In a recent larger ASP.NET MVC project running in Windows Azure I needed to provide the advanced users a way to execute custom scripts directly through the webbrowser. A kind of a scripting console where users can create and execute their own scripts, that interact with the project and automate some tasks (that would otherwise require too many clicks).&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Choosing the language&lt;/strong&gt;&lt;/p&gt;

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fsharp on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/fsharp/</link>
+    <link>/tags/fsharp/</link>
     <description>Recent content in Fsharp on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Crawling mobile app stores with F#</title>
-      <link>https://blog.davidmacias.com/crawling-mobile-app-stores-with-f/</link>
+      <link>/crawling-mobile-app-stores-with-f/</link>
       <pubDate>Mon, 07 Apr 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/crawling-mobile-app-stores-with-f/</guid>
+      <guid>/crawling-mobile-app-stores-with-f/</guid>
       <description>&lt;p&gt;Some time ago I needed a way to programatically search the Apple AppStore and Google Play Store to get some info about apps for a project. I decided to write an F# script for that task and later added support for Windows Phone Store.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Types&lt;/strong&gt;&lt;/p&gt;
@@ -60,10 +60,10 @@
     
     <item>
       <title>Building Windows Phone apps with FAKE</title>
-      <link>https://blog.davidmacias.com/building-windows-phone-apps-with-fake/</link>
+      <link>/building-windows-phone-apps-with-fake/</link>
       <pubDate>Mon, 31 Mar 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/building-windows-phone-apps-with-fake/</guid>
+      <guid>/building-windows-phone-apps-with-fake/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://fsharp.github.io/FAKE/&#34;&gt;FAKE&lt;/a&gt; is a build automation system with capabilities which are similar to make and rake. It is using an easy domain-specific language (DSL) so that you can start using it without learning F#. If you need more than the default functionality you can either write F# or simply reference .NET assemblies.&lt;/p&gt;
 
 &lt;p&gt;I have been using FAKE for quite some time now on some fairly complex projects for not only building but also running tests and creating and pushing Nuget packages and I really like. I decided to add FAKE build scripts to my Windows Phone apps to make the process of generating a XAP file for the Windows Phone Store easier.&lt;/p&gt;
@@ -83,10 +83,10 @@
     
     <item>
       <title>F# on Azure: using Table Storage for logging</title>
-      <link>https://blog.davidmacias.com/f-on-azure-using-table-storage-for-logging/</link>
+      <link>/f-on-azure-using-table-storage-for-logging/</link>
       <pubDate>Tue, 26 Feb 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/f-on-azure-using-table-storage-for-logging/</guid>
+      <guid>/f-on-azure-using-table-storage-for-logging/</guid>
       <description>&lt;p&gt;Windows Azure finally has a good F# support. Creating F# Worker Roles is supported right from the wizzard in Visual Studio and you can create a F# Web Role using the &lt;a href=&#34;http://visualstudiogallery.msdn.microsoft.com/3d2bf938-fc9e-403c-90b3-8de27dc23095&#34;&gt;F# C# MVC template&lt;/a&gt;. I decided to try it out and the first thing I needed to implement was logging. I decided for logging to Azure Table Storage.&lt;/p&gt;
 
 &lt;p&gt;I assume you have a basic idea of how Azure Table Storage works. If not, there is a &lt;a href=&#34;http://www.windowsazure.com/en-us/develop/net/how-to-guides/table-services/&#34;&gt;good guide on the Windows Azure website&lt;/a&gt;.&lt;/p&gt;
@@ -126,10 +126,10 @@
     
     <item>
       <title>Reading Excel sheets using F# without COM</title>
-      <link>https://blog.davidmacias.com/reading-excel-sheets-using-f-without-com/</link>
+      <link>/reading-excel-sheets-using-f-without-com/</link>
       <pubDate>Wed, 06 Feb 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/reading-excel-sheets-using-f-without-com/</guid>
+      <guid>/reading-excel-sheets-using-f-without-com/</guid>
       <description>&lt;p&gt;I needed to create an utility that would read Excel 2010 files (.xlsx) and generate XML files from them according to some specific rules. The catch was that the utility needed to run on MacOS instead of Windows.&lt;/p&gt;
 
 &lt;p&gt;Reading and writing Excel files from .NET is &lt;a href=&#34;http://blogs.msdn.com/b/jackhu/archive/2011/04/19/fsharp-amp-excel-io-reading-and-writeing-to-excel.aspx&#34;&gt;very easy using the Microsoft.Office.Interop assemblies&lt;/a&gt; but they use Excel through COM and that makes them unusable outside of Windows. I found some 3rd party libraries for working with Excel and analzyed them with &lt;a href=&#34;http://www.mono-project.com/MoMA&#34;&gt;The Mono Migration Analzyer&lt;/a&gt; (MoMA). MoMA is a handy tool that analyzes .NET assemblies and tells you if they will run on Mono. Many of the Excel libraries I found were unusable for my use-case because they were using PInvoke calls. Only the &lt;a href=&#34;http://excelpackage.codeplex.com/&#34;&gt;ExcelPackage library&lt;/a&gt; runs on Mono.&lt;/p&gt;
@@ -166,10 +166,10 @@
     
     <item>
       <title>Generating all permutations of a list … how hard can that be?</title>
-      <link>https://blog.davidmacias.com/generating-all-permutations-of-a-list-how-hard-can-that-be/</link>
+      <link>/generating-all-permutations-of-a-list-how-hard-can-that-be/</link>
       <pubDate>Fri, 01 Feb 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/generating-all-permutations-of-a-list-how-hard-can-that-be/</guid>
+      <guid>/generating-all-permutations-of-a-list-how-hard-can-that-be/</guid>
       <description>&lt;p&gt;While reading an article that had nothing in common with programming I came upon a sudden need to find a way to generate all the permutations of a list, or more exactly a string (it is just a list of characters). As lazy as I am I tried to google a few examples of C# code that does exactly that. I was horrified that programmers could come up with the complicated ways I found. Not to mention programmers writing a ton of unit test and classes before actualy writing the code that solves to problem.&lt;/p&gt;
 
 &lt;p&gt;The problem is naturally recursive. All the permutations of a list of n items consit of each of the n items combined with all the permutations of the list without the actual item. So if you have a list of let&amp;#8217;s say items (a,b,c), all the permutations are (a+permutation((b,c)) + (b+permutations((a,c))) + (c+permutations((a,b)).&lt;/p&gt;
@@ -191,10 +191,10 @@
     
     <item>
       <title>Using Sublime Text 2 as F# REPL</title>
-      <link>https://blog.davidmacias.com/using-sublime-text-2-as-f-repl/</link>
+      <link>/using-sublime-text-2-as-f-repl/</link>
       <pubDate>Tue, 15 Jan 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/using-sublime-text-2-as-f-repl/</guid>
+      <guid>/using-sublime-text-2-as-f-repl/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text 2&lt;/a&gt; is a great multi-purpose text editor that you can run on Windows, MacOS and Linux. You can configure Sublime Text 2 to higlight and compile F# files and even to use F# Interactive and make it a F# REPL. Using Sublime Text 2 as F# REPL is useful when you work on MacOS and Linux (F# 3.0 works great with &lt;a href=&#34;http://www.mono-project.com/Main_Page&#34;&gt;Mono&lt;/a&gt;) and cannot use Visual Studio 2012. If you are new to Sublime Text 2, check out the &lt;a href=&#34;http://net.tutsplus.com/articles/news/perfect-workflow-in-sublime-text-free-course/&#34;&gt;Perfect Workflow in Sublime Text: Free Course&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Installing necessary packages&lt;/strong&gt;&lt;/p&gt;
@@ -231,10 +231,10 @@
     
     <item>
       <title>Fun with F# Type Providers: SQL</title>
-      <link>https://blog.davidmacias.com/fun-with-f-type-providers-sql/</link>
+      <link>/fun-with-f-type-providers-sql/</link>
       <pubDate>Tue, 27 Nov 2012 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/fun-with-f-type-providers-sql/</guid>
+      <guid>/fun-with-f-type-providers-sql/</guid>
       <description>&lt;p&gt;F# is a great language with a great potential that lets you express yourself more clearly and compactly. One of the best features that comes with F# 3.0 shipped with Visual Studio 2012 is Type Providers.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;What are Type Providers?&lt;/strong&gt;&lt;/p&gt;
@@ -291,10 +291,10 @@
     
     <item>
       <title>Being a polyglot programmer</title>
-      <link>https://blog.davidmacias.com/being-a-polyglot-programmer/</link>
+      <link>/being-a-polyglot-programmer/</link>
       <pubDate>Tue, 06 Nov 2012 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/being-a-polyglot-programmer/</guid>
+      <guid>/being-a-polyglot-programmer/</guid>
       <description>&lt;p&gt;Many programmers learn one platform, one language and stay in their monoculture. Learning many different programming languages can definitely change your programming style and the way you think about problems. It was certainly beneficial for me, here is why.&lt;/p&gt;
 
 &lt;p&gt;After learning Pascal, C in the first semester at the University I started be commercial programming career as a PHP developer (part time in the second semester).  It was easy to start with and in demand so finding a part time job was easy. I never liked the language, it was not &amp;#8220;pure&amp;#8221;, I especially hated the function naming and parameters orders inconsistencies.&lt;/p&gt;

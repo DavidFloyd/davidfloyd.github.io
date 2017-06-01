@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Swift on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/categories/swift/</link>
+    <link>/categories/swift/</link>
     <description>Recent content in Swift on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,17 +13,17 @@
     
     <item>
       <title>Using MVVM with tables and cells in iOS</title>
-      <link>https://blog.davidmacias.com/using-mvvm-with-tables-in-ios/</link>
+      <link>/using-mvvm-with-tables-in-ios/</link>
       <pubDate>Tue, 21 Mar 2017 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/using-mvvm-with-tables-in-ios/</guid>
-      <description>&lt;p&gt;When I ventured into native iOS development I immediately took a look at the possibility to &lt;a href=&#34;https://blog.davidmacias.com/using-data-binding-in-ios&#34;&gt;use data binding on iOS&lt;/a&gt; which enables me to simply declare the relationships between the UI and the ViewModel. This article takes that approach further shows you how to use MVVM and data binding when using tables and cells, or in the world of iOS &lt;code&gt;UITableView&lt;/code&gt; and &lt;code&gt;UITableViewCell&lt;/code&gt;.&lt;/p&gt;
+      <guid>/using-mvvm-with-tables-in-ios/</guid>
+      <description>&lt;p&gt;When I ventured into native iOS development I immediately took a look at the possibility to &lt;a href=&#34;../../using-data-binding-in-ios&#34;&gt;use data binding on iOS&lt;/a&gt; which enables me to simply declare the relationships between the UI and the ViewModel. This article takes that approach further shows you how to use MVVM and data binding when using tables and cells, or in the world of iOS &lt;code&gt;UITableView&lt;/code&gt; and &lt;code&gt;UITableViewCell&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;sample-scenario&#34;&gt;Sample scenario&lt;/h2&gt;
 
 &lt;p&gt;Let&amp;rsquo;s start with simple example scenario. You want to show progress of some flow that contains of multiple steps, each of the steps can be either running or complete. When a step is running it can report its progress. You want to display this flow in a table that looks like this&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/iostablemvvm.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/iostablemvvm.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -66,17 +66,17 @@
     
     <item>
       <title>Using data binding in iOS</title>
-      <link>https://blog.davidmacias.com/using-data-binding-in-ios/</link>
+      <link>/using-data-binding-in-ios/</link>
       <pubDate>Tue, 14 Mar 2017 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/using-data-binding-in-ios/</guid>
+      <guid>/using-data-binding-in-ios/</guid>
       <description>&lt;p&gt;When I started working on a native iOS project after a few years of Windows (Phone) development I looked into ways to write a more declarative and more elegant code than the &amp;ldquo;standard&amp;rdquo; iOS way. I wanted to transfer some of my habits over and the first thing I really missed was XAML data binding. I did some research on how to do data binding in iOS and found a few libraries that make it possible. This allowed me to write better code and I think data binding is a concept that all the iOS developer should look into. If you are interested in my experience with using binding in iOS, read on.&lt;/p&gt;
 
 &lt;h2 id=&#34;sample-scenario&#34;&gt;Sample scenario&lt;/h2&gt;
 
 &lt;p&gt;Let&amp;rsquo;s use a simple example scenario. You have a screen where the users have to choose their country and then enter their mobile number. The number has to be validated with respect to the selected country and if everything is ok the Next button should become visible. So basically it should work like this&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/iosvalidation.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/iosvalidation.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;&lt;/p&gt;
 

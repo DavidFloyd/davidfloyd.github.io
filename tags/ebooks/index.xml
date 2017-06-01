@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ebooks on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/ebooks/</link>
+    <link>/tags/ebooks/</link>
     <description>Recent content in Ebooks on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Succinctly series of free books for programmers</title>
-      <link>https://blog.davidmacias.com/succinctly-series-of-free-books-for-programmers/</link>
+      <link>/succinctly-series-of-free-books-for-programmers/</link>
       <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/succinctly-series-of-free-books-for-programmers/</guid>
+      <guid>/succinctly-series-of-free-books-for-programmers/</guid>
       <description>&lt;p&gt;I have recently come across an intreresting project by &lt;a href=&#34;http://www.syncfusion.com?UTM_medium=kulmanblogreview&#34;&gt;Syncfusion&lt;/a&gt;, a company providing software components for the Microsoft platform.&lt;/p&gt;
 
 &lt;table style=&#34;margin-bottom:20px;&#34;&gt;

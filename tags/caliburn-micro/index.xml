@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Caliburn Micro on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/caliburn-micro/</link>
+    <link>/tags/caliburn-micro/</link>
     <description>Recent content in Caliburn Micro on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Visual Studio template for Caliburn.Micro Windows Phone apps</title>
-      <link>https://blog.davidmacias.com/visual-studio-template-for-caliburn-micro-windows-phone-apps/</link>
+      <link>/visual-studio-template-for-caliburn-micro-windows-phone-apps/</link>
       <pubDate>Mon, 03 Nov 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/visual-studio-template-for-caliburn-micro-windows-phone-apps/</guid>
+      <guid>/visual-studio-template-for-caliburn-micro-windows-phone-apps/</guid>
       <description>&lt;p&gt;I have been building Windows Phone apps using the &lt;a href=&#34;https://github.com/Caliburn-Micro/Caliburn.Micro&#34;&gt;Caliburn.Micro&lt;/a&gt; framework for some time now. Setting up a new project takes some time and can be easily automated, so I decided to create a Visual Studio template for Windows Phone apps build with Caliburn.Micro.&lt;/p&gt;
 
 &lt;p&gt;The templates can be downloaded from &lt;a href=&#34;https://visualstudiogallery.msdn.microsoft.com/21b4568e-1fb9-4881-9d51-8e1ea0160a9f&#34;&gt;the Visual Studio Extensions gallery&lt;/a&gt; and used to build Windows Phone 8 and Windows Phone 8.1 Silverlight apps. It contains the basic setup with Caliburn Micro and &lt;a href=&#34;http://blog.kulman.sk/inotifypropertychanged-the-easy-way-in-windows-phone-and-windows-8/&#34; title=&#34;INotifyPropertyChanged the easy way in Windows Phone and Windows 8&#34;&gt;Fody&lt;/a&gt;, with a sample view and viewmodel.&lt;/p&gt;
@@ -28,10 +28,10 @@
     
     <item>
       <title>Automatic ViewModels and Services registration for (not only) Caliburn.Micro</title>
-      <link>https://blog.davidmacias.com/automatic-viewmodels-and-services-registration-for-not-only-caliburn-micro/</link>
+      <link>/automatic-viewmodels-and-services-registration-for-not-only-caliburn-micro/</link>
       <pubDate>Wed, 23 Jul 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/automatic-viewmodels-and-services-registration-for-not-only-caliburn-micro/</guid>
+      <guid>/automatic-viewmodels-and-services-registration-for-not-only-caliburn-micro/</guid>
       <description>&lt;p&gt;My MVVM framework of choice, Caliburn.Micro, provides a simple Dependency Injection container, where you have to register all your ViewModels and Services. This is done in the Bootstraper&amp;#8217;s Configure method and may look like this:&lt;/p&gt;
 
 &lt;div data-gist=&#34;0353b26073fc11d3635f&#34; data-file=&#34;reg1.cs&#34;&gt;&lt;/div&gt;
@@ -63,13 +63,13 @@
     
     <item>
       <title>Making your Windows Phone Silverlight 8.1 app a Share Contract target</title>
-      <link>https://blog.davidmacias.com/making-your-windows-phone-silverlight-8-1-app-a-share-contract-target/</link>
+      <link>/making-your-windows-phone-silverlight-8-1-app-a-share-contract-target/</link>
       <pubDate>Wed, 23 Apr 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/making-your-windows-phone-silverlight-8-1-app-a-share-contract-target/</guid>
+      <guid>/making-your-windows-phone-silverlight-8-1-app-a-share-contract-target/</guid>
       <description>&lt;p&gt;Windows Phone 8.1 introduced many interesting new thing, the one I personally like the best as a developer is the Share Contract. The Share Contract allows your apps to share data using an unified and easy way and also to receive data from other apps. This functionality is important for my &lt;a href=&#34;http://t.co/YMtrM84rwI&#34;&gt;Pock8&lt;/a&gt; app, which is a Pocket client. By making Pock8 app a Share Contract target, the app can receive links from other apps, more importantly from the built-in webrowser (IE). This makes the app even more easy to use and valuable.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/wp81.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/wp81.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;The problem is that &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh871367.aspx&#34;&gt;all the documentation I found&lt;/a&gt; and also &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh871363.aspx&#34;&gt;the sample app&lt;/a&gt; are for Windows Runtime. Pock8 is a Silverligt app and I have no intentions to rewrite it to Windows Runtime.&lt;/p&gt;
 
@@ -94,10 +94,10 @@
     
     <item>
       <title>Creating a Search box with Reactive Extensions and MVVM</title>
-      <link>https://blog.davidmacias.com/creating-a-search-box-with-reactive-extensions-and-mvvm/</link>
+      <link>/creating-a-search-box-with-reactive-extensions-and-mvvm/</link>
       <pubDate>Mon, 02 Dec 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/creating-a-search-box-with-reactive-extensions-and-mvvm/</guid>
+      <guid>/creating-a-search-box-with-reactive-extensions-and-mvvm/</guid>
       <description>&lt;p&gt;Having a Search box in a Windows Phone app is a common use-case but it is only rarely done right. A good Search box does not have a Search button associated with it that the users have to click when they are finished typing and want to start the search. A good Search box starts the search immediately when the user stops typing (for a certain period of time).&lt;/p&gt;
 
 &lt;p&gt;You can implement this functionality with some nasty code using a DispatcherTimer, or you can use &lt;a href=&#34;http://msdn.microsoft.com/en-us/data/gg577609.aspx&#34;&gt;Reactive Extensions&lt;/a&gt;. You can use Reactive Extensions directly on a TextBox representing the Search box, but if you use MVVM (and you should) you need to attach to the property associated with the Search box instead.&lt;/p&gt;
@@ -125,10 +125,10 @@
     
     <item>
       <title>Developing Windows Store apps with Caliburn Micro Part 4: services and dependency injection</title>
-      <link>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-4-services-and-dependency-injection/</link>
+      <link>/developing-windows-store-apps-with-caliburn-micro-part-4-services-and-dependency-injection/</link>
       <pubDate>Wed, 18 Sep 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-4-services-and-dependency-injection/</guid>
+      <guid>/developing-windows-store-apps-with-caliburn-micro-part-4-services-and-dependency-injection/</guid>
       <description>&lt;p&gt;In this installment of the series I will show you how user data services. We will finally use the Unity DI container that is part of the project setup.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Data and Services&lt;/strong&gt;&lt;/p&gt;
@@ -168,10 +168,10 @@
     
     <item>
       <title>Developing Windows Store apps with Caliburn Micro Part 3: saving and restoring state</title>
-      <link>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-3-saving-and-restoring-state/</link>
+      <link>/developing-windows-store-apps-with-caliburn-micro-part-3-saving-and-restoring-state/</link>
       <pubDate>Tue, 13 Aug 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-3-saving-and-restoring-state/</guid>
+      <guid>/developing-windows-store-apps-with-caliburn-micro-part-3-saving-and-restoring-state/</guid>
       <description>&lt;p&gt;In the &lt;a href=&#34;http://blog.kulman.sk/developing-windows-store-apps-with-caliburn-micro-part-2-navigation/&#34; title=&#34;Developing Windows Store apps with Caliburn Micro Part 2: navigation&#34;&gt;previous post&lt;/a&gt; I stated that a well-behaved Windows Store app should remeber the View the user navigated to before suspension and navigate to this View upon next run. The View can contain some input that the user can fill in. A well-behaved Windows Store app should remember the user&amp;#8217;s input and restore it after suspension.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Saving and restoring state&lt;/strong&gt;&lt;/p&gt;
@@ -195,10 +195,10 @@
     
     <item>
       <title>Developing Windows Store apps with Caliburn Micro Part 2: navigation</title>
-      <link>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-2-navigation/</link>
+      <link>/developing-windows-store-apps-with-caliburn-micro-part-2-navigation/</link>
       <pubDate>Tue, 06 Aug 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-2-navigation/</guid>
+      <guid>/developing-windows-store-apps-with-caliburn-micro-part-2-navigation/</guid>
       <description>&lt;p&gt;In this second part you will add another ViewModel and View and implement navigation between two ViewModels, including saving the navigation state between starts. The code is as always &lt;a href=&#34;https://github.com/igorkulman/CaliburnDemoWinRT&#34;&gt;available at Github&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Invoking ViewModel methods&lt;/strong&gt;&lt;/p&gt;
@@ -256,10 +256,10 @@
     
     <item>
       <title>Developing Windows Store apps with Caliburn Micro Part 1: setup and first view</title>
-      <link>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-1-setup-and-first-view/</link>
+      <link>/developing-windows-store-apps-with-caliburn-micro-part-1-setup-and-first-view/</link>
       <pubDate>Tue, 30 Jul 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/developing-windows-store-apps-with-caliburn-micro-part-1-setup-and-first-view/</guid>
+      <guid>/developing-windows-store-apps-with-caliburn-micro-part-1-setup-and-first-view/</guid>
       <description>&lt;p&gt;I have been developing Windows Store apps for some time. I have always used MVVM, but mostly &amp;#8220;my own&amp;#8221; MVVM. I have finally decided to use a &amp;#8220;real&amp;#8221; MVVM framework and I have chosen Caliburn Micro, because I did not like MVVM very much. In this article I am going to show you how to use Caliburn Micro, Unity and Fody to develop Windows Store apps.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Caliburn Micro&lt;/strong&gt;&lt;/p&gt;

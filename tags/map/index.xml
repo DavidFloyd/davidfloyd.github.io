@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Map on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/map/</link>
+    <link>/tags/map/</link>
     <description>Recent content in Map on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,13 +13,13 @@
     
     <item>
       <title>Converting between pixels, meters and map coordinates in Windows Phone</title>
-      <link>https://blog.davidmacias.com/converting-between-pixels-meters-and-map-coordinates-in-windows-phone/</link>
+      <link>/converting-between-pixels-meters-and-map-coordinates-in-windows-phone/</link>
       <pubDate>Tue, 24 Jun 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/converting-between-pixels-meters-and-map-coordinates-in-windows-phone/</guid>
+      <guid>/converting-between-pixels-meters-and-map-coordinates-in-windows-phone/</guid>
       <description>&lt;p&gt;In my current project I needed to solve one quite interesting problem. Imagine you have a map with some pins representing points of interest. If the user taps on a pin, a label with the place title is shown like on this image (that is not from the real project, obviously).&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/image_thumb_4_4.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/image_thumb_4_4.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;The client had an interesting requirement. When the user taps the pin and the label is shown, they wanted the label to be centered on the map (basically move the map so the label appears in the middle of the map).&lt;/p&gt;
 

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Windows Azure on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/categories/windows-azure/</link>
+    <link>/categories/windows-azure/</link>
     <description>Recent content in Windows Azure on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Using ETag to cache responses in NancyFX</title>
-      <link>https://blog.davidmacias.com/using-etag-to-cache-responses-in-nancyfx/</link>
+      <link>/using-etag-to-cache-responses-in-nancyfx/</link>
       <pubDate>Wed, 15 Apr 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/using-etag-to-cache-responses-in-nancyfx/</guid>
+      <guid>/using-etag-to-cache-responses-in-nancyfx/</guid>
       <description>&lt;p&gt;Caching data is usually a good idea, especially when creating APIs for mobile clients and the user may pay for each transferred byte. There are many approaches to caching data (I recommend reading &lt;a href=&#34;http://frontendplay.com/2013/05/22/http-caching-demystified/&#34;&gt;this article&lt;/a&gt;), in my last NancyFX project I used ETag.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;ETag&lt;/strong&gt;&lt;/p&gt;
@@ -40,10 +40,10 @@
     
     <item>
       <title>NancyFX authentication for REST API</title>
-      <link>https://blog.davidmacias.com/nancyfx-authentication-for-rest-api/</link>
+      <link>/nancyfx-authentication-for-rest-api/</link>
       <pubDate>Mon, 12 Jan 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/nancyfx-authentication-for-rest-api/</guid>
+      <guid>/nancyfx-authentication-for-rest-api/</guid>
       <description>&lt;p&gt;NancyFX is a great .NET framework well suited for creating REST APIs. There are many ways how to approach authentication, the simplest one is the good old Forms Authentication. The idea of Forms Authentication is that the user logs in with a username and password and gets a cookie, the protected endpoints then check the cookie. NancyFX supports Forms Authentication with the &lt;a href=&#34;https://www.nuget.org/packages/Nancy.Authentication.Forms/&#34;&gt;Nancy.Authentication.Forms&lt;/a&gt; package. The &lt;a href=&#34;https://github.com/NancyFx/Nancy/wiki/Forms-Authentication&#34;&gt;documentation describes how to use it on a web page&lt;/a&gt;, but to use it with a REST API a few changes are needed.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Forms Authentication differences for REST API&lt;/strong&gt;&lt;/p&gt;
@@ -71,10 +71,10 @@
     
     <item>
       <title>C# scripting console for ASP.NET MVC application</title>
-      <link>https://blog.davidmacias.com/c-scripting-console-for-asp-net-mvc-application/</link>
+      <link>/c-scripting-console-for-asp-net-mvc-application/</link>
       <pubDate>Thu, 09 Jan 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/c-scripting-console-for-asp-net-mvc-application/</guid>
+      <guid>/c-scripting-console-for-asp-net-mvc-application/</guid>
       <description>&lt;p&gt;In a recent larger ASP.NET MVC project running in Windows Azure I needed to provide the advanced users a way to execute custom scripts directly through the webbrowser. A kind of a scripting console where users can create and execute their own scripts, that interact with the project and automate some tasks (that would otherwise require too many clicks).&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Choosing the language&lt;/strong&gt;&lt;/p&gt;
@@ -124,10 +124,10 @@
     
     <item>
       <title>Returning files in NancyFX</title>
-      <link>https://blog.davidmacias.com/returning-files-in-nancyfx/</link>
+      <link>/returning-files-in-nancyfx/</link>
       <pubDate>Wed, 02 Oct 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/returning-files-in-nancyfx/</guid>
+      <guid>/returning-files-in-nancyfx/</guid>
       <description>&lt;p&gt;In my current project, I have chosen &lt;a href=&#34;http://nancyfx.org/&#34;&gt;NancyFx&lt;/a&gt; to implement a REST API. NancyFx is a .NET framework known for its &amp;#8220;&lt;a href=&#34;https://github.com/NancyFx/Nancy/wiki/Introduction#the-super-duper-happy-path&#34;&gt;super-duper-happy-path&lt;/a&gt;&amp;#8220;.&lt;/p&gt;
 
 &lt;p&gt;In one use case I generate a ZIP file in the temp folder and I want the API to return this ZIP file. NancyFx contains a Responses.AsFile helper but it works only with paths relative to the application.&lt;/p&gt;
@@ -141,10 +141,10 @@
     
     <item>
       <title>Intercepting methods with Ninject for error logging</title>
-      <link>https://blog.davidmacias.com/intercepting-methods-with-ninject-for-error-logging/</link>
+      <link>/intercepting-methods-with-ninject-for-error-logging/</link>
       <pubDate>Wed, 24 Jul 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/intercepting-methods-with-ninject-for-error-logging/</guid>
+      <guid>/intercepting-methods-with-ninject-for-error-logging/</guid>
       <description>&lt;p&gt;I am currently working on a fairly large Windows Azure projects that among other things conatins a Web Role where I use &lt;a href=&#34;http://www.ninject.org/&#34;&gt;Ninject&lt;/a&gt; as a dependency container. As the business logic library grew larger I found myself writing a lot of repeating boiler plate code to log exceptions in many important methods. I wantet to remove all the boiler plate code and create a custom attribute, say LogErrorAttribute with one simple goal: each method decorated woth this attribute should log info about any occuring exception.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;IL weaving?&lt;/strong&gt;&lt;/p&gt;
@@ -182,10 +182,10 @@
     
     <item>
       <title>F# on Azure: using Table Storage for logging</title>
-      <link>https://blog.davidmacias.com/f-on-azure-using-table-storage-for-logging/</link>
+      <link>/f-on-azure-using-table-storage-for-logging/</link>
       <pubDate>Tue, 26 Feb 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/f-on-azure-using-table-storage-for-logging/</guid>
+      <guid>/f-on-azure-using-table-storage-for-logging/</guid>
       <description>&lt;p&gt;Windows Azure finally has a good F# support. Creating F# Worker Roles is supported right from the wizzard in Visual Studio and you can create a F# Web Role using the &lt;a href=&#34;http://visualstudiogallery.msdn.microsoft.com/3d2bf938-fc9e-403c-90b3-8de27dc23095&#34;&gt;F# C# MVC template&lt;/a&gt;. I decided to try it out and the first thing I needed to implement was logging. I decided for logging to Azure Table Storage.&lt;/p&gt;
 
 &lt;p&gt;I assume you have a basic idea of how Azure Table Storage works. If not, there is a &lt;a href=&#34;http://www.windowsazure.com/en-us/develop/net/how-to-guides/table-services/&#34;&gt;good guide on the Windows Azure website&lt;/a&gt;.&lt;/p&gt;
@@ -225,10 +225,10 @@
     
     <item>
       <title>AppHarbor: great place to start your .NET project</title>
-      <link>https://blog.davidmacias.com/appharbor-great-place-to-start-your-net-project/</link>
+      <link>/appharbor-great-place-to-start-your-net-project/</link>
       <pubDate>Tue, 08 Jan 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/appharbor-great-place-to-start-your-net-project/</guid>
+      <guid>/appharbor-great-place-to-start-your-net-project/</guid>
       <description>&lt;p&gt;If you want to host your .NET project on the Internet, there are classic ASP.NET webhosting on one side of the spectrum and Microsoft Azure on the other. If you are looking for something in the middle, take a look at &lt;a href=&#34;https://appharbor.com/&#34;&gt;AppHarbor&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;AppHarbor&lt;/strong&gt;&lt;/p&gt;
@@ -256,10 +256,10 @@
     
     <item>
       <title>Updating Azure Toolkit is always a pain</title>
-      <link>https://blog.davidmacias.com/updating-azure-toolkit-is-always-a-pain/</link>
+      <link>/updating-azure-toolkit-is-always-a-pain/</link>
       <pubDate>Fri, 26 Oct 2012 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/updating-azure-toolkit-is-always-a-pain/</guid>
+      <guid>/updating-azure-toolkit-is-always-a-pain/</guid>
       <description>&lt;p&gt;From time to time I need to develop or maintain a small Windows Azure project. This time I wanted to create the whole project in F#. The first thing I needed to to was to update the Azure toolkit 1.8 (October 2012) but updating Azure Toolkit is always a pain. I started Web Platform Installer, selected Azure Toolkit 1.8, Azure Tools 1.8 for VS2012 and installed everything including the dependencies. What was the result? The whole Azure integration in Visual Studio 2012 stopped working. The Azure templates completely disappeared and Visual Studio only offered me downloading the Azure Toolkit, which failed, because it was already installed. I ended up completely uninstalling everything with the name containing Azure and installing the Azure toolkit again using the link from Visual Studio.&lt;/p&gt;
 
 &lt;p&gt;Why cannot this work better?&lt;/p&gt;

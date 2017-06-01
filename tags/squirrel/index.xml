@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Squirrel on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/squirrel/</link>
+    <link>/tags/squirrel/</link>
     <description>Recent content in Squirrel on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Application deployment with NSIS and Squirrel</title>
-      <link>https://blog.davidmacias.com/application-deployment-with-nsis-and-squirrel/</link>
+      <link>/application-deployment-with-nsis-and-squirrel/</link>
       <pubDate>Wed, 22 Jun 2016 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/application-deployment-with-nsis-and-squirrel/</guid>
+      <guid>/application-deployment-with-nsis-and-squirrel/</guid>
       <description>&lt;p&gt;Currently working on a WPF app as a side project for &lt;a href=&#34;http://www.netglade.cz/&#34;&gt;Netglade&lt;/a&gt; I came upon and interesting requirement regarding installation and deployment of the application. As a result I ended with some Squirrel and NSIS knowledge I would like to share.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;

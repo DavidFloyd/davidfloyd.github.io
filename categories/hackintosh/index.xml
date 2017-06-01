@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hackintosh on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/categories/hackintosh/</link>
+    <link>/categories/hackintosh/</link>
     <description>Recent content in Hackintosh on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>My experience running a hackintosh</title>
-      <link>https://blog.davidmacias.com/my-experience-running-a-hackintosh/</link>
+      <link>/my-experience-running-a-hackintosh/</link>
       <pubDate>Wed, 29 Mar 2017 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/my-experience-running-a-hackintosh/</guid>
+      <guid>/my-experience-running-a-hackintosh/</guid>
       <description>&lt;p&gt;A few months ago I decided to take part in an iOS project. The first problem I needed to solve was to be able to run macOS Sierra and XCode. I did not really want to buy an overpriced MacBook without function keys or and underpowered Mac Mini. Especially when I own a more than 3 years old desktop computer that is still usable for all my needs. A few iOS developers I know recommended I go the Hackintosh way.&lt;/p&gt;
 
 &lt;h2 id=&#34;hackintosh&#34;&gt;Hackintosh&lt;/h2&gt;
@@ -60,17 +60,17 @@
     
     <item>
       <title>Using macOS with a Windows keyboard</title>
-      <link>https://blog.davidmacias.com/using-macos-with-a-windows-keyboard/</link>
+      <link>/using-macos-with-a-windows-keyboard/</link>
       <pubDate>Tue, 31 Jan 2017 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/using-macos-with-a-windows-keyboard/</guid>
+      <guid>/using-macos-with-a-windows-keyboard/</guid>
       <description>&lt;p&gt;When you start using macOS after years of using Windows there are some things you expect to work in certain ways. One of those things is the ways the OS handles keyboard input and keyboard shortcuts. This is especially important if you still also use Windows and use a Windows keyboard with macOS. Here are a few things regarding the keyboard that help me when using macOS working on a side project.&lt;/p&gt;
 
 &lt;h2 id=&#34;control-option-and-command-keys&#34;&gt;Control, Option and Command keys&lt;/h2&gt;
 
 &lt;p&gt;The fist thing you may notice when using macOS with a Windows keyboard is that the modifier keys are not in the right order. The order of the modifier keys on an Apple keyboard is Control, Option, Command but the Ctrl, Windows, Alt keys on a Windows keyboard map to Control, Command, Option by default. You can fix the order of the modifier keys in System Preferences | Keyboard | Modifier keys&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/macoskeymapping.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/macoskeymapping.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -96,7 +96,7 @@
 
 &lt;p&gt;You can then open System preferences | Keyboard | Keyboard shortcuts | Services and assign those two services any keyboard shortcut you want. I use Control + Command + Up for Volume up and Control + Command + Down for Volume down.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/volumeshortcuts.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
+&lt;img src=&#34;../../images/volumeshortcuts.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
     </item>
     
   </channel>

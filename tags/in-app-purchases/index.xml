@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>In App Purchases on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/in-app-purchases/</link>
+    <link>/tags/in-app-purchases/</link>
     <description>Recent content in In App Purchases on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Testing in-app purchases in Windows Phone</title>
-      <link>https://blog.davidmacias.com/testing-in-app-purchases-in-windows-phone/</link>
+      <link>/testing-in-app-purchases-in-windows-phone/</link>
       <pubDate>Mon, 17 Mar 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/testing-in-app-purchases-in-windows-phone/</guid>
+      <guid>/testing-in-app-purchases-in-windows-phone/</guid>
       <description>&lt;p&gt;Windows Phone Store does not offer developers any sandbox to test in-app purchases in their apps, like stores on other platforms do. If you want test in-app purchases in your Windows Phone apps, you need to use other options.&lt;/p&gt;
 
 &lt;p&gt;To make in-app purchases implementation easier, I created a simple Windows Phone Store service interface in my &lt;a href=&#34;https://github.com/igorkulman/Kulman.WP8&#34;&gt;Kulman.WP8&lt;/a&gt; library (also &lt;a href=&#34;http://www.nuget.org/packages/Kulman.WP8/&#34;&gt;available on Nuget&lt;/a&gt;)&lt;/p&gt;

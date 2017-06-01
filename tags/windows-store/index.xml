@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Windows Store on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/windows-store/</link>
+    <link>/tags/windows-store/</link>
     <description>Recent content in Windows Store on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,13 +13,13 @@
     
     <item>
       <title>Creating a simple Windows 10 game with Win2D</title>
-      <link>https://blog.davidmacias.com/creating-a-simple-windows-10-game-with-win2d/</link>
+      <link>/creating-a-simple-windows-10-game-with-win2d/</link>
       <pubDate>Wed, 15 Jun 2016 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/creating-a-simple-windows-10-game-with-win2d/</guid>
+      <guid>/creating-a-simple-windows-10-game-with-win2d/</guid>
       <description>&lt;p&gt;Some time ago while looking at some pixel art work I got an idea to create a retro pixel art game for Windows 10. The choice was obvious, &lt;a href=&#34;https://www.microsoft.com/store/apps/9nblggh4xdln&#34;&gt;Sokoban&lt;/a&gt;. I have a very special relationship with the Sokoban game. The Delpi version of Sokoban was the first game I ever created. I later ported it to all the platforms I played with, namely J2ME (for my Siemens S60 phone), Linux (using Kylix which was basically a Delphi for Linux), Windows Phone 7 and now &lt;a href=&#34;https://www.microsoft.com/store/apps/9nblggh4xdln&#34;&gt;Sokoban Pixel&lt;/a&gt; for the Universal Windows Platform.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/sokoban-gameplay.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/sokoban-gameplay.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -65,7 +65,7 @@
 
 &lt;p&gt;Making your game playable on a phone or on a tablet is a bit tricky. There are no input devices usually attached, so you have to come up with your own. There are many ways to handle this. You can recognizes swipes on the device, or make the user tilt the device. But the solution I like the best is to render a simple d-pad in the right corner of the screen. This way the user can hold the device in both hands and use the right thumb to play the game.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/sokoban-dpad.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/sokoban-dpad.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/p&gt;
 
@@ -74,15 +74,15 @@
     
     <item>
       <title>Creating better forms in Windows Phone apps</title>
-      <link>https://blog.davidmacias.com/creating-better-forms-in-windows-phone-apps/</link>
+      <link>/creating-better-forms-in-windows-phone-apps/</link>
       <pubDate>Tue, 29 Mar 2016 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/creating-better-forms-in-windows-phone-apps/</guid>
+      <guid>/creating-better-forms-in-windows-phone-apps/</guid>
       <description>&lt;p&gt;If you are a Windows Phone user you must know that filling in forms in apps is usually a real pain. There is no good way to move from one input to another or to collapse the keyboard. The whole process becomes a struggle, tapping outside the input fields to collapse the keyboard allowing you to scroll to the next input or to the submit button at the top of the screen, usually occluded by the keyboard.&lt;/p&gt;
 
 &lt;p&gt;The typical struggle to get to the last input fields and the submit button may look like this&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/forms1.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/forms1.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;There is no guidance on how to approach this. Take a look at the Store app on Windows 10 mobile, the perfect example of bad UI and UX directly from Microsoft and try review an app. You fill in the title of the review, then struggle to go into the review text input, you have to tap somewhere above the input to hide the keyboard, but not to hit the stars control &amp;hellip; just an UX disaster.&lt;/p&gt;
 
@@ -92,7 +92,7 @@
 
 &lt;p&gt;The whole experience becomes much better&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/forms2.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/forms2.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;Implementation is also simple.&lt;/p&gt;
 
@@ -101,13 +101,13 @@
     
     <item>
       <title>Using Tooltips to make better menus in Windows apps</title>
-      <link>https://blog.davidmacias.com/using-tooltips-to-make-better-menus-in-windows-apps/</link>
+      <link>/using-tooltips-to-make-better-menus-in-windows-apps/</link>
       <pubDate>Wed, 23 Mar 2016 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/using-tooltips-to-make-better-menus-in-windows-apps/</guid>
+      <guid>/using-tooltips-to-make-better-menus-in-windows-apps/</guid>
       <description>&lt;p&gt;If you use Windows apps with navigation menus consisting of icons, you may have noticed that some of those apps show you a text when hovering above those icons. This is a nice touch for the users, allowing them to quickly grasp the meaning of the menu icons without the need to click them or to expand the menu (if available).&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/tooltips.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/tooltips.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;Implementing this kind of hovers is really easy thanks to the &lt;code&gt;ToolTipService&lt;/code&gt; that is available in Windows 8.1 and Windows 10 UWP. You can add &lt;code&gt;&amp;lt;ToolTipService.ToolTip&amp;gt;&lt;/code&gt; with any element and include basically any XAML content as the tooltip. Here is a sample from the animation using a simple localized &lt;code&gt;TextBlock&lt;/code&gt;&lt;/p&gt;
 
@@ -118,15 +118,15 @@
     
     <item>
       <title>Choosing an image from gallery or camera a bit better in Universal Windows apps</title>
-      <link>https://blog.davidmacias.com/choosing-an-image-from-gallery-or-camera-in-uwp/</link>
+      <link>/choosing-an-image-from-gallery-or-camera-in-uwp/</link>
       <pubDate>Mon, 14 Mar 2016 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/choosing-an-image-from-gallery-or-camera-in-uwp/</guid>
+      <guid>/choosing-an-image-from-gallery-or-camera-in-uwp/</guid>
       <description>&lt;p&gt;When developing Windows Phone apps you may encounter a use case when you have to allow the user to either pick a photo from the photos gallery in the photo or a take a new photo using the phone&amp;rsquo;s camera. One example of this may be the registration process when the user may choose a profile picture.&lt;/p&gt;
 
 &lt;p&gt;In Windows Phone 8.1, this task is quite simple, just use the &lt;code&gt;FileOpenPicker&lt;/code&gt;. It allows you to pick a photo from the gallery or take a new photo. Just take a look at this animation showing how the users takes a new photo using the phone&amp;rsquo;s camera.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/wpa81.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/wpa81.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -136,7 +136,7 @@
 
 &lt;p&gt;In Windows 10 Mobile, the &lt;code&gt;FileOpenPicker&lt;/code&gt; has been changed to be more customizable. This make the process of  taking a new photo using the phone&amp;rsquo;s camera totally hidden. Not a chance a common user will discover it, just take a look at this animation.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/uwp.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/uwp.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;So how to make this experience a bit better for the user? My solution is instead of launching the &lt;code&gt;FileOpenPicker&lt;/code&gt; showing a &lt;code&gt;Flyout&lt;/code&gt; with two options; Choose from gallery and Take photo. The Choose from gallery option just launches the &lt;code&gt;FileOpenPicker&lt;/code&gt;&lt;/p&gt;
 
@@ -148,15 +148,15 @@
 
 &lt;p&gt;The result might look like this. Do not forget to add an option to delete the photo if one is already chosen.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/uwp2.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
+&lt;img src=&#34;../../images/uwp2.gif&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
     </item>
     
     <item>
       <title>Using Hockey App to distribute Windows Phone apps</title>
-      <link>https://blog.davidmacias.com/using-hockey-app-to-distribute-windows-phone-apps/</link>
+      <link>/using-hockey-app-to-distribute-windows-phone-apps/</link>
       <pubDate>Tue, 16 Feb 2016 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/using-hockey-app-to-distribute-windows-phone-apps/</guid>
+      <guid>/using-hockey-app-to-distribute-windows-phone-apps/</guid>
       <description>&lt;p&gt;Distributing Windows Phone apps to testers has always been a pain. The Private Beta in the Windows Store intended for this is not very flexible and it got much worse with Windows 10 (generating promotional code that can take up to 24 hours).&lt;/p&gt;
 
 &lt;p&gt;One of the better ways to solve the beta build distribution is using a service like &lt;a href=&#34;http://hockeyapp.net/&#34;&gt;Hockey App&lt;/a&gt;, that Microsoft recently acquired. To be able to use Hockey App (or any other service) you need to &lt;a href=&#34;https://products.websecurity.symantec.com/orders/enrollment/microsoftCert.do&#34;&gt;buy a $299 certificate from Symantec&lt;/a&gt;.&lt;/p&gt;
@@ -200,10 +200,10 @@
     
     <item>
       <title>Problems getting paid from the Windows Store, again</title>
-      <link>https://blog.davidmacias.com/problems-getting-paid-from-the-windows-store-again/</link>
+      <link>/problems-getting-paid-from-the-windows-store-again/</link>
       <pubDate>Tue, 21 Jul 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/problems-getting-paid-from-the-windows-store-again/</guid>
+      <guid>/problems-getting-paid-from-the-windows-store-again/</guid>
       <description>&lt;p&gt;I do not make much money on my Windows Phone apps (who does?), but when the payout time comes every couple of months, I expect the money to be delivered. Dealing with Microsoft, I should know better.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Failed payment&lt;/strong&gt;&lt;/p&gt;
@@ -226,7 +226,7 @@
 
 &lt;p&gt;I took a look at my payout settings in the new Dev Center and it is a mess&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/payout.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/payout.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;It previous pages is telling my that everything is ok and my data is valid, but is it? Those four radios do not give me the confidence to believe it. Especially seeing my old account (x3168) that was there in the Windows Store and I deleted it. I used to get the payment to the x0026 account that was in my Windows Phone Store account.&lt;/p&gt;
 
@@ -237,10 +237,10 @@
     
     <item>
       <title>Implementing Google login in Universal Apps</title>
-      <link>https://blog.davidmacias.com/implementing-google-login-in-universal-apps/</link>
+      <link>/implementing-google-login-in-universal-apps/</link>
       <pubDate>Wed, 01 Jul 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/implementing-google-login-in-universal-apps/</guid>
+      <guid>/implementing-google-login-in-universal-apps/</guid>
       <description>&lt;p&gt;In a recent project I had to implement Google login to an Universal App. I decided to use the native &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/windows.security.authentication.web.webauthenticationbroker.aspx&#34;&gt;WebAuthenticationBroker&lt;/a&gt; control and the implementation was not as straightforward as I hoped. By implementing Google login I mean getting the authentication token that you can then use with your server API.&lt;/p&gt;
 
 &lt;p&gt;WebAuthenticationBroker is a good idea but it is implemented rather poorly. It works differently on Windows 8.1 and Windows Phone 8.1 due to the &amp;#8220;AndContinue&amp;#8221; pattern that Windows Phone 8.1 forces on you. You can solve this with &lt;a href=&#34;http://blog.kulman.sk/why-universal-apps-as-not-as-universal-as-you-may-think/&#34;&gt;some ifdefs and platform specific code, as always&lt;/a&gt;.&lt;/p&gt;
@@ -274,10 +274,10 @@
     
     <item>
       <title>The death of the WinRT developer?</title>
-      <link>https://blog.davidmacias.com/the-death-of-the-winrt-developer/</link>
+      <link>/the-death-of-the-winrt-developer/</link>
       <pubDate>Thu, 30 Apr 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/the-death-of-the-winrt-developer/</guid>
+      <guid>/the-death-of-the-winrt-developer/</guid>
       <description>&lt;p&gt;As many other Windows Phone / Windows 8 / Universal apps developers (lets just call us WinRT developers) I watched the Build 2015 keynote last night. And I did not like it. I know Microsoft does not know to communicate but the message for me was clear. We, the WinRT developer, are no longer needed.&lt;/p&gt;
 
 &lt;p&gt;First, Microsoft announced that WPF apps will be allowed to be submitted to the Windows Store to be used on desktops / tablets. So why would anyone want to develop (or want to have developed) a Windows 8 (WinRT) app, when they can just use WPF and get everything done easier? I do not know.&lt;/p&gt;
@@ -317,10 +317,10 @@
     
     <item>
       <title>Player Framework localization</title>
-      <link>https://blog.davidmacias.com/player-framework-localization/</link>
+      <link>/player-framework-localization/</link>
       <pubDate>Mon, 27 Apr 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/player-framework-localization/</guid>
+      <guid>/player-framework-localization/</guid>
       <description>&lt;p&gt;In my recent universal (Windows Phone 8.1 and Windows 8.1) project I implemented PlayReady DRM protected smooth streaming movies playback using the &lt;a href=&#34;https://playerframework.codeplex.com/&#34;&gt;Player Framework&lt;/a&gt;. This projects seems to be dead, but it is still the best option when implementing any kind of video playback.&lt;/p&gt;
 
 &lt;p&gt;One of the first things I had to do was localize it&amp;#8217;s controls, because the app I worked on was in Czech and Slovak, not in English (the only language the Player Framework supports out of the box). Not all the texts an be localized, but the most visible ones like button labels and error messages can.&lt;/p&gt;
@@ -338,10 +338,10 @@
     
     <item>
       <title>Leveraging ETag caching in Windows Phone and Windows apps</title>
-      <link>https://blog.davidmacias.com/leveraging-etag-caching-in-windows-phone-and-windows-apps/</link>
+      <link>/leveraging-etag-caching-in-windows-phone-and-windows-apps/</link>
       <pubDate>Mon, 20 Apr 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/leveraging-etag-caching-in-windows-phone-and-windows-apps/</guid>
+      <guid>/leveraging-etag-caching-in-windows-phone-and-windows-apps/</guid>
       <description>&lt;p&gt;In my previous article I showed you &lt;a href=&#34;http://blog.kulman.sk/using-etag-to-cache-responses-in-nancyfx/&#34; title=&#34;Using ETag to cache responses in NancyFX&#34;&gt;how to implements server side caching using ETag&lt;/a&gt;. HTTP clients on other platforms can usually work with ETag automatically, but of course, the portable HTTP client used on Windows platforms cannot. You have to implement ETag handling yourself.&lt;/p&gt;
 
 &lt;p&gt;In &lt;a href=&#34;http://blog.kulman.sk/tvtime-track-your-favorite-tv-shows-on-windows-phone/&#34; title=&#34;TvTime: track your favorite TV shows on Windows Phone&#34;&gt;TvTime&lt;/a&gt;, all the server requests are GET request, so I remember the ETag values for each Url (= each GET request). I store the ETag values in application local settings.&lt;/p&gt;
@@ -357,10 +357,10 @@
     
     <item>
       <title>Back navigation on Backspace key press in Windows 8.1 apps</title>
-      <link>https://blog.davidmacias.com/back-navigation-on-backspace-key-press-in-windows-8-1-apps/</link>
+      <link>/back-navigation-on-backspace-key-press-in-windows-8-1-apps/</link>
       <pubDate>Tue, 03 Mar 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/back-navigation-on-backspace-key-press-in-windows-8-1-apps/</guid>
+      <guid>/back-navigation-on-backspace-key-press-in-windows-8-1-apps/</guid>
       <description>&lt;p&gt;I am not a mouse or a touch person, I like using the keyboard and keyboard shortcuts for everything. So when I (have to) use a Windows 8.1 Metro app, I always miss when the app does not navigate back when I press the Backspace key, just like the browser does.&lt;/p&gt;
 
 &lt;p&gt;Implementing this functionality is really simple, you just need to handle the KeyUp event and listen for the Backspace key. You can implement the KeyUp event handler on every View in your app, but that is not necessary. You can just hook up the global Window.Current.CoreWindow.KeyUp event after you app starts.&lt;/p&gt;
@@ -374,10 +374,10 @@
     
     <item>
       <title>Dialog helper for Universal Apps the easy way</title>
-      <link>https://blog.davidmacias.com/dialog-helper-for-universal-apps/</link>
+      <link>/dialog-helper-for-universal-apps/</link>
       <pubDate>Wed, 24 Dec 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/dialog-helper-for-universal-apps/</guid>
+      <guid>/dialog-helper-for-universal-apps/</guid>
       <description>&lt;p&gt;Today I read Joost van Schaik&amp;#8217;s blog post called &lt;a href=&#34;http://dotnetbyexample.blogspot.nl/2014/12/a-behavior-to-show-messagedialog-from.html&#34;&gt;A behavior to show a MessageDialog from a MVVMLight viewmodel in Universal apps–with callbacks&lt;/a&gt;. I am not a MVVMLight guy (I use Caliburn.Micro) and I personally use an approach that uses a little less code, employing a helper class.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Helper class&lt;/strong&gt;&lt;/p&gt;
@@ -413,10 +413,10 @@
     
     <item>
       <title>Creating a fake splashscreen for your Universal App</title>
-      <link>https://blog.davidmacias.com/creating-a-fake-splashscreen-for-your-universal-app/</link>
+      <link>/creating-a-fake-splashscreen-for-your-universal-app/</link>
       <pubDate>Tue, 23 Dec 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/creating-a-fake-splashscreen-for-your-universal-app/</guid>
+      <guid>/creating-a-fake-splashscreen-for-your-universal-app/</guid>
       <description>&lt;p&gt;Sometimes you may want your app to display the startup splashscreen a bit longer, so you can initialize or fetch some data necessary for the app to run. To achieve this, you can create a fake splaschreen, a View that looks just like the splashscreen, does all the work and redirects to the real main View afterwards.&lt;/p&gt;
 
 &lt;p&gt;In theory, it is quite simple:&lt;/p&gt;
@@ -442,10 +442,10 @@
     
     <item>
       <title>Why Universal Apps as not as universal as you may think</title>
-      <link>https://blog.davidmacias.com/why-universal-apps-as-not-as-universal-as-you-may-think/</link>
+      <link>/why-universal-apps-as-not-as-universal-as-you-may-think/</link>
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/why-universal-apps-as-not-as-universal-as-you-may-think/</guid>
+      <guid>/why-universal-apps-as-not-as-universal-as-you-may-think/</guid>
       <description>&lt;p&gt;I have been developing Windows Phone apps for a few years now, always sticking to Silverlight and keeping using Silverlight also after Microsoft announced the WinRT flavor of Windows Phone apps and the so called Universal Apps. The Windows Phone 8.0 and 8.1 Silverlight APIs have some limitations, but are now well known do not contain many bugs. They are the safe choice if you want to create a Windows Phone apps. And do not forget that there are still many device running Windows Phone 8 (like Verizon customers in the US) that never got the 8.1 updated promised to everyone during the summer.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Really universal?&lt;/strong&gt;&lt;/p&gt;
@@ -460,7 +460,7 @@
 
 &lt;p&gt;In theory, Universal Apps are supposed to make code sharing between Windows Phone and Windows 8.1 simple and allow you to reuse as much code as possible. This works on the trivial Microsoft samples, but try to create a real world app. I have a business logic project with API calls, storage, etc. in a portable class library (like I always did before Universal Apps existed) and I created an Universal App from the template. And the #ifdef hell started.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/56995992.jpg&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/56995992.jpg&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;&lt;strong&gt;#ifdefs everywhere&lt;/strong&gt;&lt;/p&gt;
 
@@ -487,10 +487,10 @@
     
     <item>
       <title>REST service base class for Windows Phone 8.1 XAML apps</title>
-      <link>https://blog.davidmacias.com/rest-service-base-class-for-windows-phone-8-1-xaml-apps/</link>
+      <link>/rest-service-base-class-for-windows-phone-8-1-xaml-apps/</link>
       <pubDate>Mon, 24 Nov 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/rest-service-base-class-for-windows-phone-8-1-xaml-apps/</guid>
+      <guid>/rest-service-base-class-for-windows-phone-8-1-xaml-apps/</guid>
       <description>&lt;p&gt;Communicating with a JSON based REST service is a task that many Windows Phone apps have to do. My apps sure do it a lot so I came up with a base class that I use in all of them, &lt;a href=&#34;https://github.com/igorkulman/Kulman.WPA81.BaseRestService&#34;&gt;put it on Github&lt;/a&gt; and &lt;a href=&#34;https://www.nuget.org/packages/Kulman.WPA81.BaseRestService/&#34;&gt;created a Nuget package&lt;/a&gt;, so your apps could use it to.&lt;/p&gt;
 
 &lt;p&gt;The usage of this base class is simple. Create your service class and inherit from BaseRestService. The minimum you need to do to make it work is to override the GetBaseUrl() method to set the base url for all the requests. You can (but do not have to) also override the GetRequestHeaders() method to set the default request headers.&lt;/p&gt;

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ninject on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/ninject/</link>
+    <link>/tags/ninject/</link>
     <description>Recent content in Ninject on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Intercepting methods with Ninject for error logging</title>
-      <link>https://blog.davidmacias.com/intercepting-methods-with-ninject-for-error-logging/</link>
+      <link>/intercepting-methods-with-ninject-for-error-logging/</link>
       <pubDate>Wed, 24 Jul 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/intercepting-methods-with-ninject-for-error-logging/</guid>
+      <guid>/intercepting-methods-with-ninject-for-error-logging/</guid>
       <description>&lt;p&gt;I am currently working on a fairly large Windows Azure projects that among other things conatins a Web Role where I use &lt;a href=&#34;http://www.ninject.org/&#34;&gt;Ninject&lt;/a&gt; as a dependency container. As the business logic library grew larger I found myself writing a lot of repeating boiler plate code to log exceptions in many important methods. I wantet to remove all the boiler plate code and create a custom attribute, say LogErrorAttribute with one simple goal: each method decorated woth this attribute should log info about any occuring exception.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;IL weaving?&lt;/strong&gt;&lt;/p&gt;

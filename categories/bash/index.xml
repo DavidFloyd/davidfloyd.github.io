@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bash on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/categories/bash/</link>
+    <link>/categories/bash/</link>
     <description>Recent content in Bash on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Fixing first annoyances with Bash on Windows</title>
-      <link>https://blog.davidmacias.com/fixing-first-annoyances-with-bash-on-windows/</link>
+      <link>/fixing-first-annoyances-with-bash-on-windows/</link>
       <pubDate>Tue, 09 Aug 2016 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/fixing-first-annoyances-with-bash-on-windows/</guid>
+      <guid>/fixing-first-annoyances-with-bash-on-windows/</guid>
       <description>&lt;p&gt;When you enable the Linux Subsystem on Windows in the Windows 10 Anniversary Update so you can use Bash and all the GNU utilities, you may encounter a few annoyances like strange error messages, wrong language settings, etc. Here is how to fix the ones I encountered.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Adding Bash to cmder&lt;/strong&gt;&lt;/p&gt;
@@ -25,7 +25,7 @@
 
 &lt;p&gt;&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/bash-cmder.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/bash-cmder.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;If you do not use cmder, you should. It is a nice terminal app, enables copy and paste and editors like &lt;code&gt;vim&lt;/code&gt; and &lt;code&gt;nano&lt;/code&gt; work with it in Bash unlike when using the bash.exe directly.&lt;/p&gt;
 

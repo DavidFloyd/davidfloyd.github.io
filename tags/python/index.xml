@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/python/</link>
+    <link>/tags/python/</link>
     <description>Recent content in Python on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Measuring and recording the room temperature with a Raspberry Pi</title>
-      <link>https://blog.davidmacias.com/measuring-and-recording-the-room-temperature-with-a-raspberry-pi/</link>
+      <link>/measuring-and-recording-the-room-temperature-with-a-raspberry-pi/</link>
       <pubDate>Mon, 30 Mar 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/measuring-and-recording-the-room-temperature-with-a-raspberry-pi/</guid>
+      <guid>/measuring-and-recording-the-room-temperature-with-a-raspberry-pi/</guid>
       <description>&lt;p&gt;The Raspberry Pi is a small embedded computing device that you can use for &lt;a href=&#34;http://blog.kulman.sk/my-year-with-the-raspberry-pi-and-what-i-used-it-for/&#34; title=&#34;My year with the Raspberry Pi and what I used it for&#34;&gt;many different software and hardware projects&lt;/a&gt;. One of the first projects I did with the Pi was turning it into a device that would measure, record and display the room temperature.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Hadrware&lt;/strong&gt;&lt;/p&gt;
@@ -27,7 +27,7 @@
 
 &lt;p&gt;&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/pitherm.jpg&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/pitherm.jpg&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;&lt;strong&gt;Drivers&lt;/strong&gt;&lt;/p&gt;
 
@@ -47,7 +47,7 @@
 
 &lt;p&gt;I am a .NET developer but running Mono on the Pi just seems strange to me, so I decided to use Node.js to create the UI. You can find the &lt;a href=&#34;https://github.com/igorkulman/rpi-thermometer&#34;&gt;whole project on Github&lt;/a&gt;. It is a simple Node.js server that gets the temperature and shows it.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/pi-ui.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/pi-ui.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;Getting the temperature is a matter of a simple cat command to the right place&lt;/p&gt;
 
@@ -59,7 +59,7 @@
 
 &lt;p&gt;You can then use the /history endpoint to get the temperature stats.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/pi-history.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/pi-history.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;You can get, download, fork the whole project from &lt;a href=&#34;https://github.com/igorkulman/rpi-thermometer&#34;&gt;https://github.com/igorkulman/rpi-thermometer&lt;/a&gt;.&lt;/p&gt;</description>
     </item>

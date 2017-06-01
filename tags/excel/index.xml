@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Excel on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/excel/</link>
+    <link>/tags/excel/</link>
     <description>Recent content in Excel on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Reading Excel sheets using F# without COM</title>
-      <link>https://blog.davidmacias.com/reading-excel-sheets-using-f-without-com/</link>
+      <link>/reading-excel-sheets-using-f-without-com/</link>
       <pubDate>Wed, 06 Feb 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/reading-excel-sheets-using-f-without-com/</guid>
+      <guid>/reading-excel-sheets-using-f-without-com/</guid>
       <description>&lt;p&gt;I needed to create an utility that would read Excel 2010 files (.xlsx) and generate XML files from them according to some specific rules. The catch was that the utility needed to run on MacOS instead of Windows.&lt;/p&gt;
 
 &lt;p&gt;Reading and writing Excel files from .NET is &lt;a href=&#34;http://blogs.msdn.com/b/jackhu/archive/2011/04/19/fsharp-amp-excel-io-reading-and-writeing-to-excel.aspx&#34;&gt;very easy using the Microsoft.Office.Interop assemblies&lt;/a&gt; but they use Excel through COM and that makes them unusable outside of Windows. I found some 3rd party libraries for working with Excel and analzyed them with &lt;a href=&#34;http://www.mono-project.com/MoMA&#34;&gt;The Mono Migration Analzyer&lt;/a&gt; (MoMA). MoMA is a handy tool that analyzes .NET assemblies and tells you if they will run on Mono. Many of the Excel libraries I found were unusable for my use-case because they were using PInvoke calls. Only the &lt;a href=&#34;http://excelpackage.codeplex.com/&#34;&gt;ExcelPackage library&lt;/a&gt; runs on Mono.&lt;/p&gt;

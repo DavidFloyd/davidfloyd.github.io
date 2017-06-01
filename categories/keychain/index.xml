@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Keychain on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/categories/keychain/</link>
+    <link>/categories/keychain/</link>
     <description>Recent content in Keychain on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Re-signing iOS apps</title>
-      <link>https://blog.davidmacias.com/resigning-ios-apps/</link>
+      <link>/resigning-ios-apps/</link>
       <pubDate>Tue, 23 May 2017 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/resigning-ios-apps/</guid>
+      <guid>/resigning-ios-apps/</guid>
       <description>&lt;p&gt;There are some times when you need to re-sign the IPA of your iOS app with a different certificate. For example, an external developer creates the IPA for you, but it is signed with their personal certificate and you need to re-sign it with yours to deploy it to the App Store. Or one of your clients does not want to have their employees install the iOS app from the App Store but wants to distribute it directly using their MDM tools.&lt;/p&gt;
 
 &lt;p&gt;The second case is a bit more complicated, because it involves creating a new app identity for the app. When you change the app id if your app, your push notifications will stop working and you need to also generate a new APNS certificate with the new app id and deploy it to your server. Here is everything you need to do, step by step.&lt;/p&gt;
@@ -49,7 +49,7 @@
 
 &lt;p&gt;And you are done!&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/easyresigny.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
+&lt;img src=&#34;../../images/easyresigny.png&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;</description>
     </item>
     
   </channel>

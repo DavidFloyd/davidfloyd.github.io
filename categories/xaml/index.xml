@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Xaml on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/categories/xaml/</link>
+    <link>/categories/xaml/</link>
     <description>Recent content in Xaml on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,13 +13,13 @@
     
     <item>
       <title>Mobilize.net: Converting Windows Phone 8 apps to UWP? Not really</title>
-      <link>https://blog.davidmacias.com/mobilize-net-converting-windows-phone-apps-to-uwp/</link>
+      <link>/mobilize-net-converting-windows-phone-apps-to-uwp/</link>
       <pubDate>Fri, 18 Dec 2015 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/mobilize-net-converting-windows-phone-apps-to-uwp/</guid>
+      <guid>/mobilize-net-converting-windows-phone-apps-to-uwp/</guid>
       <description>&lt;p&gt;When Microsoft announced the Windows 10 developer platform, they also announced bridges to make porting apps from Android, iOS and Web easier. Those bridges are now either dead (Android) or unusable (iOS) but there is another tool that can be considered a bridge left. It is called &lt;a href=&#34;http://www.mobilize.net/download-silverlight-bridge&#34;&gt;Mobilize.net Silverlight&lt;/a&gt; Bridge and it is not from Microsoft. It promises converting existing Windows Phone 8 (Silverlight apps) to the Universal Windows Platform. Considering the majority of apps in the Windows Phone Store are Windows Phone 8 apps and the fact that Android and iOS developers do not really care about Windows, Mobilize.net seem to be the most useful of the bridges, because there is no easy porting apps from Windows Phone 8 to UWP, just rewriting. So I tried it out.&lt;/p&gt;
 
-&lt;img src=&#34;https://blog.davidmacias.com/images/Windows10-Devices.png?t=1449725816496&amp;amp;width=425&amp;amp;height=210&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
+&lt;img src=&#34;../../images/Windows10-Devices.png?t=1449725816496&amp;amp;width=425&amp;amp;height=210&#34; alt=&#34;&#34; class=&#34;pure-img&#34; &gt;
 
 &lt;p&gt;Mobilize.net is currently in technical preview. After you download and install it, it integrates into Visual Studio 2015 and there is a new context menu for Windows Phone 8 project, allowing you to convert them to UWP apps. If you use it, you get a dialog windows and a conversion process that will fail most of the times with a strange error. At least for me it did.&lt;/p&gt;
 
@@ -40,10 +40,10 @@
     
     <item>
       <title>Detecting gestures over WebView on Windows Phone</title>
-      <link>https://blog.davidmacias.com/detecting-gestures-over-webview-on-windows-phone/</link>
+      <link>/detecting-gestures-over-webview-on-windows-phone/</link>
       <pubDate>Mon, 07 Dec 2015 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/detecting-gestures-over-webview-on-windows-phone/</guid>
+      <guid>/detecting-gestures-over-webview-on-windows-phone/</guid>
       <description>&lt;p&gt;If you develop Windows Phone apps, you surely had to use the WebView component at least once. Any you must have realized, that it kind of sucks. One of the problems is that it swallows all the gestures and manipulation events. This means you cannot put it into a Pivot, you cannot detect swipe left or right events to navigate to next or previous article .. or can you?&lt;/p&gt;
 
 &lt;p&gt;In a recent project, I had to implement exactly the mentioned functionality, swiping between articles displayed in a WebView. I did some research and I could not find any solution. So I had to get creative and I find a way involving JavaScript.&lt;/p&gt;

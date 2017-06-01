@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Security on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/security/</link>
+    <link>/tags/security/</link>
     <description>Recent content in Security on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Hacking a mobile API and how to protect yourself</title>
-      <link>https://blog.davidmacias.com/hacking-a-mobile-api-and-how-to-protect-yourself/</link>
+      <link>/hacking-a-mobile-api-and-how-to-protect-yourself/</link>
       <pubDate>Wed, 02 Nov 2016 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/hacking-a-mobile-api-and-how-to-protect-yourself/</guid>
+      <guid>/hacking-a-mobile-api-and-how-to-protect-yourself/</guid>
       <description>&lt;p&gt;Sometimes when I use a mobile app that provides data that I find useful my curiosity awakens and I ask myself a question: how does the communication work and how hard would it be to break their security and access the data outside of the app? Mobile apps I have encountered are generally not very well secured and stealing their data is not much of a challenge. But what can the authors of the app do about it?&lt;/p&gt;
 
 &lt;p&gt;Lets take an app and an API and walk through the process. The model app is an app I tried last week and provides TV schedules for many local stations, so data that someone might be interested in stealing.&lt;/p&gt;
@@ -48,10 +48,10 @@
     
     <item>
       <title>NancyFX authentication for REST API</title>
-      <link>https://blog.davidmacias.com/nancyfx-authentication-for-rest-api/</link>
+      <link>/nancyfx-authentication-for-rest-api/</link>
       <pubDate>Mon, 12 Jan 2015 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/nancyfx-authentication-for-rest-api/</guid>
+      <guid>/nancyfx-authentication-for-rest-api/</guid>
       <description>&lt;p&gt;NancyFX is a great .NET framework well suited for creating REST APIs. There are many ways how to approach authentication, the simplest one is the good old Forms Authentication. The idea of Forms Authentication is that the user logs in with a username and password and gets a cookie, the protected endpoints then check the cookie. NancyFX supports Forms Authentication with the &lt;a href=&#34;https://www.nuget.org/packages/Nancy.Authentication.Forms/&#34;&gt;Nancy.Authentication.Forms&lt;/a&gt; package. The &lt;a href=&#34;https://github.com/NancyFx/Nancy/wiki/Forms-Authentication&#34;&gt;documentation describes how to use it on a web page&lt;/a&gt;, but to use it with a REST API a few changes are needed.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Forms Authentication differences for REST API&lt;/strong&gt;&lt;/p&gt;
@@ -79,10 +79,10 @@
     
     <item>
       <title>Ignoring certificate errors in Windows Phone 8.1</title>
-      <link>https://blog.davidmacias.com/ignoring-certificate-errors-in-windows-phone-8-1/</link>
+      <link>/ignoring-certificate-errors-in-windows-phone-8-1/</link>
       <pubDate>Wed, 11 Jun 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/ignoring-certificate-errors-in-windows-phone-8-1/</guid>
+      <guid>/ignoring-certificate-errors-in-windows-phone-8-1/</guid>
       <description>&lt;p&gt;Connecting to servers with self-signed, expired or otherwise problematic certificates has always been a problem in Windows Phone. There is no way to ignore certificate errors in Windows Phone 7 and Windows Phone 8, not even using the new Portable HTTP Client Libraries. If you are dealing with a self-signed certificate on the server, you have to somehow get it (may not always be possible) and install it on the device or in the emulator (for emulator every time you close and start it again). Ignoring certificate errors would be a much more comfortable approach. Of course, only do it in development with dev servers, not in production.&lt;/p&gt;
 
 &lt;p&gt;In Windows Phone 8.1 there are strangely two HttpClient classes, one in System.Net.Http and another in Windows.Web.Http. Normally you would go with the one in System.Net.Http because you are probably using it thanks to the mentioned Portable HTTP Client Libraries on every other platform. You are out of luck in Windows Phone 8.1 XAML, if you want to ignore certificate errors, you have to use the one from Windows.Web.Http, because only this one accepts an IHttpFilter as an argument.&lt;/p&gt;
@@ -98,10 +98,10 @@
     
     <item>
       <title>Tampering with Windows Store apps data</title>
-      <link>https://blog.davidmacias.com/tampering-with-windows-store-apps-data/</link>
+      <link>/tampering-with-windows-store-apps-data/</link>
       <pubDate>Tue, 13 Nov 2012 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/tampering-with-windows-store-apps-data/</guid>
+      <guid>/tampering-with-windows-store-apps-data/</guid>
       <description>&lt;p&gt;Windows Store apps run in a sandbox with their data isolated from each other. So how secure is this storage from tampering by the user? It turns out not much.&lt;/p&gt;
 
 &lt;p&gt;The only Windows Store app I use on my work notebook is WeatherFlow because of the live tile. The app allows you to add your city and view weather forecast for it. But there is now way to get rid of the default cities like New York, Tokyo, etc. that are in the app when you first run it. This realy annoyed me so I started to poke around.&lt;/p&gt;

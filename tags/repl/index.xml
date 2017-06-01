@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Repl on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/repl/</link>
+    <link>/tags/repl/</link>
     <description>Recent content in Repl on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Using Sublime Text 2 as F# REPL</title>
-      <link>https://blog.davidmacias.com/using-sublime-text-2-as-f-repl/</link>
+      <link>/using-sublime-text-2-as-f-repl/</link>
       <pubDate>Tue, 15 Jan 2013 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/using-sublime-text-2-as-f-repl/</guid>
+      <guid>/using-sublime-text-2-as-f-repl/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text 2&lt;/a&gt; is a great multi-purpose text editor that you can run on Windows, MacOS and Linux. You can configure Sublime Text 2 to higlight and compile F# files and even to use F# Interactive and make it a F# REPL. Using Sublime Text 2 as F# REPL is useful when you work on MacOS and Linux (F# 3.0 works great with &lt;a href=&#34;http://www.mono-project.com/Main_Page&#34;&gt;Mono&lt;/a&gt;) and cannot use Visual Studio 2012. If you are new to Sublime Text 2, check out the &lt;a href=&#34;http://net.tutsplus.com/articles/news/perfect-workflow-in-sublime-text-free-course/&#34;&gt;Perfect Workflow in Sublime Text: Free Course&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Installing necessary packages&lt;/strong&gt;&lt;/p&gt;

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hockey App on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/hockey-app/</link>
+    <link>/tags/hockey-app/</link>
     <description>Recent content in Hockey App on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Using Hockey App to distribute Windows Phone apps</title>
-      <link>https://blog.davidmacias.com/using-hockey-app-to-distribute-windows-phone-apps/</link>
+      <link>/using-hockey-app-to-distribute-windows-phone-apps/</link>
       <pubDate>Tue, 16 Feb 2016 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/using-hockey-app-to-distribute-windows-phone-apps/</guid>
+      <guid>/using-hockey-app-to-distribute-windows-phone-apps/</guid>
       <description>&lt;p&gt;Distributing Windows Phone apps to testers has always been a pain. The Private Beta in the Windows Store intended for this is not very flexible and it got much worse with Windows 10 (generating promotional code that can take up to 24 hours).&lt;/p&gt;
 
 &lt;p&gt;One of the better ways to solve the beta build distribution is using a service like &lt;a href=&#34;http://hockeyapp.net/&#34;&gt;Hockey App&lt;/a&gt;, that Microsoft recently acquired. To be able to use Hockey App (or any other service) you need to &lt;a href=&#34;https://products.websecurity.symantec.com/orders/enrollment/microsoftCert.do&#34;&gt;buy a $299 certificate from Symantec&lt;/a&gt;.&lt;/p&gt;

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Static on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/static/</link>
+    <link>/tags/static/</link>
     <description>Recent content in Static on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Going static: From Wordpress to Hugo</title>
-      <link>https://blog.davidmacias.com/going-static-from-wordpress-to-hugo/</link>
+      <link>/going-static-from-wordpress-to-hugo/</link>
       <pubDate>Mon, 23 Nov 2015 13:13:55 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/going-static-from-wordpress-to-hugo/</guid>
+      <guid>/going-static-from-wordpress-to-hugo/</guid>
       <description>&lt;p&gt;As you may have noticed, &lt;a href=&#34;http://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/?utm_content=buffer882bd&amp;amp;utm_medium=social&amp;amp;utm_source=twitter.com&amp;amp;utm_campaign=buffer&#34;&gt;static site generation is the next big think&lt;/a&gt;. When I created this blog a few years ago I choose Wordpress, because it seemed like a good choice. Now I have grown tired with updating plugins, exchanging broken plugins for alternative ones and so one. So I decided to try to go the static site generation route to make the blog easier to maintain.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Jekyll? Octopress? FsBlog? Hugo!&lt;/strong&gt;&lt;/p&gt;

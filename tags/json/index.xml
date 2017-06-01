@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Json on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/json/</link>
+    <link>/tags/json/</link>
     <description>Recent content in Json on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Processing JSON in .NET</title>
-      <link>https://blog.davidmacias.com/processing-json-in-net/</link>
+      <link>/processing-json-in-net/</link>
       <pubDate>Thu, 01 Nov 2012 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/processing-json-in-net/</guid>
+      <guid>/processing-json-in-net/</guid>
       <description>&lt;p&gt;JSON is a very popular format for exchanging data, especially in the world of web technologies and JavaScript. The .NET platform contains a native support for this format but a better alternative is to use the JSON.NET library.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;JSON.NET&lt;/strong&gt;&lt;/p&gt;

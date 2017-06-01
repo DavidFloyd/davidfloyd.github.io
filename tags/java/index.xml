@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Java on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/java/</link>
+    <link>/tags/java/</link>
     <description>Recent content in Java on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Being a polyglot programmer</title>
-      <link>https://blog.davidmacias.com/being-a-polyglot-programmer/</link>
+      <link>/being-a-polyglot-programmer/</link>
       <pubDate>Tue, 06 Nov 2012 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/being-a-polyglot-programmer/</guid>
+      <guid>/being-a-polyglot-programmer/</guid>
       <description>&lt;p&gt;Many programmers learn one platform, one language and stay in their monoculture. Learning many different programming languages can definitely change your programming style and the way you think about problems. It was certainly beneficial for me, here is why.&lt;/p&gt;
 
 &lt;p&gt;After learning Pascal, C in the first semester at the University I started be commercial programming career as a PHP developer (part time in the second semester).  It was easy to start with and in demand so finding a part time job was easy. I never liked the language, it was not &amp;#8220;pure&amp;#8221;, I especially hated the function naming and parameters orders inconsistencies.&lt;/p&gt;

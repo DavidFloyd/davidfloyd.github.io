@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Flurry on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/flurry/</link>
+    <link>/tags/flurry/</link>
     <description>Recent content in Flurry on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Free services to help you develop mobile apps</title>
-      <link>https://blog.davidmacias.com/free-services-to-help-you-develop-mobile-apps/</link>
+      <link>/free-services-to-help-you-develop-mobile-apps/</link>
       <pubDate>Wed, 05 Mar 2014 00:00:00 +0000</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/free-services-to-help-you-develop-mobile-apps/</guid>
+      <guid>/free-services-to-help-you-develop-mobile-apps/</guid>
       <description>&lt;p&gt;If you develop mobile or any other kinds of apps, you need to have your source code versioned and stored in a safe place, cooperate with other people, track information about the usage of your apps and track all the errors that may occur. There are many free services that may help you with those tasks. In this article I will give you a list of the ones I use when developing &lt;a href=&#34;http://www.windowsphone.com/en-US/store/publishers?publisherId=Igor%2BKulman&amp;amp;appId=c00715a7-d2d4-48c1-94e2-2ecc7c1b798b&#34;&gt;my apps&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Bitbucket: source control and issue tracker&lt;/strong&gt;&lt;/p&gt;

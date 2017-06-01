@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mobile on Igor Kulman</title>
-    <link>https://blog.davidmacias.com/tags/mobile/</link>
+    <link>/tags/mobile/</link>
     <description>Recent content in Mobile on Igor Kulman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Hacking a mobile API and how to protect yourself</title>
-      <link>https://blog.davidmacias.com/hacking-a-mobile-api-and-how-to-protect-yourself/</link>
+      <link>/hacking-a-mobile-api-and-how-to-protect-yourself/</link>
       <pubDate>Wed, 02 Nov 2016 09:29:12 +0100</pubDate>
       <author>igor@kulman.sk (davidmacias)</author>
-      <guid>https://blog.davidmacias.com/hacking-a-mobile-api-and-how-to-protect-yourself/</guid>
+      <guid>/hacking-a-mobile-api-and-how-to-protect-yourself/</guid>
       <description>&lt;p&gt;Sometimes when I use a mobile app that provides data that I find useful my curiosity awakens and I ask myself a question: how does the communication work and how hard would it be to break their security and access the data outside of the app? Mobile apps I have encountered are generally not very well secured and stealing their data is not much of a challenge. But what can the authors of the app do about it?&lt;/p&gt;
 
 &lt;p&gt;Lets take an app and an API and walk through the process. The model app is an app I tried last week and provides TV schedules for many local stations, so data that someone might be interested in stealing.&lt;/p&gt;
