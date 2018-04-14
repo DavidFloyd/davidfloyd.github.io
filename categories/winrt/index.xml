@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Winrt on David Macías</title>
-    <link>https://davidfloyd.github.io/categories/winrt/</link>
+    <link>https://davidmaciasr.github.io/categories/winrt/</link>
     <description>Recent content in Winrt on David Macías</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Welcome</title>
-      <link>https://davidfloyd.github.io/welcome/</link>
+      <link>https://davidmaciasr.github.io/welcome/</link>
       <pubDate>Thu, 01 Jun 2017 00:00:00 +0000</pubDate>
       <author>david_4_1_4@hotmail.com (David Macías)</author>
-      <guid>https://davidfloyd.github.io/welcome/</guid>
+      <guid>https://davidmaciasr.github.io/welcome/</guid>
       <description>&lt;p&gt;I have been playing with the idea of having a coding blog in English for some time now. I will be writing some posts about programming in Java, automation and anything code related really in this web. I plan to publish one post per week. I want the posts to be useful and solve a particular problem I stumble upon in my work.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
