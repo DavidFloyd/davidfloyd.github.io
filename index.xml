@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>David Macías on David Macías</title>
-    <link>https://davidmaciasr.github.io/</link>
+    <link>/</link>
     <description>Recent content in David Macías on David Macías</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <managingEditor>david_4_1_4@hotmail.com (David Macías)</managingEditor>
-    <webMaster>david_4_1_4@hotmail.com (David Macías)</webMaster>
-    <lastBuildDate>Thu, 01 Jun 2017 00:00:00 +0000</lastBuildDate>
+    <managingEditor>david_4_1_4@hotmail.com (davidmacias)</managingEditor>
+    <webMaster>david_4_1_4@hotmail.com (davidmacias)</webMaster>
+    <lastBuildDate>Tue, 03 Mar 2020 06:56:45 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Welcome</title>
-      <link>https://davidmaciasr.github.io/welcome/</link>
+      <link>/welcome/</link>
       <pubDate>Thu, 01 Jun 2017 00:00:00 +0000</pubDate>
-      <author>david_4_1_4@hotmail.com (David Macías)</author>
-      <guid>https://davidmaciasr.github.io/welcome/</guid>
+      <author>david_4_1_4@hotmail.com (davidmacias)</author>
+      <guid>/welcome/</guid>
       <description>&lt;p&gt;I have been playing with the idea of having a coding blog in English for some time now. I will be writing some posts about programming in Java, automation and anything code related really in this web. I plan to publish one post per week. I want the posts to be useful and solve a particular problem I stumble upon in my work.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
